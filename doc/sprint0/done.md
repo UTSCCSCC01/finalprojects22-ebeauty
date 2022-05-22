@@ -41,7 +41,7 @@ As a service provider,
 
 As a client,
 
-- I want to be matched with the service provider who is professional and has a good track records with high ratings.
+- I want to find the service provider who is professional and has a good track records with high ratings.
 
 As a SP,
 
@@ -52,6 +52,16 @@ As a SP,
 As a service provider,
 
 - I wanto to be provided thorough analystic for best recommendations.
+
+## Reservation & Booking System
+
+As a client,
+
+- I want to find available dates and times of SP so that I can find the best time for me and request for confirmation from SP.
+
+As a SP,
+
+- I want to upload available dates and times ahead of time so that potential clients can find me best without conflict. 
 
 ## Service Tracking
 
@@ -86,7 +96,7 @@ As a service provider,
 
 - I want to receive the money I need for the service from the app into my business accounts.
 
-## Rating
+## Rating & Review
 
 As a client,
 
@@ -96,9 +106,6 @@ As a SP,
 
 - I want to rate a client that I served and leave a review to the admin if I want to to share my experiences.
 - I want to view my ratings and reviews submitted by previous clients that I served.
-
-
-
 
 ## Customer Service
 
