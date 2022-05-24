@@ -68,7 +68,7 @@ As a SP,
 As a client and a service provider,
 
 - I want to modify or cancel existing service appointments.
-- 
+
 
 ## In-App Communications (Chat & Messaging)
 
