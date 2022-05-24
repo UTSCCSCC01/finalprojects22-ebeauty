@@ -1,8 +1,11 @@
-The existing products include TaskRabbit https://www.taskrabbit.com/, Airtasker https://www.airtasker.com/, Gojek https://www.gojek.com/, Urban Company https://www.urbancompany.com/, and Care.com https://www.care.com/.
+ The existing products include 
+    TaskRabbit https://www.taskrabbit.com/, 
+    Airtasker https://www.airtasker.com/, 
+    Gojek https://www.gojek.com/, 
+    Urban Company https://www.urbancompany.com/, 
+    Care.com https://www.care.com/.
 
-TaskRabbit is the most competitive opponent, the main reason is it targets the market of North America. Care. com is targeting the same region but it segments more related to children's care and pet care. The target and segmentation make them less competitive.
-
-TaskRabbit has a similar solution to current services providing problems like scheduling, traffic, transportation, and quality issue. The solution is to provide a web application to gather customers and service providers, customers pay for task takers in-home services and transportation fees. In general, this is what aMORR going to do.   
+TaskRabbit is the most competitive opponent, the main reason is it targets the market of North America. Care. com is targeting the same region but it segments more related to children's care and pet care. The target and segmentation make them less competitive. TaskRabbit has a similar solution to current services providing problems like scheduling, traffic, transportation, and quality issue. The solution is to provide a web application to gather customers and service providers, customers pay for task takers in-home services and transportation fees. In general, this is what aMORR going to do.   
 
 However, the difference between aMORR and TaskRabbit will become the advantage. The segmentation of aMORR will focus on beauty services like hairdressing, haircutting, cleaning, massaging, manicure and nails, and makeup. This segmentation makes aMORR applicable to specific users. TaskRabbit has not expanded its market fully into Canada, and it bases in United State. It's time for aMORR to catch the opportunity and enter the market. 
 
