@@ -4,8 +4,6 @@ The beauty service industry is already huge at the moment. However, there are st
 ## Installation for your Software/System: 
 The project will take the form of a website so no installation required.
 
-react and mongodb
-
 ## Contribution: 
 In order to contribute to the project:
 1) 'git clone' should be used to clone the main directory of ebeauty if it is the first time contributing, otherwise 'git pull' should be used to keep your repository up to date.
