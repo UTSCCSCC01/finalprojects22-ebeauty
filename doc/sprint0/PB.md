@@ -5,6 +5,7 @@ User Stories
 	Criteria of satisfaction :
 		- A user's login will not succeed if the password is incorrect.
 		- If a user is not signed-up he/she should be able to sign-up.
+		- User directed to the search page once logged in successfully.
 		
 2.  As Alice (a customer), I would like to be able to enter my house address, so that I can make sure the service provider is willing to come to my house.
 
