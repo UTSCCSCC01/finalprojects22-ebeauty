@@ -4,32 +4,26 @@ User Stories
 
 	Criteria of satisfaction :
 		
-
 2.  As Alice (a customer), I would like to be able to enter my house address, so that I can make sure the service provider  is willing to come to my house.
 
 	Criteria of satisfaction :
 		
-
 3. As Alice (a customer), I would like to be able to search for house cleaning and landscaping, so that I can find the corresponding service provider.
 
 	Criteria of satisfaction :
 		
-
 4. As Alice (a customer), I would like to be able to schedule a time when the service provider can come,  so that I can make sure I'm home.
 
 	Criteria of satisfaction :
 		
-
 5. As Alice (a customer), I would like to be able to change or cancel the reservation with the service provider, so that if something comes up I can be flexible with the time.
 
 	Criteria of satisfaction :
 		
-
 6.  As Ray (a customer), I would like to log into the app, so that I can search for a makeup artist to help me do my makeup.
 
 	Criteria of satisfaction :
 		
-
 7.  As Ray (a customer), I would like to change the address, so that the makeup artist can come to the address of my working place instead of my house.
 
 	Criteria of satisfaction :
@@ -42,22 +36,18 @@ User Stories
 
 	Criteria of satisfaction :
 		
-
 10. As Ray (a customer), I would like to be able to pay my bill through the app, so that I won't get delayed on my meeting.
 
 	Criteria of satisfaction :
 		
-
 11. As Ray (a customer), I would like to rate and write reviews for the make up artist, so that I can thank his/her for his/hers work and let more people know him/her.
 
 	Criteria of satisfaction :
 		
-
 12. As Ray (a customer), I would like to have access to a customer service representative, so that I can express my concerns and solve the problem when I encounter one.
 
 	Criteria of satisfaction :
 		
-
 13. As Ray (a customer), I would like to look through a make up artist's page, so that I can see the pictures of their pas t works to determine whether I like this person's work or not.
 
 	Criteria of satisfaction :
@@ -82,9 +72,9 @@ User Stories
 
 	Criteria of satisfaction :
 	
-19. As Jack (a service provider), I would like to provide a bank account, so that I receive ,y payments.
+19. As Jack (a service provider), I would like to provide a bank account, so that I receive, my payments.
 
-	Criteria of satisfaction :
+	Criteria of satisfaction : 
 	
 20. As Jack (a service provider), I would like to build my profile, so that I can show my experiences with potential customers.
 
