@@ -5,6 +5,7 @@ The beauty service industry is already huge at the moment. However, there are st
 ## Installation for your Software/System: 
 The project will take the form of a website so no installation required to use the website.<br />
 This project uses React for building the front end UI and MongoDB for the project's database. Java will be used for the project's backend
+
 If building the project, please make sure to install [Node and npm](https://nodejs.org/en/download/) in order to use or install React.
 
 #### To initialize the project: 
