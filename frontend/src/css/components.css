@@ -158,7 +158,7 @@ padding-bottom: 20pt;
   text-decoration: none;
 } 
 
-/* provider profiel*/
+/* provider profile*/
 .profile::placeholder{
   color:white;
 }
