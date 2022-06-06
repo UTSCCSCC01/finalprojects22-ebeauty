@@ -1,3 +1,4 @@
+
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -12,6 +13,7 @@ import FindJob from './components/FindJob'
 import SearchPage from './components/SearchPage'
 import SignUpProvider from './components/SignUpProvider'
 import SignUpProviderTwo from './components/SignUpProviderTwo'
+import ProfileProvider from './components/ProfileProvider'
 
 
 
@@ -31,6 +33,7 @@ function App () {
               <Route path="/signupproviderone" element={<SignUpProvider />} />
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
               <Route path="/login" element={<LogIn />} />
+              <Route path="/profileprovider" element={<ProfileProvider />} />
             </Routes>
             <Footer />
           </div>
