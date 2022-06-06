@@ -1,22 +1,48 @@
 
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@600&display=swap');
 /* base styles */
 * {
-  font-family: "Quicksand";
+  font-family: "Inter", sans-serif;
   color: #333;
+}
+
+/*
+.fill-window {
+  height: calc(100% -65px);
+  position: absolute;
+  width: 100%;
+}*/
+
+/*find job page*/
+.findjob{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.findjob .Card{
+  /*height: 100pt;*/
+  width:100%;
+}
+
+.rdn{
+  width: 80%;
+
+}
+.dropdown{
 }
 
 
 /*sign in sign up*/
 .Card{
-  background-color: aqua;  
   text-align: center;
+  background-color: #f0f0f0;
   height:100%;
   min-width: 200pt;
-  width: 30%;
+  width: 40%;
 }
 
 .Form{
@@ -25,19 +51,21 @@
   width: 100%;
   height: 100%;
   justify-content: center;
-
+padding-bottom: 20pt;
 }
 .Form .Button {
-  color: white;
-  background-color: #E27B7B;
-  border-radius: 8px;
-  width: 60pt;
-  margin-top: 30pt;
-  height: 15pt;
+  color: #C02121;
+  background-color: white;
+  border:none;
+  border-radius: 2px;
+  width: 80pt;
+  margin-top: 25pt;
+  height: 20pt;
+  box-shadow: 0 0 3px black;
 }
 .Form .Button:hover {
-  color: white;
-  background-color: #CA1C1C !important;
+  color: #C02121;
+  background-color: #f3dede !important;
 }
 .Form a {
   margin-top: 20pt;
@@ -69,13 +97,13 @@
   position: sticky;
   top: 0;
   background-color: white;
-  font-family: 'Inter', !important;
   padding: 10px;
   display: flex;
   align-items: center;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
   max-height: 20pt;
+  z-index:999;
 }
 .navbar h1 {
   color: #CA1C1C;
@@ -106,13 +134,13 @@
 
 /* footer */
 .footer {
-  justify-content: 'space-between';
   bottom:0;
   background-color: #E27B7B;
-  font-family: 'Inter', sans-serif, !important;
   font-size: 10pt;
   width: 100%; 
-  height:100%;
+  height: 65pt;
+  display: flex;
+  justify-content: center;
 }
 .footer a {
   padding-top: 10pt;

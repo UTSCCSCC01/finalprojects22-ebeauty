@@ -15,7 +15,7 @@ const Navbar = () => {
       <h1 onClick={handleClick}>eBeauty</h1>
       <div className="links">
         <Link to="/">Service</Link>
-        <Link to="/">Find a Job</Link>
+        <Link to="/findjob">Find a Job</Link>
         <Link to="/login">Log In</Link>
         <Link to="/signup" className={"toprightbotton"}>Sign Up</Link>
       </div>

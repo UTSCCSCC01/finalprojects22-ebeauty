@@ -5,8 +5,8 @@ const Footer = () => {
 
   return (
     <nav className="footer">
-        <Link to="/">About Us</Link>
-        <Link to="/">Contact Us</Link>
+      <Link to="/">About Us</Link>
+      <Link to="/">Contact Us</Link>
     </nav>
   );
 }

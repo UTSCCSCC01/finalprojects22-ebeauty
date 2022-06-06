@@ -1,4 +1,5 @@
 import { useState }  from "react";
+import { useNavigate } from "react-router-dom";
 // reactstrap components
 import {
   Form,
@@ -9,7 +10,7 @@ import {
 
 
 
-const SignUp = () => {
+const SignUpProvider = () => {
   
   //use for sign up states
   const [FirstName, setFirstName] = useState("");
@@ -22,6 +23,13 @@ const SignUp = () => {
   const [Country, setCountry] = useState("");
   const [Postal, setPostal] = useState("");
   const [Password, setPassword] = useState("");
+
+
+  let navigate = useNavigate();
+  function handleClick() {
+    navigate("/signupprovidertwo")
+  }
+
 
   // trigger when clicked sign up button
   function signUpForm(e){
@@ -44,7 +52,7 @@ const SignUp = () => {
       <Card  className="Card">
         <CardBody>
           <Form onSubmit={signUpForm.bind(this)} className="Form">
-            <h3 >Sign Up</h3>
+            <h3 >Sign Up As Service Provider</h3>
             <div>
               <input className="sign" type="text" placeholder="First Name" onChange={ (e) => setFirstName(e.target.value)}/>
               <input className="sign" type="text" placeholder="Last Name" onChange={ (e) => setLastName(e.target.value)}/>
@@ -62,7 +70,7 @@ const SignUp = () => {
               <input className={"sign line"} type="password" placeholder="Enter password" onChange={ (e) => setPassword(e.target.value)}/>
             </div>
             <div className="center">
-              <button className={"Button"} type="submit">Sign Up</button>
+              <button className={"Button"} onClick={handleClick} type="submit">Next Step</button>
             </div>
           </Form>
 
@@ -72,4 +80,4 @@ const SignUp = () => {
   );
 }
  
-export default SignUp;
+export default SignUpProvider;

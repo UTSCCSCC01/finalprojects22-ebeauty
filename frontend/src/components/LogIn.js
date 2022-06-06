@@ -37,7 +37,7 @@ const LogIn = () => {
     <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
       <Card className="Card">
         <Form onSubmit={logInForm.bind(this)} className="Form">
-          <h3 style={{width:"100%"}}>Login</h3>
+          <h3 style={{width:"100%"}}>Login to Continue</h3>
           <div>
             <input className={"sign line"} type="email" placeholder="Email" onChange={ (e) => setUpPass(e.target.value)}/>
             <input className={"sign line"} type="password" placeholder="Password" onChange={ (e) => setUpPass(e.target.value)}/>
@@ -46,7 +46,7 @@ const LogIn = () => {
             <button className={"Button"} type="submit">Log In</button>
           </div>
           <div className="center">
-            <a href="javascript:void(0)" onClick={handleClick}>no account? sign up here!</a>
+            <a >no account? sign up <a href="/signup" style={{color:'blue'}}>here</a></a>
           </div>
         </Form>
       </Card>
