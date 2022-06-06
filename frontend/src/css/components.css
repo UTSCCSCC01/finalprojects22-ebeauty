@@ -27,11 +27,23 @@
   /*height: 100pt;*/
   width:100%;
 }
-
+/*dropdown menu*/
 .rdn{
   width: 80%;
 }
-
+/*images*/
+.image-barber{
+  height: 100pt;
+  opacity: 0.8;
+}
+.image-makeup{
+  height: 100pt;
+  opacity: 0.8;
+}
+.image-garden{
+  height: 100pt;
+  opacity: 0.8;
+}
 
 /*sign in sign up*/
 .Card{
@@ -145,41 +157,3 @@ padding-bottom: 20pt;
   margin-left: 16px;
   text-decoration: none;
 } 
-
-
-/******************************************************************************/
-/* blog previews / list */
-.blog-preview {
-  padding: 10px 16px;
-  margin: 20px 0;
-  border-bottom: 1px solid #fafafa;
-}
-.blog-preview:hover {
-  box-shadow: 1px 3px 5px rgba(0,0,0,0.1);
-}
-.blog-preview h2 {
-  font-size: 20px;
-  color: #E27B7B;
-  margin-bottom: 8px;
-}
-.blog-preview a{
-  text-decoration: none;
-}
-
-/* blog details page */
-.blog-details h2 {
-  font-size: 20px;
-  color: #E27B7B;
-  margin-bottom: 10px;
-}
-.blog-details div {
-  margin: 20px 0;
-}
-.blog-details button {
-  background: #E27B7B;
-  color: #fff;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
-  cursor: pointer;
-}
