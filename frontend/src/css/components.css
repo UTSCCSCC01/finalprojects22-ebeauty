@@ -203,6 +203,10 @@
   max-width: 100%;
   max-height: 600px;
 }
+/* provider profile*/
+.profile::placeholder{
+  color:white;
+}
 
 #home-img {
   /* background-image: url("media/cosmetics.jpg");
