@@ -157,3 +157,50 @@ padding-bottom: 20pt;
   margin-left: 16px;
   text-decoration: none;
 } 
+
+/* provider profiel*/
+.profile::placeholder{
+  color:white;
+}
+.profileInfoLine{
+  border:none;
+  background-color: #E27B7B;  
+  height: 20pt;
+  margin: 3pt;
+  width: calc(80% + 9pt);
+  color: white;
+  border-radius: 3pt;
+}
+.profileCard{
+  text-align: center;
+  background-color: #f0f0f0;
+  height:100%;
+  min-width: 200pt;
+  width: 40%;
+}
+.profileBasicInfo{
+  border:none;
+  background-color: #E27B7B;  
+  height: 20pt;
+  margin: 3pt;
+  width:40%;
+  color: white;
+  border-radius: 3pt;
+}
+.profileBasicInfo::placeholder{
+  color:white;
+}
+
+.profileInfoLine::placeholder{
+  color:white;
+}
+.profilButton{
+  color: #C02121;
+  background-color: white;
+  border:none;
+  border-radius: 2px;
+  width: 80pt;
+  margin-top: 25pt;
+  height: 20pt;
+  box-shadow: 0 0 3px black;
+}
