@@ -789,4 +789,10 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
 
 .footer-content-column {
   margin-right: 50px;
+  border:none;
+  border-radius: 2px;
+  width: 80pt;
+  margin-top: 25pt;
+  height: 20pt;
+  box-shadow: 0 0 3px black;
 }
