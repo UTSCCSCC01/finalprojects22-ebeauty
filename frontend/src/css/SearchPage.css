@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital@1&display=swap');
+
+.search-page {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.search-bar {
+  background: #ff6b6b;
+  position: relative;
+  padding: 0;
+  border-radius: 15px;
+  display: flex;
+  width: 1000px;
+  height: 50px;
+}
+
+/* .data {
+  position: absolute;
+  flex-direction: column;
+  width: inherit;
+  height: inherit;
+  margin-top: 300px;
+  background: wheat;
+  border-radius: inherit;
+  text-align: center;
+  text-transform: capitalize;
+  padding: inherit;
+}
+.data .data-item {
+  display: block;
+  margin-block-start: 10px;
+} */
+
+.search-bar .search-btn {
+  height: 50px;
+  width: 50px;
+  border-radius: inherit;
+  background: #ff6b6b;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  margin-right: 10px;
+  color: white;
+  border: none;
+}
+
+.search-btn:hover {
+  background: #ff7675;
+}
+
+.search-btn .search-icon {
+  font-size: 25px;
+  border: none;
+  background: none;
+  color: white;
+}
+
+.search-bar .search-text {
+  outline: none;
+  border: 0;
+  background: #ff7675;
+  color: white;
+  padding: 0px 10px;
+  border-radius: inherit;
+  height: inherit;
+  width: inherit;
+}
+
+::placeholder {
+  color: #fff;
+}
+
+::-webkit-input-placeholder {
+  color: #fff;
+}
