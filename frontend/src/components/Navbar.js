@@ -12,7 +12,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <h1 onClick={handleClick}>eBeauty</h1>
+      <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <Link to="/">Service</Link>
         <Link to="/findjob">Find a Job</Link>
