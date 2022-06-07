@@ -143,7 +143,9 @@ padding-bottom: 20pt;
 
 /* footer */
 .footer {
-  bottom:0;
+  position: fixed;
+  left: 0;
+  bottom: 0;
   background-color: #E27B7B;
   font-size: 10pt;
   width: 100%; 
