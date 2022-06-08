@@ -30,7 +30,6 @@ const Home = () => {
         </div>
       </div>
 
-
       <div className="row">
         <div className="column">
           <div className="image">
@@ -74,19 +73,35 @@ const Home = () => {
         </div>
       </div>
 
-      <div>
-
-        Featured Beauty Professionals
-
-      </div>
+      <div>Featured Beauty Professionals</div>
 
       <div>
-        Ready to get started?
+        <div className="container-wide">
+          <h1>Ready to get started</h1>
+          <div className="ready-to-start-container">
+            <div className="left-ready-to-start-container-border">
+              <div className="left-container">
+                <img className="customer-picture" src={require("../images/amorr-customer.png")}></img>
+                <p>Like our service? Sign up now to explore more!</p>
+                <button className="btn-secondary">Become a customer</button>
+              </div>
+            </div>
+            <div className="right-ready-to-start-container">
+              <img className="provider-picture" src={require("../images/service-provider.png")}></img>
+              <p>Like our service? Sign up now to explore more!</p>
+              <button className="btn-secondary">Makeup a Service Provider</button>
+            </div>
+          </div>
+          
+          
+        </div>
       </div>
 
       <div>
         <div className="sb-examples">
-          <p className="title" id="sb-examples-title">Get beauty today</p>
+          <p className="title" id="sb-examples-title">
+            Get beauty today
+          </p>
           <button className="btn-secondary">Hair Designer</button>
           <button className="btn-secondary">Makeup Artist</button>
           <button className="btn-secondary">Nail Artist</button>
