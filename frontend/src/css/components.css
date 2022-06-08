@@ -280,18 +280,6 @@
   width: 100px;
 }
 
-/* #home-haircut-img {
-  background-image: url("../images/haircut.jpg");
-}
-
-#home-nail-img {
-  background-image: url("../images/nail-polish.jpg");
-}
-
-#home-makeup-img {
-  background-image: url("../images/makeup.jpg");
-} */
-
 * {
   box-sizing: border-box;
 }
@@ -314,6 +302,9 @@
   /* justify-content: center;
   align-items: center; */
 }
+
+/* Hover Image Annimation Source Below
+https://www.youtube.com/watch?v=exb2ab72Xhs */
 
 .image {
   position: relative;
