@@ -47,7 +47,7 @@ const SearchPage = () => {
         <input type="text" className="location-text" placeholder="Location" />
       </div>
 
-      {/* <ServiceDropdown/> */}
+      <ServiceDropdown/>
 
       <div className="search-results">
         <header>
