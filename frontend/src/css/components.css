@@ -8,6 +8,7 @@
   color: #333;
 }
 
+
 /*
 .fill-window {
   height: calc(100% -65px);
@@ -23,27 +24,83 @@
   flex-direction: row;
   justify-content: center;
 }
+.findjob .findjobleft{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.findjob .findjobright{
+  margin-top: 30pt;
+  margin-bottom: 30pt;
+  width: 50%;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  height: 200pt;
+}
+.slide-right-enter{
+  transform: translateX(100%);
+}
+.slide-right-enter-active{
+  transform: translateX(0%);
+  transition: transform 1500ms ease-in-out;
+}
+.slide-right-exit{
+  transform: translateX(0%);
+}
+.slide-right-exit-active{
+  transform: translateX(-100%);
+  transition: transform 1500ms ease-in-out;
+}
+
 .findjob .Card{
   /*height: 100pt;*/
   width:100%;
 }
+
+.findjob .Button{
+  margin-top: 10%;
+  margin-left: 40pt;
+  color: white;
+  background-color: #E27B7B;
+  border-radius: 8px;
+  height: 10%;
+  width: 50%;
+  border: none;
+}
+.findjob .Button:hover{
+  color: white;
+  background-color: #CA1C1C !important;
+}
+
 /*dropdown menu*/
 .rdn{
   width: 80%;
 }
 /*images*/
-.image-barber{
-  height: 100pt;
-  opacity: 0.8;
+.images{
+  height: auto;
 }
-.image-makeup{
-  height: 100pt;
-  opacity: 0.8;
+/*
+developing cool stuff
+animation
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  will-change: opacity;
 }
-.image-garden{
+.animnation{
+  width: 100pt;
   height: 100pt;
-  opacity: 0.8;
-}
+  color: green;
+  background-color: aqua;
+}*/
 
 /*sign in sign up*/
 .Card{
@@ -60,7 +117,7 @@
   width: 100%;
   height: 100%;
   justify-content: center;
-padding-bottom: 20pt;
+  padding-bottom: 20pt;
 }
 .Form .Button {
   color: #C02121;
@@ -72,6 +129,7 @@ padding-bottom: 20pt;
   height: 20pt;
   box-shadow: 0 0 3px black;
 }
+
 .Form .Button:hover {
   color: #C02121;
   background-color: #f3dede !important;
