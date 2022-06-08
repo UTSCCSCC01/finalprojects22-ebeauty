@@ -388,13 +388,13 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
 .container-wide{
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #efbbbb;
+  background-color: #efbbbb80;
   padding: 15px 0;
 }
 
 .container-wide h1{
   text-align: center;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
 }
 
 .ready-to-start-container{
@@ -409,9 +409,9 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
 
 .left-container{
   text-align: center;
-  border-right: 1px solid grey;
-  padding-right: 20px;
+  margin-right: 20px;
 }
+
 .right-ready-to-start-container{
   text-align: center;
   margin-left: 20px;
