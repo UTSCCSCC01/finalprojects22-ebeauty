@@ -424,3 +424,34 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
 .provider-picture{
   width: 75%;
 }
+
+.footer-social{
+  margin-bottom: 30px;
+}
+
+.footer-container{
+  background-color: #e27b7b;
+  /* max-width: 1200px; */
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.footer-content-title{
+  display:block;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.footer-links{
+  vertical-align: baseline;
+}
+
+.footer-content-container{
+  display: flex;
+}
+
+.footer-content-column{
+  margin-right: 30px;
+}
