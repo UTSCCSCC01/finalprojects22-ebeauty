@@ -11,9 +11,7 @@ const Home = () => {
           <h1 className="search-header">
             <span>Find Your Beauty Today</span>
           </h1>
-          <p className="search-body">
-            Find Beauty Professionals with the help of Amor
-          </p>
+          <p className="search-body">Find Beauty Professionals with the help of Amor</p>
           <div className="search-form">
             <div className="sb-container-input">
               <input
@@ -33,11 +31,7 @@ const Home = () => {
       <div className="row">
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require("../images/haircut.jpg")}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/haircut.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Hair Designer</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -47,11 +41,7 @@ const Home = () => {
 
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require("../images/nail-polish.jpg")}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/nail-polish.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Nail Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -60,11 +50,7 @@ const Home = () => {
         </div>
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require("../images/makeup.jpg")}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/makeup.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Makeup Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -79,21 +65,20 @@ const Home = () => {
         <div className="container-wide">
           <h1>Ready to get started</h1>
           <div className="ready-to-start-container">
-            <div className="left-ready-to-start-container-border">
-              <div className="left-container">
-                <img className="customer-picture" src={require("../images/amorr-customer.png")}></img>
-                <p>Like our service? Sign up now to explore more!</p>
-                <button className="btn-secondary">Become a customer</button>
-              </div>
+            <div className="left-container">
+              <img className="customer-picture" src={require("../images/amorr-customer.png")}></img>
+              <p>Like our service? Sign up now to explore more!</p>
+              <button className="btn-secondary">Become a customer</button>
             </div>
             <div className="right-ready-to-start-container">
-              <img className="provider-picture" src={require("../images/service-provider.png")}></img>
+              <img
+                className="provider-picture"
+                src={require("../images/service-provider.png")}
+              ></img>
               <p>Like our service? Sign up now to explore more!</p>
               <button className="btn-secondary">Makeup a Service Provider</button>
             </div>
           </div>
-          
-          
         </div>
       </div>
 
