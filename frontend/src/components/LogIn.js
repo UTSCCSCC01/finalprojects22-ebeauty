@@ -7,8 +7,6 @@ import {
 import { useNavigate } from "react-router-dom";
 
 
-
-
 const LogIn = () => {
   
   //use for sign up states
@@ -21,7 +19,7 @@ const LogIn = () => {
   function logInForm(e){
     e.preventDefault();
     //reset fields
-    e.target[0].value = ''; 
+    e.target[0].value = '';
     e.target[1].value = '';
     e.target[2].value = '';
   }
