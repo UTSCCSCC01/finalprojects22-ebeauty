@@ -54,7 +54,7 @@ const FindJob = () => {
             timeout={3000}
             classNames="slide-right"
           >
-            <img src={images[Index]} style={{height:"200pt"}} ref={nodeRef}/>
+            <img src={images[Index]} style={{height:"300pt"}} ref={nodeRef}/>
           </CSSTransition>
         </TransitionGroup>
 

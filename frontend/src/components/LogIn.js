@@ -4,7 +4,6 @@ import {
   Form,
   Card
 } from "reactstrap";
-import { useNavigate } from "react-router-dom";
 
 
 const LogIn = () => {
@@ -24,11 +23,6 @@ const LogIn = () => {
     e.target[2].value = '';
   }
 
-  let navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/signup");
-  }
 
 
   return (
