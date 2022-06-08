@@ -11,6 +11,7 @@ import FindJob from './components/FindJob';
 import SignUpProvider from './components/SignUpProvider';
 import SignUpProviderTwo from './components/SignUpProviderTwo';
 import ProfileProvider from './components/ProfileProvider'
+import ViewProfileProvider from './components/ViewProfileProvider';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
               <Route path="/login" element={<LogIn />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
+              <Route path="/viewprofileprovider" element={<ViewProfileProvider />} />
             </Routes>
             <Footer/>
           </div>
