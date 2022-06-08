@@ -1,7 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@600&display=swap");
 
-
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat:wght@600&display=swap');
 /* base styles */
 * {
   font-family: "Inter", sans-serif;
@@ -16,56 +15,57 @@
 }*/
 
 /*find job page*/
-.findjob{
+
+.findjob {
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
 }
-.findjob .Card{
+.findjob .Card {
   /*height: 100pt;*/
-  width:100%;
+  width: 100%;
 }
 /*dropdown menu*/
-.rdn{
+.rdn {
   width: 80%;
 }
 /*images*/
-.image-barber{
+.image-barber {
   height: 100pt;
   opacity: 0.8;
 }
-.image-makeup{
+.image-makeup {
   height: 100pt;
   opacity: 0.8;
 }
-.image-garden{
+.image-garden {
   height: 100pt;
   opacity: 0.8;
 }
 
 /*sign in sign up*/
-.Card{
+.Card {
   text-align: center;
   background-color: #f0f0f0;
-  height:100%;
+  height: 100%;
   min-width: 200pt;
   width: 40%;
 }
 
-.Form{
+.Form {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   justify-content: center;
-padding-bottom: 20pt;
+  padding-bottom: 20pt;
 }
 .Form .Button {
-  color: #C02121;
+  color: #c02121;
   background-color: white;
-  border:none;
+  border: none;
   border-radius: 2px;
   width: 80pt;
   margin-top: 25pt;
@@ -73,31 +73,31 @@ padding-bottom: 20pt;
   box-shadow: 0 0 3px black;
 }
 .Form .Button:hover {
-  color: #C02121;
+  color: #c02121;
   background-color: #f3dede !important;
 }
 .Form a {
   margin-top: 20pt;
   font-size: 10pt;
-} 
-.center{
+}
+.center {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.sign{
-  border:none;
-  background-color: #E27B7B;  
+.sign {
+  border: none;
+  background-color: #e27b7b;
   height: 20pt;
   margin: 3pt;
-  width:40%;
+  width: 40%;
   color: white;
   border-radius: 3pt;
 }
-.sign::placeholder{
-  color:white;
+.sign::placeholder {
+  color: white;
 }
-.line{
+.line {
   width: calc(80% + 9pt);
 }
 
@@ -112,10 +112,10 @@ padding-bottom: 20pt;
   margin: 0 auto;
   border-bottom: 1px solid #f2f2f2;
   max-height: 20pt;
-  z-index:999;
+  z-index: 999;
 }
 .navbar h1 {
-  color: #CA1C1C;
+  color: #ca1c1c;
   cursor: pointer;
 }
 .navbar .links {
@@ -124,31 +124,30 @@ padding-bottom: 20pt;
 }
 .navbar .links .toprightbotton {
   color: white;
-  background-color: #E27B7B;
+  background-color: #e27b7b;
   border-radius: 8px;
 }
 .navbar .links .toprightbotton:hover {
   color: white;
-  background-color: #CA1C1C !important;
+  background-color: #ca1c1c !important;
 }
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
   padding: 6px;
-} 
-.navbar a:hover {
-  color: #E27B7B;
 }
-
+.navbar a:hover {
+  color: #e27b7b;
+}
 
 /* footer */
 .footer {
   position: fixed;
   left: 0;
   bottom: 0;
-  background-color: #E27B7B;
+  background-color: #e27b7b;
   font-size: 10pt;
-  width: 100%; 
+  width: 100%;
   height: 65pt;
   display: flex;
   justify-content: center;
@@ -158,38 +157,37 @@ padding-bottom: 20pt;
   color: white;
   margin-left: 16px;
   text-decoration: none;
-} 
+}
 
 /* home search bar */
 
-.content{
+.content {
   max-width: 80%;
   max-height: 600px;
   margin: 40px auto;
   padding: 20px;
 }
 
-#home-img{
+#home-img {
   /* background-image: url("media/cosmetics.jpg");
   background-size: auto; */
   max-width: 100%;
   /* max-height: 100%; */
   height: 300px;
-
 }
 
-.service-container{
+.service-container {
   display: grid;
   grid-template-columns: auto auto auto;
   padding: 50px 0;
 }
 
-.grid-item{
+.grid-item {
   text-align: center;
   background-position: center;
 }
 
-.service-icon{
+.service-icon {
   background-position: center;
   height: 200px;
   background-size: contain;
@@ -197,32 +195,32 @@ padding-bottom: 20pt;
   cursor: pointer;
 }
 
-#hairdresser{
+#hairdresser {
   background-image: url("../images/hair-salon-ic.png");
 }
 
-#makeup{
+#makeup {
   background-image: url("../images/makeup-ic.png");
 }
 
-#nail{
+#nail {
   background-image: url("../images/nail-polish-ic.png");
 }
 
-.content p{
+.content p {
   padding: 20px 0;
   font-size: 40px;
   color: rgb(165, 0, 0);
   text-transform: uppercase;
 }
 
-.search-header{
+.search-header {
   font-size: 40px;
   color: rgb(165, 0, 0);
   text-align: center;
 }
 
-.home-sb-container{
+.home-sb-container {
   background-color: pink;
   border-radius: 10px;
   padding: 50px 0;
@@ -231,7 +229,7 @@ padding-bottom: 20pt;
 
 .home-sb-container p {
   font-size: 30px;
-  color: rgb(165,0,0);
+  color: rgb(165, 0, 0);
   text-align: center;
 }
 
@@ -240,7 +238,7 @@ padding-bottom: 20pt;
   justify-content: center;
 }
 
-.sb-button{
+.sb-button {
   position: relative;
   z-index: 100;
   background-color: rgb(165, 0, 0);
@@ -253,22 +251,22 @@ padding-bottom: 20pt;
   cursor: pointer;
 }
 
-.sb-examples{
+.sb-examples {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   margin-top: 20px;
   gap: 30px;
 }
 
-.btn-secondary{
+.btn-secondary {
   border-radius: 10px;
-  border: 1px solid rgb(165,0,0);
+  border: 1px solid rgb(165, 0, 0);
   padding: 10px;
   cursor: pointer;
 }
 
-.sb-input{
-  border: 2px solid rgb(165,0,0);
+.sb-input {
+  border: 2px solid rgb(165, 0, 0);
   border-radius: 10px;
   padding: 20px;
   width: 50%;
