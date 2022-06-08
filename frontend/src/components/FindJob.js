@@ -41,7 +41,7 @@ const FindJob = () => {
   return (
     <div className="findjob">
       <div className="findjobleft">
-        <h1 style={{width:'70%', marginLeft:"40pt"}}>Earn Money Easily {'\&'} Flexibly!</h1>
+        <h1 style={{width:'50%', marginLeft:"40pt"}}>Earn Money Easily {'\&'} Flexibly!</h1>
         <button className={"Button"} type="submit" onClick={handleClick}>Join Us!</button>
       </div>
       <div className="findjobright">
