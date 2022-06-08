@@ -797,3 +797,31 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   height: 20pt;
   box-shadow: 0 0 3px black;
 }
+
+.displayProfileLine{
+  border:none;
+  background-color: #E27B7B;  
+  height: 20pt;
+  margin: 3pt;
+  width: calc(80% + 9pt);
+  color: white;
+  border-radius: 3pt;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.displayProfile{
+  border:0;
+  background-color: #E27B7B;  
+  height: 20pt;
+  margin: 3pt;
+  width:40%;
+  color: white;
+  border-radius: 3pt;
+  text-align: center;
+  vertical-align: middle;
+  margin: auto;
+  position: relative;
+  top:50%;
+}
