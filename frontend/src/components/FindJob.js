@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import userEvent from "@testing-library/user-event";
+import React, { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Transition } from "react-spring";
 import {TransitionGroup, CSSTransition} from "react-transition-group";
@@ -35,7 +36,7 @@ const FindJob = () => {
 
   const childFactory = (direction)=> (child) => React.cloneElement(child,{classNames:direction})
 
-
+  const nodeRef = useRef();
   /*images are from: ttps://www.pexels.com/*/
   return (
     <div className="findjob">
@@ -53,7 +54,7 @@ const FindJob = () => {
             timeout={3000}
             classNames="slide-right"
           >
-            <img src={images[Index]} style={{width:'100%'}}/>
+            <img src={images[Index]} style={{height:"200pt"}} ref={nodeRef}/>
           </CSSTransition>
         </TransitionGroup>
 
