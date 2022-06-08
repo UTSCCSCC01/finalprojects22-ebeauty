@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom"
-import { useState } from "react"
-import axios from "axios"
 import '../css/index.css'
 import '../css/SearchPage.css'
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import profileData from '../mock/profile'
 // import  ServiceDropdown  from './ServiceDropdown'
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
@@ -17,41 +16,32 @@ const SearchPage = () => {
     navigate("/searchpage")
   }
 
-  const [search, setSearch] = useState("")
-  const [results, setResults] = useState([])
+  const [searchTerm, setSearchTerm] = useState("")
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    axios.get('http://localhost:3000/profiles').then(res => {
-      res.data.filter(profile => {
-        if (search === "") {
-          setResults([profile])
-        }
-        else if (profile.name.toLowerCase().includes(search.toLowerCase())) {
-          setResults([profile])
-        }
-      })
+  let searchResults = profileData.profile.filter(profile => {
+    return Object.keys(profile).some(key => {
+      return profile[key].toString().toLowerCase().includes(searchTerm.toString().toLowerCase())
     })
-  }
+  })
 
   const handleChange = (e) => {
-    setSearch(e.target.value)
+    setSearchTerm(e.target.value)
   }
 
   return (
     <div className="search-page">
-      <form className="search-bar" onSubmit={handleSubmit}>
+      <form className="search-bar">
         <div className="search-btn">
           <button className="search-icon" type="submit" onClick={handleClick}>
             <FontAwesomeIcon icon={faSearch} />
           </button>
         </div>
         <input
-          value={search}
+          value={searchTerm}
           type="text"
           className="search-text"
           placeholder="No Result? Find Another Service Here!"
-          onChange={handleChange} />
+          onChange={handleChange.bind(this)} />
       </form>
       <div className="location-bar">
         <input type="text" className="location-text" placeholder="Location" />
@@ -63,9 +53,9 @@ const SearchPage = () => {
         <header>
           <h1>Recommended Taskers</h1>
         </header>
-        {results.map((result, id) => {
+        {searchResults.map((result, key) => {
           return (
-            <div className="search-result" key={id}>
+            <div className="search-result" key={key}>
               <img src={require('../images/barber.jpg')} className="image-barber" />
               <div className="search-result-text">
                 <h3>{result.name}</h3>

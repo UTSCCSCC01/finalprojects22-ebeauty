@@ -65,9 +65,6 @@
   transform: translateY(-3px);
 }
 
-.search-text input {
-}
-
 .location-bar .location-text {
   outline: none;
   border: 0;
@@ -84,7 +81,9 @@
 /* All block of search results */
 .search-results {
   max-width: 1000px;
+  width: 1000px;
   margin: 0 auto;
+  margin-bottom: 85px;
 }
 
 .search-results header {
