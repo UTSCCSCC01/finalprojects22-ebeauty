@@ -8,13 +8,6 @@
 }
 
 
-/*
-.fill-window {
-  height: calc(100% -65px);
-  position: absolute;
-  width: 100%;
-}*/
-
 /*find job page*/
 
 .findjob {
@@ -61,7 +54,7 @@
 }
 
 .findjob .Button{
-  margin-top: 10%;
+  margin-top: 10pt;
   margin-left: 40pt;
   color: white;
   background-color: #E27B7B;
@@ -170,12 +163,11 @@ animation
   position: sticky;
   top: 0;
   background-color: white;
-  padding: 30px;
   display: flex;
   align-items: center;
-  margin: 20px auto;
+  padding-left: 20px;
+  padding-right: 20px;
   border-bottom: 1px solid #f2f2f2;
-  max-height: 40pt;
   z-index:999;
 }
 .navbar h1 {
@@ -210,6 +202,7 @@ animation
 /* footer */
 .footer {
   bottom: 0;
+  left: 0;
   background-color: #e27b7b;
   font-size: 12pt;
   width: 100%;
@@ -231,8 +224,6 @@ animation
 .content {
   max-width: 100%;
   max-height: 600px;
-  margin: 40px auto;
-  padding: 20px;
 }
 
 #home-img {
