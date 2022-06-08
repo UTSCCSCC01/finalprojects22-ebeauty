@@ -30,19 +30,18 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <img src={require("../images/haircut.jpg")} alt="haircut" /> */}
 
       <div className="row">
         <div className="column">
-          <div class="image">
+          <div className="image">
             <img
-              class="image__img"
+              className="image__img"
               src={require("../images/haircut.jpg")}
               alt="Bricks"
             />
-            <div class="image__overlay image__overlay--primary">
-              <div class="image__title">Haircut</div>
-              <p class="image__description">Enjoy New Style!</p>
+            <div className="image__overlay image__overlay--primary">
+              <div className="image__title">Hair Designer</div>
+              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
         </div>
@@ -55,8 +54,8 @@ const Home = () => {
               alt="Bricks"
             />
             <div className="image__overlay image__overlay--primary">
-              <div className="image__title">Nail</div>
-              <p className="image__description">Enjoy New Style!</p>
+              <div className="image__title">Nail Artist</div>
+              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
         </div>
@@ -68,10 +67,29 @@ const Home = () => {
               alt="Bricks"
             />
             <div className="image__overlay image__overlay--primary">
-              <div className="image__title">Makeup</div>
-              <p className="image__description">Enjoy New Style!</p>
+              <div className="image__title">Makeup Artist</div>
+              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
+        </div>
+      </div>
+
+      <div>
+
+        Featured Beauty Professionals
+
+      </div>
+
+      <div>
+        Ready to get started?
+      </div>
+
+      <div>
+        <div className="sb-examples">
+          <p className="title" id="sb-examples-title">Get beauty today</p>
+          <button className="btn-secondary">Hair Designer</button>
+          <button className="btn-secondary">Makeup Artist</button>
+          <button className="btn-secondary">Nail Artist</button>
         </div>
       </div>
     </>
