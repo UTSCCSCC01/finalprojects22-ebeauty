@@ -7,6 +7,7 @@
   color: #333;
 }
 
+
 /*
 .fill-window {
   height: calc(100% -65px);
@@ -23,27 +24,85 @@
   flex-direction: row;
   justify-content: center;
 }
-.findjob .Card {
+.findjob .findjobleft{
+  font-size:23pt;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.findjob .findjobright{
+  margin-top: 30pt;
+  margin-bottom: 30pt;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  height: 300pt;
+}
+.slide-right-enter{
+  transform: translateX(100%);
+}
+.slide-right-enter-active{
+  transform: translateX(0%);
+  transition: transform 1500ms ease-in-out;
+}
+.slide-right-exit{
+  transform: translateX(0%);
+}
+.slide-right-exit-active{
+  transform: translateX(-100%);
+  transition: transform 1500ms ease-in-out;
+}
+
+.findjob .Card{
   /*height: 100pt;*/
   width: 100%;
 }
+
+.findjob .Button{
+  margin-top: 10%;
+  margin-left: 40pt;
+  color: white;
+  background-color: #E27B7B;
+  border-radius: 8px;
+  height: 10%;
+  width: 50%;
+  border: none;
+}
+.findjob .Button:hover{
+  color: white;
+  background-color: #CA1C1C !important;
+}
+
 /*dropdown menu*/
 .rdn {
   width: 80%;
 }
 /*images*/
-.image-barber {
-  height: 100pt;
-  opacity: 0.8;
+.images{
+  height: auto;
+  width: 100%;
 }
-.image-makeup {
-  height: 100pt;
-  opacity: 0.8;
+/*
+developing cool stuff
+animation
+.bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  will-change: opacity;
 }
-.image-garden {
+.animnation{
+  width: 100pt;
   height: 100pt;
-  opacity: 0.8;
-}
+  color: green;
+  background-color: aqua;
+}*/
 
 /*sign in sign up*/
 .Card {
@@ -51,10 +110,11 @@
   background-color: #f0f0f0;
   height: 100%;
   min-width: 200pt;
-  width: 40%;
+  width: 45%;
 }
 
-.Form {
+.Form{
+  font-size: 18pt;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -63,24 +123,26 @@
   padding-bottom: 20pt;
 }
 .Form .Button {
-  color: #c02121;
+  font-size: 18pt;
+  color: #C02121;
   background-color: white;
-  border: none;
-  border-radius: 2px;
-  width: 80pt;
-  margin-top: 25pt;
-  height: 20pt;
+  border:none;
+  border-radius: 6px;
+  width: auto;
+  margin-top: 30pt;
+  height: 40pt;
   box-shadow: 0 0 3px black;
 }
+
 .Form .Button:hover {
   color: #c02121;
   background-color: #f3dede !important;
 }
 .Form a {
   margin-top: 20pt;
-  font-size: 10pt;
-}
-.center {
+  font-size: 16pt;
+} 
+.center{
   width: 100%;
   display: flex;
   justify-content: center;
@@ -93,9 +155,11 @@
   width: 40%;
   color: white;
   border-radius: 3pt;
+  font-size: 20pt;
+  height: 26pt;
 }
-.sign::placeholder {
-  color: white;
+.sign::placeholder{
+  color:rgba(255,255,255,0.6);
 }
 .line {
   width: calc(80% + 9pt);
@@ -106,23 +170,24 @@
   position: sticky;
   top: 0;
   background-color: white;
-  padding: 30px;
   display: flex;
   align-items: center;
-  margin: 20px auto;
+  padding-left: 20px;
+  padding-right: 20px;
   border-bottom: 1px solid #f2f2f2;
-  max-height: 20pt;
-  z-index: 999;
+  max-height: 40pt;
+  z-index:999;
 }
 .navbar h1 {
-  color: #ca1c1c;
+  font-size: 30pt;
+  color: #CA1C1C;
   cursor: pointer;
   font-size: 40px;
   /* color: rgb(165, 0, 0); */
 }
 .navbar .links {
   margin-left: auto;
-  font-size: 12pt;
+  font-size: 15pt;
 }
 .navbar .links .toprightbotton {
   color: white;
@@ -144,9 +209,8 @@
 
 /* footer */
 .footer {
-  position: relative;
-  left: 0;
   bottom: 0;
+  left: 0;
   background-color: #e27b7b;
   font-size: 12pt;
   width: 100%;
@@ -168,8 +232,6 @@
 .content {
   max-width: 100%;
   max-height: 600px;
-  margin: 40px auto;
-  padding: 20px;
 }
 
 #home-img {

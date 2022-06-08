@@ -23,6 +23,13 @@ const SignUpProviderTwo = () => {
     e.target[0].value = '';
   }
 
+  let navigate = useNavigate();
+
+  function handleClick() {
+    navigate("/");
+  }
+
+
   return (
     <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
       <Card  className="Card">
@@ -52,7 +59,7 @@ const SignUpProviderTwo = () => {
               />
             </div>
             <div className="center">
-              <button className={"Button"} type="submit">Next Step</button>
+              <button className={"Button"} onClick={handleClick} type="submit">Next Step</button>
             </div>
           </Form>
 
