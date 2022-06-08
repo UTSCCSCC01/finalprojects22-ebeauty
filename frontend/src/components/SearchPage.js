@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import profileData from '../mock/profile'
-// import  ServiceDropdown  from './ServiceDropdown'
+import  ServiceDropdown  from './ServiceDropdown'
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
@@ -47,7 +47,7 @@ const SearchPage = () => {
         <input type="text" className="location-text" placeholder="Location" />
       </div>
 
-      <ServiceDropdown/>
+      <ServiceDropdown />
 
       <div className="search-results">
         <header>
