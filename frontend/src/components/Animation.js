@@ -1,31 +1,42 @@
 import React, { useState, useEffect } from 'react'
 import { useTransition, animated, config } from 'react-spring'
 
-
+const image1 =  require("../images/barber.jpg")
+const image2 =  require("../images/makeup.jpg")
+const images = [
+  image1,image2 
+]
 
 const Animation = () => {
-  const slides = [
-    { id: 0, url: 'photo-1544511916-0148ccdeb877?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1901&q=80i' },
-    { id: 1, url: 'photo-1544572571-ab94fd872ce4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1534&q=80' },
-  ]
-  const [index, set] = useState(0)
-  const transitions = useTransition(slides[index], item => item!== null, {
+  const [index, setindex] = useState(0)
+  const transition = useTransition(images[index], {
     from: { opacity: 0 },
-    enter: { opacity: 1 },
+    enter: { opacity: 0.8 },
     leave: { opacity: 0 },
     config: config.molasses,
   })
-  useEffect(() => void setInterval(() => set(state => (state + 1) % 2), 2000), [])
+
+  const fragment = transition((style, item) => {
+    return <animated.div style={style} >
+      <img src={item}  className="amination" alt='provider working'/>
+    </animated.div>;
+  });
+
+  useEffect(function appRunTimer() {
+    // Creates a new timer when mount the component.
+    const timer = setInterval(() => {
+      setindex((index) => (index + 1) % 2); 
+    }, 3000)
+    
+    // Stops the old timer when umount the component.
+    return function stopTimer() {
+      clearInterval(timer)
+    }
+  }, [])
   
   return (
     <div>
-      {transitions.map(({ item, props, key }) => {
-        return item && <animated.div
-          key={key}
-          className="bg"
-          style={{ ...props, backgroundImage: `url(https://images.unsplash.com/${item.url}&auto=format&fit=crop)` }}
-        />
-      })}
+      {fragment}
     </div>
   )
 }
