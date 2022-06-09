@@ -21,9 +21,8 @@ const Button = ({color}) => {
   }
   return (
     <div>
-      <h2> Enter the Address </h2>
+      <h2> Add a New Address </h2>
       <div>
-        <label htmlFor="address"> Address: </label>
         <div className='message1' id='m1'></div>
         <input type="text" id='address'/>
       </div>
