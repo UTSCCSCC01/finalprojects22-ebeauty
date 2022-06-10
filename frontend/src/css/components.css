@@ -1015,3 +1015,75 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   border: none;
   box-shadow: 0 0 3px black;
 }
+
+/* CSS for address page */
+.address-form{
+  text-align: center;
+  margin-bottom: 3%;
+}
+
+.error-message{
+  color: #c02121;
+  text-align: left;
+  margin-left: 15.5%;
+}
+
+.success-message{
+  text-align: left;
+  margin-left: 15.5%;
+}
+
+.btn{
+  color: white;
+  background-color: #e27b7b;
+  font-size: 120%;
+  border-radius: 8px;
+  padding: 1%;
+
+}
+.btn:hover {
+  color: white;
+  background-color: #ca1c1c !important;
+}
+
+.complete-btn{
+  color: white;
+  background-color: #e27b7b;
+  font-size: 120%;
+  border-radius: 8px;
+  /* margin-top: 32%; */
+  padding: 0.5%;
+  margin-left: 0%;
+  margin-top: 3%;
+  width: 20%;
+}
+.complete-btn:hover {
+  color: white;
+  background-color: #ca1c1c !important;
+}
+
+.form-container{
+  flex-flow: row;
+}
+
+.address-text{
+  background-color:#efbbbb80;
+  border-radius: 8px;
+  font-size: 150%;
+  width: 60%;
+  margin-right: 4%; 
+  padding: 1%;
+}
+
+.feedback-message{
+  visibility: hidden;
+  text-align: left;
+}
+
+.map-container{
+  width: 80%;
+  height: 80vh;
+  min-width: auto;
+  /* text-align: center; */
+  margin-left: 10%;
+}

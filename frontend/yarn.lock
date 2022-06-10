@@ -1348,6 +1348,21 @@
   dependencies:
     "prop-types" "^15.8.1"
 
+"@googlemaps/js-api-loader@1.14.3":
+  "integrity" "sha512-6iIb+qpGgQpgIHmIFO44WhE1rDUxPVHuezNFL30wRJnkvhwFm94tD291UvNg9L05hLDSoL16jd0lbqqmdy4C5g=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/js-api-loader/-/js-api-loader-1.14.3.tgz"
+  "version" "1.14.3"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
+
+"@googlemaps/markerclusterer@2.0.7":
+  "integrity" "sha512-/xADL31ERrNoVsF+O2A+H+obxOki4DHPQkU/STS5gFG6ZZVpvNV4WLisW2aOlOsH3rUXSq3MFjqFOEDXSQcvog=="
+  "resolved" "https://registry.npmjs.org/@googlemaps/markerclusterer/-/markerclusterer-2.0.7.tgz"
+  "version" "2.0.7"
+  dependencies:
+    "fast-deep-equal" "^3.1.3"
+    "supercluster" "^7.1.3"
+
 "@hapi/hoek@^9.0.0":
   "integrity" "sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ=="
   "resolved" "https://registry.npmjs.org/@hapi/hoek/-/hoek-9.3.0.tgz"
@@ -1718,6 +1733,28 @@
   "version" "3.2.0"
   dependencies:
     "@babel/runtime" "^7.6.2"
+
+"@react-google-maps/api@^2.12.0":
+  "integrity" "sha512-BqsclJ9p2I6yZa++0R3oEcneECcH7PFsULhn8UDlWQ9uNAQR/aqvqGb9SXYvdpIAOJdk3E737iTrGhFg4j5Ucw=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/api/-/api-2.12.0.tgz"
+  "version" "2.12.0"
+  dependencies:
+    "@googlemaps/js-api-loader" "1.14.3"
+    "@googlemaps/markerclusterer" "2.0.7"
+    "@react-google-maps/infobox" "2.11.8"
+    "@react-google-maps/marker-clusterer" "2.11.8"
+    "@types/google.maps" "3.49.1"
+    "invariant" "2.2.4"
+
+"@react-google-maps/infobox@2.11.8":
+  "integrity" "sha512-15y3dniys1Op5HREyLwiJI2pAdeeHRJT5b4WPrS+vyL5KF6iXK1P3y/9bXtnxHiKe2v6iPreaEhR3VgvfRA50Q=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/infobox/-/infobox-2.11.8.tgz"
+  "version" "2.11.8"
+
+"@react-google-maps/marker-clusterer@2.11.8":
+  "integrity" "sha512-OEcdbTXEgPwdpGvVuSrhIhjcZPhlzPz2TvaKCBLraf1PKiDyLOPhlTVRlbIziLiu0xN89pJcill1w9UVIVFF+Q=="
+  "resolved" "https://registry.npmjs.org/@react-google-maps/marker-clusterer/-/marker-clusterer-2.11.8.tgz"
+  "version" "2.11.8"
 
 "@react-native-community/cli-debugger-ui@^7.0.3":
   "integrity" "sha512-G4SA6jFI0j22o+j+kYP8/7sxzbCDqSp2QiHA/X5E0lsGEd2o9qN2zbIjiFr8b8k+VVAYSUONhoC0+uKuINvmkA=="
@@ -2382,6 +2419,11 @@
     "@types/express-serve-static-core" "^4.17.18"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/google.maps@3.49.1":
+  "integrity" "sha512-Sbl5anucT7LUcUxXsRxkCozHdXIkUiY+Tyru+OVl5rot0+VIZuuulmABC7X+nF7rL7BRTAguSBSAD/e/AfIkkA=="
+  "resolved" "https://registry.npmjs.org/@types/google.maps/-/google.maps-3.49.1.tgz"
+  "version" "3.49.1"
 
 "@types/graceful-fs@^4.1.2":
   "integrity" "sha512-anKkLmZZ+xm4p8JWBf4hElkM4XR+EZeA2M9BAkkTldmcyDY4mbdIJnRghDJH3Ov5ooY7/UAoENtmdMSkaAd7Cw=="
@@ -5714,6 +5756,11 @@
   "resolved" "https://registry.npmjs.org/fs.realpath/-/fs.realpath-1.0.0.tgz"
   "version" "1.0.0"
 
+"fsevents@^2.3.2", "fsevents@~2.3.2":
+  "integrity" "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
+  "resolved" "https://registry.npmjs.org/fsevents/-/fsevents-2.3.2.tgz"
+  "version" "2.3.2"
+
 "function-bind@^1.1.1":
   "integrity" "sha512-yIovAzMX49sF8Yl58fSCWJ5svSLuaibPxXQJFLmBObTuCr0Mf1KiPopGM9NiFjiYBCbfaa2Fh6breQ6ANVTI0A=="
   "resolved" "https://registry.npmjs.org/function-bind/-/function-bind-1.1.1.tgz"
@@ -6264,7 +6311,7 @@
     "has" "^1.0.3"
     "side-channel" "^1.0.4"
 
-"invariant@*", "invariant@^2.2.4":
+"invariant@*", "invariant@^2.2.4", "invariant@2.2.4":
   "integrity" "sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA=="
   "resolved" "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
   "version" "2.2.4"
@@ -7340,6 +7387,11 @@
   dependencies:
     "array-includes" "^3.1.4"
     "object.assign" "^4.1.2"
+
+"kdbush@^3.0.0":
+  "integrity" "sha512-hRkd6/XW4HTsA9vjVpY9tuXJYLSlelnkTmVFu4M9/7MIYQtFcHpbugAU7UbOfjOiVSVYl2fqgBuJ32JUmRo5Ew=="
+  "resolved" "https://registry.npmjs.org/kdbush/-/kdbush-3.0.0.tgz"
+  "version" "3.0.0"
 
 "kind-of@^3.0.2", "kind-of@^3.0.3":
   "integrity" "sha512-NOW9QQXMoZGg/oqnVNoNTTIFEIid1627WCffUBJEdMxYApq7mNE7CpzucIPc+ZQg25Phej7IJSmX3hO+oblOtQ=="
@@ -9437,7 +9489,7 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
-"react-dom@^16.8.0  || >=17.0.0 || >=18.0.0", "react-dom@^16.8.0 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@^18.1.0", "react-dom@>=16.14.0", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
+"react-dom@^16.8 || ^17 || ^18", "react-dom@^16.8.0  || >=17.0.0 || >=18.0.0", "react-dom@^16.8.0 || ^17 || ^18", "react-dom@^16.8.0 || ^17.0.0 || ^18.0.0", "react-dom@^18.0.0", "react-dom@^18.1.0", "react-dom@>=16.14.0", "react-dom@>=16.6.0", "react-dom@>=16.8", "react-dom@>=16.8.0":
   "integrity" "sha512-fU1Txz7Budmvamp7bshe4Zi32d0ll7ect+ccxNu9FlObT605GOEB8BfO4tmRJ39R5Zj831VCpvQ05QPBW5yb+w=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-18.1.0.tgz"
   "version" "18.1.0"
@@ -9742,7 +9794,7 @@
     "prop-types" "^15.6.2"
     "scheduler" "^0.13.6"
 
-"react@^16.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0  || >=17.0.0 || >=18.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^18.0.0", "react@^18.1.0", "react@>= 16", "react@>=0.14.0", "react@>=15.0.0", "react@>=16.14.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.x":
+"react@^16.0.0", "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8 || ^17 || ^18", "react@^16.8.0  || >=17.0.0 || >=18.0.0", "react@^16.8.0 || ^17 || ^18", "react@^16.8.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0-rc.1 || ^18.0.0", "react@^18.0.0", "react@^18.1.0", "react@>= 16", "react@>=0.14.0", "react@>=15.0.0", "react@>=16.14.0", "react@>=16.6.0", "react@>=16.8", "react@>=16.8.0", "react@>=16.x":
   "integrity" "sha512-4oL8ivCz5ZEPyclFQXaNksK3adutVS8l2xzZU0cqEFrE9Sb7fC0EFK5uEk74wIreL1DERyjvsU915j1pcT2uEQ=="
   "resolved" "https://registry.npmjs.org/react/-/react-18.1.0.tgz"
   "version" "18.1.0"
@@ -10840,6 +10892,13 @@
   "integrity" "sha512-Mu7R0g4ig9TUuGSxJavny5Rv0egCEtpZRNMrZaYS1vxkiIxGiGUwoezU3LazIQ+KE04hTrTfNPgxU5gzi7F5Pw=="
   "resolved" "https://registry.npmjs.org/sudo-prompt/-/sudo-prompt-9.2.1.tgz"
   "version" "9.2.1"
+
+"supercluster@^7.1.3":
+  "integrity" "sha512-EulshI3pGUM66o6ZdH3ReiFcvHpM3vAigyK+vcxdjpJyEbIIrtbmBdY23mGgnI24uXiGFvrGq9Gkum/8U7vJWg=="
+  "resolved" "https://registry.npmjs.org/supercluster/-/supercluster-7.1.5.tgz"
+  "version" "7.1.5"
+  dependencies:
+    "kdbush" "^3.0.0"
 
 "supports-color@^5.3.0":
   "integrity" "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow=="

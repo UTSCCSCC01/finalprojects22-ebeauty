@@ -19,6 +19,10 @@ const SearchPage = ({ searchResults }) => {
     navigate("/searchpage");
   }
 
+  function redirect_to_addresspage (){
+    navigate("/addresspage")
+  }
+
   const [filteredData, setfilteredData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
 
@@ -70,7 +74,7 @@ const SearchPage = ({ searchResults }) => {
           onChange={handleChange} />
       </form>
       <div className="location-bar">
-        <input type="text" className="location-text" placeholder="Location" />
+        <button onClick={redirect_to_addresspage} className="location-text">Location</button>
       </div>
 
       <ServiceDropdown />
