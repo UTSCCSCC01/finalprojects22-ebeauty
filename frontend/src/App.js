@@ -1,18 +1,18 @@
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import Home from './components/Home'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import './css/components.css'
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './css/components.css';
 import ProfileData from './data.json';
-import Signup from './components/SignUp'
-import LogIn from './components/LogIn'
-import NotFound from './components/NotFound'
-import ScrollToTop from './components/ScrollToTop'
-import FindJob from './components/FindJob'
-import SearchPage from './components/SearchPage'
-import SignUpProvider from './components/SignUpProvider'
-import SignUpProviderTwo from './components/SignUpProviderTwo'
-import ProfileProvider from './components/ProfileProvider'
+import Signup from './components/SignUp';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
+import ScrollToTop from './components/ScrollToTop';
+import FindJob from './components/FindJob';
+import SearchPage from './components/SearchPage';
+import SignUpProvider from './components/SignUpProvider';
+import SignUpProviderTwo from './components/SignUpProviderTwo';
+import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 
 function App () {
@@ -30,7 +30,7 @@ function App () {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
-              <Route path="/login" element={<LogIn />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route path="/viewprofileprovider" element={<ViewProfileProvider />} />
             </Routes>

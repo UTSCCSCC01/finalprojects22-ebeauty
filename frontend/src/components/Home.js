@@ -1,4 +1,9 @@
 const Home = () => {
+
+  function handleClick (e) {
+    e.preventDefault();
+    window.location.href = '/searchpage';
+  }
   return (
     <>
       <div className="home">
@@ -20,7 +25,7 @@ const Home = () => {
                 autoComplete="off"
                 placeholder="I need help with"
               />
-              <button type="button" className="btn sb-button">
+              <button type="button" className="btn sb-button" onClick={handleClick}>
                 Find Beauty Today
               </button>
             </div>
