@@ -972,6 +972,12 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   margin-top: 100px;
   margin-right: 100px;
 }
+.profileStars{
+  
+  width: 10%;
+  height: 10%;
+  margin-right: 30px;
+}
 .profileImgDisplay{
   display: block;
   height: auto;

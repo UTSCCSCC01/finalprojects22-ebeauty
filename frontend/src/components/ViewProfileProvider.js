@@ -38,6 +38,9 @@ const ViewProfileProvider = () => {
         
         <img src={require('../images/makeup.jpg')} className="profileUploadedImg"/>
         
+        <img src={require('../images/rating-stars-4.jpg')} className="profileStars" />
+        
+        
         
         
       </div>
