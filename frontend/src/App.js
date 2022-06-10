@@ -13,7 +13,6 @@ import SearchPage from './components/SearchPage';
 import SignUpProvider from './components/SignUpProvider';
 import SignUpProviderTwo from './components/SignUpProviderTwo';
 
-
 function App () {
   return (
     <Router>
