@@ -223,10 +223,6 @@
   padding: 50px 0;
 }
 
-.grid-item {
-  text-align: center;
-  background-position: center;
-}
 
 .service-icon {
   background-position: center;
@@ -314,21 +310,7 @@
   width: 50%;
 }
 
-.grid-container {
-  display: grid;
-  grid-template-columns: auto auto auto;
-  /* background-color: #2196F3; */
-  padding: 10px;
-}
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
-  background-position: contain;
-  width: 100px;
-}
+
 
 * {
   box-sizing: border-box;
@@ -578,21 +560,7 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   top:50%;
 }
 
-.Form{
-  font-size: 18pt;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding-bottom: 20pt;
-}
-.profile{
-  display:'flex';
-  justify-content: 'center'; 
-  padding-top:'10pt'; 
-  padding-bottom:'30pt'
-}
+
 /* provider profile*/
 .profile::placeholder{
   color:white;
