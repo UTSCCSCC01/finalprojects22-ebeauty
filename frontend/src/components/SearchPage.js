@@ -1,11 +1,15 @@
-import { useNavigate } from "react-router-dom";
-import '../css/index.css';
-import '../css/SearchPage.css';
-import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { useNavigate } from "react-router-dom"
+import '../css/index.css'
+import '../css/SearchPage.css'
+import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import profileData from '../mock/profile'
+import  ServiceDropdown  from './ServiceDropdown'
+import { Link } from "react-router-dom";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import ServiceDropdown from './ServiceDropdown';
+
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = ({ searchResults }) => {
@@ -88,7 +92,7 @@ const SearchPage = ({ searchResults }) => {
                   <span>{result.rate}</span>
                 </div>
               </div>
-              <a href="#">View Profile</a>
+              <Link to="/viewprofileprovider">View Profile</Link>
             </div>
           );
         })}
