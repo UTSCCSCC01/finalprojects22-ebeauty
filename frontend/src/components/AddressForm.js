@@ -10,20 +10,19 @@ const Button = () => {
     if (addr.value !== ''){
       msg1.innerHTML = 'address added successfully!'
       msg1.className='success-message'
-      setTimeout (()=>msg1.innerHTML='', 1000)
+      setTimeout (()=>msg1.className='feedback-message', 1000)
     }
     else{
       msg1.innerHTML ='Please enter field'
       msg1.className='error-message'
-      setTimeout (()=>msg1.innerHTML='', 1000)
+      setTimeout (()=>msg1.className='feedback-message', 1000)
     }
   }
   return (
     <div className='address-form'>
       <h2 style={{color:'#333'}}> Add a New Address </h2>
       <div className='form-container'>
-        <div id='m1'> </div>
-        <br />
+        <div className='feedback-message' id='m1'> reserved line </div>
         <input className="address-text" id='address'/>
         <button onClick={onClick} className='btn' id='address-btn'>Enter</button>
       </div>
