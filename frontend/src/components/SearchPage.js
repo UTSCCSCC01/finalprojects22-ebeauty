@@ -1,12 +1,11 @@
 
-import { useNavigate } from "react-router-dom"
-import '../css/index.css'
-import '../css/SearchPage.css'
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import profileData from '../mock/profile'
-import  ServiceDropdown  from './ServiceDropdown'
+import { useNavigate } from "react-router-dom";
+import '../css/index.css';
+import '../css/SearchPage.css';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import ServiceDropdown from './ServiceDropdown';
 import { Link } from "react-router-dom";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 

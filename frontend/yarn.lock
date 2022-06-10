@@ -2493,6 +2493,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-select@^5.0.1":
+  "integrity" "sha512-h5Im0AP0dr4AVeHtrcvQrLV+gmPa7SA0AGdxl2jOhtwiE6KgXBFSogWw8az32/nusE6AQHlCOHQWjP1S/+oMWA=="
+  "resolved" "https://registry.npmjs.org/@types/react-select/-/react-select-5.0.1.tgz"
+  "version" "5.0.1"
+  dependencies:
+    "react-select" "*"
+
 "@types/react-transition-group@^4.4.0", "@types/react-transition-group@^4.4.4":
   "integrity" "sha512-7gAPz7anVK5xzbeQW9wFBDg7G++aPLAFY0QaSMOou9rJZpbuI58WAuJrgu+qR92l61grlnCUe7AFX8KGahAgug=="
   "resolved" "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.4.4.tgz"
@@ -9663,7 +9670,7 @@
   optionalDependencies:
     "fsevents" "^2.3.2"
 
-"react-select@^5.3.2":
+"react-select@*", "react-select@^5.3.2":
   "integrity" "sha512-W6Irh7U6Ha7p5uQQ2ZnemoCQ8mcfgOtHfw3wuMzG6FAu0P+CYicgofSLOq97BhjMx8jS+h+wwWdCBeVVZ9VqlQ=="
   "resolved" "https://registry.npmjs.org/react-select/-/react-select-5.3.2.tgz"
   "version" "5.3.2"
