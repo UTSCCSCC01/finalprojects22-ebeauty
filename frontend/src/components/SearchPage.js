@@ -30,14 +30,14 @@ const SearchPage = ({ searchResults }) => {
 
   // when user types in the search bar, the search term will be updated
   const handleChange = (e) => {
-    const searchTerm = e.target.value;
+    setSearchInput(e.target.value);
     const newFilteredResults = searchResults.filter(profile => {
       return Object.keys(profile).some(key => {
-        return profile[key].toString().toLowerCase().includes(searchTerm.toString().toLowerCase());
+        return profile[key].toString().toLowerCase().includes(searchInput.toString().toLowerCase());
       });
     });
 
-    if (searchTerm === "") {
+    if (searchInput === "") {
       setfilteredData([]);
     }
     else {
