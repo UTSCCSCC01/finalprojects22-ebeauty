@@ -7,6 +7,7 @@ Daily Standups Sprint 1:
 Jun 3 2pm - 2:15pm
 Jun 6 2pm - 2:15pm
 Jun 8 2pm - 2:15pm
+Jun 10 6pm - 6:15pm
 in Toronto time (Discord)
 
 
