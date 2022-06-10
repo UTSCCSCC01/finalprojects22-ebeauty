@@ -4,7 +4,6 @@ import {
   Form,
   Card
 } from "reactstrap";
-import { useNavigate } from "react-router-dom";
 
 
 
@@ -21,16 +20,11 @@ const LogIn = () => {
   function logInForm(e){
     e.preventDefault();
     //reset fields
-    e.target[0].value = ''; 
+    e.target[0].value = '';
     e.target[1].value = '';
     e.target[2].value = '';
   }
 
-  let navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/signup");
-  }
 
 
   return (

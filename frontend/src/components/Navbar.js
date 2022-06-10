@@ -3,8 +3,7 @@ import { useNavigate } from "react-router-dom"
 import '../css/index.css'
 
 const Navbar = () => {
-
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   function handleClick () {
     navigate("/")
@@ -18,10 +17,12 @@ const Navbar = () => {
         <Link to="/searchpage">Search</Link>
         <Link to="/findjob">Find a Job</Link>
         <Link to="/login">Log In</Link>
-        <Link to="/signup" className={"toprightbotton"}>Sign Up</Link>
+        <Link to="/signup" className={"toprightbotton"}>
+          Sign Up
+        </Link>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

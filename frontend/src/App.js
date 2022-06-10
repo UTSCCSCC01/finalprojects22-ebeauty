@@ -18,9 +18,9 @@ import SignUpProviderTwo from './components/SignUpProviderTwo'
 function App () {
   return (
     <Router>
-      <div className="App fill-window" >
+      <div className="App">
         <ScrollToTop>
-          <div className="content fill-window">
+          <div className="content">
             <Navbar />
             <Routes>
               <Route path="*" element={<NotFound />} />
@@ -34,7 +34,6 @@ function App () {
             </Routes>
             <Footer />
           </div>
-
         </ScrollToTop>
       </div>
     </Router>
