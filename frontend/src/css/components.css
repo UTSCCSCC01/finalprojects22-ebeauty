@@ -803,6 +803,7 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   height: 20pt;
   box-shadow: 0 0 3px black;
   margin-left: auto;
+}
 .profileInfoLine{
   border:none;
   background-color: #E27B7B;  
@@ -971,7 +972,13 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   margin-top: 100px;
   margin-right: 100px;
 }
-
+.profileImgDisplay{
+  display: block;
+  height: auto;
+  width: 100%;
+  border-radius: 10px;
+ 
+}
 .profileRow {
   display: flex;
   justify-content: center;

@@ -71,7 +71,7 @@ const ProfileProvider = () => {
                 <button className="profileButton">Upload more photos for display</button>
               </p>
               <div className="profileImgColumn">
-                <img src={require('../images/makeup.jpg')} className="profileUploadedImg"/>
+                <img src={require('../images/makeup.jpg')} className="profileImgDisplay"/>
                 <button>delete image</button>
               </div>
             </CardBody>
