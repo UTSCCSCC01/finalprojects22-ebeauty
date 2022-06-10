@@ -1,4 +1,3 @@
-
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './components/Home'
@@ -28,7 +27,7 @@ function App () {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
-              <Route path="/searchpage" element={<SearchPage />} />
+              <Route path="/searchpage" element={<SearchPage searchResults={ProfileData} />} />
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
@@ -43,7 +42,7 @@ function App () {
         </ScrollToTop>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

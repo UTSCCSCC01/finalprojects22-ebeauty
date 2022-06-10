@@ -1,75 +1,76 @@
-import { useState }  from "react";
-// reactstrap components
-import {
-  Form,
-  Card,
-  CardBody,
-} from "reactstrap";
-
-
-
+import { useState } from 'react';
+import '../css/SignUp.css'
 
 const SignUp = () => {
-  
-  //use for sign up states
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Phone, setPhone] = useState("");
-  const [Bill, setBill] = useState("");
-  const [City, setCity] = useState("");
-  const [Province, setProvince] = useState("");
-  const [Country, setCountry] = useState("");
-  const [Postal, setPostal] = useState("");
-  const [Password, setPassword] = useState("");
+    const [data, setData] = useState({
+        firstName: "",
+        lastName:"",
+        email:"",
+        password:""
+    })
 
-  // trigger when clicked sign up button
-  function signUpForm(e){
-    e.preventDefault();
-    //reset fields
-    e.target[0].value = ''; 
-    e.target[1].value = '';
-    e.target[2].value = '';
-    e.target[3].value = ''; 
-    e.target[4].value = '';
-    e.target[5].value = '';
-    e.target[6].value = ''; 
-    e.target[7].value = '';
-    e.target[8].value = '';
-    e.target[9].value = ''; 
-  }
+    const handleChange = ({currentTarget: input}) => {
+        setData({...data, [input.name]: input.value});
+    };
 
-  return (
-    <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
-      <Card  className="Card">
-        <CardBody>
-          <Form onSubmit={signUpForm.bind(this)} className="Form">
-            <h3 >Sign Up</h3>
-            <div>
-              <input className="sign" type="text" placeholder="First Name" onChange={ (e) => setFirstName(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Last Name" onChange={ (e) => setLastName(e.target.value)}/>
-              <input className={"sign line"} type="email" placeholder="Email" onChange={ (e) => setEmail(e.target.value)}/>
-              <input className={"sign line"} type="text" placeholder="Phone Number" onChange={ (e) => setPhone(e.target.value)} onKeyPress={(event) => {
-                if (!/[0-9]/.test(event.key)) {
-                  event.preventDefault();
-                }
-              }}/>
-              <input className={"sign line"} type="text" placeholder="Billing Address" onChange={ (e) => setBill(e.target.value)}/>
-              <input className="sign" type="text" placeholder="City" onChange={ (e) => setCity(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Province" onChange={ (e) => setProvince(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Country" onChange={ (e) => setCountry(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Postal Code" onChange={ (e) => setPostal(e.target.value)}/>
-              <input className={"sign line"} type="password" placeholder="Enter password" onChange={ (e) => setPassword(e.target.value)}/>
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
+
+    return (
+        <div className={"signup_container"} >
+            <div className={"signup_form_container"}>
+                <div className={"leftsignup"}>
+                    <h1>Welcome Back</h1>
+                    <a href = "/login">
+                        <button type='button' className={"white_btnsignup"}>
+                            Sign In
+                        </button>
+                    </a>
+                </div>
+                <div className={"rightsignup"}>
+                    <form className={"form_containersignup"}>
+                        <h1 className={"form_containersignup h1"}>Create Account</h1>
+                        <input 
+                            type="text"
+                            placeholder="First Name"
+                            name="firstName"
+                            onChange={handleChange}
+                            value={data.firstName}
+                            requiredclassName={"form_containersignup input"}
+                        />
+                        <input 
+                            type="text"
+                            placeholder="Last Name"
+                            name="lastName"
+                            onChange={handleChange}
+                            value={data.lastName}
+                            requiredclassName={"form_containersignup input"}
+                        />
+                        <input 
+                            type="email"
+                            placeholder="Email"
+                            name="email"
+                            onChange={handleChange}
+                            value={data.email}
+                            requiredclassName={"form_containersignup input"}
+                        />
+                        <input 
+                            type="password"
+                            placeholder="Password"
+                            name="password"
+                            onChange={handleChange}
+                            value={data.password}
+                            requiredclassName={"form_containersignup input"}
+                        />
+                        <button type="submit" className={"green_btnsignup"}>
+                            Sign Up
+                        </button>
+                    </form>
+                </div>
             </div>
-            <div className="center">
-              <button className={"Button"} type="submit">Sign Up</button>
-            </div>
-          </Form>
-
-        </CardBody>
-      </Card>
-    </div>
-  );
+        </div>
+    );
 }
  
 export default SignUp;
