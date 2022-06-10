@@ -21,9 +21,9 @@ import ViewProfileProvider from './components/ViewProfileProvider';
 function App () {
   return (
     <Router>
-      <div className="App">
+      <div className="App fill-window" >
         <ScrollToTop>
-          <div className="content">
+          <div className="content fill-window">
             <Navbar />
             <Routes>
               <Route path="*" element={<NotFound />} />
@@ -37,12 +37,13 @@ function App () {
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route path="/viewprofileprovider" element={<ViewProfileProvider />} />
             </Routes>
-            <Footer />
+            <Footer/>
           </div>
+
         </ScrollToTop>
       </div>
     </Router>
-  )
+  );
 }
 
 export default App

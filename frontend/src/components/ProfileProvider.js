@@ -25,10 +25,10 @@ const ProfileProvider = () => {
       <div className="profile" style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
         
         <br></br>
-        <Card  className="Card">
+        <Card  className="profileCard">
           <h1>My Profile</h1>
           <p>
-            <img src={require('../images/barber.jpg')} className="images"/>
+            <img src={require('../images/barber.jpg')} className="image-barber"/>
             <button>Change Profile Picture</button>
           </p>
         
