@@ -1,38 +1,38 @@
 import React from 'react'
+import "../css/index.css";
 
-const Button = ({color}) => {
+const Button = () => {
   const onClick = () => {
     console.log('address entered')
-    const btn = document.querySelector('#address-btn')
-    btn.style.backgroundColor='pink'
-    setTimeout (()=>btn.style.backgroundColor='grey', 1000)
     const addr = document.querySelector('#address')
     const msg1 = document.querySelector('#m1')
-    const msg2 = document.querySelector('#m2')
     console.log(addr.value)
     if (addr.value !== ''){
-      msg2.innerHTML = 'address added successfully!'
-      setTimeout (()=>msg2.innerHTML='', 1000)
+      msg1.innerHTML = 'address added successfully!'
+      msg1.className='success-message'
+      setTimeout (()=>msg1.innerHTML='', 1000)
     }
     else{
       msg1.innerHTML ='Please enter field'
+      msg1.className='error-message'
       setTimeout (()=>msg1.innerHTML='', 1000)
     }
   }
   return (
-    <div>
-      <h2> Add a New Address </h2>
-      <div>
-        <div className='message1' id='m1'></div>
-        <input type="text" id='address'/>
+    <div className='address-form'>
+      <h2 style={{color:'#333'}}> Add a New Address </h2>
+      <div className='form-container'>
+        <div id='m1'> </div>
+        <br />
+        <input className="address-text" id='address'/>
+        <button onClick={onClick} className='btn' id='address-btn'>Enter</button>
       </div>
-      <button onClick={onClick} style={{backgroundColor: color}} className='btn' id='address-btn'>Enter</button>
-      <div className='message2' id='m2'></div>
+      <button onClick={{}} className='complete-btn' id='complete-btn'>Complete</button>
     </div>
     
   )
 }
 Button.defaultProps = {
-  color: 'grey'
+  color: '#e27b7b'
 }
 export default Button
