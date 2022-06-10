@@ -20,13 +20,12 @@ const Button = () => {
   }
   return (
     <div className='address-form'>
-      <h2 style={{color:'#333'}}> Add a New Address </h2>
+      <h1 style={{color:'#333'}}> Add a New Address </h1>
       <div className='form-container'>
         <div className='feedback-message' id='m1'> reserved line </div>
         <input className="address-text" id='address'/>
         <button onClick={onClick} className='btn' id='address-btn'>Enter</button>
       </div>
-      <button onClick={{}} className='complete-btn' id='complete-btn'>Complete</button>
     </div>
     
   )
