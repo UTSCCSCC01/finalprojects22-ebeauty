@@ -25,10 +25,10 @@ const ProfileProvider = () => {
       <div className="profile" style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
         
         <br></br>
-        <Card  className="profileCard">
+        <Card  className="Card">
           <h1>My Profile</h1>
           <p>
-            <img src={require('../images/barber.jpg')} className="image-barber"/>
+            <img src={require('../images/barber.jpg')} className="images"/>
             <button>Change Profile Picture</button>
           </p>
         
@@ -44,12 +44,15 @@ const ProfileProvider = () => {
           <input className="profileBasicInfo" type="text" placeholder="Country" onChange={ (e) => setCountry(e.target.value)}/>
           <input className="profileBasicInfo" type="text" placeholder="Postal Code" onChange={ (e) => setPostalCode(e.target.value)}/>
           <p>
-            <button>Save Edit on profile</button>
-            <button>Cancel</button>
+            <div>
+              <button className="profileButton">Save Edit on profile</button>
+              <button className="profileButton">Cancel</button>
+            </div>
+            
           </p>
 
           <p>
-            <button>Upload more photos for display</button>
+            <button className="profileButton">Upload more photos for display</button>
           </p>
 
           <h3>Account Info</h3>
@@ -57,7 +60,7 @@ const ProfileProvider = () => {
           <h3>Change Password</h3>
           <input className="profileInfoLine" type="text" placeholder="Current Password" onChange={ (e) => setCurrentPassword(e.target.value)}/>
           <input className="profileInfoLine" type="text" placeholder="New Password" onChange={ (e) => setNewPassword(e.target.value)}/>
-          <button className="ProfileButton">Edit password</button>
+          <button className="profileButton">Edit password</button>
         </Card>
       </div>
     );
