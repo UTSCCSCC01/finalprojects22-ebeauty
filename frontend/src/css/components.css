@@ -310,8 +310,6 @@
   width: 50%;
 }
 
-
-
 * {
   box-sizing: border-box;
 }
@@ -559,7 +557,6 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   position: relative;
   top:50%;
 }
-
 
 /* provider profile*/
 .profile::placeholder{
