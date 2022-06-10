@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import Home from './components/Home';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './css/components.css';
+import ProfileData from './data.json';
+import Signup from './components/SignUp';
+import Login from './components/Login';
+import NotFound from './components/NotFound';
+import ScrollToTop from './components/ScrollToTop';
+import FindJob from './components/FindJob';
+import SearchPage from './components/SearchPage';
+import SignUpProvider from './components/SignUpProvider';
+import SignUpProviderTwo from './components/SignUpProviderTwo';
 
-function App() {
+function App () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <ScrollToTop>
+          <div className="content">
+            <Navbar />
+            <Routes>
+              <Route path="*" element={<NotFound />} />
+              <Route exact path="/" element={<Home />} />
+              <Route path="/searchpage" element={<SearchPage searchResults={ProfileData} />} />
+              <Route path="/findjob" element={<FindJob />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signupproviderone" element={<SignUpProvider />} />
+              <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
+              <Route path="/login" element={<Login />} />
+            </Routes>
+            <Footer />
+          </div>
+        </ScrollToTop>
+      </div>
+    </Router>
   );
 }
 
