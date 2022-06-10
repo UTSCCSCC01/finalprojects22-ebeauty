@@ -13,7 +13,6 @@ const Navbar = () => {
     <nav className="navbar">
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
-        <Link to="/">Service</Link>
         <Link to="/searchpage">Search</Link>
         <Link to="/findjob">Find a Job</Link>
         <Link to="/login">Log In</Link>
