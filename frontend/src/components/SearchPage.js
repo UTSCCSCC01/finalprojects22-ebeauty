@@ -1,32 +1,32 @@
-import { useNavigate } from "react-router-dom"
-import '../css/index.css'
-import '../css/SearchPage.css'
-import React, { useState } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
-import profileData from '../mock/profile'
-import  ServiceDropdown  from './ServiceDropdown'
+import { useNavigate } from "react-router-dom";
+import '../css/index.css';
+import '../css/SearchPage.css';
+import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import profileData from '../mock/profile';
+import ServiceDropdown from './ServiceDropdown';
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
 
   function handleClick () {
-    navigate("/searchpage")
+    navigate("/searchpage");
   }
 
-  const [searchTerm, setSearchTerm] = useState("")
+  const [searchTerm, setSearchTerm] = useState("");
 
   let searchResults = profileData.profile.filter(profile => {
     return Object.keys(profile).some(key => {
-      return profile[key].toString().toLowerCase().includes(searchTerm.toString().toLowerCase())
-    })
-  })
+      return profile[key].toString().toLowerCase().includes(searchTerm.toString().toLowerCase());
+    });
+  });
 
   const handleChange = (e) => {
-    setSearchTerm(e.target.value)
-  }
+    setSearchTerm(e.target.value);
+  };
 
   return (
     <div className="search-page">
@@ -66,11 +66,11 @@ const SearchPage = () => {
               </div>
               <a href="#">View Profile</a>
             </div>
-          )
+          );
         })}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SearchPage
+export default SearchPage;
