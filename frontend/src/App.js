@@ -25,8 +25,8 @@ function App () {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
-              <Route path="/findjob" element={<FindJob />} />
               <Route path="/searchpage" element={<SearchPage />} />
+              <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
