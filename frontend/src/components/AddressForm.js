@@ -22,7 +22,7 @@ const Button = () => {
     <div className='address-form'>
       <h1 style={{color:'#333'}}> Add a New Address </h1>
       <div className='form-container'>
-        <div className='feedback-message' id='m1'> reserved line </div>
+        <div className='feedback-message' id='m1'>reserved line</div>
         <input className="address-text" id='address'/>
         <button onClick={onClick} className='btn' id='address-btn'>Enter</button>
       </div>
