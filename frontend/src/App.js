@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
 import ProfileData from './data.json';
 import Signup from './components/SignUp';
-import LogIn from './components/LogIn';
+import Login from './components/Login';
 import NotFound from './components/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import FindJob from './components/FindJob';
@@ -28,7 +28,7 @@ function App () {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
-              <Route path="/login" element={<LogIn />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
             <Footer />
           </div>
