@@ -14,6 +14,7 @@ import SignUpProvider from './components/SignUpProvider';
 import SignUpProviderTwo from './components/SignUpProviderTwo';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
+import AddressPage from './components/AddressPage';
 
 function App () {
   return (
@@ -33,6 +34,7 @@ function App () {
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route path="/viewprofileprovider" element={<ViewProfileProvider />} />
+              <Route path="/addresspage" element={<AddressPage />} />
             </Routes>
             <Footer />
           </div>
