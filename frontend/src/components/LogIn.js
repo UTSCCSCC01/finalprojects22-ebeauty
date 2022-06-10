@@ -1,51 +1,58 @@
-import { useState }  from "react";
-// reactstrap components
-import {
-  Form,
-  Card
-} from "reactstrap";
+import { useState } from 'react';
+import '../css/Login.css'
 
+const Login = () => {
+    const [data, setData] = useState({
+        email:"",
+        password:""
+    })
 
+    const handleChange = ({currentTarget: input}) => {
+        setData({...data, [input.name]: input.value});
+    };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+    }
 
-const LogIn = () => {
-  
-  //use for sign up states
-  const [UpUser, setUpUser] = useState("");
-  const [UpPass, setUpPass] = useState("");
-  const [UpEmail, setUpEmail] = useState("");
-
-
-  // trigger when clicked sign up button
-  function logInForm(e){
-    e.preventDefault();
-    //reset fields
-    e.target[0].value = '';
-    e.target[1].value = '';
-    e.target[2].value = '';
-  }
-
-
-
-  return (
-    <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
-      <Card className="Card">
-        <Form onSubmit={logInForm.bind(this)} className="Form">
-          <h3 style={{width:"100%"}}>Login to Continue</h3>
-          <div>
-            <input className={"sign line"} type="email" placeholder="Email" onChange={ (e) => setUpPass(e.target.value)}/>
-            <input className={"sign line"} type="password" placeholder="Password" onChange={ (e) => setUpPass(e.target.value)}/>
-          </div>
-          <div className="center">
-            <button className={"Button"} type="submit">Log In</button>
-          </div>
-          <div className="center">
-            <a >no account? sign up <a href="/signup" style={{color:'blue'}}>here</a></a>
-          </div>
-        </Form>
-      </Card>
-    </div>
-  );
+    return (
+        <div className={"login_container"} >
+            <div className={"login_form_container"}>
+                <div className={"left"}>
+                <form className={"form_container"}>
+                    <h1 className={"form_container h1"}>Login to Your Account</h1>
+                    <input 
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        onChange={handleChange}
+                        value={data.email}
+                        requiredclassName={"form_container input"}
+                    />
+                    <input 
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        onChange={handleChange}
+                        value={data.password}
+                        requiredclassName={"form_container input"}
+                    />
+                    <button type="submit" className={"green_btn"}>
+                        Login
+                    </button>
+                </form>
+            </div>
+            <div className={"right"}>
+                <h1>New Here?</h1>
+                    <a href = "/signup">
+                        <button type='button' className={"white_btn"}>
+                            Sign Up
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    );
 }
  
-export default LogIn;
+export default Login;

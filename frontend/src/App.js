@@ -3,9 +3,9 @@ import Footer from './components/Footer'
 import Home from './components/Home'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import './css/components.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+//import 'bootstrap/dist/css/bootstrap.min.css';
 import Signup from './components/SignUp'
-import LogIn from './components/LogIn'
+import LogIn from './components/Login'
 import NotFound from './components/NotFound'
 import ScrollToTop from './components/ScrollToTop'
 import FindJob from './components/FindJob'
