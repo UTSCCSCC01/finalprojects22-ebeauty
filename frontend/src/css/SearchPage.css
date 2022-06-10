@@ -17,6 +17,8 @@
   height: 50px;
   margin-bottom: 30px;
   margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .search-bar .search-btn {
@@ -25,6 +27,7 @@
   border-radius: inherit;
   background: #ff6b6b;
   display: grid;
+  cursor: pointer;
   justify-content: center;
   align-items: center;
   margin-left: 10px;
@@ -42,6 +45,7 @@
   border: none;
   background: none;
   color: white;
+  cursor: pointer;
 }
 
 .search-bar .search-text {
