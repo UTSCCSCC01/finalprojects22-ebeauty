@@ -146,12 +146,13 @@
   border-bottom: 1px solid #f2f2f2;
   max-height: 40pt;
   z-index:999;
+  margin: 25px 0;
 }
 .navbar h1 {
   font-size: 30pt;
   color: #CA1C1C;
   cursor: pointer;
-  font-size: 40px;
+  font-size: 50px;
   /* color: rgb(165, 0, 0); */
 }
 .navbar .links {
@@ -194,6 +195,10 @@
   color: white;
   margin-left: 16px;
   text-decoration: none;
+}
+
+.footer-content{
+  padding: 30px 0;
 }
 
 /* home search bar */
@@ -312,6 +317,7 @@
   border-radius: 10px;
   padding: 20px;
   width: 50%;
+  font-size: 20px;
 }
 
 .grid-container {
@@ -489,6 +495,7 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   /* max-width: 1200px; */
   /* justify-content: center; */
   margin: 0 15%;
+  gap: 20px;
 }
 
 .footer-content-column {
@@ -790,3 +797,4 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   /* text-align: center; */
   margin-left: 10%;
 }
+
