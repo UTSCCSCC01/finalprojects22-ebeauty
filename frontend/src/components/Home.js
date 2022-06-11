@@ -1,4 +1,16 @@
+import SearchPage from "./SearchPage";
+import React, { useState } from 'react';
+
 const Home = () => {
+
+  const [homeSearchInput, setHomeSearchInput] = useState("");
+
+  const updateInput = (e) => {
+    setHomeSearchInput(e.target.value);
+    // console.log(homeSearchInput);
+  }
+  // const goToSearchResult = (e) => {
+  // }
 
   function findBeauty (e) {
     e.preventDefault();
@@ -29,6 +41,7 @@ const Home = () => {
                 className="sb-input"
                 autoComplete="off"
                 placeholder="I am looking for..."
+                onChange={updateInput}
               />
               <button type="button" className="btn sb-button" onClick={findBeauty}>
                 Search
