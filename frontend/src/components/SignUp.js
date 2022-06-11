@@ -37,7 +37,7 @@ const SignUp = () => {
                             name="firstName"
                             onChange={handleChange}
                             value={data.firstName}
-                            requiredclassName={"form_containersignup input"}
+                            requiredclassname={"form_containersignup input"}
                         />
                         <input 
                             type="text"
@@ -45,7 +45,7 @@ const SignUp = () => {
                             name="lastName"
                             onChange={handleChange}
                             value={data.lastName}
-                            requiredclassName={"form_containersignup input"}
+                            requiredclassname={"form_containersignup input"}
                         />
                         <input 
                             type="email"
@@ -53,7 +53,7 @@ const SignUp = () => {
                             name="email"
                             onChange={handleChange}
                             value={data.email}
-                            requiredclassName={"form_containersignup input"}
+                            requiredclassname={"form_containersignup input"}
                         />
                         <input 
                             type="password"
@@ -61,7 +61,7 @@ const SignUp = () => {
                             name="password"
                             onChange={handleChange}
                             value={data.password}
-                            requiredclassName={"form_containersignup input"}
+                            requiredclassname={"form_containersignup input"}
                         />
                         <button type="submit" className={"green_btnsignup"}>
                             Sign Up
