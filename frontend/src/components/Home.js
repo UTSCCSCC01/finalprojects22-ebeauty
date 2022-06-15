@@ -9,8 +9,6 @@ const Home = () => {
     setHomeSearchInput(e.target.value);
     // console.log(homeSearchInput);
   }
-  // const goToSearchResult = (e) => {
-  // }
 
   function findBeauty (e) {
     e.preventDefault();
@@ -22,9 +20,9 @@ const Home = () => {
     window.location.href = '/signup';
   }
 
-  function goToSignUp (e) {
+  function goToFindJob (e) {
     e.preventDefault();
-    window.location.href = '/signup';
+    window.location.href = '/findjob';
   }
   return (
     <>
@@ -104,7 +102,7 @@ const Home = () => {
                 src={require("../images/service-provider.png")}
               ></img>
               <p>Like our platform? Sign up now and deliver your beauty expertise</p>
-              <button className="btn-secondary" onClick={goToSignUp}>Makeup a Service Provider</button>
+              <button className="btn-secondary" onClick={goToFindJob}>Makeup a Service Provider</button>
             </div>
           </div>
         </div>

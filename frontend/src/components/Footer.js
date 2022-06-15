@@ -15,7 +15,7 @@ const Footer = () => {
             <div className="footer-content-column">
               <span className="footer-content-title">Discover</span>
               <div className="footer-links">
-                <Link to="/signup">Become a Service Provider</Link>
+                <Link to="/findjob">Become a Service Provider</Link>
                 
                 <br />
                 <a>Service By City</a>
