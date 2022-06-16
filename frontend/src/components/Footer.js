@@ -15,7 +15,8 @@ const Footer = () => {
             <div className="footer-content-column">
               <span className="footer-content-title">Discover</span>
               <div className="footer-links">
-                <a>Become a Service Provider</a>
+                <Link to="/findjob">Become a Service Provider</Link>
+                
                 <br />
                 <a>Service By City</a>
                 <br />
@@ -41,7 +42,7 @@ const Footer = () => {
             <div className="footer-content-column">
               <span className="footer-content-title">Follow Us</span>
               <div className="footer-links">
-                <a>Instagram</a>
+                <a>Instagram</a>                
                 <br />
                 <a>Facebook</a>
               </div>

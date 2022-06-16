@@ -1,16 +1,31 @@
+import SearchPage from "./SearchPage";
+import React, { useState } from 'react';
+
 const Home = () => {
+
+  const [homeSearchInput, setHomeSearchInput] = useState("");
+
+  const updateInput = (e) => {
+    setHomeSearchInput(e.target.value);
+    // console.log(homeSearchInput);
+  }
 
   function findBeauty (e) {
     e.preventDefault();
     window.location.href = '/searchpage';
   }
+
+  function goToSignUp (e) {
+    e.preventDefault();
+    window.location.href = '/signup';
+  }
+
+  function goToFindJob (e) {
+    e.preventDefault();
+    window.location.href = '/findjob';
+  }
   return (
     <>
-      <div className="home">
-        {/* <img id="home-img" src={cosmetics}></img> */}
-        {/* <p>What service do you need today?</p>
-        <p>Canada's #1 Beauty Delivery Service!</p> */}
-      </div>
       <div className="homepage-search">
         <div className="home-sb-container">
           <h1 className="search-header">
@@ -23,10 +38,11 @@ const Home = () => {
                 type="text"
                 className="sb-input"
                 autoComplete="off"
-                placeholder="I need help with"
+                placeholder="I am looking for..."
+                onChange={updateInput}
               />
               <button type="button" className="btn sb-button" onClick={findBeauty}>
-                Find Beauty Today
+                Search
               </button>
             </div>
           </div>
@@ -77,7 +93,7 @@ const Home = () => {
                   src={require("../images/amorr-customer.png")}
                 ></img>
                 <p>Like our service? Sign up now to explore more!</p>
-                <button className="btn-secondary">Become a customer</button>
+                <button className="btn-secondary" onClick={goToSignUp}>Become a customer</button>
               </div>
             </div>
             <div className="right-ready-to-start-container">
@@ -85,8 +101,8 @@ const Home = () => {
                 className="provider-picture"
                 src={require("../images/service-provider.png")}
               ></img>
-              <p>Like our service? Sign up now to explore more!</p>
-              <button className="btn-secondary">Makeup a Service Provider</button>
+              <p>Like our platform? Sign up now and deliver your beauty expertise</p>
+              <button className="btn-secondary" onClick={goToFindJob}>Makeup a Service Provider</button>
             </div>
           </div>
         </div>
