@@ -1,0 +1,14 @@
+const mongoose = require('mongoose')
+
+const goalSchema = mongoose.Schema({
+    movieId:{
+      type: String,
+      required: [true, "please add text."]
+    }
+  }, 
+  {
+    timestamps: true,
+  }
+)
+
+module.exports = mongoose.model('Goal',goalSchema);
