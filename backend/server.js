@@ -17,9 +17,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}))
 
-app.use(errorHandler);
+app.use('/api/goals', require('./routes/goalRoute'));
+app.use('/api/providers', require('./routes/providerRoute'));
 
-app.use('/api/goals', require('./routes/route'));
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
