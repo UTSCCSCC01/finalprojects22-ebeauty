@@ -37,7 +37,7 @@ app.get('/api/profiles/:id', (req, res) => {
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Server started on port ${port}`);
+  console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`);
 });
 
 /**
