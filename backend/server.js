@@ -1,18 +1,24 @@
-const express = require('express');
-const profiles = require('./data/profiles');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-//currently not used
-const colors = require('colors');
-const port = (process.env.PORT) || 5000;
-//handle error
-const { errorHandler } = require('./middleware/errorMiddleware');
+import express from 'express';
+import profiles from './data/profiles.js';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import colors from 'colors';
+import errorHandler from './middleware/errorMiddleware.js';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
+
+// import apis here
+import posts from './routes/postRoute.js';
+import providers from './routes/providerRoute.js';
+
+
 // used on get the .env file
-const dotenv = require('dotenv').config();
+dotenv.config();
+
+// set up PORT
+const port = (process.env.PORT) || 5000;
 
 // connect the database here
-const connectDB = require('./config/db');
 connectDB();
 
 const app = express();
@@ -22,9 +28,11 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-app.use('/api/goals', require('./routes/goalRoute'));
-app.use('/api/providers', require('./routes/providerRoute'));
+// use the routes here
+app.use('/api/posts', posts);
+app.use('/api/providers', providers);
 
+// Here just test will remove later
 app.get('/api/profiles', (req, res) => {
   res.json(profiles);
 });
