@@ -18,7 +18,7 @@ mongodb+srv://eBeauty:<password>@cluster0.kdlbhej.mongodb.net/databasename
 ## explanation
 It's a bit hard to explain things I've done and it's pretty late right now, so I'll just go briefly. 
 
-currently, I've implement the authorization part with creating schema of provider, and I've linked it to the "goal" (I should rename it to post and input name from movieId to something else in future, but now things are still in draft)
+currently, I've implement the authorization part with creating schema of provider, and I've linked it to the "goal" 
 
 ### create provider
 so what we should do first, is to create a provider in url: localhost:5000/api/providers and with raw json body like: 
@@ -34,7 +34,7 @@ one thing you should see is the token, you'll need it in future, if you want to 
 go to Authentication in postman, select Bearer Token, and paste that token inside, select post method, and go to url: localhost:5000/api/goals
 and haven't test, but body prob is: 
 {
-"movieId": "some content here"
+"postText": "some content here"
 }
 and you click send then it sends to database.
 
@@ -43,12 +43,10 @@ Then, if you want to see it/get it. you can select get method, go to url:
 localhost:5000/api/goals
 with authentication selected bearer, click send and you can then see the post you've created.
 
-## delete post method, not completed yet
-the current delete method is prob not done yet, I suppose it delete all goals but if you want you can try it out, 
+## delete post method, update
 select delete method, have authentication selected, go url: 
-localhost:5000/api/goals/<provider id>
-(provider id should be in the same place you get token, if you deleted the page, look below)
-then send it prob delete all posts
+localhost:5000/api/goals/<post id>
+the post id can be gained by using get method, but to use get method of goal, you need to have a provider token first. 
 
 ## regain the info from creating provider (this renew the token tho)
 => you can get the id from select post method with url: 

@@ -2,9 +2,6 @@ const asyncHandler = require('express-async-handler');
 
 const Goal = require('../models/goalModel');
 
-const Provider = require('../models/providerModel');
-
-
 // @desc get goals
 // @route GET /api/goals
 // @access Private
@@ -19,13 +16,13 @@ const getGoals = asyncHandler(async (req, res) => {
 const postGoals = asyncHandler(async (req, res) => {
 
   let tmp = req.body;
-  if (! tmp.movieId){
+  if (! tmp.postText){
     res.status(400);
-    throw new Error('add new movieid')
+    throw new Error('add new postText')
   }
 
   const goal = await Goal.create({
-    movieId:tmp.movieId, 
+    postText: tmp.postText, 
     provider: req.provider.id
   })
 
@@ -45,16 +42,14 @@ const updateGoals = asyncHandler(async (req, res) => {
     throw new Error('Goal not found');
   }
 
-  const provider = await Provider.findById(req.provider.id);
-
   //check if user exists
-  if (!provider){
+  if (!req.provider){
     res.status(401)
     throw new Error('provider not found');
   }
 
   // compare owner identity using id
-  if(goal.provider.toString() !== provider.id){
+  if(goal.provider.toString() !== req.provider.id){
     res.status(401)
     throw new Error('not authorized, (provider is now the one posted)');
   }
@@ -78,16 +73,14 @@ const deleteGoals = asyncHandler(async (req, res) => {
     throw new Error('Goal not found');
   }
 
-  const provider = await Provider.findById(req.provider.id);
-
   //check if user exists
-  if (!provider){
+  if (!req.provider){
     res.status(401)
     throw new Error('provider not found');
   }
 
   // compare owner identity using id
-  if(goal.provider.toString() !== provider.id){
+  if(goal.provider.toString() !== req.provider.id){
     res.status(401)
     throw new Error('not authorized, (provider is now the one posted)');
   }

@@ -6,7 +6,7 @@ const goalSchema = mongoose.Schema({
     require: true, 
     ref: 'Provider'
   },
-    movieId:{
+  postText:{
       type: String,
       required: [true, "please add text."]
     }
