@@ -1,5 +1,8 @@
 to start, inside backend folder, use :npm run server
 
+recommand to read the below content in vscode, since I'm not familiar with github readme currently and how to make it not ignoring stuff and make it show up
+
+
 ### first
 I'm still working on server, with this commit, things go a bit complex, so prob a good idea to set the head to last commit, and go with this commit after understand things before. 
 
@@ -43,9 +46,10 @@ Then, if you want to see it/get it. you can select get method, go to url:
 localhost:5000/api/goals
 with authentication selected bearer, click send and you can then see the post you've created.
 
-## delete post method, update
+## delete post method
 select delete method, have authentication selected, go url: 
 localhost:5000/api/goals/<post id>
+
 the post id can be gained by using get method, but to use get method of goal, you need to have a provider token first. 
 
 ## regain the info from creating provider (this renew the token tho)
