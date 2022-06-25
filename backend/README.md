@@ -4,7 +4,7 @@ recommand to read the below content in vscode, since I'm not familiar with githu
 
 
 ### first
-I'm still working on server, with this commit, things go a bit complex, so prob a good idea to set the head to last commit, and go with this commit after understand things before. 
+I'm still working on server, with this commit, things go a bit complex, so prob a good idea to set the head to commit before: "EB 33 add further comments" with the SHA: "c3160a64c41841888f2ad99907468d8ee0c5cf3f", and go with this commit after understand things before. 
 
 I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one), and it's straight working on backend, works pretty well so i'm following it. 
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
