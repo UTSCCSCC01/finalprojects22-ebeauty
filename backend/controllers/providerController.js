@@ -79,16 +79,15 @@ const loginProvider = asyncHandler( async (req, res) => {
 
 // example of protect route, prob should be public
 const getProvider = asyncHandler( async (req, res) => {
-  try{
-    res.status(200).json({
-      id: req.provider.id, 
-      name: req.provider.name,
-      email: req.provider.email
-    });
-  } catch (error){
-    res.status(400);
-    throw new Error('get failed, provider not exists (could be deleted but still using the corresponding token)');
-  }
+  let {_id, name, email} = await Provider.findById(req.provider.id); 
+
+
+
+  res.status(200).json({
+    id: _id, 
+    name,
+    email
+  });
 })
 
 

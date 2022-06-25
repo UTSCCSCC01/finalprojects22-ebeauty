@@ -1,16 +1,12 @@
 const mongoose = require('mongoose')
 
-const postSchema = mongoose.Schema({
-  provider_name: {
-    type: String, 
-    require: true, 
-  },
-  provider_id: {
+const goalSchema = mongoose.Schema({
+  provider: {
     type: mongoose.Schema.Types.ObjectId, 
     require: true, 
     ref: 'Provider'
   },
-  postText:{
+    movieId:{
       type: String,
       required: [true, "please add text."]
     }
@@ -20,4 +16,4 @@ const postSchema = mongoose.Schema({
   }
 )
 
-module.exports = mongoose.model('Post',postSchema);
+module.exports = mongoose.model('Goal',goalSchema);
