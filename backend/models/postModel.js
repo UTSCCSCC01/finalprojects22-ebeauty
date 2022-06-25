@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
-const goalSchema = mongoose.Schema({
-  provider: {
+const postSchema = mongoose.Schema({
+  provider_name: {
+    type: String, 
+    require: true, 
+  },
+  provider_id: {
     type: mongoose.Schema.Types.ObjectId, 
     require: true, 
     ref: 'Provider'
@@ -16,4 +20,4 @@ const goalSchema = mongoose.Schema({
   }
 )
 
-module.exports = mongoose.model('Goal',goalSchema);
+module.exports = mongoose.model('Post',postSchema);

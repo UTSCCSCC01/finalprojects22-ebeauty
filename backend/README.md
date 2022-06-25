@@ -21,7 +21,7 @@ mongodb+srv://eBeauty:<password>@cluster0.kdlbhej.mongodb.net/databasename
 ## explanation
 It's a bit hard to explain things I've done and it's pretty late right now, so I'll just go briefly. 
 
-currently, I've implement the authorization part with creating schema of provider, and I've linked it to the "goal" 
+currently, I've implement the authorization part with creating schema of provider, and another schema of post that's under provider
 
 ### create provider
 so what we should do first, is to create a provider in url: localhost:5000/api/providers and with raw json body like: 
@@ -32,9 +32,9 @@ so what we should do first, is to create a provider in url: localhost:5000/api/p
 }
 (this one already exists so if you input same email it gives error)
 
-## create post(goal now)
-one thing you should see is the token, you'll need it in future, if you want to post a goal(post, haven't rename it)
-go to Authentication in postman, select Bearer Token, and paste that token inside, select post method, and go to url: localhost:5000/api/goals
+## create post
+one thing you should see is the token, you'll need it in future, if you want to post a post
+go to Authentication in postman, select Bearer Token, and paste that token inside, select post method, and go to url: localhost:5000/api/posts
 and haven't test, but body prob is: 
 {
 "postText": "some content here"
@@ -43,14 +43,14 @@ and you click send then it sends to database.
 
 ## see post (using postman)
 Then, if you want to see it/get it. you can select get method, go to url: 
-localhost:5000/api/goals
+localhost:5000/api/posts
 with authentication selected bearer, click send and you can then see the post you've created.
 
 ## delete post method
 select delete method, have authentication selected, go url: 
-localhost:5000/api/goals/<post id>
+localhost:5000/api/posts/<post id>
 
-the post id can be gained by using get method, but to use get method of goal, you need to have a provider token first. 
+the post id can be gained by using get method, but to use get method of post, you need to have a provider token first. 
 
 ## regain the info from creating provider (this renew the token tho)
 => you can get the id from select post method with url: 
@@ -65,7 +65,7 @@ However, this renewed the token, so remember to re-copy paste the token into aut
 
 
 ## not a official github but current structure:
-NOTE: currently we go server.js -> goalRoute.js -> goalController.js -> goalModel.js to send, get messages from database
+NOTE: currently we go server.js -> postRoute.js -> postController.js -> postModel.js to send, get messages from database
                                                 -> authMiddleware.js
                                 -> providerRoute.js -> providerController.js -> providerModel.js to create, login, get provider from database
                                                     -> authMiddleware.js
