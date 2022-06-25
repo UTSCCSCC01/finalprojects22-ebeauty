@@ -1,4 +1,3 @@
-import e from 'express';
 import express from 'express';
 import protect from '../middleware/authMiddleware.js';
 import { registerProvider, loginProvider, getProvider } from '../controllers/providerController.js';
