@@ -1,12 +1,8 @@
 const express = require('express');
-const profiles = require('./data/profiles');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
-const cors = require('cors');
-//currently not used
-const colors = require('colors');
+// used on connecting frontend
+const path = require('path');
 const port = (process.env.PORT) || 5000;
-//handle error
+// handle error and show it inside postman
 const { errorHandler } = require('./middleware/errorMiddleware');
 // used on get the .env file
 const dotenv = require('dotenv').config();
@@ -22,9 +18,8 @@ app.use(cors());
 app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 
-app.use('/api/goals', require('./routes/goalRoute'));
+app.use('/api/posts', require('./routes/postRoute'));
 app.use('/api/providers', require('./routes/providerRoute'));
-
 app.get('/api/profiles', (req, res) => {
   res.json(profiles);
 });
@@ -33,6 +28,15 @@ app.get('/api/profiles/:id', (req, res) => {
   const profile = profiles.find(profile => profile.id === req.params.id);
   res.json(profile);
 });
+
+// Serve frontend
+/*
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(
+    path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+  )
+)*/
 
 app.use(errorHandler);
 
