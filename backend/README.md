@@ -3,6 +3,11 @@ run project, use : npm run dev
 run server, use : npm run server, under backend folder
 run client, use : npm start, under frontend folder
 
+### seeder
+
+Use seeder to import and destroy data to the database
+use : npm run data:import and npm run data:destroy
+
 ### first
 
 I'm still working on server, with this commit, things go a bit complex, so prob a good idea to set the head to last commit, and go with this commit after understand things before.

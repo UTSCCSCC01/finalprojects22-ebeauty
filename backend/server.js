@@ -1,7 +1,5 @@
 import express from 'express';
 import profiles from './data/profiles.js';
-import bodyParser from 'body-parser';
-import cors from 'cors';
 import colors from 'colors';
 import errorHandler from './middleware/errorMiddleware.js';
 import dotenv from 'dotenv';
@@ -10,6 +8,7 @@ import connectDB from './config/db.js';
 // import apis here
 import posts from './routes/postRoute.js';
 import providers from './routes/providerRoute.js';
+import taskProviders from './data/taskProviders.js';
 
 
 // used on get the .env file
@@ -24,9 +23,8 @@ connectDB();
 const app = express();
 
 // to retrieve data from postman to be not undefined.
-app.use(cors());
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 // use the routes here
 app.use('/api/posts', posts);
@@ -45,7 +43,7 @@ app.get('/api/profiles/:id', (req, res) => {
 app.use(errorHandler);
 
 app.listen(port, () => {
-  console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`);
+  console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold);
 });
 
 /**
