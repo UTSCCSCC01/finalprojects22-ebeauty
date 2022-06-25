@@ -4,14 +4,14 @@ recommand to read the below content in vscode, since I'm not familiar with githu
 
 
 ### first
-I'm still working on server, with this commit, things go a bit complex, so prob a good idea to set the head to last commit, and go with this commit after understand things before. 
+I've finished working on server, rightnow, things go a bit complex, so prob a good idea to set the head to commit: "EB 33 add further comments" with the SHA: "c3160a64c41841888f2ad99907468d8ee0c5cf3f", and go with this commit after understand things before.
 
-I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one), and it's straight working on backend, works pretty well so i'm following it. 
+I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one) and deploying it to heroku (of course we can use something else, I remember there's cloudflare, digitalocean or something you name it), and it's straight working on backend, works pretty well so i'm following it. 
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
 
-I've only done first 2 video in total of 4. 
+First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00)
 
-note right now I'm connected to DB is not the formal one, I'm using this as draft, but we can change it to the EB one pretty fast, just need a few part modifying. and if moonman want or someone else want, you can change it in future to connected to not Atlas one in future, does not matter to me. 
+note: right now I'm connected to DB is not the formal one, I'm using this as draft, but we can change it to the EB one pretty fast, just need a few part modifying. and if moonman want or someone else want, you can change it in future to connected to not Atlas one in future, does not matter to me. 
 
 ### see data
 if you want to see data in mongodb, I'm using MongoCompass that's downloaded to desktop, use this url to paste into it once downloaded and opened: 
