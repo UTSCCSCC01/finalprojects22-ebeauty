@@ -30,7 +30,7 @@ app.use("/api/providers", require("./routes/providerRoute"));
 // app.use("*", (req, res) => res.status(404).json({ error: "No endpoint exists" }));
 
 // Enabled all the review routes in server.js
-const reviewRoutes = require("./routes/reivewRoute");
+const reviewRoutes = require("./routes/reviewRoute");
 app.use("/api/reviews", reviewRoutes);
 
 // Serve frontend
