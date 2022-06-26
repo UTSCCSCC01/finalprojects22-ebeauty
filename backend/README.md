@@ -5,8 +5,21 @@ run client, use : npm start, under frontend folder
 
 ### seeder
 
+Before run seeder, put the desired or sample data under the data folder,
+can add more data in the related js file or create your own js file to create
+a collection.
+
 Use seeder to import and destroy data to the database
 use : npm run data:import and npm run data:destroy
+
+## Write your api description here
+
+### /api/taskproviders
+
+you can get all task providers or get a specific task provider by id
+public GET /api/taskproviders
+public GET /api/taskproviders/:id
+add more extensions to the api if you want to add more functionality
 
 ### first
 

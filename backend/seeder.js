@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import colors from "colors";
 import taskProviders from "./data/taskProviders.js";
 import service from "./data/service.js";
-import TaskProvider from "./models/providerModel.js";
+import TaskProvider from "./models/taskproviderModel.js";
 import Service from "./models/serviceModel.js";
 import connectDB from "./config/db.js";
 

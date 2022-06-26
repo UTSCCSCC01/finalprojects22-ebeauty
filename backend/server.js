@@ -8,7 +8,7 @@ import connectDB from './config/db.js';
 // import apis here
 import posts from './routes/postRoute.js';
 import providers from './routes/providerRoute.js';
-import taskProviders from './data/taskProviders.js';
+import taskproviderRoute from './routes/taskproviderRoute.js';
 
 
 // used on get the .env file
@@ -29,16 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 // use the routes here
 app.use('/api/posts', posts);
 app.use('/api/providers', providers);
-
-// Here just test will remove later
-app.get('/api/profiles', (req, res) => {
-  res.json(profiles);
-});
-
-app.get('/api/profiles/:id', (req, res) => {
-  const profile = profiles.find(profile => profile.id === req.params.id);
-  res.json(profile);
-});
+app.use('/api/taskproviders', taskproviderRoute);
 
 app.use(errorHandler);
 

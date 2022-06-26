@@ -29,7 +29,7 @@ const SearchPage = ({ searchResults }) => {
   useEffect(() => {
     const fetchProfiles = async () => {
       // request to get the profile data from the server
-      const { data } = await axios.get('/api/profiles');
+      const { data } = await axios.get('/api/taskproviders');
       setProfile(data);
     };
     fetchProfiles();
@@ -91,7 +91,7 @@ const SearchPage = ({ searchResults }) => {
         {/* map the filtered data set */}
         {profile.map((result) => {
           return (
-            <div className="search-result" key={result.id}>
+            <div className="search-result" key={result._id}>
               <img src={require('../images/barber.jpg')} className="image-barber" />
               <div className="search-result-text">
                 <h3>{result.name}</h3>
