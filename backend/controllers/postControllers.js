@@ -50,7 +50,7 @@ const updatePost = asyncHandler(async (req, res) => {
   }
 
   // compare owner identity using id
-  if (post.provider.toString() !== req.provider.id) {
+  if (post.provider_id.toString() !== req.provider.id) {
     res.status(401);
     throw new Error('not authorized, (provider is now the one posted)');
   }
@@ -81,7 +81,7 @@ const deletePost = asyncHandler(async (req, res) => {
   }
 
   // compare owner identity using id
-  if (post.provider.toString() !== req.provider.id) {
+  if (post.provider_id.toString() !== req.provider.id) {
     res.status(401);
     throw new Error('not authorized, (provider is now the one posted)');
   }
