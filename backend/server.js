@@ -1,7 +1,6 @@
 import express from 'express';
-import profiles from './data/profiles.js';
 import colors from 'colors';
-import errorHandler from './middleware/errorMiddleware.js';
+import { notFoundHandler, errorHandler } from './middleware/errorMiddleware.js';
 import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
@@ -31,6 +30,8 @@ app.use('/api/posts', posts);
 app.use('/api/providers', providers);
 app.use('/api/taskproviders', taskproviderRoute);
 
+// handle the error here
+app.use(notFoundHandler);
 app.use(errorHandler);
 
 app.listen(port, () => {

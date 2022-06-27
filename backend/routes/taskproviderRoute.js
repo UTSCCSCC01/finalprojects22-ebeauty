@@ -25,7 +25,8 @@ router.get(
     if (taskProvider) {
       res.json(taskProvider);
     } else {
-      return res.status(404).json({ msg: 'TaskProvider not found' });
+      res.status(404).json({ msg: 'TaskProvider not found' });
+      throw new Error('TaskProvider not found');
     }
   })
 );
