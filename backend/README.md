@@ -2,6 +2,7 @@ run project, use : npm run dev
 
 run server, use : npm run server, under backend folder
 run client, use : npm start, under frontend folder
+
 note: you have to do npm install if haven't do so. and have your .env file created under backend folder. 
 
 ### .env file
