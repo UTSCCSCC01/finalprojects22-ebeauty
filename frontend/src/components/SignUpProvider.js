@@ -7,44 +7,44 @@ import {
   CardBody,
 } from "reactstrap";
 
+import '../css/providerRegister.css'
 
 
 
 const SignUpProvider = () => {
   
   //use for sign up states
-  const [FirstName, setFirstName] = useState("");
-  const [LastName, setLastName] = useState("");
-  const [Email, setEmail] = useState("");
-  const [Phone, setPhone] = useState("");
-  const [Bill, setBill] = useState("");
-  const [City, setCity] = useState("");
-  const [Province, setProvince] = useState("");
-  const [Country, setCountry] = useState("");
-  const [Postal, setPostal] = useState("");
-  const [Password, setPassword] = useState("");
+  const [data, setData] = useState({
+    FirstName: "",
+    LastName:"",
+    Email:"",
+    Phone: "",
+    Bill:"",
+    City:"",
+    Province: "",
+    Country:"",
+    Postal:"",
+    Password:"", 
+    title:"", 
+    Individual:""
+  })
+
+  const handleChange = (input, setVariable) => {
+      setData({...data, [setVariable]: input});
+  };
 
 
   let navigate = useNavigate();
-  function handleClick() {
-    navigate("/signupprovidertwo")
-  }
-
-
   // trigger when clicked sign up button
   function signUpForm(e){
+    console.log(data);
     e.preventDefault();
+
+    //jump page
+    navigate("/signupprovidertwo"); 
+
     //reset fields
-    e.target[0].value = ''; 
-    e.target[1].value = '';
-    e.target[2].value = '';
-    e.target[3].value = ''; 
-    e.target[4].value = '';
-    e.target[5].value = '';
-    e.target[6].value = ''; 
-    e.target[7].value = '';
-    e.target[8].value = '';
-    e.target[9].value = ''; 
+    e.target.reset();
   }
 
   return (
@@ -54,23 +54,23 @@ const SignUpProvider = () => {
           <Form onSubmit={signUpForm.bind(this)} className="Form">
             <h3 >Sign Up As Service Provider</h3>
             <div>
-              <input className="sign" type="text" placeholder="First Name" onChange={ (e) => setFirstName(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Last Name" onChange={ (e) => setLastName(e.target.value)}/>
-              <input className={"sign line"} type="email" placeholder="Email" onChange={ (e) => setEmail(e.target.value)}/>
-              <input className={"sign line"} type="text" placeholder="Phone Number" onChange={ (e) => setPhone(e.target.value)} onKeyPress={(event) => {
+              <input className="sign" type="text" placeholder="First Name" onChange={(e) => handleChange(e.target.value, "FirstName")} required/>
+              <input className="sign" type="text" placeholder="Last Name" onChange={(e) => handleChange(e.target.value, "LastName")} required/>
+              <input className={"sign line"} type="email" placeholder="Email" onChange={(e) => handleChange(e.target.value, "Email")} required/>
+              <input className={"sign line"} type="text" placeholder="Phone Number"onChange={(e) => handleChange(e.target.value, "Phone")}  required onKeyPress={(event) => {
                 if (!/[0-9]/.test(event.key)) {
                   event.preventDefault();
                 }
               }}/>
-              <input className={"sign line"} type="text" placeholder="Billing Address" onChange={ (e) => setBill(e.target.value)}/>
-              <input className="sign" type="text" placeholder="City" onChange={ (e) => setCity(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Province" onChange={ (e) => setProvince(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Country" onChange={ (e) => setCountry(e.target.value)}/>
-              <input className="sign" type="text" placeholder="Postal Code" onChange={ (e) => setPostal(e.target.value)}/>
-              <input className={"sign line"} type="password" placeholder="Enter password" onChange={ (e) => setPassword(e.target.value)}/>
+              <input className={"sign line"} type="text" placeholder="Billing Address" onChange={(e) => handleChange(e.target.value, "Bill")} required/>
+              <input className="sign" type="text" placeholder="City" onChange={(e) => handleChange(e.target.value, "City")} required/>
+              <input className="sign" type="text" placeholder="Province" onChange={(e) => handleChange(e.target.value, "Province")} required/>
+              <input className="sign" type="text" placeholder="Country" onChange={(e) => handleChange(e.target.value, "Country")} required/>
+              <input className="sign" type="text" placeholder="Postal Code" onChange={(e) => handleChange(e.target.value, "Postal")} required/>
+              <input className={"sign line"} type="password" placeholder="Enter password" onChange={(e) => handleChange(e.target.value, "Password")} required/>
             </div>
             <div className="center">
-              <button className={"Button"} onClick={handleClick} type="submit">Next Step</button>
+              <button className={"Button"} type="submit">Next Step</button>
             </div>
           </Form>
 
