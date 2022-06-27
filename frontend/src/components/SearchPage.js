@@ -2,12 +2,13 @@
 import { useNavigate } from "react-router-dom";
 import '../css/index.css';
 import '../css/SearchPage.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import ServiceDropdown from './ServiceDropdown';
 import { Link } from "react-router-dom";
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
@@ -19,18 +20,22 @@ const SearchPage = ({ searchResults }) => {
     navigate("/searchpage");
   }
 
-  function redirect_to_addresspage (){
-    navigate("/addresspage")
+  function redirect_to_addresspage () {
+    navigate("/addresspage");
   }
 
+  const [profile, setProfile] = useState([]);
+
+  useEffect(() => {
+    const fetchProfiles = async () => {
+      // request to get the profile data from the server
+      const { data } = await axios.get('/api/taskproviders');
+      setProfile(data);
+    };
+    fetchProfiles();
+  }, []);
   const [filteredData, setfilteredData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-
-  // let searchResults = profileData.profile.filter(profile => {
-  //   return Object.keys(profile).some(key => {
-  //     return profile[key].toString().toLowerCase().includes(filteredData.toString().toLowerCase());
-  //   });
-  // });
 
   // when user types in the search bar, the search term will be updated
   const handleChange = (e) => {
@@ -84,9 +89,9 @@ const SearchPage = ({ searchResults }) => {
           <h1>Recommended Taskers</h1>
         </header>
         {/* map the filtered data set */}
-        {filteredData.map((result, key) => {
+        {profile.map((result) => {
           return (
-            <div className="search-result" key={key}>
+            <div className="search-result" key={result._id}>
               <img src={require('../images/barber.jpg')} className="image-barber" />
               <div className="search-result-text">
                 <h3>{result.name}</h3>
