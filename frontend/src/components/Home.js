@@ -1,26 +1,24 @@
-import SearchPage from "./SearchPage";
 import React, { useState } from 'react';
 
 const Home = () => {
-
-  const [homeSearchInput, setHomeSearchInput] = useState("");
+  const [homeSearchInput, setHomeSearchInput] = useState('');
 
   const updateInput = (e) => {
     setHomeSearchInput(e.target.value);
     // console.log(homeSearchInput);
-  }
+  };
 
-  function findBeauty (e) {
+  function findBeauty(e) {
     e.preventDefault();
     window.location.href = '/searchpage';
   }
 
-  function goToSignUp (e) {
+  function goToSignUp(e) {
     e.preventDefault();
     window.location.href = '/signup';
   }
 
-  function goToFindJob (e) {
+  function goToFindJob(e) {
     e.preventDefault();
     window.location.href = '/findjob';
   }
@@ -31,7 +29,9 @@ const Home = () => {
           <h1 className="search-header">
             <span>Find Your Beauty Today</span>
           </h1>
-          <p className="search-body">Find Beauty Professionals with the help of Amor</p>
+          <p className="search-body">
+            Find Beauty Professionals with the help of Amor
+          </p>
           <div className="search-form">
             <div className="sb-container-input">
               <input
@@ -41,7 +41,10 @@ const Home = () => {
                 placeholder="I am looking for..."
                 onChange={updateInput}
               />
-              <button type="button" className="btn sb-button" onClick={findBeauty}>
+              <button
+                type="button"
+                className="btn sb-button"
+                onClick={findBeauty}>
                 Search
               </button>
             </div>
@@ -52,7 +55,11 @@ const Home = () => {
       <div className="row">
         <div className="column">
           <div className="image">
-            <img className="image__img" src={require("../images/haircut.jpg")} alt="Bricks" />
+            <img
+              className="image__img"
+              src={require('../images/haircut.jpg')}
+              alt="Bricks"
+            />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Hair Designer</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -62,7 +69,11 @@ const Home = () => {
 
         <div className="column">
           <div className="image">
-            <img className="image__img" src={require("../images/nail-polish.jpg")} alt="Bricks" />
+            <img
+              className="image__img"
+              src={require('../images/nail-polish.jpg')}
+              alt="Bricks"
+            />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Nail Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -71,7 +82,11 @@ const Home = () => {
         </div>
         <div className="column">
           <div className="image">
-            <img className="image__img" src={require("../images/makeup.jpg")} alt="Bricks" />
+            <img
+              className="image__img"
+              src={require('../images/makeup.jpg')}
+              alt="Bricks"
+            />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Makeup Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -90,19 +105,23 @@ const Home = () => {
               <div className="left-container">
                 <img
                   className="customer-picture"
-                  src={require("../images/amorr-customer.png")}
-                ></img>
+                  src={require('../images/amorr-customer.png')}></img>
                 <p>Like our service? Sign up now to explore more!</p>
-                <button className="btn-secondary" onClick={goToSignUp}>Become a customer</button>
+                <button className="btn-secondary" onClick={goToSignUp}>
+                  Become a customer
+                </button>
               </div>
             </div>
             <div className="right-ready-to-start-container">
               <img
                 className="provider-picture"
-                src={require("../images/service-provider.png")}
-              ></img>
-              <p>Like our platform? Sign up now and deliver your beauty expertise</p>
-              <button className="btn-secondary" onClick={goToFindJob}>Makeup a Service Provider</button>
+                src={require('../images/service-provider.png')}></img>
+              <p>
+                Like our platform? Sign up now and deliver your beauty expertise
+              </p>
+              <button className="btn-secondary" onClick={goToFindJob}>
+                Makeup a Service Provider
+              </button>
             </div>
           </div>
         </div>
