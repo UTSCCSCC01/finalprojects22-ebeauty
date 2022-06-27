@@ -5,9 +5,18 @@ run client, use : npm start, under frontend folder
 
 ### seeder
 
-Before run seeder, put the desired or sample data under the data folder,
-can add more data in the related js file or create your own js file to create
-a collection.
+- Create the yourdata.js file under data folder in the backend
+- Import yourdata.js file and related yourdataModel.js file in the seeder.js
+- Under importData() add:
+    - await yourdataModel.deleteMany(); // clear all data first before import
+    - await yourdataModel.insertMany();
+    - you can write more code for maping the data and adding a ref to them, just like I did,
+    - you can also choose not await yourdataModel.deleteMany() if your want to always keep it, but if run destroy, those will be deleted 
+- Under destroyData() add:
+    - await yourdataModel.deleteMany(); // clear all data
+- In the terminal:
+    - node seeder -i // importData
+    - node seeder -d // destroyData  
 
 Use seeder to import and destroy data to the database
 use : npm run data:import and npm run data:destroy
