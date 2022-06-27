@@ -37,6 +37,16 @@ Use seeder to import and destroy data to the database
     - node seeder -i // importData
     - node seeder -d // destroyData  
 
+
+## test apis
+
+an easy way to test the api is just to go to url:
+i.e. localhost:5000/api/posts/
+
+a better way to do it is using postman, select get method, go to url: localhost:5000/api/posts/. or select post method, go to url: localhost:5000/api/providers
+
+but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
+
 ## Write your api description here
 
 ### /api/taskproviders
@@ -52,7 +62,7 @@ add more extensions to the api if you want to add more functionality
 ### /api/providers
 purpose: create/signup provider's account
 
-open postman, paste url below to postman's url:
+open postman, select POST method, paste url below to postman's url:
 
 localhost:5000/api/providers 
 
@@ -68,7 +78,7 @@ and with raw json body like:
 ### /api/providers/login
 purpose: sign in provider's account and gain a new token
 
-open postman, paste url below to postman's url:
+open postman, select POST method, paste url below to postman's url:
 
 localhost:5000/api/providers/login
 
@@ -82,11 +92,15 @@ and with raw json body like:
 ### /api/providers/me
 purpose: get the logged in provider's account details
 
-(note: currently only with valid token can successfully retrieve the message)
+go to Authentication in postman, select Bearer Token, and paste that token inside. 
 
-open postman, paste url below to postman's url:
+open postman, select GET method, paste url below to postman's url:
 
 localhost:5000/api/providers/me
+
+
+Currently, we'll need token in order to retrieve the current logged in provider's info. 
+The token is provided  by either create method or you can use the login function mentioned above to get a new one. (if token has not expired, all old and new tokens should work. Right now token is set to be 30 days expiration)
 
 
 ### /api/posts
@@ -98,11 +112,11 @@ localhost:5000/api/posts
 
 - GETTING POSTS: 
 
-for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all maded posts. 
+for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all existed posts inside database. 
 
 - POSTING POST: 
 
-for posting post, you need token from servide provider. 
+for posting post, you need token from service provider. 
 
 It is provided by either create method or you can use the login function mentioned above to get a new one. (if token has not expired, all old and new tokens should work. Right now token is set to be 30 days expiration)
 
@@ -124,27 +138,18 @@ localhost:5000/api/posts/(post id)
 select delete method, 
 
 go to Authentication in postman, select Bearer Token, and paste provider's token inside. 
-paste the post's id to the url (id can be gained by GET method mentioned above, note that if provider is not the one posted, then modification of post would failed). 
+paste the post's id to the url (id can be gained by GET method mentioned above, note that if provider is not the one posted, then modification of the post would failed). 
 
 click send, if postman respond with just a line of id:(post id), then it works. 
 
 - UPDATE POST
 localhost:5000/api/posts/(post id)
 
-the setup steps are same as delete post, it's just you have to paste new data you want to update inside raw json body: 
+the setup steps are same as delete post, it's just you have to provide the new data you want to update for post inside raw json body: 
 
 {
 "postText": "some content here"
 }
-
-## test apis
-
-an easy way to test the api is just to go to url:
-i.e. localhost:5000/api/posts/
-
-a better way to do it is using postman, select get method, go to url: localhost:5000/api/posts/. or select post method, go to url: localhost:5000/api/providers
-
-but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
 
 
 ### allen's note: 
