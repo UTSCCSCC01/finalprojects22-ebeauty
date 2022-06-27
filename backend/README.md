@@ -1,4 +1,4 @@
-run project, use : npm run dev
+run project (run both backend and frontend concurrently), use : npm run dev
 
 run server, use : npm run server, under backend folder.
 
