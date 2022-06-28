@@ -10,6 +10,8 @@ import posts from './routes/postRoute.js';
 import providers from './routes/providerRoute.js';
 import taskproviderRoute from './routes/taskproviderRoute.js';
 
+
+import cors from "cors";
 import path from 'path';
 import {fileURLToPath} from 'url';
 
@@ -23,6 +25,9 @@ const port = (process.env.PORT) || 5000;
 connectDB();
 
 const app = express();
+
+// to get post request from frontend
+app.use(cors());
 
 // to retrieve data from postman to be not undefined.
 app.use(express.json());

@@ -1,35 +1,51 @@
-import { useState }  from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState  }  from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 // reactstrap components
 import {
   Form,
   Card,
   CardBody,
 } from "reactstrap";
-import { Dropdown, Selection } from 'react-dropdown-now';
+import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
-
+import axios from 'axios';
 
 const SignUpProviderTwo = () => {
-  
-  //use for sign up states
-  const [WprkType, setWprkType] = useState("");
-  const [Individual, setIndividual] = useState("");
+  // read passed in data
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [data, setData] = useState(location.state);
 
-  // trigger when clicked sign up button
+  const handleChange = (input, fieldName) => {
+    setData({...data, [fieldName]: input.value});
+  };
+
+  // post data to register provider
+  const signUp = async () => {
+    await axios.post('http://localhost:5000/api/providers',data)
+    .then(response => {
+      alert("Created!");
+      console.log(response);
+    })
+    .catch(err => {
+      if(err.response.data.message)
+        alert(err.response.data.message);
+      else 
+        alert(err.message);
+    });
+  };
+
+// trigger when clicked sign up button
   function signUpForm(e){
+    if (!data || Object.values(data).includes("")){
+      alert("there's field you didn't input!")
+    } else {
+      signUp();
+      navigate("/");
+    }
     e.preventDefault();
-    //reset fields
-    e.target[0].value = '';
   }
-
-  let navigate = useNavigate();
-
-  function handleClick() {
-    navigate("/");
-  }
-
 
   return (
     <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
@@ -43,7 +59,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Hairdress"
                 options={['Hairdress', 'Barber', 'Clean', 'Landscape', 'Massage', 'Makeup', 'Eyebrow Eyelash Tech']}
                 value="Hairdress"
-                onChange={(value) => console.log('change!', value)}
+                onChange={(option) => handleChange(option, "Title")}
               />
             </div>
             {/*
@@ -56,11 +72,11 @@ const SignUpProviderTwo = () => {
                 placeholder="Yes"
                 options={['Yes', 'No']}
                 value="Yes"
-                onChange={(value) => console.log('change!', value)}
+                onChange={(option) => handleChange(option, "Individual")}
               />
             </div>
             <div className="center">
-              <button className={"Button"} onClick={handleClick} type="submit">Next Step</button>
+              <button className={"Button"} type="submit">Next Step</button>
             </div>
           </Form>
 
