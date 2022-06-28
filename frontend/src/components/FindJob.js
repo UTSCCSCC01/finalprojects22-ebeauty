@@ -1,7 +1,7 @@
-import userEvent from "@testing-library/user-event";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Animation from "./Animation";
+import '../css/providerRegister.css'
 
 
 const FindJob = () => {
