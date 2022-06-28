@@ -15,6 +15,7 @@ import SignUpProviderTwo from './components/SignUpProviderTwo';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
+import Review from './components/Review';
 
 function App () {
   return (
@@ -26,6 +27,7 @@ function App () {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
+              <Route path="/reviews" element={<Review />} />
               <Route path="/searchpage" element={<SearchPage searchResults={ProfileData} />} />
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
