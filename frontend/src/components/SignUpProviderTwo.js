@@ -49,7 +49,7 @@ const SignUpProviderTwo = () => {
       alert("there's field you didn't input!")
     } else {
       signUp();
-      navigate("/");
+      navigate("/signupproviderthree");
     }
     e.preventDefault();
   }

@@ -12,6 +12,7 @@ import FindJob from './components/FindJob';
 import SearchPage from './components/SearchPage';
 import SignUpProvider from './components/SignUpProvider';
 import SignUpProviderTwo from './components/SignUpProviderTwo';
+import SignUpProviderThree from './components/SignUpProviderThree';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
@@ -31,6 +32,7 @@ function App () {
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
               <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
+              <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route path="/viewprofileprovider" element={<ViewProfileProvider />} />
