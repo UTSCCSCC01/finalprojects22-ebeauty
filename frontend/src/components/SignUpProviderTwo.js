@@ -11,6 +11,13 @@ import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
 import axios from 'axios';
 
+/**
+ * 
+ * NOTE: want to implement and replace alert: https://teodosii.github.io/react-notifications-component/ 
+ * 
+ */
+
+
 const SignUpProviderTwo = () => {
   // read passed in data
   const navigate = useNavigate();
@@ -49,9 +56,9 @@ const SignUpProviderTwo = () => {
 
   return (
     <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
-      <Card  className="Card">
+      <Card  className="twoCard">
         <CardBody>
-          <Form onSubmit={signUpForm.bind(this)} className="Form" style={{display:'flex',justifyContent: 'center'}}>
+          <Form onSubmit={signUpForm.bind(this)} className="twoForm" style={{display:'flex',justifyContent: 'center'}}>
             <h3 >What kind of work are you planning to serve?</h3>
             {/*https://iambumblehead.github.io/react-dropdown-now/?path=/story/docs-introduction--page */}
             <div className="center">
@@ -76,7 +83,7 @@ const SignUpProviderTwo = () => {
               />
             </div>
             <div className="center">
-              <button className={"Button"} type="submit">Next Step</button>
+              <button className={"Button"} type="submit" style={{marginTop:"30pt"}}>Next Step</button>
             </div>
           </Form>
 
