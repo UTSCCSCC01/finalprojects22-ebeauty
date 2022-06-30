@@ -18,12 +18,12 @@ const reviewSchema = mongoose.Schema(
     },
     rating: {
       type: Number,
-      require: true
-    }
+      require: true,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Review", reviewSchema); 
+export default mongoose.model("Review", reviewSchema);
