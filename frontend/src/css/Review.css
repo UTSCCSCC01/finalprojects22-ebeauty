@@ -1,11 +1,10 @@
-.review-container{
+.review-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin: 100px 0;
-  
 }
 
 .star-rating {
@@ -38,7 +37,7 @@ input[type="radio"] {
   display: none;
 }
 
-.review-buttons{
+.review-buttons {
   display: flex;
   flex-direction: row;
   gap: 100px;
@@ -46,7 +45,7 @@ input[type="radio"] {
   align-items: center;
 }
 
-.review-button{
+.review-button {
   padding: 20px;
   border-radius: 10px;
   background-color: #e27b7b;
