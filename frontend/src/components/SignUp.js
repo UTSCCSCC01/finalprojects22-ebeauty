@@ -19,17 +19,20 @@ const SignUp = () => {
   //     setData({...data, [input.name]: input.value});
   // };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const customer = { firstName, lastName, email, password };
+    console.log(customer);
 
-    const response = await fetch("/api/register-customer/", {
+    const response = await fetch("/api/customers/register-customer/", {
       method: "POST",
       body: JSON.stringify(customer),
       headers: {
         "Content-Type": "application/json",
       },
     });
+
+    console.log(response);
 
     const json = await response.json();
 
@@ -43,6 +46,7 @@ const SignUp = () => {
       setLastName("");
       setEmail("");
       setPassword("");
+      alert(`Account for ${firstName} ${lastName} with ${email} is successfully created!`);
     }
   }
 
@@ -68,7 +72,7 @@ const SignUp = () => {
                             setFirstName(e.target.value);
                           }}
                           value={firstName}
-                          requiredclassname={"form_containersignup input"}
+                          className={"form_containersignup input"}
                       />
                       <input 
                           type="text"
@@ -78,7 +82,7 @@ const SignUp = () => {
                             setLastName(e.target.value);
                           }}
                           value={lastName}
-                          requiredclassname={"form_containersignup input"}
+                          className={"form_containersignup input"}
                       />
                       <input 
                           type="email"
@@ -88,7 +92,7 @@ const SignUp = () => {
                             setEmail(e.target.value);
                           }}
                           value={email}
-                          requiredclassname={"form_containersignup input"}
+                          className={"form_containersignup input"}
                       />
                       <input 
                           type="password"
@@ -98,7 +102,7 @@ const SignUp = () => {
                             setPassword(e.target.value);
                           }}
                           value={password}
-                          requiredclassname={"form_containersignup input"}
+                          className={"form_containersignup input"}
                       />
                       <button type="submit" className={"green_btnsignup"} onClick={handleSubmit}>
                           Sign Up

@@ -19,7 +19,7 @@ const Login = () => {
     e.preventDefault();
     const customer = { email, password };
 
-    const response = await fetch("/api/login-customer/", {
+    const response = await fetch("/api/customers/login-customer/", {
       method: "POST",
       body: JSON.stringify(customer),
       headers: {
@@ -37,6 +37,7 @@ const Login = () => {
       setError(null);
       setEmail("");
       setPassword("");
+      alert(`${email} successfully signed in!`);
     }
   };
 
@@ -54,7 +55,7 @@ const Login = () => {
                 setEmail(e.target.value);
               }}
               value={email}
-              requiredclassName="form_container input"
+              className="form_container input"
             />
             <input
               type="password"
@@ -64,7 +65,7 @@ const Login = () => {
                 setPassword(e.target.value);
               }}
               value={password}
-              requiredclassName="form_container input"
+              className="form_container input"
             />
             <button type="submit" className="green_btn" onClick={handleSubmit}>
               Login
