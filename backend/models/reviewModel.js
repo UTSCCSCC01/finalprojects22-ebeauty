@@ -2,24 +2,24 @@ const mongoose = require("mongoose");
 
 const reviewSchema = mongoose.Schema(
   {
-    // customerId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   require: true,
-    //   ref: "Provider",
-    // },
-    // providerId: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   require: true,
-    //   ref: "Provider",
-    // },
-    reviewTitle: {
+    customerId: {
+      type: String,
+      require: true,
+      // ref: "Customer",
+    },
+    providerId: {
+      type: String,
+      require: true,
+      // ref: "Provider",
+    },
+    reviewContent: {
       type: String,
       require: true,
     },
-    reviewMessage: {
-      type: String,
-      require: true,
-    },
+    rating: {
+      type: Number,
+      require: true
+    }
   },
   {
     timestamps: true,

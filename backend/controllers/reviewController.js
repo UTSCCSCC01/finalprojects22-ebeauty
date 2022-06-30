@@ -23,10 +23,10 @@ const getSingleReview = async (req, res) => {
 
 // create a new review
 const createReview = async (req, res) => {
-  const { customerId, providerId, reviewTitle, reviewMessage } = req.body;
+  const { customerId, providerId, reviewContent, rating } = req.body;
 
   try {
-    const review = await Review.create({ customerId, providerId, reviewTitle, reviewMessage });
+    const review = await Review.create({ customerId, providerId, reviewContent, rating });
     res.status(200).json(review);
   } catch (err) {
     res.status(400).json(err);
