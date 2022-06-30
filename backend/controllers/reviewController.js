@@ -1,5 +1,5 @@
-const Review = require("../models/reviewModel");
-const mongoose = require("mongoose");
+import Review from "../models/reviewModel";
+import mongoose from "mongoose";
 
 // get all reviews
 
@@ -63,10 +63,4 @@ const updateReview = async (req, res) => {
   res.status(200).json(review);
 };
 
-module.exports = {
-  createReview,
-  getReviews,
-  getSingleReview,
-  deleteReview,
-  updateReview
-};
+export { createReview, getReviews, getSingleReview, deleteReview, updateReview };
