@@ -2,7 +2,7 @@ import asyncHandler from 'express-async-handler';
 import TaskProvider from '../models/taskproviderModel.js';
 
 //@desc    Get all task providers
-//@route   GET /api/v1/taskproviders?keyword=${keyword}
+//@route   GET /api/taskproviders?keyword=${keyword}
 //@access  Public
 const getTaskProviders = asyncHandler(async (req, res) => {
   // Number of TaskProviders that are showing per page
@@ -29,7 +29,7 @@ const getTaskProviders = asyncHandler(async (req, res) => {
 });
 
 //@desc    Get a task provider
-//@route   GET /api/v1/taskproviders/:id
+//@route   GET /api/taskproviders/:id
 //@access  Public
 const getTaskProviderById = asyncHandler(async (req, res) => {
   const taskProvider = await TaskProvider.findById(req.params.id);
