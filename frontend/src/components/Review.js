@@ -41,7 +41,7 @@ const Review = () => {
   return (
     <>
       <div className="review-container">
-        <h1 className="title">How do you like the service today? Start rating!</h1>
+        <h1 className="title">How do you like the service today?</h1>
         <div className="star-rating">
           {[...Array(5)].map((star, i) => {
             const ratingValue = i + 1;
@@ -81,9 +81,6 @@ const Review = () => {
           <button className="review-button" id="skip-review">Skip </button>
           <button className="review-button" id="submit-review" onClick={handleSubmit}>Submit Review </button>
         </div>
-
-        <h2>{rating}</h2>
-        <h2>{reviewContent}</h2>
       </div>
     </>
   );
