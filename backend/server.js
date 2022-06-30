@@ -9,8 +9,8 @@ import connectDB from "./config/db.js";
 import posts from "./routes/postRoute.js";
 import providers from "./routes/providerRoute.js";
 import taskproviderRoute from "./routes/taskproviderRoute.js";
-import reviewRoutes from "./routes/reviewRoute";
-import customers from "./routes/customerRoute";
+import reviewRoutes from "./routes/reviewRoute.js";
+import customers from "./routes/customerRoute.js";
 
 import path from "path";
 import { fileURLToPath } from "url";
