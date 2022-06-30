@@ -53,4 +53,5 @@ input[type="radio"] {
   border: none;
   width: 150px;
   cursor: pointer;
+  font-size: 15px;
 }
