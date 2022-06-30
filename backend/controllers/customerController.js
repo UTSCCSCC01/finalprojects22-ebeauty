@@ -13,11 +13,14 @@ const generateToken = (id) => {
 // @route POST /api/customers
 // @access Public
 const registerCustomer = asyncHandler(async (req, res) => {
-  let name = req.body.name;
+  let firstName = req.body.firstName;
+  let lastName = req.body.lastName;
   let email = req.body.email;
   let password = req.body.password;
 
-  if (!name || !email || !password) {
+  console.log(firstName, lastName, email, password);
+
+  if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("please add all fields name, email, and password");
   }
@@ -33,7 +36,8 @@ const registerCustomer = asyncHandler(async (req, res) => {
   const saltedhash = await bcrypt.hash(password, salt);
 
   const customer = await Customer.create({
-    name,
+    firstName,
+    lastName,
     email,
     password: saltedhash,
   });
@@ -41,7 +45,8 @@ const registerCustomer = asyncHandler(async (req, res) => {
   if (customer) {
     res.status(201).json({
       _id: customer.id,
-      name: customer.name,
+      firstName: customer.firstName,
+      lastName: customer.lastName,
       email: customer.email,
       token: generateToken(customer._id),
     });
@@ -68,7 +73,8 @@ const loginCustomer = asyncHandler(async (req, res) => {
   if (customer && (await bcrypt.compare(password, customer.password))) {
     res.json({
       _id: customer.id,
-      name: customer.name,
+      firstName: customer.firstName,
+      lastName: customer.lastName,
       email: customer.email,
       token: generateToken(customer._id),
     });
@@ -87,7 +93,8 @@ const getCustomer = asyncHandler(async (req, res) => {
   try {
     res.status(200).json({
       id: req.customer.id,
-      name: req.customer.name,
+      firstName: req.customer.firstName,
+      lastName: req.customer.lastName,
       email: req.customer.email,
     });
   } catch (error) {

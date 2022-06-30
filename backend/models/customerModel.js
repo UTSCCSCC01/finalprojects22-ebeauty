@@ -2,9 +2,14 @@ import mongoose from "mongoose";
 
 const customerSchema = mongoose.Schema(
   {
-    name: {
+    firstName: {
       type: String,
-      require: [true, "please add a name"],
+      require: [true, "please add a first name"],
+    },
+
+    lastName: {
+      type: String,
+      require: [true, "please add a last name"],
     },
 
     email: {
