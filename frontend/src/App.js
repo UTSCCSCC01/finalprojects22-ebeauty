@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './components/Home';
+import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
 
@@ -16,7 +16,7 @@ import SignUpProviderTwo from './components/SignUpProviderTwo';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
-import Review from './components/Review';
+import Review from './pages/Review';
 
 function App () {
   return (

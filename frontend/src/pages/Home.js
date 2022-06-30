@@ -1,4 +1,3 @@
-import SearchPage from "./SearchPage";
 import React, { useState } from 'react';
 import "../css/Home.css";
 
