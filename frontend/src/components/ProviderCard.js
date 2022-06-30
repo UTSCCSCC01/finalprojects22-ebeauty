@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 const ProviderCard = ({ taskProvider }) => {
   return (
     <div>
-      <Link id="provider-card" to={`/taskprovider/${taskProvider._id}`}>
-        <div className="search-result" key={taskProvider._id}>
+      <Link
+        key={taskProvider._id}
+        id="provider-card"
+        to={`/taskprovider/${taskProvider._id}`}>
+        <div className="search-result">
           <img
             src={require('../images/barber.jpg')}
             alt="barber"
@@ -19,9 +22,9 @@ const ProviderCard = ({ taskProvider }) => {
               <span>{taskProvider.rating}</span>
             </div>
           </div>
-          <Link id="view-profile" to={`/taskprovider/${taskProvider._id}`}>
+          <div id="view-profile" to={`/taskprovider/${taskProvider._id}`}>
             View Profile
-          </Link>
+          </div>
         </div>
       </Link>
     </div>

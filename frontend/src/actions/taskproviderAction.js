@@ -9,21 +9,23 @@ import {
 import axios from 'axios';
 
 // Get all task providers
-export const listTaskProviders = () => async (dispatch) => {
-  try {
-    dispatch({ type: TASK_PROVIDERS_REQUEST });
-    const { data } = await axios.get('/api/taskproviders');
-    dispatch({ type: TASK_PROVIDERS_SUCCESS, payload: data });
-  } catch (error) {
-    dispatch({
-      type: TASK_PROVIDERS_FAILURE,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+export const listTaskProviders =
+  (keyword = '') =>
+  async (dispatch) => {
+    try {
+      dispatch({ type: TASK_PROVIDERS_REQUEST });
+      const { data } = await axios.get(`/api/taskproviders?keyword=${keyword}`);
+      dispatch({ type: TASK_PROVIDERS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: TASK_PROVIDERS_FAILURE,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 // Get a task provider
 export const listTaskProviderDetails = (id) => async (dispatch) => {

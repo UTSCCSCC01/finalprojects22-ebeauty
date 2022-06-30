@@ -26,10 +26,8 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
-              <Route
-                path="/searchpage"
-                element={<SearchPage searchResults={ProfileData} />}
-              />
+              <Route path="/searchpage" element={<SearchPage />} />
+              <Route path="/searchpage/:keyword" element={<SearchPage />} />
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
@@ -42,7 +40,6 @@ function App() {
               <Route
                 path="/taskprovider/:id"
                 element={<ViewProfileProvider />}
-                component={ViewProfileProvider}
               />
               <Route path="/addresspage" element={<AddressPage />} />
             </Routes>

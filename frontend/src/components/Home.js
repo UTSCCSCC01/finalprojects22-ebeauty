@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 const Home = () => {
   const [homeSearchInput, setHomeSearchInput] = useState('');
-
   const updateInput = (e) => {
     setHomeSearchInput(e.target.value);
     // console.log(homeSearchInput);
@@ -10,7 +10,11 @@ const Home = () => {
 
   function findBeauty(e) {
     e.preventDefault();
-    window.location.href = '/searchpage';
+    if (homeSearchInput.trim()) {
+      window.location.href = `/searchpage/${homeSearchInput}`;
+    } else {
+      window.location.href = '/searchpage';
+    }
   }
 
   function goToSignUp(e) {
@@ -32,7 +36,7 @@ const Home = () => {
           <p className="search-body">
             Find Beauty Professionals with the help of Amor
           </p>
-          <div className="search-form">
+          <form className="search-form" onSubmit={findBeauty}>
             <div className="sb-container-input">
               <input
                 type="text"
@@ -48,7 +52,7 @@ const Home = () => {
                 Search
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
 
