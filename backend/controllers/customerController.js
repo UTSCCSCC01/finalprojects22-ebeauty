@@ -1,5 +1,102 @@
-import Customer from "../models/customerModel";
 import mongoose from "mongoose";
+import Customer from "../models/customerModel.js";
+import jwt from "jsonwebtoken";
+import bcrypt from "bcryptjs";
+import asyncHandler from "express-async-handler";
+import express from "express";
+
+const generateToken = (id) => {
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
+};
+
+// @desc register new customer
+// @route POST /api/customers
+// @access Public
+const registerCustomer = asyncHandler(async (req, res) => {
+  let name = req.body.name;
+  let email = req.body.email;
+  let password = req.body.password;
+
+  if (!name || !email || !password) {
+    res.status(400);
+    throw new Error("please add all fields name, email, and password");
+  }
+
+  const customerExist = await Customer.findOne({ email });
+
+  if (customerExist) {
+    res.status(400);
+    throw new Error("customer already exists");
+  }
+
+  const salt = await bcrypt.genSalt(10);
+  const saltedhash = await bcrypt.hash(password, salt);
+
+  const customer = await Customer.create({
+    name,
+    email,
+    password: saltedhash,
+  });
+
+  if (customer) {
+    res.status(201).json({
+      _id: customer.id,
+      name: customer.name,
+      email: customer.email,
+      token: generateToken(customer._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("problem with creating customer (invalid customer data)");
+  }
+});
+
+// @desc login/authenticate customer
+// @route POST /api/customers/login
+// @access Public
+const loginCustomer = asyncHandler(async (req, res) => {
+  let email = req.body.email;
+  let password = req.body.password;
+
+  if (!email || !password) {
+    res.status(400);
+    throw new Error("please have all fields filled: name, email, and password");
+  }
+
+  const customer = await Customer.findOne({ email });
+
+  if (customer && (await bcrypt.compare(password, customer.password))) {
+    res.json({
+      _id: customer.id,
+      name: customer.name,
+      email: customer.email,
+      token: generateToken(customer._id),
+    });
+  } else {
+    res.status(400);
+    throw new Error("login failed, invalid email or password");
+  }
+});
+
+// @desc get customer data
+// @route GET /api/customers/me
+// @access Private
+
+// example of protect route, prob should be public
+const getCustomer = asyncHandler(async (req, res) => {
+  try {
+    res.status(200).json({
+      id: req.customer.id,
+      name: req.customer.name,
+      email: req.customer.email,
+    });
+  } catch (error) {
+    res.status(400);
+    throw new Error(
+      "get failed, customer not exists (could be deleted but still using the corresponding token)"
+    );
+  }
+});
 
 // get all customers
 
@@ -10,7 +107,7 @@ const getCustomers = async (req, res) => {
 };
 
 const getSingleCustomer = async (req, res) => {
-  const { id } = req.params.reviewId;
+  const { id } = req.params.customerId;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such customer exists" });
@@ -21,22 +118,10 @@ const getSingleCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
-// create a new customer
-const createCustomer = async (req, res) => {
-  const { customerId, providerId, reviewContent, rating } = req.body;
-
-  try {
-    const customer = await Customer.create({ customerId, providerId, reviewContent, rating });
-    res.status(200).json(customer);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
-
 // delete a customer
 
 const deleteCustomer = async (req, res) => {
-  const { id } = req.params.reviewId;
+  const { id } = req.params.customerId;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such customer exists" });
@@ -50,7 +135,7 @@ const deleteCustomer = async (req, res) => {
 };
 
 const updateCustomer = async (req, res) => {
-  const { id } = req.params.reviewId;
+  const { id } = req.params.customerId;
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such customer exists" });
@@ -63,10 +148,11 @@ const updateCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
-module.exports = {
-  createCustomer,
+export {
+  registerCustomer,
+  loginCustomer,
+  getCustomer,
   getCustomers,
-  getSingleCustomer,
   deleteCustomer,
-  updateCustomer
+  updateCustomer,
 };
