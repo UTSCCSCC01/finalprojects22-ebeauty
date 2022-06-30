@@ -1,37 +1,36 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import '../css/index.css';
 import '../css/SearchPage.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ServiceDropdown from './ServiceDropdown';
 import { listTaskProviders } from '../actions/taskproviderAction';
 import Loader from './Loader';
 import Message from './Message';
 import ProviderCard from './ProviderCard';
 import SearchBox from './SearchBox';
+import Paginator from './Paginator';
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
   let navigate = useNavigate();
-
-  function handleClick() {
-    navigate('/searchpage');
-  }
 
   function redirect_to_addresspage() {
     navigate('/addresspage');
   }
 
   const { keyword } = useParams();
-  // console.log(keyword);
+  const { pageNumber } = useParams();
+  console.log(pageNumber);
 
   // use dispatch to call the listTaskProviders action
   const dispatch = useDispatch();
   const taskProvidersList = useSelector((state) => state.taskProviders);
-  const { loading, error, taskProviders } = taskProvidersList;
+  const { loading, error, taskProviders, pages, page } = taskProvidersList;
+  console.log(pages);
   useEffect(() => {
-    dispatch(listTaskProviders(keyword));
-  }, [dispatch, keyword]);
+    dispatch(listTaskProviders(keyword, pageNumber));
+  }, [dispatch, keyword, pageNumber]);
 
   return (
     <>
@@ -66,6 +65,13 @@ const SearchPage = () => {
             </div>
           )}
         </div>
+        <>
+          <Paginator
+            pages={pages}
+            page={page}
+            keyword={keyword ? keyword : ''}
+          />
+        </>
       </div>
     </>
   );

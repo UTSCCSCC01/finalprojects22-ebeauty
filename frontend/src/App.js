@@ -3,7 +3,6 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
-import ProfileData from './data.json';
 import Signup from './components/SignUp';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
@@ -27,7 +26,12 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
               <Route path="/searchpage" element={<SearchPage />} />
+              <Route path="/page/:pageNumber" element={<SearchPage />} />
               <Route path="/searchpage/:keyword" element={<SearchPage />} />
+              <Route
+                path="/searchpage/:keyword/page/:pageNumber"
+                element={<SearchPage />}
+              />
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />

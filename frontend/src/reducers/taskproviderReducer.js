@@ -13,7 +13,12 @@ export const taskProvidersReducer = (state = { taskProviders: [] }, action) => {
     case TASK_PROVIDERS_REQUEST:
       return { loading: true, taskProviders: [] };
     case TASK_PROVIDERS_SUCCESS:
-      return { loading: false, taskProviders: action.payload };
+      return {
+        loading: false,
+        taskProviders: action.payload.taskProviders,
+        pages: action.payload.pages,
+        page: action.payload.page,
+      };
     case TASK_PROVIDERS_FAILURE:
       return { loading: false, error: action.payload };
     default:

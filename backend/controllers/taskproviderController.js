@@ -5,6 +5,10 @@ import TaskProvider from '../models/taskproviderModel.js';
 //@route   GET /api/v1/taskproviders?keyword=${keyword}
 //@access  Public
 const getTaskProviders = asyncHandler(async (req, res) => {
+  // Number of TaskProviders that are showing per page
+  const pageSize = 5;
+  const page = Number(req.query.pageNumber) || 1;
+  console.log(page);
   const keyword = req.query.keyword
     ? {
         // search by name and title only
@@ -15,8 +19,13 @@ const getTaskProviders = asyncHandler(async (req, res) => {
         ],
       }
     : {};
-  const taskProviders = await TaskProvider.find({ ...keyword });
-  res.json(taskProviders);
+
+  // Get number of TaskProviders that match the keyword
+  const count = await TaskProvider.countDocuments({ ...keyword });
+  const taskProviders = await TaskProvider.find({ ...keyword })
+    .limit(pageSize)
+    .skip((page - 1) * pageSize);
+  res.json({ taskProviders, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc    Get a task provider

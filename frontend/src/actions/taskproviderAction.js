@@ -10,11 +10,13 @@ import axios from 'axios';
 
 // Get all task providers
 export const listTaskProviders =
-  (keyword = '') =>
+  (keyword = '', pageNumber = '') =>
   async (dispatch) => {
     try {
       dispatch({ type: TASK_PROVIDERS_REQUEST });
-      const { data } = await axios.get(`/api/taskproviders?keyword=${keyword}`);
+      const { data } = await axios.get(
+        `/api/taskproviders?keyword=${keyword}&pageNumber=${pageNumber}`
+      );
       dispatch({ type: TASK_PROVIDERS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
