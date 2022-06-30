@@ -36,7 +36,7 @@ const SignUp = () => {
         setLastName("");
         setEmail("");
         setPassword("");
-        alert(`SIGNUP FAILED. Please try again with different email!`);
+        alert(`SIGNUP FAILED.`);
       }
       return res;
     }).then((res) => {
