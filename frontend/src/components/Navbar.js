@@ -16,6 +16,7 @@ const Navbar = () => {
       <div className="links">
         <Link to="/searchpage">Search</Link>
         <Link to="/findjob">Find a Job</Link>
+        <Link to="/reviews">Reviews</Link>
         <Link to="/login">Log In</Link>
         <Link to="/signup" className={"toprightbotton"}>Sign Up</Link>
       </div>
