@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import '../css/Home.css';
 
 const Home = () => {
   const [homeSearchInput, setHomeSearchInput] = useState('');

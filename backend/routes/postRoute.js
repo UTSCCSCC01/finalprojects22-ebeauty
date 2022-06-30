@@ -8,6 +8,16 @@ const router = express.Router();
 router.route('/').get(getAllPosts).post(protect, postPosts);
 router.route('/:id').put(protect, updatePost).delete(protect, deletePost);
 
+router.route('/reviews', (req, res) => {
+  res.json({msg: "Get all reviews"})
+})
+
+router.route('/reviews/:reviewId', (req, res) => {
+  res.json({msg: `Get a single review with id = ${req.params.reviewId}`})
+})
+
+
+
 
 /*
 router.route('/').get(getGoals).post(postGoals);

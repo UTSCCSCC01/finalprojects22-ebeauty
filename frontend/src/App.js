@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './components/Home';
+import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
 import Signup from './components/SignUp';
@@ -14,6 +14,7 @@ import SignUpProviderTwo from './components/SignUpProviderTwo';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
+import Review from './pages/Review';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
+              <Route path="/reviews" element={<Review />} />
               <Route path="/searchpage" element={<SearchPage />} />
               <Route path="/page/:pageNumber" element={<SearchPage />} />
               <Route path="/searchpage/:keyword" element={<SearchPage />} />

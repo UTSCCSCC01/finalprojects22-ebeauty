@@ -8,6 +8,7 @@ import {
 } from "reactstrap";
 import { Dropdown, Selection } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
+import '../css/providerRegister.css'
 
 
 const SignUpProviderTwo = () => {

@@ -8,13 +8,17 @@ import connectDB from './config/db.js';
 import posts from './routes/postRoute.js';
 import providers from './routes/providerRoute.js';
 import taskproviderRoute from './routes/taskproviderRoute.js';
+import reviewRoutes from './routes/reviewRoute.js';
+import customers from './routes/customerRoute.js';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // used on get the .env file
 dotenv.config();
 
 // set up PORT
-const port = (process.env.PORT) || 5000;
+const port = process.env.PORT || 5000;
 
 // connect the database here
 connectDB();
@@ -25,32 +29,37 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
+
 // use the routes here
 app.use('/api/posts', posts);
 app.use('/api/providers', providers);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/customers', customers);
 app.use('/api/taskproviders', taskproviderRoute);
 
-// handle the error here
+// handle the error here, make sure it is the last one!!!
 app.use(notFoundHandler);
 app.use(errorHandler);
 
-app.listen(port, () => {
-  console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold);
-});
+// take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
+// thus used for deployment in future. if uncomment below, just visit port:500 would show content of port:3000
+/*
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log('directory-name 👉️', __dirname);
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(
+    path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+  )
+);*/
 
-/**
- * It's just a simple app without creating any user, not connected to frontend as well.
- *
- * Note: use postman raw sending json object like A1 to: localhost:5000/api/goals
- *       currently, recording to schema goalModel.js, I need a field named movieId that correspond to string
- *       so how it works is you select method, input the url, go to body select raw and JSON,
- *       if doing the methods that need a body, like post, put, delete.
- *       We have body looks like this:
-{
-"movieId": "1"
-}
- * NOTE: currently we go server.js -> route.js -> controller.js -> goalModel.js to send, get messages from database
- *                                 -> db.js to connect to mongodb
- *                                 -> errorMiddleware.js to handle showing error
- * additional: .env is link that help connect to database for db.js process.env.MONGO_URI
- */
+app.listen(port, () => {
+  console.log(
+    `Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold
+  );
+});
