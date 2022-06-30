@@ -3,6 +3,7 @@ import Footer from './components/Footer';
 import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
+
 import ProfileData from './data.json';
 import Signup from './components/SignUp';
 import Login from './components/Login';
