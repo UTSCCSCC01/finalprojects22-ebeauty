@@ -1,5 +1,4 @@
 import {
-  createCustomer,
   getCustomers,
   getCustomer,
   deleteCustomer,
@@ -16,14 +15,13 @@ router.post("/login-customer", loginCustomer);
 // router.get('/me', protect, getProvider);
 
 // get all reviews
-router.get("/customers", getCustomers);
+router.get("/", getCustomers);
 
 // get single review
 router.get("/:customerId", getCustomer);
 
-//
-router.delete("/customers/:customerId", deleteCustomer);
+router.delete("/:customerId", deleteCustomer);
 
-router.patch("/customers/:customerId", updateCustomer);
+router.patch("/:customerId", updateCustomer);
 
 export default router;
