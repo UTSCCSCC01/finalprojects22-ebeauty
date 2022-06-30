@@ -1,11 +1,9 @@
-const express = require("express");
+import express from 'express';
+import protect from '../middleware/authMiddleware.js';
+import { getAllPosts, postPosts, updatePost, deletePost } from '../controllers/postControllers.js';
 const router = express.Router();
-const { getAllPosts, postPosts, updatePost, deletePost } = require('../controllers/postControllers');
 
-// protect that only providers can edit posts
-const {protect} = require('../middleware/authMiddleware');
-
-// currently, the new protect only let authroized provider post, but all people can see the posts from all providers
+// currently, the new protect only let authroized provider post goal(should fix to post in future)
 // if want one without the authentication, use the commented one below
 router.route('/').get(getAllPosts).post(protect, postPosts);
 router.route('/:id').put(protect, updatePost).delete(protect, deletePost);
@@ -22,11 +20,11 @@ router.route('/reviews/:reviewId', (req, res) => {
 
 
 /*
-router.route('/').get(getPosts).post(postPosts);
-// router.get('/', getPosts) & router.post('/', postPosts)
+router.route('/').get(getGoals).post(postGoals);
+// router.get('/', getGoals) & router.post('/', postGoals)
 
-router.route('/:id').put(updatePost).delete(deletePost);
-//router.put('/:id', updatePost) & router.delete('/:id', deletePost)
+router.route('/:id').put(updateGoals).delete(deleteGoals);
+//router.put('/:id', updateGoals) & router.delete('/:id', deleteGoals)
 */
 
-module.exports = router
+export default router;

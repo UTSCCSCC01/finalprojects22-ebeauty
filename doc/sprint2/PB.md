@@ -40,19 +40,16 @@ EB-4. As Alice (a customer), I would like to be able to schedule a time when the
     	  that time slot.
     	- When a user schedules a time the service provider should see the reservation and the time slot.
 
-
 EB-5. As Alice (a customer), I would like to be able to change or cancel the reservation with the service provider, so that I can be flexible with the time if something comes up.
 
     Criteria of satisfaction :
     	- If a user cancels a reservation, the time slot to be available to other users.
-
 
 EB-6. As Ray (a customer), I would like to change the address, so that the makeup artist can come to the address of my working place instead of my house.
 
     Criteria of satisfaction :
     	- When the user changes an address, the new address should be set to default.
     	- When the user changes an address, the old address should be saved
-
 
 EB-7. As Ray (a customer), I would like to select my preferences when searching, so that I can find the makeup artist that fits me.
 
@@ -65,24 +62,20 @@ EB-8. As Ray (a customer), I would like to be able to view the rating of the mak
     Criteria of satisfaction :
     	- A user should be able to see the ratings of a service provider when shown on a search.
 
-
 EB-9. As Ray (a customer), I would like to be able to pay my bill through the app, so that I won't get delayed on my meeting.
 
     Criteria of satisfaction :
     	- The user should be redirected to PayPall to finished paying.
-
 
 EB-10. As Ray (a customer), I would like to rate and write reviews for the make-up artist, so that I can thank his/her for his/hers work and let more people know him/her.
 
     Criteria of satisfaction :
     	- When a user rate and write reviews, he/she should be able to choose to be anonymous.
 
-
 EB-11. As Ray (a customer), I would like to have access to a customer service representative, so that I can express my concerns and solve the problem when I encounter one.
 
     Criteria of satisfaction :
     	- When customers reach out to customer service, a number in line should be shown.
-
 
 EB-12. As Ray (a customer), I would like to look through a make-up artist's page, so that I can see the pictures of their past works to determine whether I like this person's work or not.
 
@@ -94,7 +87,6 @@ EB-13. As Jack (a service provider), I would like to set a range of distance for
 
     Criteria of satisfaction :
     	- The person can choose from a set of ranges.
-
 
 EB-14. As Ray (a customer), I would like to review my past orders, so that I can find the make-up artist that I liked from past orders.
 

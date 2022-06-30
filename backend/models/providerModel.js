@@ -1,23 +1,23 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const providerSchema = mongoose.Schema({
   name: {
-    type: String, 
+    type: String,
     require: [true, 'please add a name']
   },
 
   email: {
-    type: String, 
+    type: String,
     require: [true, 'please add a email'],
     unique: true
   },
 
   password: {
-    type: String, 
+    type: String,
     require: [true, 'please add a password']
   }
 }, {
   timestamps: true
-})
+});
 
-module.exports = mongoose.model('Provider', providerSchema);
+export default mongoose.model("Provider", providerSchema);
