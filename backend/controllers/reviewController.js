@@ -1,4 +1,4 @@
-import Review from "../models/reviewModel";
+import Review from "../models/reviewModel.js";
 import mongoose from "mongoose";
 
 // get all reviews
