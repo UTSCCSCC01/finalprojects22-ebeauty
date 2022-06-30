@@ -22,32 +22,33 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const customer = { firstName, lastName, email, password };
-    console.log(customer);
 
-    const response = await fetch("/api/customers/register-customer/", {
+    await fetch("/api/customers/register-customer/", {
       method: "POST",
       body: JSON.stringify(customer),
       headers: {
         "Content-Type": "application/json",
       },
-    });
-
-    console.log(response);
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-    }
-
-    if (response.ok) {
-      setError(null);
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPassword("");
-      alert(`Account for ${firstName} ${lastName} with ${email} is successfully created!`);
-    }
+    }).then((res) => {
+      if (!res.ok) {
+        setError(null);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        alert(`SIGNUP FAILED. Please try again with different email!`);
+      }
+      return res;
+    }).then((res) => {
+      if (res.ok) {
+        setError(null);
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        alert(`WELCOME ${firstName} ${lastName} !!! SIGNUP SUCCESS with ${email}`);
+      }
+    })
   }
 
   return (
@@ -62,7 +63,7 @@ const SignUp = () => {
                   </a>
               </div>
               <div className={"rightsignup"}>
-                  <form className={"form_containersignup"}>
+                  <form className={"form_containersignup"} id="signup-form">
                       <h1 className={"form_containersignup h1"}>Create Account</h1>
                       <input 
                           type="text"

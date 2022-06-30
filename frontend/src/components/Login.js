@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../css/Login.css";
 
 const Login = () => {
@@ -17,35 +17,36 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const customer = { email, password };
+    const customer = { email, password };    
 
-    const response = await fetch("/api/customers/login-customer/", {
+    await fetch("/api/customers/login-customer/", {
       method: "POST",
       body: JSON.stringify(customer),
       headers: {
         "Content-Type": "application/json",
       },
-    });
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      setError(json.error);
-    }
-
-    if (response.ok) {
-      setError(null);
-      setEmail("");
-      setPassword("");
-      alert(`${email} successfully signed in!`);
-    }
+    }).then((res) => {
+      if (!res.ok) {
+        setEmail("");
+        setPassword("");
+        alert(`LOGIN FAILED with ${email}`);
+      }
+      return res;
+    }).then((res) => {
+      if (res.ok) {
+        setError(null);
+        setEmail("");
+        setPassword("");
+        alert(`LOGIN SUCCESS with ${email}`);
+      }
+    })
   };
 
   return (
     <div className="login_container">
       <div className="login_form_container">
         <div className="left">
-          <form className="form_container">
+          <form className="form_container" id="login-form">
             <h1 className="form_container h1">Login to Your Account</h1>
             <input
               type="email"
