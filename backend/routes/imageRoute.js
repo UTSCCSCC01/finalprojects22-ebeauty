@@ -7,7 +7,7 @@ import Grid from "gridfs-stream";
 let gfs;
 let gridFSBucket;
 const conn = mongoose.connection;
-conn.once("open", function () {
+conn.once("open", ()=>{
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection("test");
     gridFSBucket = new mongoose.mongo.GridFSBucket(conn.db, {
@@ -16,31 +16,45 @@ conn.once("open", function () {
 
 });
 
+//Stores image into DB
+// POST /file/upload
 router.post("/upload", upload.single('file'), async (req, res) => {
     if (req.file === undefined) return res.send("Select an image to upload.");
-    console.log(req.file);
     const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
     return res.send(imgUrl);
 });
 
-
+//Displays the image on browser
+//GET /file/filename
 router.get("/:filename", async (req, res) => {
   try {
-      const file = await gfs.files.findOne({ filename: req.params.filename });
+      const filename= {filename: req.params.filename};
+      const images = conn.db.collection("photos.files");
+      const query = filename.valueOf();
+      const options = { projection: {_id: 1}};
+      const file = await images.findOne(query, options);
       const readStream = gridFSBucket.openDownloadStream(file._id);
       readStream.pipe(res);
   } catch (error) {
+      console.log(error);
       res.send("Image not found.");
   }
 });
 
+// Deletes image
+// DELETE /file/filename
 router.delete("/:filename", async (req, res) => {
   try {
-      await gfs.files.deleteOne({ filename: req.params.filename });
-      res.send("success");
+      const filename= {filename: req.params.filename};
+      const images = conn.db.collection("photos.files");
+      const query = filename.valueOf();
+      const options = { projection: {_id: 1}};
+      const file = await images.findOne(query, options);
+      const id = file._id;
+      await gridFSBucket.delete(id);
+      res.send("Successfully deleted.");
   } catch (error) {
-      console.log(error);
-      res.send("An error occured.");
+      res.send("An error occurred.");
   }
 });
 
