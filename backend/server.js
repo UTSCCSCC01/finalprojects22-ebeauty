@@ -1,26 +1,25 @@
-import express from 'express';
-import profiles from './data/profiles.js';
-import colors from 'colors';
-import errorHandler from './middleware/errorMiddleware.js';
-import dotenv from 'dotenv';
-import connectDB from './config/db.js';
+import express from "express";
+import profiles from "./data/profiles.js";
+import colors from "colors";
+import errorHandler from "./middleware/errorMiddleware.js";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
 
 // import apis here
-import posts from './routes/postRoute.js';
-import providers from './routes/providerRoute.js';
-import taskproviderRoute from './routes/taskproviderRoute.js';
-import imageRoute from './routes/imageRoute.js';
+import posts from "./routes/postRoute.js";
+import providers from "./routes/providerRoute.js";
+import taskproviderRoute from "./routes/taskproviderRoute.js";
+import reviewRoutes from "./routes/reviewRoute.js";
+import customers from "./routes/customerRoute.js";
 
-
-import cors from "cors";
-import path from 'path';
-import {fileURLToPath} from 'url';
+import path from "path";
+import { fileURLToPath } from "url";
 
 // used on get the .env file
 dotenv.config();
 
 // set up PORT
-const port = (process.env.PORT) || 5000;
+const port = process.env.PORT || 5000;
 
 // connect the database here
 connectDB();
@@ -34,10 +33,19 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use((req, res, next) => {
+  console.log(req.path, req.method);
+  next();
+});
+
+app.use(errorHandler);
+
 // use the routes here
-app.use('/api/posts', posts);
-app.use('/api/providers', providers);
-app.use('/api/taskproviders', taskproviderRoute);
+app.use("/api/posts", posts);
+app.use("/api/providers", providers);
+app.use("/api/taskproviders", taskproviderRoute);
+app.use("/api/reviews", reviewRoutes);
+app.use("/api/customers", customers);
 
 // upload image test here
 app.use("/file", imageRoute);
@@ -55,8 +63,6 @@ app.get('*', (req, res) =>
     path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
   )
 );*/
-
-app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold);
