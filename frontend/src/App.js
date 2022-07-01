@@ -18,11 +18,15 @@ import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
 import Review from './pages/Review';
+//react-notifications-component
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 function App () {
   return (
     <Router>
       <div className="App" >
+        <ReactNotifications />
         <ScrollToTop>
           <div className="content">
             <Navbar />

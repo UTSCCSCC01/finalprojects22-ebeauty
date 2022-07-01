@@ -10,13 +10,7 @@ import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
 import axios from 'axios';
-
-/**
- * 
- * NOTE: want to implement and replace alert: https://teodosii.github.io/react-notifications-component/ 
- * 
- */
-
+import alerting from "../helper/Alerting";
 
 const SignUpProviderTwo = () => {
   // read passed in data
@@ -32,21 +26,21 @@ const SignUpProviderTwo = () => {
   const signUp = async () => {
     await axios.post('http://localhost:5000/api/providers',data)
     .then(response => {
-      alert("Created!");
+      alerting("Created!", "info");
       console.log(response);
     })
     .catch(err => {
       if(err.response.data.message)
-        alert(err.response.data.message);
+        alerting(err.response.data.message, "danger");
       else 
-        alert(err.message);
+        alerting(err.message, "danger");
     });
   };
 
 // trigger when clicked sign up button
   function signUpForm(e){
     if (!data || Object.values(data).includes("")){
-      alert("there's field you didn't input!")
+      alerting("there's field you didn't input!", "danger")
     } else {
       signUp();
       navigate("/signupproviderthree");
