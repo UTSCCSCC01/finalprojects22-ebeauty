@@ -12,6 +12,7 @@ import taskproviderRoute from "./routes/taskproviderRoute.js";
 import reviewRoutes from "./routes/reviewRoute.js";
 import customers from "./routes/customerRoute.js";
 
+import cors from 'cors';
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -46,9 +47,6 @@ app.use("/api/providers", providers);
 app.use("/api/taskproviders", taskproviderRoute);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/customers", customers);
-
-// upload image test here
-app.use("/file", imageRoute);
 
 
 // take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
