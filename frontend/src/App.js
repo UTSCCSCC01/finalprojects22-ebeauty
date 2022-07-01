@@ -15,6 +15,7 @@ import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
 import Review from './pages/Review';
+import CheckoutMain from './pages/CheckoutMain'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
               <Route path="/reviews" element={<Review />} />
+              <Route path="/checkout" element={<CheckoutMain />} />
               <Route path="/searchpage" element={<SearchPage />} />
               <Route path="/page/:pageNumber" element={<SearchPage />} />
               <Route path="/searchpage/:keyword" element={<SearchPage />} />
