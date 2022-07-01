@@ -2,17 +2,25 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Card, CardBody } from 'reactstrap';
 import { listTaskProviderDetails } from '../actions/taskproviderAction';
+import { useNavigate, useParams } from 'react-router-dom';
 
-const ViewProfileProvider = ({ match }) => {
+
+const ViewProfileProvider = () => {
+  
+  const { id } = useParams();
+    
   const dispatch = useDispatch();
-  const taskProviderDetails = useSelector((state) => state.taskProviderDetails);
+  const taskProvidersDetails = useSelector((state) => state.taskProvider);
+  const taskProvider = taskProvidersDetails;
+  
+  useEffect(() => {
+    dispatch(listTaskProviderDetails(id));
+  }, [dispatch, id]);
+  console.log (taskProvider.name);
+
   // const { taskProvider, loading, error } = taskProviderDetails;
 
-  useEffect(() => {
-    dispatch(listTaskProviderDetails());
-  }, [dispatch, match]);
-
-  const taskProvider = {};
+  //const taskProvider = {};
 
   return (
     <div
@@ -30,7 +38,7 @@ const ViewProfileProvider = ({ match }) => {
           <CardBody>
             <div>
               <h1>
-                [{taskProvider.title}] {taskProvider.name}
+                {taskProvider.name}
               </h1>
               <p>
                 <img
@@ -42,7 +50,7 @@ const ViewProfileProvider = ({ match }) => {
               <p className="displayProfileLine">{taskProvider.name}</p>
               <div>
                 {/* should pass service info base on _id in db  */}
-                <p className="displayProfileLine">service.name</p>
+                <p className="displayProfileLine">{taskProvider.name}</p>
                 <p className="displayProfileLine">Service provided two</p>
               </div>
               <br></br>
