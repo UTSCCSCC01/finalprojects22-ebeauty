@@ -5,15 +5,21 @@ import mongoose from "mongoose";
 import Grid from "gridfs-stream";
 
 let gfs;
+let gridFSBucket;
 const conn = mongoose.connection;
 conn.once("open", function () {
     gfs = Grid(conn.db, mongoose.mongo);
     gfs.collection("test");
+    gridFSBucket = new mongoose.mongo.GridFSBucket(conn.db, {
+        bucketName: 'photos'
+    });
+
 });
 
-router.post("/upload", upload.single("file"), async (req, res) => {
-    if (req.file === undefined) return res.send("you must select a file.");
-    const imgUrl = `http://localhost:5080/file/${req.file.filename}`;
+router.post("/upload", upload.single('file'), async (req, res) => {
+    if (req.file === undefined) return res.send("Select an image to upload.");
+    console.log(req.file);
+    const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
     return res.send(imgUrl);
 });
 
@@ -21,10 +27,10 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 router.get("/:filename", async (req, res) => {
   try {
       const file = await gfs.files.findOne({ filename: req.params.filename });
-      const readStream = gfs.createReadStream(file.filename);
+      const readStream = gridFSBucket.openDownloadStream(file._id);
       readStream.pipe(res);
   } catch (error) {
-      res.send("not found");
+      res.send("Image not found.");
   }
 });
 

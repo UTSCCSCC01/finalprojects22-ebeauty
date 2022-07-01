@@ -1,7 +1,8 @@
 import multer from "multer";
-import {GridFsStorage} from "multer-gridfs-storage";
 import dotenv from 'dotenv';
+import {GridFsStorage} from "multer-gridfs-storage";
 dotenv.config();
+
 
 const storage = new GridFsStorage({
     url: process.env.MONGO_URI,
@@ -9,13 +10,13 @@ const storage = new GridFsStorage({
         const match = ["image/png", "image/jpeg", "image/jpg"];
 
         if (match.indexOf(file.mimetype) === -1) {
-            const filename = `${Date.now()}-any-name-${file.originalname}`;
+            const filename = `${Date.now()}${file.originalname}`;
             return filename;
         }
 
         return {
             bucketName: "photos",
-            filename: `${Date.now()}-any-name-${file.originalname}`,
+            filename: `${Date.now()}${file.originalname}`,
         };
     },
 });

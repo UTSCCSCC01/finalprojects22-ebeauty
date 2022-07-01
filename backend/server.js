@@ -11,6 +11,7 @@ import providers from "./routes/providerRoute.js";
 import taskproviderRoute from "./routes/taskproviderRoute.js";
 import reviewRoutes from "./routes/reviewRoute.js";
 import customers from "./routes/customerRoute.js";
+import imageRoute from "./routes/imageRoute.js";
 
 import cors from 'cors';
 import path from "path";
@@ -47,7 +48,7 @@ app.use("/api/providers", providers);
 app.use("/api/taskproviders", taskproviderRoute);
 app.use("/api/reviews", reviewRoutes);
 app.use("/api/customers", customers);
-
+app.use("/file", imageRoute);
 
 // take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
 // thus used for deployment in future. if uncomment below, just visit port:500 would show content of port:3000
