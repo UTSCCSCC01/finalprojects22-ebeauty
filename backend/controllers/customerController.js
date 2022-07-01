@@ -125,6 +125,40 @@ const getSingleCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
+// get the default address of a customer
+const getDefaultAddress = asyncHandler(async (req, res) => {
+  try {
+    res.status(200).json({
+      id: req.customer.id,
+      email: req.customer.email,
+      defaultAddress: req.customer.defaultAddress,
+    });
+  } catch (error) {
+    res.status(400);
+    throw new Error(
+      "get failed, customer not exists (could be deleted but still using the corresponding token)"
+    );
+  }
+});
+
+// get all three addresses of a customer
+const getAllAddress = asyncHandler(async (req, res) => {
+  try {
+    res.status(200).json({
+      id: req.customer.id,
+      email: req.customer.email,
+      defaultAddress: req.customer.defaultAddress,
+      address1: req.customer.address1,
+      address2: req.customer.address2,
+    });
+  } catch (error) {
+    res.status(400);
+    throw new Error(
+      "get failed, customer not exists (could be deleted but still using the corresponding token)"
+    );
+  }
+});
+
 // delete a customer
 
 const deleteCustomer = async (req, res) => {
@@ -135,6 +169,36 @@ const deleteCustomer = async (req, res) => {
   }
 
   const customer = await Customer.findOneAndDelete({ _id: id });
+
+  if (!customer) return res.status(400).json({ error: "No such customer exists" });
+
+  res.status(200).json(customer);
+};
+
+// removes address1 of the customer
+const deleteAddress1 = async (req, res) => {
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
+  }
+
+  const customer = await Customer.findOneAndUpdate({ _id: id }, {address1: ""});
+
+  if (!customer) return res.status(400).json({ error: "No such customer exists" });
+
+  res.status(200).json(customer);
+};
+
+// removes address2 of the customer
+const deleteAddress2 = async (req, res) => {
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
+  }
+
+  const customer = await Customer.findOneAndUpdate({ _id: id }, {address2: ""});
 
   if (!customer) return res.status(400).json({ error: "No such customer exists" });
 
@@ -155,6 +219,53 @@ const updateCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
+// changes the default address of a customer to addr
+const updateDefaultAddress = async (req, res, addr) => {
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
+  }
+
+  const customer = await Customer.findOneAndUpdate({ _id: id }, {defaultAddress: addr});
+
+  if (!customer) return res.status(400).json({ error: "No such customer exists" });
+
+  res.status(200).json(customer);
+};
+
+// changes address1 of a customer to addr
+
+const updateAddress1 = async (req, res, addr) => {
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
+  }
+
+  const customer = await Customer.findOneAndUpdate({ _id: id }, {address1: addr});
+
+  if (!customer) return res.status(400).json({ error: "No such customer exists" });
+
+  res.status(200).json(customer);
+};
+
+// changes address2 of a customer to addr
+
+const updateAddress2 = async (req, res, addr) => {
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
+  }
+
+  const customer = await Customer.findOneAndUpdate({ _id: id }, {address2: addr});
+
+  if (!customer) return res.status(400).json({ error: "No such customer exists" });
+
+  res.status(200).json(customer);
+};
+
 export {
   registerCustomer,
   loginCustomer,
@@ -162,4 +273,14 @@ export {
   getCustomers,
   deleteCustomer,
   updateCustomer,
+
+  getAllAddress,
+  getDefaultAddress,
+  
+  deleteAddress1,
+  deleteAddress2,
+
+  updateAddress1,
+  updateAddress2,
+  updateDefaultAddress,
 };

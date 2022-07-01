@@ -22,6 +22,24 @@ const customerSchema = mongoose.Schema(
       type: String,
       require: [true, "please add a password"],
     },
+    
+    defaultAddress: {
+      type: String,
+      require: [true, "please add an address"],
+      default: "",
+    },
+
+    address1: {
+      type: String,
+      default: "",
+
+    },
+
+    address2: {
+      type: String,
+      default: "",
+
+    },
   },
   {
     timestamps: true,
