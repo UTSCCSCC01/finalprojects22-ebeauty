@@ -14,28 +14,26 @@ const Review = () => {
     const providerId = "provider1"
     const review = { customerId, providerId, reviewContent, rating };
 
-    const response = await fetch("/api/reviews/", {
+    await fetch("/api/reviews/", {
       method: "POST",
       body: JSON.stringify(review),
       headers: {
         "Content-Type": "application/json",
       },
+    }).then((res) => {
+      if (!res.ok) {
+        setRating(null);
+        setHover(null);
+        setReviewContent("");
+        alert(`ERROR: PLEASE TRY LATER`);
+      } else {
+        setError(null);
+        setRating(null);
+        setHover(null);
+        setReviewContent("");
+        alert(`THATNKS FOR THE REVIEW!`);
+      }
     });
-
-    const json = await response.json();
-
-    if (!response.ok) {
-      console.log("add review failed");
-      setError(json.error);
-    }
-
-    if (response.ok) {
-      setError(null);
-      setRating(null);
-      setHover(null);
-      setReviewContent("");
-      console.log("New review added!");
-    }
   };
 
   return (
