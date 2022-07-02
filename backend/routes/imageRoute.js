@@ -21,7 +21,7 @@ conn.once("open", ()=>{
 router.post("/upload", upload.single('file'), async (req, res) => {
     if (req.file === undefined) return res.send("Select an image to upload.");
     const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
-    return res.send(imgUrl);
+    return res.send({data:imgUrl, files_id:req.file.id});
 });
 
 //Displays the image on browser
