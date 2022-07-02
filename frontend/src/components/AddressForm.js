@@ -18,8 +18,34 @@ const Button = () => {
       setTimeout (()=>msg1.className='feedback-message', 1000)
     }
   }
+
+  const e = document.querySelector('#email')
+ 
+  const showAddr = async (ex) => {
+    ex.preventDefault();
+    await fetch("/api/customers/getDefaultAddress/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(res => {
+      if (!res.ok) {
+        alert(`pls log in`);
+      }
+      return res;
+    }).then(res => {
+        if(res.ok){
+          const adr = res.locals.customer;
+          e.innerHTML(adr);
+        } 
+      }
+    )
+  }
+
   return (
     <div className='address-form'>
+      <li id = 'email'>123</li>
+      <button onClick={showAddr} className='btn' id='show-btn'>show</button>
       <h1 style={{color:'#333'}}> Add a New Address </h1>
       <div className='form-container'>
         <div className='feedback-message' id='m1'>reserved line</div>

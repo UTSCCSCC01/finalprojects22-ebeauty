@@ -21,6 +21,7 @@ import express from "express";
 // checks if customer is logged in, if so store user info in res.locals.customer
 const checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
+  console.log(token);
   if (token){
     jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
       if (err){
@@ -58,8 +59,8 @@ router.delete("/:customerId", deleteCustomer);
 
 router.patch("/:customerId", updateCustomer);
 
-// router.get("/getDefaultAddress", getDefaultAddress);
 router.get("/getDefaultAddress", checkUser);
+// router.get("/getDefaultAddress", checkUser);
 // router.get("/getAllAddress", getAllAddress);
 
 // router.patch("/deleteAddress1", deleteAddress1);
