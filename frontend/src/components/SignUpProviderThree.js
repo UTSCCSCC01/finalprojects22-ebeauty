@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react";
 import alerting from "../helper/Alerting";
 import FormData from 'form-data'
 import axios from 'axios';
-import { useNavigate, useLocation, Navigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+
+/**
+ * bug: the react-alerting stuff does not show all error
+ * and the email should be unique, we did not show that out, this might throw error
+ */
+
 
 const SignUpProviderThree = () => {
   const navigate = useNavigate();
@@ -24,7 +30,7 @@ const SignUpProviderThree = () => {
       signUp();
     }
   }, [loading]);
-  
+
   const handleChange = (input, fieldName) => {
     setData({...data, [fieldName]: input});
     setLoading(false);
@@ -48,7 +54,6 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const submit = async () => {
-    console.log(data)
     if(!data || !selectedImage){
       alerting("there's field you didn't input!", "danger")
     } else {
