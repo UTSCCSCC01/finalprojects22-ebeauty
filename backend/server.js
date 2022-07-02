@@ -5,14 +5,16 @@ import dotenv from 'dotenv';
 import connectDB from './config/db.js';
 
 // import apis here
-import posts from './routes/postRoute.js';
-import providers from './routes/providerRoute.js';
-import taskproviderRoute from './routes/taskproviderRoute.js';
-import reviewRoutes from './routes/reviewRoute.js';
-import customers from './routes/customerRoute.js';
+import posts from "./routes/postRoute.js";
+import providers from "./routes/providerRoute.js";
+import taskproviderRoute from "./routes/taskproviderRoute.js";
+import reviewRoutes from "./routes/reviewRoute.js";
+import customers from "./routes/customerRoute.js";
+import imageRoute from "./routes/imageRoute.js";
 
-import path from 'path';
-import { fileURLToPath } from 'url';
+import cors from 'cors';
+import path from "path";
+import { fileURLToPath } from "url";
 
 // used on get the .env file
 dotenv.config();
@@ -24,6 +26,9 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 const app = express();
+
+// to get post request from frontend
+app.use(cors());
 
 // to retrieve data from postman to be not undefined.
 app.use(express.json());
@@ -40,6 +45,7 @@ app.use('/api/providers', providers);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/customers', customers);
 app.use('/api/taskproviders', taskproviderRoute);
+app.use("/file", imageRoute);
 
 // handle the error here, make sure it is the last one!!!
 app.use(notFoundHandler);
