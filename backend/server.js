@@ -1,9 +1,8 @@
-import express from "express";
-import profiles from "./data/profiles.js";
-import colors from "colors";
-import errorHandler from "./middleware/errorMiddleware.js";
-import dotenv from "dotenv";
-import connectDB from "./config/db.js";
+import express from 'express';
+import colors from 'colors';
+import { notFoundHandler, errorHandler } from './middleware/errorMiddleware.js';
+import dotenv from 'dotenv';
+import connectDB from './config/db.js';
 
 // import apis here
 import posts from "./routes/postRoute.js";
@@ -40,15 +39,17 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(errorHandler);
-
 // use the routes here
-app.use("/api/posts", posts);
-app.use("/api/providers", providers);
-app.use("/api/taskproviders", taskproviderRoute);
-app.use("/api/reviews", reviewRoutes);
-app.use("/api/customers", customers);
+app.use('/api/posts', posts);
+app.use('/api/providers', providers);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/customers', customers);
+app.use('/api/taskproviders', taskproviderRoute);
 app.use("/file", imageRoute);
+
+// handle the error here, make sure it is the last one!!!
+app.use(notFoundHandler);
+app.use(errorHandler);
 
 // take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
 // thus used for deployment in future. if uncomment below, just visit port:500 would show content of port:3000
@@ -64,5 +65,7 @@ app.get('*', (req, res) =>
 );*/
 
 app.listen(port, () => {
-  console.log(`Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold);
+  console.log(
+    `Server started under ${process.env.NODE_ENV} on port ${port}`.yellow.bold
+  );
 });
