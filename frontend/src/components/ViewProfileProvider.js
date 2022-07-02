@@ -1,26 +1,21 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import { listTaskProviderDetails } from '../actions/taskproviderAction';
 import { useNavigate, useParams } from 'react-router-dom';
 
-
 const ViewProfileProvider = () => {
-  
-  const { id } = useParams();
-    
   const dispatch = useDispatch();
-  const taskProvidersDetails = useSelector((state) => state.taskProvider);
-  const taskProvider = taskProvidersDetails;
-  
+  const { id } = useParams();
+  const taskProviderDetails = useSelector((state) => state.taskProviderDetails);
+  const { taskProvider, loading, error } = taskProviderDetails;
+
   useEffect(() => {
     dispatch(listTaskProviderDetails(id));
   }, [dispatch, id]);
-  console.log (taskProvider.name);
 
-  // const { taskProvider, loading, error } = taskProviderDetails;
-
-  //const taskProvider = {};
+  // const taskProvider = {};
 
   return (
     <div
