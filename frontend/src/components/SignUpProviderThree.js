@@ -17,17 +17,26 @@ const SignUpProviderThree = () => {
     image.append('file', selectedImage);
   }, [selectedImage]);
 
+  // loading the usestate of selectedImage (it won't work is we don't use this, if we directly do signUp inside submit, the field would be blank "")
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (!loading) {
+      signUp();
+    }
+  }, [loading]);
   
   const handleChange = (input, fieldName) => {
-    setData({...data, [fieldName]: input.value});
+    setData({...data, [fieldName]: input});
+    setLoading(false);
   };
+
 
   // post data to register provider
   const signUp = async () => {
     await axios.post('http://localhost:5000/api/providers',data)
     .then(response => {
       alerting("Created!", "info");
-      console.log(response);
+      navigate("/");
     })
     .catch(err => {
       if(err.response.data.message)
@@ -39,6 +48,7 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const submit = async () => {
+    console.log(data)
     if(!data || !selectedImage){
       alerting("there's field you didn't input!", "danger")
     } else {
@@ -47,9 +57,8 @@ const SignUpProviderThree = () => {
           'Content-Type': `multipart/form-data`,
         }}
       ).then(response => {
+        // here we do the post of provider signup
         handleChange(response.data.image_id, "imageFilename");
-        signUp();
-        navigate("/");
       })
       .catch(err => {
         if(err.response.data.message)
@@ -59,6 +68,8 @@ const SignUpProviderThree = () => {
       });
     }
   };
+
+  
   return (
     <div>
       <h1>Upload and Display Image usign React Hook's</h1>

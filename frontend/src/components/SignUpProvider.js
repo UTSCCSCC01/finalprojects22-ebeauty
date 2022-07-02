@@ -31,7 +31,7 @@ const SignUpProvider = () => {
     confirmPassword: "",
     title:"Hairdress", 
     individual:"Yes",
-    imageFilename:""
+    imageFilename:"",
   })
 
   const handleChange = (input, fieldName) => {
