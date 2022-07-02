@@ -18,6 +18,30 @@ import {
 } from "../controllers/customerController.js";
 import express from "express";
 
+// checks if customer is logged in, if so store user info in res.locals.customer
+const checkUser = (req, res, next) => {
+  const token = req.cookies.jwt;
+  if (token){
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+      if (err){
+        console.log(err.message);
+        res.locals.customer = null;
+        next();
+      }
+      else{
+        console.log(decodedToken);
+        let customer = await Customer.findById(decodedToken.id);
+        res.locals.customer = customer;
+        next();
+      }
+    })
+  }
+  else{
+    res.locals.customer = null;
+    next();
+  }
+}
+
 const router = express.Router();
 
 router.post("/register-customer", registerCustomer);
@@ -34,15 +58,16 @@ router.delete("/:customerId", deleteCustomer);
 
 router.patch("/:customerId", updateCustomer);
 
-router.get("/getDefaultAddress/:customerId", getDefaultAddress);
-router.get("/getAllAddress/:customerId", getAllAddress);
+// router.get("/getDefaultAddress", getDefaultAddress);
+router.get("/getDefaultAddress", checkUser);
+// router.get("/getAllAddress", getAllAddress);
 
-router.patch("/deleteAddress1/:customerId", deleteAddress1);
-router.patch("/deleteAddress2/:customerId", deleteAddress2);
+// router.patch("/deleteAddress1", deleteAddress1);
+// router.patch("/deleteAddress2", deleteAddress2);
 
-router.patch("/updateDefaultAddress/:customerId", updateDefaultAddress);
-router.patch("/updateAddress1/:customerId", updateAddress1);
-router.patch("/updateAddress2/:customerId", updateAddress2);
+// router.patch("/updateDefaultAddress", updateDefaultAddress);
+// router.patch("/updateAddress1", updateAddress1);
+// router.patch("/updateAddress2", updateAddress2);
 
 
 export default router;
