@@ -22,7 +22,7 @@ const SearchPage = () => {
   const { keyword } = useParams();
   const { pageNumber } = useParams();
   console.log(pageNumber);
-
+  console.log (keyword);
   // use dispatch to call the listTaskProviders action
   const dispatch = useDispatch();
   const taskProvidersList = useSelector((state) => state.taskProviders);
@@ -31,7 +31,7 @@ const SearchPage = () => {
   useEffect(() => {
     dispatch(listTaskProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
-
+  
   return (
     <>
       <div className="search-page">

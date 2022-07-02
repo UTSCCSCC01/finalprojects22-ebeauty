@@ -1,18 +1,28 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import { listTaskProviderDetails } from '../actions/taskproviderAction';
+import ReactStars from 'react-stars'
+import { Link } from 'react-router-dom';
 
-const ViewProfileProvider = ({ match }) => {
+
+const ViewProfileProvider = () => {
   const dispatch = useDispatch();
+  const { id } = useParams();
   const taskProviderDetails = useSelector((state) => state.taskProviderDetails);
-  // const { taskProvider, loading, error } = taskProviderDetails;
+  const { taskProvider, loading, error } = taskProviderDetails;
 
   useEffect(() => {
-    dispatch(listTaskProviderDetails());
-  }, [dispatch, match]);
+    dispatch(listTaskProviderDetails(id));
+  }, [dispatch, id]);
 
-  const taskProvider = {};
+  // const taskProvider = {};
+  const rating = {
+    size: 30,
+    value: taskProvider.rating,
+    edit: false
+  };
 
   return (
     <div
@@ -30,7 +40,7 @@ const ViewProfileProvider = ({ match }) => {
           <CardBody>
             <div>
               <h1>
-                [{taskProvider.title}] {taskProvider.name}
+                {taskProvider.name}
               </h1>
               <p>
                 <img
@@ -42,30 +52,36 @@ const ViewProfileProvider = ({ match }) => {
               <p className="displayProfileLine">{taskProvider.name}</p>
               <div>
                 {/* should pass service info base on _id in db  */}
-                <p className="displayProfileLine">service.name</p>
+                <p className="displayProfileLine">{taskProvider.name}</p>
                 <p className="displayProfileLine">Service provided two</p>
               </div>
               <br></br>
-              <p className="displayProfileLine">Title</p>
-              <p className="displayProfileLine">Adress</p>
-              <p className="displayProfileLine">City</p>
-              <p className="displayProfileLine">Province</p>
-              <p className="displayProfileLine">Country</p>
+              <p className="displayProfileLine">{taskProvider.title}</p>
+              <p className="displayProfileLine">{taskProvider.address}</p>
+              <p className="displayProfileLine">{taskProvider.city}</p>
+              <p className="displayProfileLine">{taskProvider.state}</p>
+              <p className="displayProfileLine">{taskProvider.country}</p>
             </div>
             <button className="appointmentButton">Book an appointment</button>
           </CardBody>
         </Card>
       </div>
+      
+      <div className="displayProfileRating">
+        <h9>Current Rating: {taskProvider.rating}</h9>
+        <ReactStars {...rating}/>
+        <div>
+          <Link to="/reviews" >
+            <button className="profileButton">Write a Review</button>
+          </Link>
+        </div>
+      
+        <img src={require('../images/makeup.jpg')} className="profileUploadedImg" />
+      </div>
 
-      <img
-        src={require('../images/makeup.jpg')}
-        className="profileUploadedImg"
-      />
-
-      <img
-        src={require('../images/rating-stars-4.jpg')}
-        className="profileStars"
-      />
+      
+      
+      
     </div>
   );
 };
