@@ -77,7 +77,7 @@ const SignUpProviderThree = () => {
   
   return (
     <div>
-      <h1>Upload and Display Image usign React Hook's</h1>
+      <h1>Upload your profile image!</h1>
       {selectedImage && (
         <div>
         <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
@@ -91,6 +91,7 @@ const SignUpProviderThree = () => {
       <input
         type="file"
         name="myImage"
+        style={{color:"transparent"}}
         onChange={(event) => {
           console.log(event.target.files[0]);
           setSelectedImage(event.target.files[0]);
