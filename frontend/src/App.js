@@ -1,6 +1,6 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+import Home from './pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
 import Signup from './components/SignUp';
@@ -15,7 +15,7 @@ import SignUpProviderThree from './components/SignUpProviderThree';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
-import Review from './pages/Review';
+import Review from './pages/ReviewPage';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
