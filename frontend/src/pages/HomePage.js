@@ -104,7 +104,7 @@ const Home = () => {
 
       <div>
         <div className="container-wide">
-          <h1>Ready to get started</h1>
+          <h1>Ready to get started?</h1>
           <div className="ready-to-start-container">
             <div className="left-ready-to-start-container-border">
               <div className="left-container">
@@ -122,10 +122,10 @@ const Home = () => {
                 className="provider-picture"
                 src={require('../images/service-provider.png')}></img>
               <p>
-                Like our platform? Sign up now and deliver your beauty expertise
+                Like our platform? Sign up now and deliver your beauty expertise!
               </p>
               <button className="btn-secondary" onClick={goToFindJob}>
-                Makeup a Service Provider
+                Become a Service Provider
               </button>
             </div>
           </div>
