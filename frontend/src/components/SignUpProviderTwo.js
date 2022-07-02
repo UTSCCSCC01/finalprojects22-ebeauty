@@ -22,29 +22,9 @@ const SignUpProviderTwo = () => {
     setData({...data, [fieldName]: input.value});
   };
 
-  // post data to register provider
-  const signUp = async () => {
-    await axios.post('http://localhost:5000/api/providers',data)
-    .then(response => {
-      alerting("Created!", "info");
-      console.log(response);
-    })
-    .catch(err => {
-      if(err.response.data.message)
-        alerting(err.response.data.message, "danger");
-      else 
-        alerting(err.message, "danger");
-    });
-  };
-
 // trigger when clicked sign up button
   function signUpForm(e){
-    if (!data || Object.values(data).includes("")){
-      alerting("there's field you didn't input!", "danger")
-    } else {
-      signUp();
-      navigate("/signupproviderthree");
-    }
+    navigate("/signupproviderthree", {state: data});
     e.preventDefault();
   }
 
