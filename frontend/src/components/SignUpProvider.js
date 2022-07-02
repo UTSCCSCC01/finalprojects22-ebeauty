@@ -1,5 +1,6 @@
 import { useState }  from "react";
 import { useNavigate } from "react-router-dom";
+
 // reactstrap components
 import {
   Form,
@@ -8,73 +9,155 @@ import {
 } from "reactstrap";
 
 import '../css/providerRegister.css'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
+import alerting from "../helper/Alerting";
 
 
 const SignUpProvider = () => {
-  
+  // controll show password
+  const [passShow, setPassShow] = useState(false);
+  const [confirmPass, setConfirmPassShow] = useState(false);
+
+
   //use for sign up states
   const [data, setData] = useState({
-    FirstName: "",
-    LastName:"",
-    Email:"",
-    Phone: "",
-    Bill:"",
-    City:"",
-    Province: "",
-    Country:"",
-    Postal:"",
-    Password:"", 
-    title:"", 
-    Individual:""
+    name: "",
+    email:"",
+    phone: "",
+    bill:"",
+    postal:"",
+    password:"", 
+    confirmPassword: "",
+    title:"Hairdress", 
+    individual:"Yes",
+    imageFilename:"",
   })
 
-  const handleChange = (input, setVariable) => {
-      setData({...data, [setVariable]: input});
+  const handleChange = (input, fieldName) => {
+      setData({...data, [fieldName]: input});
   };
-
 
   let navigate = useNavigate();
   // trigger when clicked sign up button
   function signUpForm(e){
-    console.log(data);
     e.preventDefault();
+    console.log(data);
+    if(data.password != data.confirmPassword){
+      alerting("passwords are not matching!", "danger");
+    } else{
+      //jump page
+      navigate("/signupprovidertwo", {state: data}); 
 
-    //jump page
-    navigate("/signupprovidertwo"); 
-
-    //reset fields
-    e.target.reset();
+      //reset fields
+      e.target.reset();
+    }
   }
 
   return (
     <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
       <Card  className="Card">
-        <CardBody>
-          <Form onSubmit={signUpForm.bind(this)} className="Form">
-            <h3 >Sign Up As Service Provider</h3>
-            <div>
-              <input className="sign" type="text" placeholder="First Name" onChange={(e) => handleChange(e.target.value, "FirstName")} required/>
-              <input className="sign" type="text" placeholder="Last Name" onChange={(e) => handleChange(e.target.value, "LastName")} required/>
-              <input className={"sign line"} type="email" placeholder="Email" onChange={(e) => handleChange(e.target.value, "Email")} required/>
-              <input className={"sign line"} type="text" placeholder="Phone Number"onChange={(e) => handleChange(e.target.value, "Phone")}  required onKeyPress={(event) => {
+          <Form onSubmit={signUpForm.bind(this)} className={"Form"}>
+            <h1 className={"header"}>Create Account</h1>
+            <input 
+              type="text" 
+              placeholder="Enter Name" 
+              onChange={(e) => handleChange(e.target.value, "name")} 
+              required
+            />                            
+            <input 
+              type="email" 
+              placeholder="Enter Email" 
+              onChange={(e) => handleChange(e.target.value, "email")} 
+              required
+            />         
+            <input 
+              type="text" 
+              placeholder="Enter Phone Number"
+              onChange={(e) => handleChange(e.target.value, "phone")}  
+              required 
+              onKeyPress={(event) => {
                 if (!/[0-9]/.test(event.key)) {
                   event.preventDefault();
                 }
-              }}/>
-              <input className={"sign line"} type="text" placeholder="Billing Address" onChange={(e) => handleChange(e.target.value, "Bill")} required/>
-              <input className="sign" type="text" placeholder="City" onChange={(e) => handleChange(e.target.value, "City")} required/>
-              <input className="sign" type="text" placeholder="Province" onChange={(e) => handleChange(e.target.value, "Province")} required/>
-              <input className="sign" type="text" placeholder="Country" onChange={(e) => handleChange(e.target.value, "Country")} required/>
-              <input className="sign" type="text" placeholder="Postal Code" onChange={(e) => handleChange(e.target.value, "Postal")} required/>
-              <input className={"sign line"} type="password" placeholder="Enter password" onChange={(e) => handleChange(e.target.value, "Password")} required/>
+              }}
+            />
+            <div>
+              <input 
+                type="text" 
+                placeholder="Billing Address" 
+                onChange={(e) => handleChange(e.target.value, "bill")} 
+                required
+                className={"half-input leftside"}
+              />
+              <input 
+                type="text" 
+                placeholder="Postal Code" 
+                onChange={(e) => handleChange(e.target.value, "postal")} 
+                required
+                className={"half-input"}
+              />
             </div>
-            <div className="center">
-              <button className={"Button"} type="submit">Next Step</button>
+            <div className="input-pass-container" >
+              <input 
+                type={passShow ? "text" : "password"}
+                placeholder="Enter password"
+                onChange={(e) => handleChange(e.target.value, "password")} 
+                required
+                className="password"
+              />
+              {passShow ?
+                <FontAwesomeIcon 
+                  className={"toggleEye"} 
+                  icon={faEyeSlash} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPassShow(false);
+                  }}
+                />
+              : 
+                <FontAwesomeIcon 
+                  className={"toggleEye"} 
+                  icon={faEye} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setPassShow(true);
+                  }}
+                />              
+              }
             </div>
+            <div className="input-pass-container" >
+              <input 
+                type={confirmPass ? "text" : "password"}
+                placeholder="Enter again password" 
+                onChange={(e) => handleChange(e.target.value, "confirmPassword")} 
+                required
+                className="password"
+              />
+              {confirmPass ?
+                <FontAwesomeIcon 
+                  className={"toggleEye"} 
+                  icon={faEyeSlash} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setConfirmPassShow(false);
+                  }}
+                />
+              : 
+                <FontAwesomeIcon 
+                  className={"toggleEye"} 
+                  icon={faEye} 
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setConfirmPassShow(true);
+                  }}
+                />              
+              }
+            </div>
+            <button type="submit" className={"Button"}>
+                Sign Up
+            </button>
           </Form>
-
-        </CardBody>
       </Card>
     </div>
   );

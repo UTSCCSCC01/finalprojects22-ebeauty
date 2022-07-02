@@ -5,7 +5,16 @@ run server, use : npm run server, under backend folder.
 run client, use : npm start, under frontend folder.
 
 
-note: you have to do npm install if haven't do so. and have your .env file created under backend folder. 
+note: you have to do npm install --legacy-peer-deps if haven't do so. and have your .env file created under backend folder. 
+
+why --legacy-peer-deps? there's issue between dependencies of:
+    "multer": "^1.4.5-lts.1",
+
+    "multer-gridfs-storage": "^5.0.2",
+
+there's a issue page and PR to solve it, but currently issue is there: 
+
+github link: https://github.com/devconcept/multer-gridfs-storage/issues/490
 
 ### .env file
 in order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
