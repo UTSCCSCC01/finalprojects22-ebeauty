@@ -70,12 +70,14 @@ const loginCustomer = asyncHandler(async (req, res) => {
   const customer = await Customer.findOne({ email });
 
   if (customer && (await bcrypt.compare(password, customer.password))) {
+    const token = generateToken(customer._id);
+    res.cookie('jwt', token, {httpOnly: true, maxAge: 3*24*60*60*1000})
     res.json({
       _id: customer.id,
       firstName: customer.firstName,
       lastName: customer.lastName,
       email: customer.email,
-      token: generateToken(customer._id),
+      token: token,
     });
   } else {
     res.status(400);
@@ -126,18 +128,27 @@ const getSingleCustomer = async (req, res) => {
 
 // get the default address of a customer
 const getDefaultAddress = asyncHandler(async (req, res) => {
-  try {
-    res.status(200).json({
-      id: req.customer.id,
-      email: req.customer.email,
-      defaultAddress: req.customer.defaultAddress,
-    });
-  } catch (error) {
-    res.status(400);
-    throw new Error(
-      "get failed, customer not exists (could be deleted but still using the corresponding token)"
-    );
+  // try {
+  //   res.status(200).json({
+  //     id: req.customer.id,
+  //     email: req.customer.email,
+  //     defaultAddress: req.customer.defaultAddress,
+  //   });
+  // } catch (error) {
+  //   res.status(400);
+  //   throw new Error(
+  //     "get failed, customer not exists (could be deleted but still using the corresponding token)"
+  //   );
+  // }
+  const { id } = req.params.customerId;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No such customer exists" });
   }
+  const customer = await Customer.findById(id);
+
+  if (!customer) return res.status(404).json({ error: "No such customer exists" });
+  res.status(200).json(customer.defaultAddress);
 });
 
 // get all three addresses of a customer
