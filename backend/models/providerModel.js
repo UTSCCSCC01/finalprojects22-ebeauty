@@ -6,6 +6,11 @@ const providerSchema = mongoose.Schema({
     require: [true, 'please add a name']
   },
 
+  imageFilename: {
+    type: String,
+    require: [true, 'please upload a image, this is file name of it']
+  },
+
   email: {
     type: String,
     require: [true, 'please add a email'],

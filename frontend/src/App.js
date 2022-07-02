@@ -11,15 +11,20 @@ import FindJob from './components/FindJob';
 import SearchPage from './components/SearchPage';
 import SignUpProvider from './components/SignUpProvider';
 import SignUpProviderTwo from './components/SignUpProviderTwo';
+import SignUpProviderThree from './components/SignUpProviderThree';
 import ProfileProvider from './components/ProfileProvider';
 import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
 import Review from './pages/Review';
+//react-notifications-component
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
+        <ReactNotifications />
         <ScrollToTop>
           <div className="content">
             <Navbar />
@@ -37,10 +42,8 @@ function App() {
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
-              <Route
-                path="/signupprovidertwo"
-                element={<SignUpProviderTwo />}
-              />
+              <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
+              <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route
