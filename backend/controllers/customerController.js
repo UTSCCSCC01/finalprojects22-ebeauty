@@ -131,7 +131,6 @@ const getDefaultAddress = asyncHandler(async (req, res) => {
   // try {
   //   res.status(200).json({
   //     id: req.customer.id,
-  //     email: req.customer.email,
   //     defaultAddress: req.customer.defaultAddress,
   //   });
   // } catch (error) {
@@ -140,15 +139,13 @@ const getDefaultAddress = asyncHandler(async (req, res) => {
   //     "get failed, customer not exists (could be deleted but still using the corresponding token)"
   //   );
   // }
-  const { id } = req.params.customerId;
+  
+  const { email } = req.params.email;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such customer exists" });
-  }
-  const customer = await Customer.findById(id);
+  const customer = await Customer.findOne({email: email});
 
   if (!customer) return res.status(404).json({ error: "No such customer exists" });
-  res.status(200).json(customer.defaultAddress);
+  res.status(200).json(customer);
 });
 
 // get all three addresses of a customer
