@@ -34,6 +34,10 @@ const SearchPage = () => {
     dispatch(listTaskProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
+  const [location, setLocation] = useState("");
+  const [date, setDate] = useState("");
+  const [service, setService] = useState("");
+
   return (
     <>
       <div className="search-page">
@@ -42,13 +46,26 @@ const SearchPage = () => {
           <div className="filter-interior-div">
             <h2>Service Type</h2>
             <div className="filter-interior-dropdown-div">
-              <ServiceDropdown />
+              <ServiceDropdown 
+                name="service"
+                onChange={(e) =>{
+                  setService(e.target.value);
+                }}
+                value={service}
+              />
             </div>
           </div>
           <div className="filter-interior-div">
             <h2>Location</h2>
             <div className="location-bar">
-              <p className="location-bar-text">Toronto, Ontario</p>
+              <p 
+                className="location-bar-text"
+                name="location"
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                }}
+                value={location}
+              >Toronto, Ontario</p>
               <button onClick={redirect_to_addresspage} className="location-text">
                 Location
               </button>
@@ -57,7 +74,14 @@ const SearchPage = () => {
           <div className="filter-interior-div">
             <h2>Time and Date</h2>
             <div className="filter-interior-time-div">
-              <DateTimePickerComponent placeholder="Choose a date and time"></DateTimePickerComponent>
+              <DateTimePickerComponent 
+                placeholder="Choose a date and time"
+                name="date"
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+                value={date}
+              ></DateTimePickerComponent>
             </div>
           </div>
         </div>
