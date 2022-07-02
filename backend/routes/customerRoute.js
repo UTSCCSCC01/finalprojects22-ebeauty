@@ -34,15 +34,15 @@ router.delete("/:customerId", deleteCustomer);
 
 router.patch("/:customerId", updateCustomer);
 
-router.get("/:customerId", getDefaultAddress);
-router.get("/:customerId", getAllAddress);
+router.get("/getDefaultAddress/:customerId", getDefaultAddress);
+router.get("/getAllAddress/:customerId", getAllAddress);
 
-router.patch("/:customerId", deleteAddress1);
-router.patch("/:customerId", deleteAddress2);
+router.patch("/deleteAddress1/:customerId", deleteAddress1);
+router.patch("/deleteAddress2/:customerId", deleteAddress2);
 
-router.patch("/:customerId", updateDefaultAddress);
-router.patch("/:customerId", updateAddress1);
-router.patch("/:customerId", updateAddress2);
+router.patch("/updateDefaultAddress/:customerId", updateDefaultAddress);
+router.patch("/updateAddress1/:customerId", updateAddress1);
+router.patch("/updateAddress2/:customerId", updateAddress2);
 
 
 export default router;
