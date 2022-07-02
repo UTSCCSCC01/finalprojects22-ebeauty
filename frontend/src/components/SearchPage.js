@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import '../css/index.css';
 import '../css/SearchPage.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ServiceDropdown from './ServiceDropdown';
 import { listTaskProviders } from '../actions/taskproviderAction';
 import Loader from './Loader';
@@ -10,6 +10,8 @@ import Message from './Message';
 import ProviderCard from './ProviderCard';
 import SearchBox from './SearchBox';
 import Paginator from './Paginator';
+import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
+import 'react-datepicker/dist/react-datepicker.css'
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
@@ -36,13 +38,29 @@ const SearchPage = () => {
     <>
       <div className="search-page">
         <SearchBox />
-        <div className="location-bar">
-          <button onClick={redirect_to_addresspage} className="location-text">
-            Location
-          </button>
+        <div className="filter-div">
+          <div className="filter-interior-div">
+            <h2>Service Type</h2>
+            <div className="filter-interior-dropdown-div">
+              <ServiceDropdown />
+            </div>
+          </div>
+          <div className="filter-interior-div">
+            <h2>Location</h2>
+            <div className="location-bar">
+              <p className="location-bar-text">Toronto, Ontario</p>
+              <button onClick={redirect_to_addresspage} className="location-text">
+                Location
+              </button>
+            </div>
+          </div>
+          <div className="filter-interior-div">
+            <h2>Time and Date</h2>
+            <div className="filter-interior-time-div">
+              <DateTimePickerComponent placeholder="Choose a date and time"></DateTimePickerComponent>
+            </div>
+          </div>
         </div>
-
-        <ServiceDropdown />
 
         <div className="search-results">
           <header>
