@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 
+
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
 };
@@ -127,26 +128,31 @@ const getSingleCustomer = async (req, res) => {
 };
 
 // get the default address of a customer
-const getDefaultAddress = asyncHandler(async (req, res) => {
-  // try {
-  //   res.status(200).json({
-  //     id: req.customer.id,
-  //     defaultAddress: req.customer.defaultAddress,
-  //   });
-  // } catch (error) {
-  //   res.status(400);
-  //   throw new Error(
-  //     "get failed, customer not exists (could be deleted but still using the corresponding token)"
-  //   );
-  // }
-  
-  const { email } = req.params.email;
+const getDefaultAddress = async (req, res) => {
+  const token = req.cookies.jwt;
+  if (token){
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+      if (err){
+        console.log(err.message);
+      }
+      else{
+        console.log(decodedToken);
+        let customer = await Customer.findById(decodedToken.id);
+        console.log(customer.defaultAddress);
+        res.status(200).json({
+          address: customer.defaultAddress
+        })
+      }
+    })
+  }
+  else{
+    res.status(400);
+    throw new Error(
+      "Have not logged in"
+    );
+  }
 
-  const customer = await Customer.findOne({email: email});
-
-  if (!customer) return res.status(404).json({ error: "No such customer exists" });
-  res.status(200).json(customer);
-});
+};
 
 // get all three addresses of a customer
 const getAllAddress = asyncHandler(async (req, res) => {

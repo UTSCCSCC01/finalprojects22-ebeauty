@@ -21,27 +21,27 @@ const Button = () => {
 
   const e = document.querySelector('#email')
  
-  const showAddr = async (ex) => {
-    ex.preventDefault();
+  const showAddr = async () => {
     await fetch("/api/customers/getDefaultAddress/", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
     }).then(res => {
+      console.log(res);
       if (!res.ok) {
-        alert(`pls log in`);
+        alert('pls log in');
       }
       return res;
     }).then(res => {
+      console.log(res.body);
         if(res.ok){
-          const adr = res.locals.customer;
-          e.innerHTML(adr);
+          const address = res.addr;
+          e.innerHTML(address);
         } 
       }
     )
   }
-
   return (
     <div className='address-form'>
       <li id = 'email'>123</li>
