@@ -27,14 +27,19 @@ May encounter issues with pull requests/ merging.
 - Create a DB for customers (Assignee: Yuehai Zhou)
 - Add the customer's address info into the DB (Assignee: Yuehai Zhou)
 
-[EB-7] As customer, I would like to select my preferences when searching, so that I can find the makeup artist that fits me. (Assignee: Lim Lei)
+[EB-7] As customer, I would like to select my preferences when searching, so that I can find the makeup artist that fits me. (Assignee: Devin Liu)
 - Create a filter component to filter the preferences results (Assignee: Lim Lei)
+- Create a collection for task providers and import dev data (Assignee: Devin Liu)
+- Create loading component during searching data from db (Assignee: Devin Liu)
+- Create a Page Break Navigation if too many search results pop up simultaneously (Assignee: Devin Liu)
 
 [EB-8] As customer, I would like to be able to view the rating of the makeup artists so that I can find a person that satisfies me. (Assignee: Jin Ting Zhou)
 - Create star ratings of service providers by accessing rating data from DB (Assignee: Jin Ting Zhou)
 
 [EB-10] As customer, I would like to rate and write reviews for the make up artist so that I can thank his/her for his/hers work and let more people know him/her. (Assignee: Hyun Woo Shin)
 - Create a DB for reviews (Assignee: Hyun Woo Shin)
+- Create CRUD endpoints for Review DB (Assignee: Hyun Woo Shin)
+- Test endpoints for DB queries (Assignee: Hyun Woo Shin)
 
 [EB-16] As service provider, I would like to post pictures of work, so that I can attract more customers.
 - Create a DB for service providers (Assignee: Allen Lo)
@@ -42,4 +47,4 @@ May encounter issues with pull requests/ merging.
 
 ### Participants
 All 7 team members (detail can be seen on sprint 0 team contract pdf)
-Lin Lei, Allen Lo, Jason Chen, Jin Ting Zhou, Junxun Liu,  Hyun Woo(Eddie) Shin, Yuehai Zhou
+Lin Lei, Allen Lo, Jason Chen, Jin Ting Zhou, Junxun(Devin) Liu,  Hyun Woo(Eddie) Shin, Yuehai Zhou
