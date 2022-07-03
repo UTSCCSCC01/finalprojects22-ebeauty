@@ -42,4 +42,4 @@ May encounter issues with pull requests/ merging.
 
 ### Participants
 All 7 team members (detail can be seen on sprint 0 team contract pdf)
-Lin Lei, Allen Lo, Jason Chen, Jin Ting Zhou, Junxun Liu,  Huyn Woo Shin, Yuehai Zhou
+Lin Lei, Allen Lo, Jason Chen, Jin Ting Zhou, Junxun Liu,  Hyun Woo(Eddie) Shin, Yuehai Zhou
