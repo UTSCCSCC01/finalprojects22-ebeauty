@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import alerting from "../helper/Alerting";
+import alerting from "../components/Alerting";
 import FormData from 'form-data'
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
