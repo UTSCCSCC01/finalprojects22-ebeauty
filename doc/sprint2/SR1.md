@@ -7,7 +7,7 @@
 - Jason Chen
 - Jin Ting Zhou
 - Junxun Liu
-- Huyn Woo Shin
+- Hyun Woo(Eddie) Shin
 - Yuehai Zhou
 
 ## Unfinished Tasks

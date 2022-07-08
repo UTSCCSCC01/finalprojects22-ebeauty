@@ -37,10 +37,7 @@ const SignUp = () => {
         setEmail("");
         setPassword("");
         alert(`SIGNUP FAILED.`);
-      }
-      return res;
-    }).then((res) => {
-      if (res.ok) {
+      } else {
         setError(null);
         setFirstName("");
         setLastName("");
