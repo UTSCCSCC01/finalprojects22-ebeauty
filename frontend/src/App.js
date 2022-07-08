@@ -3,8 +3,8 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
-import Signup from './components/SignUp';
-import Login from './components/Login';
+import Signup from './pages/SignUp';
+import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import FindJob from './pages/FindJob';
@@ -12,9 +12,9 @@ import SearchPage from './components/SearchPage';
 import SignUpProvider from './pages/SignUpProvider';
 import SignUpProviderTwo from './pages/SignUpProviderTwo';
 import SignUpProviderThree from './pages/SignUpProviderThree';
-import ProfileProvider from './components/ProfileProvider';
-import ViewProfileProvider from './components/ViewProfileProvider';
-import AddressPage from './components/AddressPage';
+import ProfileProvider from './pages/ProfileProvider';
+import ViewProfileProvider from './pages/ViewProfileProvider';
+import AddressPage from './pages/AddressPage';
 import Review from './pages/Review';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component'
