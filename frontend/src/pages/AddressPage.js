@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router,useNavigate } from 'react-router-dom'
-import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
-import Map from '../components/MapContainer'
-import Form from '../components/AddressForm'
+import Navbar from './Navbar'
+import Footer from './Footer'
+import Map from './MapContainer'
+import Form from './AddressForm'
 
 function AddressPage() {
   let navigate = useNavigate();
