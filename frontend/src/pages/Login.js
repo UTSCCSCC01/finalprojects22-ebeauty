@@ -30,10 +30,7 @@ const Login = () => {
         setEmail("");
         setPassword("");
         alert(`LOGIN FAILED with ${email}`);
-      }
-      return res;
-    }).then((res) => {
-      if (res.ok) {
+      } else {
         setError(null);
         setEmail("");
         setPassword("");
