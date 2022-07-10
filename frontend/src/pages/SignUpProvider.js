@@ -11,7 +11,7 @@ import {
 import '../css/providerRegister.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEye, faEyeSlash} from '@fortawesome/free-solid-svg-icons';
-import alerting from "../helper/Alerting";
+import alerting from "../components/Alerting";
 
 
 const SignUpProvider = () => {

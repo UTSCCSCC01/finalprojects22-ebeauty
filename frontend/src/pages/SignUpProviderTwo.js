@@ -10,7 +10,7 @@ import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
 import axios from 'axios';
-import alerting from "../helper/Alerting";
+import alerting from "../components/Alerting";
 
 const SignUpProviderTwo = () => {
   // read passed in data

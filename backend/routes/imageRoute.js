@@ -3,6 +3,8 @@ import express from "express";
 const router = express.Router();
 import mongoose from "mongoose";
 import Grid from "gridfs-stream";
+import dotenv from 'dotenv';
+dotenv.config();
 
 let gfs;
 let gridFSBucket;
@@ -20,11 +22,12 @@ conn.once("open", ()=>{
 // POST /file/upload
 router.post("/upload", upload.single('file'), async (req, res) => {
     if (req.file === undefined) return res.send("Select an image to upload.");
-    const imgUrl = `http://localhost:5000/file/${req.file.filename}`;
+    const imgUrl = `http://localhost:${process.env.PORT}/file/${req.file.filename}`;
     return res.send({data:imgUrl, image_id:req.file.filename});
 });
 
 //Displays the image on browser
+// http://localhost:<PORT in env>/file/<filename>
 //GET /file/filename
 router.get("/:filename", async (req, res) => {
   try {
