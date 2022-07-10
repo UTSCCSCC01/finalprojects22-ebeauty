@@ -8,7 +8,7 @@ import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import FindJob from './pages/FindJob';
-import SearchPage from './components/SearchPage';
+import SearchPage from './pages/SearchPage';
 import SignUpProvider from './pages/SignUpProvider';
 import SignUpProviderTwo from './pages/SignUpProviderTwo';
 import SignUpProviderThree from './pages/SignUpProviderThree';

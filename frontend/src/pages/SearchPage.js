@@ -3,13 +3,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import '../css/index.css';
 import '../css/SearchPage.css';
 import React, { useEffect, useState } from 'react';
-import ServiceDropdown from './ServiceDropdown';
+import ServiceDropdown from '../components/ServiceDropdown';
 import { listTaskProviders } from '../actions/taskproviderAction';
-import Loader from './Loader';
-import Message from './Message';
-import ProviderCard from './ProviderCard';
-import SearchBox from './SearchBox';
-import Paginator from './Paginator';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
+import ProviderCard from '../components/ProviderCard';
+import SearchBox from '../components/SearchBox';
+import Paginator from '../components/Paginator';
 import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
 import 'react-datepicker/dist/react-datepicker.css'
 

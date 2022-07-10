@@ -4,6 +4,7 @@ import FormData from 'form-data'
 import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
 
+
 /**
  * bug: the react-alerting stuff does not show all error
  * and the email should be unique, we did not show that out, this might throw error
@@ -39,7 +40,15 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const signUp = async () => {
-    await axios.post('http://localhost:5000/api/providers',data)
+    console.log("frontned",data)
+    await fetch('/api/providers',{
+      method: "POST",
+      body: JSON.stringify(data),
+      headers:{          
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
     .then(response => {
       alerting("Created!", "info");
       navigate("/");
@@ -47,28 +56,30 @@ const SignUpProviderThree = () => {
     .catch(err => {
       if(err.response.data.message)
         alerting(err.response.data.message, "danger");
-      else 
+      else
         alerting(err.message, "danger");
     });
   };
 
   // post data to register provider
+  // post image first here
   const submit = async () => {
     if(!data || !selectedImage){
       alerting("there's field you didn't input!", "danger")
     } else {
-      await axios.post('http://localhost:5000/file/upload',image, 
-        {headers:{
-          'Content-Type': `multipart/form-data`,
-        }}
-      ).then(response => {
+      await fetch("/file/upload/", {
+        method: "POST",
+        body: image,
+      })
+      .then(response => response.json())
+      .then(response => {
         // here we do the post of provider signup
-        handleChange(response.data.image_id, "imageFilename");
+        handleChange(response.image_id, "imageFilename");
       })
       .catch(err => {
-        if(err.response.data.message)
+        if(err.response)
           alerting(err.response.data.message, "danger");
-        else 
+        else
           alerting(err.message, "danger");
       });
     }

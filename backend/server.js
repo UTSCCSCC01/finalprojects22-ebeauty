@@ -20,7 +20,7 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 // set up PORT
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 // connect the database here
 connectDB();
