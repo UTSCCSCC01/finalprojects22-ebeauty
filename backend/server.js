@@ -41,6 +41,11 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/customers', customers);
 app.use('/api/taskproviders', taskproviderRoute);
 
+// get client id of PayPal
+app.get('/api/config/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+});
+
 // handle the error here, make sure it is the last one!!!
 app.use(notFoundHandler);
 app.use(errorHandler);

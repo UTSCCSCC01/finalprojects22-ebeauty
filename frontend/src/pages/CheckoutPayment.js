@@ -1,11 +1,34 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
 
 export default function CheckoutPayment() {
+  // SDK
+  const [sdk, setSdk] = useState(false);
+
+  // dynamically load the paypal script
+  useEffect(() => {
+    const addPaypalScript = async () => {
+      const { data: clientId } = await axios.get('/api/config/paypal');
+      console.log('clientId 👉️', clientId);
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+
+      script.onload = () => {
+        setSdk(true);
+      };
+      document.body.appendChild(script);
+    };
+    addPaypalScript();
+  }, []);
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
