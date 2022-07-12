@@ -1,11 +1,11 @@
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Home from './pages/Home';
+import Home from './pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './css/components.css';
-import Signup from './components/SignUp';
-import Login from './components/Login';
-import NotFound from './components/NotFound';
+import Signup from './pages/SignUp';
+import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 import ScrollToTop from './components/ScrollToTop';
 import FindJob from './components/FindJob';
 import SearchPage from './components/SearchPage';
@@ -16,11 +16,15 @@ import ViewProfileProvider from './components/ViewProfileProvider';
 import AddressPage from './components/AddressPage';
 import Review from './pages/Review';
 import CheckoutMain from './pages/CheckoutMain'
+//react-notifications-component
+import { ReactNotifications } from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
 
 function App() {
   return (
     <Router>
-      <div className="App">
+      <div className="App" >
+        <ReactNotifications />
         <ScrollToTop>
           <div className="content">
             <Navbar />
@@ -39,10 +43,8 @@ function App() {
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
-              <Route
-                path="/signupprovidertwo"
-                element={<SignUpProviderTwo />}
-              />
+              <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
+              <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route

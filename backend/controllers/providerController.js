@@ -11,14 +11,14 @@ const registerProvider = asyncHandler(async (req, res) => {
   let name = req.body.name;
   let email = req.body.email;
   let password = req.body.password;
+  let imageFilename = req.body.imageFilename;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password || !imageFilename) {
     res.status(400);
-    throw new Error('please add all fields name, email, and password');
+    throw new Error('please add all fields name, email, password and image file name');
   }
 
   const providerExist = await Provider.findOne({ email });
-
   if (providerExist) {
     res.status(400);
     throw new Error('provider already exists');
@@ -27,9 +27,8 @@ const registerProvider = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const saltedhash = await bcrypt.hash(password, salt);
 
-
   const provider = await Provider.create({
-    name, email, password: saltedhash
+    name, email, imageFilename, password: saltedhash
   });
 
   if (provider) {
@@ -37,6 +36,7 @@ const registerProvider = asyncHandler(async (req, res) => {
       _id: provider.id,
       name: provider.name,
       email: provider.email,
+      imageFilename: provider.imageFilename,
       token: generateToken(provider._id)
     });
   } else {
@@ -64,6 +64,7 @@ const loginProvider = asyncHandler(async (req, res) => {
       _id: provider.id,
       name: provider.name,
       email: provider.email,
+      imageFilename: provider.imageFilename,
       token: generateToken(provider._id)
     });
   } else {
@@ -82,7 +83,8 @@ const getProvider = asyncHandler(async (req, res) => {
     res.status(200).json({
       id: req.provider.id,
       name: req.provider.name,
-      email: req.provider.email
+      email: req.provider.email,
+      imageFilename: provider.imageFilename
     });
   } catch (error) {
     res.status(400);

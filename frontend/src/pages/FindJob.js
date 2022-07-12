@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Animation from "./Animation";
+import Animation from "../components/Animation";
 import '../css/providerRegister.css'
 
 
