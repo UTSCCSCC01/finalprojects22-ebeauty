@@ -6,7 +6,8 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import axios from 'axios';
-
+import { PayPalButton } from 'react-paypal-button-v2';
+import Loader from '../components/Loader';
 export default function CheckoutPayment() {
   // SDK
   const [sdk, setSdk] = useState(false);
@@ -28,6 +29,11 @@ export default function CheckoutPayment() {
     };
     addPaypalScript();
   }, []);
+
+  const handlePaymentSuccess = (paymentResult) => {
+    // should go to the next page after payment
+    console.log('paymentResult 👉️', paymentResult);
+  };
 
   return (
     <React.Fragment>
@@ -83,6 +89,14 @@ export default function CheckoutPayment() {
           />
         </Grid>
       </Grid>
+      {/* PayPal button */}
+      {!sdk ? (
+        <Loader />
+      ) : (
+        <PayPalButton amount="999" onSuccess={handlePaymentSuccess}>
+          {' '}
+        </PayPalButton>
+      )}
     </React.Fragment>
   );
 }
