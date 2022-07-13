@@ -103,7 +103,7 @@ const SignUp = () => {
                           value={password}
                           className={"form_containersignup input"}
                       />
-                      <Link to="/findjob" style={{ textDecoration: 'underline' }}>want to sign up as provider?</Link>
+                      <Link to="/findjob" className='toFindjob'>want to sign up as provider?</Link>
                       <button type="submit" className={"green_btnsignup"} onClick={handleSubmit}>
                           Sign Up
                       </button>

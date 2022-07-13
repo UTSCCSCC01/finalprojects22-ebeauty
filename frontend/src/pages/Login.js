@@ -5,6 +5,7 @@ const Login = () => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
 
   // const [data, setData] = useState({
   //   email: "",
@@ -17,26 +18,30 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const customer = { email, password };    
+    const fields = { email, password };    
+    if(!checked){
 
-    await fetch("/api/customers/login-customer/", {
-      method: "POST",
-      body: JSON.stringify(customer),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (!res.ok) {
-        setEmail("");
-        setPassword("");
-        alert(`LOGIN FAILED with ${email}`);
-      } else {
-        setError(null);
-        setEmail("");
-        setPassword("");
-        alert(`LOGIN SUCCESS with ${email}`);
-      }
-    })
+      await fetch("/api/customers/login-customer/", {
+        method: "POST",
+        body: JSON.stringify(fields),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => {
+        if (!res.ok) {
+          setEmail("");
+          setPassword("");
+          alert(`LOGIN FAILED with ${email}`);
+        } else {
+          setError(null);
+          setEmail("");
+          setPassword("");
+          alert(`LOGIN SUCCESS with ${email}`);
+        }
+      })  
+    } else {
+      console.log("provider login here");
+    }
   };
 
   return (
@@ -45,6 +50,15 @@ const Login = () => {
         <div className="left">
           <form className="form_container" id="login-form">
             <h1 className="form_container h1">Login to Your Account</h1>
+            <label className="checkbox_label">
+              <input 
+                type="checkbox"
+                checked={checked}
+                onChange={e => setChecked(e.target.checked)}
+                className="checkbox_provider"
+                />
+              Sign in as service provider
+            </label>
             <input
               type="email"
               placeholder="Email"
