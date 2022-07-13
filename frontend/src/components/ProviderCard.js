@@ -2,7 +2,7 @@ import { Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 function roundHalf(num1, num2) {
-  if(num2==0)
+  if(num2===0)
     return 0;
   return Math.round((num1/num2)*2)/2;
 }

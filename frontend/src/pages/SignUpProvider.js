@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Form,
   Card,
-  CardBody,
 } from "reactstrap";
 
 import '../css/providerRegister.css'
@@ -48,7 +47,7 @@ const SignUpProvider = () => {
   function signUpForm(e){
     e.preventDefault();
     console.log(data);
-    if(data.password != data.confirmPassword){
+    if(data.password !== data.confirmPassword){
       alerting("passwords are not matching!", "danger");
     } else{
       //jump page

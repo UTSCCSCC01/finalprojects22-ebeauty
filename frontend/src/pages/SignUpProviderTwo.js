@@ -1,4 +1,4 @@
-import { useEffect, useState  }  from "react";
+import { useState  }  from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 // reactstrap components
 import {
@@ -9,8 +9,6 @@ import {
 import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
-import axios from 'axios';
-import alerting from "../components/Alerting";
 
 const SignUpProviderTwo = () => {
   // read passed in data
