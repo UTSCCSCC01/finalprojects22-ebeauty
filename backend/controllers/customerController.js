@@ -139,7 +139,7 @@ const getDefaultAddress = async (req, res) => {
         console.log(decodedToken);
         let customer = await Customer.findById(decodedToken.id);
         console.log(customer.defaultAddress);
-        res.status(200).json({
+        res.json({
           address: customer.defaultAddress
         })
       }
