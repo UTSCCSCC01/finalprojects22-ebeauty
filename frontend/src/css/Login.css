@@ -101,3 +101,12 @@
   color: white;
   margin: 10px;
 }
+
+.checkbox_label{
+  opacity: 0.8;
+}
+
+.checkbox_provider{
+  width: auto !important;
+  margin-right: 5px !important;
+}

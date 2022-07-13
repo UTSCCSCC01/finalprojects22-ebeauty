@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import {
   Form,
   Card,
-  CardBody,
 } from "reactstrap";
 
 import '../css/providerRegister.css'
@@ -23,15 +22,20 @@ const SignUpProvider = () => {
   //use for sign up states
   const [data, setData] = useState({
     name: "",
+    title:"Hairdress", 
+    address: "",
+    city: "",
+    state: "",
+    country: "",
     email:"",
     phone: "",
-    bill:"",
-    postal:"",
     password:"", 
     confirmPassword: "",
-    title:"Hairdress", 
-    individual:"Yes",
     imageFilename:"",
+    individual:"Yes",
+    totalRating: 0, 
+    ratingPopulation: 0, 
+    isAdmin: false
   })
 
   const handleChange = (input, fieldName) => {
@@ -43,7 +47,7 @@ const SignUpProvider = () => {
   function signUpForm(e){
     e.preventDefault();
     console.log(data);
-    if(data.password != data.confirmPassword){
+    if(data.password !== data.confirmPassword){
       alerting("passwords are not matching!", "danger");
     } else{
       //jump page
@@ -60,18 +64,21 @@ const SignUpProvider = () => {
           <Form onSubmit={signUpForm.bind(this)} className={"Form"}>
             <h1 className={"header"}>Create Account</h1>
             <input 
+              className="In"
               type="text" 
               placeholder="Enter Name" 
               onChange={(e) => handleChange(e.target.value, "name")} 
               required
             />                            
             <input 
+              className="In"
               type="email" 
               placeholder="Enter Email" 
               onChange={(e) => handleChange(e.target.value, "email")} 
               required
             />         
             <input 
+              className="In"
               type="text" 
               placeholder="Enter Phone Number"
               onChange={(e) => handleChange(e.target.value, "phone")}  
@@ -85,17 +92,33 @@ const SignUpProvider = () => {
             <div>
               <input 
                 type="text" 
-                placeholder="Billing Address" 
-                onChange={(e) => handleChange(e.target.value, "bill")} 
+                placeholder="Address" 
+                onChange={(e) => handleChange(e.target.value, "address")} 
                 required
-                className={"half-input leftside"}
+                className={"In half-input leftside"}
               />
               <input 
                 type="text" 
-                placeholder="Postal Code" 
-                onChange={(e) => handleChange(e.target.value, "postal")} 
+                placeholder="City" 
+                onChange={(e) => handleChange(e.target.value, "city")} 
                 required
-                className={"half-input"}
+                className={"In half-input"}
+              />
+            </div>
+            <div>
+              <input 
+                type="text" 
+                placeholder="State/Province" 
+                onChange={(e) => handleChange(e.target.value, "state")} 
+                required
+                className={"In half-input leftside"}
+              />
+              <input 
+                type="text" 
+                placeholder="Country" 
+                onChange={(e) => handleChange(e.target.value, "country")} 
+                required
+                className={"In half-input"}
               />
             </div>
             <div className="input-pass-container" >
@@ -104,7 +127,7 @@ const SignUpProvider = () => {
                 placeholder="Enter password"
                 onChange={(e) => handleChange(e.target.value, "password")} 
                 required
-                className="password"
+                className={"In password"}
               />
               {passShow ?
                 <FontAwesomeIcon 
@@ -132,7 +155,7 @@ const SignUpProvider = () => {
                 placeholder="Enter again password" 
                 onChange={(e) => handleChange(e.target.value, "confirmPassword")} 
                 required
-                className="password"
+                className={"In password"}
               />
               {confirmPass ?
                 <FontAwesomeIcon 

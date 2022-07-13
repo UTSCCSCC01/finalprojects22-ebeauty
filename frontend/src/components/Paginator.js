@@ -9,7 +9,7 @@ const Paginator = ({ pages, page, isAdmin = false, keyword = '' }) => {
     <Pagination className="pagination">
       <LinkContainer
         className="page-link"
-        key={'firstTaskProviderPage'}
+        key={'firstProviderPage'}
         to={keyword ? `/searchpage/${keyword}/page/1` : `/page/1`}>
         <Pagination.First />
       </LinkContainer>
@@ -40,7 +40,7 @@ const Paginator = ({ pages, page, isAdmin = false, keyword = '' }) => {
       </LinkContainer>
       <LinkContainer
         className="page-link"
-        key={'lastTaskProviderPage'}
+        key={'lastProviderPage'}
         to={
           keyword ? `/searchpage/${keyword}/page/${pages}` : `/page/${pages}`
         }>

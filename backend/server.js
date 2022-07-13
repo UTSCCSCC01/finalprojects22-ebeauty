@@ -7,7 +7,6 @@ import connectDB from './config/db.js';
 // import apis here
 import posts from "./routes/postRoute.js";
 import providers from "./routes/providerRoute.js";
-import taskproviderRoute from "./routes/taskproviderRoute.js";
 import reviewRoutes from "./routes/reviewRoute.js";
 import customers from "./routes/customerRoute.js";
 import imageRoute from "./routes/imageRoute.js";
@@ -44,7 +43,6 @@ app.use('/api/posts', posts);
 app.use('/api/providers', providers);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/customers', customers);
-app.use('/api/taskproviders', taskproviderRoute);
 app.use("/file", imageRoute);
 
 // handle the error here, make sure it is the last one!!!

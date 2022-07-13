@@ -50,30 +50,29 @@ Use seeder to import and destroy data to the database
 ## test apis
 
 an easy way to test the api is just to go to url:
-i.e. localhost:5000/api/posts/
+i.e. localhost:3001/api/posts/
 
-a better way to do it is using postman, select get method, go to url: localhost:5000/api/posts/. or select post method, go to url: localhost:5000/api/providers
+a better way to do it is using postman, select get method, go to url: localhost:3001/api/posts/. or select post method, go to url: localhost:3001/api/providers
 
 but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
 
 ## Write your api description here
 
-### /api/taskproviders
-
-you can get all task providers or get a specific task provider by id
-
-public GET /api/taskproviders
-
-public GET /api/taskproviders/:id
-
-add more extensions to the api if you want to add more functionality
-
 ### /api/providers
-purpose: create/signup provider's account
+
+purpose: you can get all providers or get a specific provider by id
+
+public GET /api/providers
+
+public GET /api/providers/:id
+
+public POST /api/providers
+
+-> purpose: create/signup provider's account
 
 open postman, select POST method, paste url below to postman's url:
 
-localhost:5000/api/providers 
+localhost:3001/api/providers 
 
 and with raw json body like:
 {
@@ -89,7 +88,7 @@ purpose: sign in provider's account and gain a new token
 
 open postman, select POST method, paste url below to postman's url:
 
-localhost:5000/api/providers/login
+localhost:3001/api/providers/login
 
 and with raw json body like:
 {
@@ -105,7 +104,7 @@ go to Authentication in postman, select Bearer Token, and paste that token insid
 
 open postman, select GET method, paste url below to postman's url:
 
-localhost:5000/api/providers/me
+localhost:3001/api/providers/me
 
 
 Currently, we'll need token in order to retrieve the current logged in provider's info. 
@@ -117,7 +116,7 @@ purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
 
-localhost:5000/api/posts
+localhost:3001/api/posts
 
 - GETTING POSTS: 
 
@@ -141,7 +140,7 @@ and click send, if postman respond with post details then it works.
 
 open postman, paste url below to postman's url:
 
-localhost:5000/api/posts/(post id)
+localhost:3001/api/posts/(post id)
 
 - DELETE POST
 select delete method, 
@@ -152,7 +151,7 @@ paste the post's id to the url (id can be gained by GET method mentioned above, 
 click send, if postman respond with just a line of id:(post id), then it works. 
 
 - UPDATE POST
-localhost:5000/api/posts/(post id)
+localhost:3001/api/posts/(post id)
 
 the setup steps are same as delete post, it's just you have to provide the new data you want to update for post inside raw json body: 
 

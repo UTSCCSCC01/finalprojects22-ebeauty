@@ -81,7 +81,7 @@ SignUpProviderTwo.js
 	color: black;
 }
 
-input {
+.In {
 	outline: none;
 	border: none;
 	width: 100%;
