@@ -1,5 +1,6 @@
 import { Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import ReactStars from 'react-stars'
 
 function roundHalf(num1, num2) {
   if(num2===0)
@@ -8,6 +9,12 @@ function roundHalf(num1, num2) {
 }
 
 const ProviderCard = ({ provider }) => {
+  const rating = {
+    size: 20,
+    value: roundHalf(provider.totalRating, provider.ratingPopulation),
+    edit: false
+  };
+
   return (
     <div>
       <Link
@@ -25,7 +32,8 @@ const ProviderCard = ({ provider }) => {
             <h3>{provider.name}</h3>
             <p>{provider.title}</p>
             <div className="rate">
-              <span>{roundHalf(provider.totalRating,provider.ratingPopulation)}</span>
+              <ReactStars {...rating}/>
+
             </div>
           </div>
           <div id="view-profile" to={`/provider/${provider._id}`}>
