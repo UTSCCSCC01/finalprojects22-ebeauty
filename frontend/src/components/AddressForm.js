@@ -26,12 +26,12 @@ const Button = () => {
         "Content-Type": "application/json",
       },
     }).then(res => {
-      if (!res.ok) {
-        alert('pls log in');
-      }
+      // if (!res.ok) {
+      //   alert('pls log in');
+      // }
       return res.json();
     }).then(data => {
-      console.log(data);
+      // console.log(data);
       const e = document.querySelector('#email')
       e.innerHTML = data.address;
     })
