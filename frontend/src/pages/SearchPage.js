@@ -28,7 +28,7 @@ const SearchPage = () => {
   // use dispatch to call the listProviders action
   const dispatch = useDispatch();
   const providersList = useSelector((state) => state.providers);
-  const { loading, error, taskProviders, pages, page } = providersList;
+  const { loading, error, providers, pages, page } = providersList;
   console.log(pages);
   useEffect(() => {
     dispatch(listProviders(keyword, pageNumber));
@@ -96,7 +96,7 @@ const SearchPage = () => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div>
-              {taskProviders.map((taskProvider) => {
+              {providers.map((taskProvider) => {
                 return (
                   <ProviderCard
                     taskProvider={taskProvider}

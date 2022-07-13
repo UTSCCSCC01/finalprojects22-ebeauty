@@ -8,14 +8,14 @@ import {
 } from '../constants/providerConstant';
 
 // Request reducer for all providers
-export const providersReducer = (state = { taskProviders: [] }, action) => {
+export const providersReducer = (state = { providers: [] }, action) => {
   switch (action.type) {
     case PROVIDERS_REQUEST:
-      return { loading: true, taskProviders: [] };
+      return { loading: true, providers: [] };
     case PROVIDERS_SUCCESS:
       return {
         loading: false,
-        taskProviders: action.payload.taskProviders,
+        providers: action.payload.providers,
         pages: action.payload.pages,
         page: action.payload.page,
       };

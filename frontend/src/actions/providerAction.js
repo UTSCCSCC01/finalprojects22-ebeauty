@@ -15,7 +15,7 @@ export const listProviders =
     try {
       dispatch({ type: PROVIDERS_REQUEST });
       const { data } = await axios.get(
-        `/api/taskproviders?keyword=${keyword}&pageNumber=${pageNumber}`
+        `/api/providers?keyword=${keyword}&pageNumber=${pageNumber}`
       );
       dispatch({ type: PROVIDERS_SUCCESS, payload: data });
     } catch (error) {
@@ -33,7 +33,7 @@ export const listProviders =
 export const listProviderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PROVIDER_DETAILS_REQUEST });
-    const { data } = await axios.get(`/api/taskproviders/${id}`);
+    const { data } = await axios.get(`/api/providers/${id}`);
     dispatch({ type: PROVIDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
