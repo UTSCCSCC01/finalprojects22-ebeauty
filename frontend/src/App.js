@@ -47,7 +47,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route
-                path="/taskprovider/:id"
+                path="/provider/:id"
                 element={<ViewProfileProvider />}
               />
               <Route path="/addresspage" element={<AddressPage />} />

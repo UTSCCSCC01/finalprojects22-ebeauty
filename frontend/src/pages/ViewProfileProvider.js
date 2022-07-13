@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
-import { listTaskProviderDetails } from '../actions/taskproviderAction';
+import { listTaskProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
 

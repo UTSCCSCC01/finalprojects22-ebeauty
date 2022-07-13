@@ -4,7 +4,7 @@ import '../css/index.css';
 import '../css/SearchPage.css';
 import React, { useEffect, useState } from 'react';
 import ServiceDropdown from '../components/ServiceDropdown';
-import { listTaskProviders } from '../actions/taskproviderAction';
+import { listTaskProviders } from '../actions/providerAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import ProviderCard from '../components/ProviderCard';

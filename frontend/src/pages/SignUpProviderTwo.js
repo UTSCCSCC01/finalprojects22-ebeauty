@@ -40,7 +40,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Hairdress"
                 options={['Hairdress', 'Barber', 'Clean', 'Landscape', 'Massage', 'Makeup', 'Eyebrow Eyelash Tech']}
                 value="Hairdress"
-                onChange={(option) => handleChange(option, "Title")}
+                onChange={(option) => handleChange(option, "title")}
               />
             </div>
             {/*
@@ -53,7 +53,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Yes"
                 options={['Yes', 'No']}
                 value="Yes"
-                onChange={(option) => handleChange(option, "Individual")}
+                onChange={(option) => handleChange(option, "individual")}
               />
             </div>
             <div className="center">

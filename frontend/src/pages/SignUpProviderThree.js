@@ -51,7 +51,7 @@ const SignUpProviderThree = () => {
     .then(response => response.json())
     .then(response => {
       alerting("Created!", "info");
-      navigate("/");
+//      navigate("/");
     })
     .catch(err => {
       if(err.response.data.message)

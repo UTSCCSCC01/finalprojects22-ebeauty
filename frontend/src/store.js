@@ -4,7 +4,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import {
   taskProvidersReducer,
   taskProviderDetailsReducer,
-} from './reducers/taskproviderReducer';
+} from './reducers/providerReducer';
 
 // combine all reducers into one root reducer
 const reducer = combineReducers({

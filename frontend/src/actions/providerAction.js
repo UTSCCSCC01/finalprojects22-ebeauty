@@ -5,7 +5,7 @@ import {
   TASK_PROVIDER_DETAILS_REQUEST,
   TASK_PROVIDER_DETAILS_SUCCESS,
   TASK_PROVIDER_DETAILS_FAILURE,
-} from '../constants/taskproviderConstant';
+} from '../constants/providerConstant';
 import axios from 'axios';
 
 // Get all task providers

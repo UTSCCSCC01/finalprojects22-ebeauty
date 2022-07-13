@@ -5,7 +5,7 @@ import {
   TASK_PROVIDER_DETAILS_REQUEST,
   TASK_PROVIDER_DETAILS_SUCCESS,
   TASK_PROVIDER_DETAILS_FAILURE,
-} from '../constants/taskproviderConstant';
+} from '../constants/providerConstant';
 
 // Request reducer for all task providers
 export const taskProvidersReducer = (state = { taskProviders: [] }, action) => {

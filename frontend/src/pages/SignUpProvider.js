@@ -23,15 +23,20 @@ const SignUpProvider = () => {
   //use for sign up states
   const [data, setData] = useState({
     name: "",
+    title:"Hairdress", 
+    address: "",
+    city: "",
+    state: "",
+    country: "",
     email:"",
     phone: "",
-    bill:"",
-    postal:"",
     password:"", 
     confirmPassword: "",
-    title:"Hairdress", 
-    individual:"Yes",
     imageFilename:"",
+    individual:"Yes",
+    totalRating: 0, 
+    ratingPopulation: 0, 
+    isAdmin: false
   })
 
   const handleChange = (input, fieldName) => {
@@ -85,15 +90,31 @@ const SignUpProvider = () => {
             <div>
               <input 
                 type="text" 
-                placeholder="Billing Address" 
-                onChange={(e) => handleChange(e.target.value, "bill")} 
+                placeholder="Address" 
+                onChange={(e) => handleChange(e.target.value, "address")} 
                 required
                 className={"half-input leftside"}
               />
               <input 
                 type="text" 
-                placeholder="Postal Code" 
-                onChange={(e) => handleChange(e.target.value, "postal")} 
+                placeholder="City" 
+                onChange={(e) => handleChange(e.target.value, "city")} 
+                required
+                className={"half-input"}
+              />
+            </div>
+            <div>
+              <input 
+                type="text" 
+                placeholder="State/Province" 
+                onChange={(e) => handleChange(e.target.value, "state")} 
+                required
+                className={"half-input leftside"}
+              />
+              <input 
+                type="text" 
+                placeholder="Country" 
+                onChange={(e) => handleChange(e.target.value, "country")} 
                 required
                 className={"half-input"}
               />
