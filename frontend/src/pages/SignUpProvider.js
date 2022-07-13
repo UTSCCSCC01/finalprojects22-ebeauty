@@ -64,18 +64,21 @@ const SignUpProvider = () => {
           <Form onSubmit={signUpForm.bind(this)} className={"Form"}>
             <h1 className={"header"}>Create Account</h1>
             <input 
+              className="In"
               type="text" 
               placeholder="Enter Name" 
               onChange={(e) => handleChange(e.target.value, "name")} 
               required
             />                            
             <input 
+              className="In"
               type="email" 
               placeholder="Enter Email" 
               onChange={(e) => handleChange(e.target.value, "email")} 
               required
             />         
             <input 
+              className="In"
               type="text" 
               placeholder="Enter Phone Number"
               onChange={(e) => handleChange(e.target.value, "phone")}  
@@ -92,14 +95,14 @@ const SignUpProvider = () => {
                 placeholder="Address" 
                 onChange={(e) => handleChange(e.target.value, "address")} 
                 required
-                className={"half-input leftside"}
+                className={"In half-input leftside"}
               />
               <input 
                 type="text" 
                 placeholder="City" 
                 onChange={(e) => handleChange(e.target.value, "city")} 
                 required
-                className={"half-input"}
+                className={"In half-input"}
               />
             </div>
             <div>
@@ -108,14 +111,14 @@ const SignUpProvider = () => {
                 placeholder="State/Province" 
                 onChange={(e) => handleChange(e.target.value, "state")} 
                 required
-                className={"half-input leftside"}
+                className={"In half-input leftside"}
               />
               <input 
                 type="text" 
                 placeholder="Country" 
                 onChange={(e) => handleChange(e.target.value, "country")} 
                 required
-                className={"half-input"}
+                className={"In half-input"}
               />
             </div>
             <div className="input-pass-container" >
@@ -124,7 +127,7 @@ const SignUpProvider = () => {
                 placeholder="Enter password"
                 onChange={(e) => handleChange(e.target.value, "password")} 
                 required
-                className="password"
+                className={"In password"}
               />
               {passShow ?
                 <FontAwesomeIcon 
@@ -152,7 +155,7 @@ const SignUpProvider = () => {
                 placeholder="Enter again password" 
                 onChange={(e) => handleChange(e.target.value, "confirmPassword")} 
                 required
-                className="password"
+                className={"In password"}
               />
               {confirmPass ?
                 <FontAwesomeIcon 
