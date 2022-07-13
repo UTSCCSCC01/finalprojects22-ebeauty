@@ -125,7 +125,7 @@ export default function CheckoutAddress() {
           <React.Fragment>
             <Stepper activeStep={0} sx={{ pt: 3, pb: 5 }}>
               <Step>
-                <StepLabel>Mailing Address</StepLabel>
+                <StepLabel>Billing Address</StepLabel>
               </Step>
               <Step>
                 <StepLabel>Payment details</StepLabel>
