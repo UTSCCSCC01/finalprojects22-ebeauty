@@ -142,7 +142,7 @@ const providers = [
     imageFilename: "file8.jpg",
     individual: "no",
     totalRating: 80, 
-    ratingPopulation: 8,
+    ratingPopulation: 16,
     isAdmin: false,
   },
   {

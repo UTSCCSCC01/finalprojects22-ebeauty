@@ -1,13 +1,19 @@
 import { Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
-const ProviderCard = ({ taskProvider }) => {
+function roundHalf(num1, num2) {
+  if(num2==0)
+    return 0;
+  return Math.round((num1/num2)*2)/2;
+}
+
+const ProviderCard = ({ provider }) => {
   return (
     <div>
       <Link
-        key={taskProvider._id}
+        key={provider._id}
         id="provider-card"
-        to={`/provider/${taskProvider._id}`}>
+        to={`/provider/${provider._id}`}>
         <div className="search-result">
           <img
             src={require('../images/barber.jpg')}
@@ -16,13 +22,13 @@ const ProviderCard = ({ taskProvider }) => {
           />
 
           <div className="search-result-text">
-            <h3>{taskProvider.name}</h3>
-            <p>{taskProvider.title}</p>
+            <h3>{provider.name}</h3>
+            <p>{provider.title}</p>
             <div className="rate">
-              <span>{taskProvider.rating}</span>
+              <span>{roundHalf(provider.totalRating,provider.ratingPopulation)}</span>
             </div>
           </div>
-          <div id="view-profile" to={`/provider/${taskProvider._id}`}>
+          <div id="view-profile" to={`/provider/${provider._id}`}>
             View Profile
           </div>
         </div>

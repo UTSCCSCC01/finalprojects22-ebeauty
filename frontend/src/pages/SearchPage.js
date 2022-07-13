@@ -96,11 +96,11 @@ const SearchPage = () => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div>
-              {providers.map((taskProvider) => {
+              {providers.map((provider) => {
                 return (
                   <ProviderCard
-                    taskProvider={taskProvider}
-                    key={taskProvider._id}
+                    provider={provider}
+                    key={provider._id}
                   />
                 );
               })}
