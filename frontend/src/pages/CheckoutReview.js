@@ -4,7 +4,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import { Box, Button, Container, createTheme, Paper, ThemeProvider } from "@mui/material";
+import { Box, Button, Container, createTheme, Paper, Step, StepLabel, Stepper, ThemeProvider } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 const products = [
@@ -49,7 +49,13 @@ const theme = createTheme({
 export default function CheckoutReview() {
   const location = useLocation();
   const data = location.state.data;
-  const addresses = [data.address.addressOne, data.address.addressOne, data.address.city, data.address.postalCode, data.address.country];
+  const addresses = [
+    data.address.addressOne,
+    data.address.addressOne,
+    data.address.city,
+    data.address.postalCode,
+    data.address.country,
+  ];
   const payments = [
     { name: "Card holder", detail: data.payment.nameOnCard },
     { name: "Card number", detail: data.payment.cardNumber },
@@ -57,9 +63,20 @@ export default function CheckoutReview() {
   ];
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <React.Fragment>
+            <Stepper activeStep={2} sx={{ pt: 3, pb: 5 }}>
+              <Step>
+                <StepLabel>Mailing Address</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Payment details</StepLabel>
+              </Step>
+              <Step>
+                <StepLabel>Review your order</StepLabel>
+              </Step>
+            </Stepper>
             <Typography variant="h6" gutterBottom>
               Order summary
             </Typography>
@@ -83,7 +100,9 @@ export default function CheckoutReview() {
                 <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
                   Service Address
                 </Typography>
-                <Typography gutterBottom>{data.firstName} {data.lastName} </Typography>
+                <Typography gutterBottom>
+                  {data.firstName} {data.lastName}{" "}
+                </Typography>
                 <Typography gutterBottom>{addresses.join(", ")}</Typography>
               </Grid>
               <Grid item container direction="column" xs={12} sm={6}>

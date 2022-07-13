@@ -8,6 +8,7 @@ import {
   Button,
   Container,
   createTheme,
+  MenuItem,
   Paper,
   Step,
   StepLabel,
@@ -16,6 +17,68 @@ import {
 } from "@mui/material";
 import CheckoutPayment from "./CheckoutPayment.js";
 import { useNavigate } from "react-router-dom";
+
+const provinces = [
+  {
+    value: "Newfoundland and Labrador",
+    label: "NL"
+  },
+  {
+    value: "Prince Edward Island",
+    label: "PE"
+  },
+  {
+    value: "Nova Scotia",
+    label: "NS"
+  },
+  {
+    value: "New Brunswick",
+    label: "NB"
+  },
+  {
+    value: "Quebec",
+    label: "QC"
+  },
+  {
+    value: "Ontario",
+    label: "ON"
+  },
+  {
+    value: "Manitoba",
+    label: "MB"
+  },
+  {
+    value: "Saskatchewan",
+    label: "SK"
+  },
+  {
+    value: "Alberta",
+    label: "AB"
+  },
+  {
+    value: "British Columbia",
+    label: "BC"
+  },
+  {
+    value: "Yukon",
+    label: "YT"
+  },
+  {
+    value: "Northwest Territories",
+    label: "NT"
+  },
+  {
+    value: "Nunavut",
+    label: "NU"
+  },
+]
+
+const countries = [
+  {
+    value: "Canada",
+    label: "Canada"
+  },
+]
 
 export default function CheckoutAddress() {
   const [firstName, setFirstName] = useState("");
@@ -57,7 +120,7 @@ export default function CheckoutAddress() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+      <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <React.Fragment>
             <Stepper activeStep={0} sx={{ pt: 3, pb: 5 }}>
@@ -142,6 +205,7 @@ export default function CheckoutAddress() {
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  select
                   id="state"
                   name="state"
                   label="State/Province/Region"
@@ -149,7 +213,13 @@ export default function CheckoutAddress() {
                   variant="standard"
                   value={province}
                   onChange={(e) => setProvince(e.target.value)}
-                />
+                >
+                  {provinces.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -162,11 +232,13 @@ export default function CheckoutAddress() {
                   variant="standard"
                   value={postalCode}
                   onChange={(e) => setPostalCode(e.target.value)}
+                  inputProps={{ maxLength: 6, style: { textTransform: "uppercase" } }}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   required
+                  select
                   id="country"
                   name="country"
                   label="Country"
@@ -175,7 +247,13 @@ export default function CheckoutAddress() {
                   variant="standard"
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
-                />
+                >
+                  {countries.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
+                  ))}
+                </TextField>
               </Grid>
             </Grid>
             <React.Fragment>
