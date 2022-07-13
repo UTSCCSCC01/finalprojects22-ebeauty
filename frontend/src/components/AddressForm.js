@@ -18,8 +18,6 @@ const Button = () => {
       setTimeout (()=>msg1.className='feedback-message', 1000)
     }
   }
-
-  const e = document.querySelector('#email')
  
   const showAddr = async () => {
     await fetch("/api/customers/getDefaultAddress/", {
@@ -28,19 +26,15 @@ const Button = () => {
         "Content-Type": "application/json",
       },
     }).then(res => {
-      console.log(res);
       if (!res.ok) {
         alert('pls log in');
       }
-      return res;
-    }).then(res => {
-      console.log(res.body);
-        if(res.ok){
-          const address = res.addr;
-          e.innerHTML(address);
-        } 
-      }
-    )
+      return res.json();
+    }).then(data => {
+      console.log(data);
+      const e = document.querySelector('#email')
+      e.innerHTML = data.address;
+    })
   }
   return (
     <div className='address-form'>
