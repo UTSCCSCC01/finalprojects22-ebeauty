@@ -8,8 +8,8 @@ import {
 } from '../constants/providerConstant';
 import axios from 'axios';
 
-// Get all task providers
-export const listTaskProviders =
+// Get all providers
+export const listProviders =
   (keyword = '', pageNumber = '') =>
   async (dispatch) => {
     try {
@@ -29,8 +29,8 @@ export const listTaskProviders =
     }
   };
 
-// Get a task provider
-export const listTaskProviderDetails = (id) => async (dispatch) => {
+// Get a provider
+export const listProviderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PROVIDER_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/taskproviders/${id}`);

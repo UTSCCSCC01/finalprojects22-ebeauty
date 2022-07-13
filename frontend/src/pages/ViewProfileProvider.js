@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
-import { listTaskProviderDetails } from '../actions/providerAction';
+import { listProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
 
@@ -10,11 +10,11 @@ import { Link } from 'react-router-dom';
 const ViewProfileProvider = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const taskProviderDetails = useSelector((state) => state.taskProviderDetails);
-  const { taskProvider, loading, error } = taskProviderDetails;
+  const providerDetails = useSelector((state) => state.providerDetails);
+  const { taskProvider, loading, error } = providerDetails;
 
   useEffect(() => {
-    dispatch(listTaskProviderDetails(id));
+    dispatch(listProviderDetails(id));
   }, [dispatch, id]);
 
   // const taskProvider = {};

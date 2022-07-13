@@ -2,14 +2,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import {
-  taskProvidersReducer,
-  taskProviderDetailsReducer,
+  providersReducer,
+  providerDetailsReducer,
 } from './reducers/providerReducer';
 
 // combine all reducers into one root reducer
 const reducer = combineReducers({
-  taskProviders: taskProvidersReducer,
-  taskProviderDetails: taskProviderDetailsReducer,
+  providers: providersReducer,
+  providerDetails: providerDetailsReducer,
 });
 
 const initialState = {};

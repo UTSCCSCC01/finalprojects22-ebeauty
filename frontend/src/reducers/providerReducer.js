@@ -7,8 +7,8 @@ import {
   PROVIDER_DETAILS_FAILURE,
 } from '../constants/providerConstant';
 
-// Request reducer for all task providers
-export const taskProvidersReducer = (state = { taskProviders: [] }, action) => {
+// Request reducer for all providers
+export const providersReducer = (state = { taskProviders: [] }, action) => {
   switch (action.type) {
     case PROVIDERS_REQUEST:
       return { loading: true, taskProviders: [] };
@@ -26,8 +26,8 @@ export const taskProvidersReducer = (state = { taskProviders: [] }, action) => {
   }
 };
 
-// Request reducer for a signle task provider
-export const taskProviderDetailsReducer = (
+// Request reducer for a signle provider
+export const providerDetailsReducer = (
   state = { taskProvider: {} },
   action
 ) => {
