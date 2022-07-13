@@ -1,10 +1,10 @@
 import {
-  TASK_PROVIDERS_REQUEST,
-  TASK_PROVIDERS_SUCCESS,
-  TASK_PROVIDERS_FAILURE,
-  TASK_PROVIDER_DETAILS_REQUEST,
-  TASK_PROVIDER_DETAILS_SUCCESS,
-  TASK_PROVIDER_DETAILS_FAILURE,
+  PROVIDERS_REQUEST,
+  PROVIDERS_SUCCESS,
+  PROVIDERS_FAILURE,
+  PROVIDER_DETAILS_REQUEST,
+  PROVIDER_DETAILS_SUCCESS,
+  PROVIDER_DETAILS_FAILURE,
 } from '../constants/providerConstant';
 import axios from 'axios';
 
@@ -13,14 +13,14 @@ export const listTaskProviders =
   (keyword = '', pageNumber = '') =>
   async (dispatch) => {
     try {
-      dispatch({ type: TASK_PROVIDERS_REQUEST });
+      dispatch({ type: PROVIDERS_REQUEST });
       const { data } = await axios.get(
         `/api/taskproviders?keyword=${keyword}&pageNumber=${pageNumber}`
       );
-      dispatch({ type: TASK_PROVIDERS_SUCCESS, payload: data });
+      dispatch({ type: PROVIDERS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
-        type: TASK_PROVIDERS_FAILURE,
+        type: PROVIDERS_FAILURE,
         payload:
           error.response && error.response.data.message
             ? error.response.data.message
@@ -32,12 +32,12 @@ export const listTaskProviders =
 // Get a task provider
 export const listTaskProviderDetails = (id) => async (dispatch) => {
   try {
-    dispatch({ type: TASK_PROVIDER_DETAILS_REQUEST });
+    dispatch({ type: PROVIDER_DETAILS_REQUEST });
     const { data } = await axios.get(`/api/taskproviders/${id}`);
-    dispatch({ type: TASK_PROVIDER_DETAILS_SUCCESS, payload: data });
+    dispatch({ type: PROVIDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({
-      type: TASK_PROVIDER_DETAILS_FAILURE,
+      type: PROVIDER_DETAILS_FAILURE,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

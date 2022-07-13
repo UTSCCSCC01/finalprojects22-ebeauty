@@ -1,25 +1,25 @@
 import {
-  TASK_PROVIDERS_REQUEST,
-  TASK_PROVIDERS_SUCCESS,
-  TASK_PROVIDERS_FAILURE,
-  TASK_PROVIDER_DETAILS_REQUEST,
-  TASK_PROVIDER_DETAILS_SUCCESS,
-  TASK_PROVIDER_DETAILS_FAILURE,
+  PROVIDERS_REQUEST,
+  PROVIDERS_SUCCESS,
+  PROVIDERS_FAILURE,
+  PROVIDER_DETAILS_REQUEST,
+  PROVIDER_DETAILS_SUCCESS,
+  PROVIDER_DETAILS_FAILURE,
 } from '../constants/providerConstant';
 
 // Request reducer for all task providers
 export const taskProvidersReducer = (state = { taskProviders: [] }, action) => {
   switch (action.type) {
-    case TASK_PROVIDERS_REQUEST:
+    case PROVIDERS_REQUEST:
       return { loading: true, taskProviders: [] };
-    case TASK_PROVIDERS_SUCCESS:
+    case PROVIDERS_SUCCESS:
       return {
         loading: false,
         taskProviders: action.payload.taskProviders,
         pages: action.payload.pages,
         page: action.payload.page,
       };
-    case TASK_PROVIDERS_FAILURE:
+    case PROVIDERS_FAILURE:
       return { loading: false, error: action.payload };
     default:
       return state;
@@ -32,11 +32,11 @@ export const taskProviderDetailsReducer = (
   action
 ) => {
   switch (action.type) {
-    case TASK_PROVIDER_DETAILS_REQUEST:
+    case PROVIDER_DETAILS_REQUEST:
       return { loading: true, ...state };
-    case TASK_PROVIDER_DETAILS_SUCCESS:
+    case PROVIDER_DETAILS_SUCCESS:
       return { loading: false, taskProvider: action.payload };
-    case TASK_PROVIDER_DETAILS_FAILURE:
+    case PROVIDER_DETAILS_FAILURE:
       return { loading: false, error: action.payload };
     default:
       return state;

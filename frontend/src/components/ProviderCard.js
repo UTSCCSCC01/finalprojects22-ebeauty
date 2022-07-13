@@ -7,7 +7,7 @@ const ProviderCard = ({ taskProvider }) => {
       <Link
         key={taskProvider._id}
         id="provider-card"
-        to={`/taskprovider/${taskProvider._id}`}>
+        to={`/provider/${taskProvider._id}`}>
         <div className="search-result">
           <img
             src={require('../images/barber.jpg')}
@@ -22,7 +22,7 @@ const ProviderCard = ({ taskProvider }) => {
               <span>{taskProvider.rating}</span>
             </div>
           </div>
-          <div id="view-profile" to={`/taskprovider/${taskProvider._id}`}>
+          <div id="view-profile" to={`/provider/${taskProvider._id}`}>
             View Profile
           </div>
         </div>
