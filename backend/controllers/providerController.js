@@ -128,12 +128,12 @@ const getProviders = asyncHandler(async (req, res) => {
       }
     : {};
 
-  // Get number of Providers that match the keyword
+  // Get number of providers that match the keyword
   const count = await Provider.countDocuments({ ...keyword });
-  const Providers = await Provider.find({ ...keyword })
+  const providers = await Provider.find({ ...keyword })
     .limit(pageSize)
     .skip((page - 1) * pageSize);
-  res.json({ Providers, page, pages: Math.ceil(count / pageSize) });
+  res.json({ providers, page, pages: Math.ceil(count / pageSize) });
 });
 
 //@desc    Get a provider
