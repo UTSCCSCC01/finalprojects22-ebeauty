@@ -6,21 +6,27 @@ import { listProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
 
+function roundHalf(num1, num2) {
+  if(num2==0)
+    return 0;
+  return Math.round((num1/num2)*2)/2;
+}
+
 
 const ViewProfileProvider = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const providerDetails = useSelector((state) => state.providerDetails);
-  const { taskProvider, loading, error } = providerDetails;
+  const { provider, loading, error } = providerDetails;
 
   useEffect(() => {
     dispatch(listProviderDetails(id));
   }, [dispatch, id]);
 
-  // const taskProvider = {};
+  // const provider = {};
   const rating = {
     size: 30,
-    value: taskProvider.rating,
+    value: roundHalf(provider.totalRating, provider.ratingPopulation),
     edit: false
   };
 
@@ -40,7 +46,7 @@ const ViewProfileProvider = () => {
           <CardBody>
             <div>
               <h1>
-                {taskProvider.name}
+                {provider.name}
               </h1>
               <p>
                 <img
@@ -49,18 +55,18 @@ const ViewProfileProvider = () => {
                 />
               </p>
 
-              <p className="displayProfileLine">{taskProvider.name}</p>
+              <p className="displayProfileLine">{provider.name}</p>
               <div>
                 {/* should pass service info base on _id in db  */}
-                <p className="displayProfileLine">{taskProvider.name}</p>
+                <p className="displayProfileLine">{provider.name}</p>
                 <p className="displayProfileLine">Service provided two</p>
               </div>
               <br></br>
-              <p className="displayProfileLine">{taskProvider.title}</p>
-              <p className="displayProfileLine">{taskProvider.address}</p>
-              <p className="displayProfileLine">{taskProvider.city}</p>
-              <p className="displayProfileLine">{taskProvider.state}</p>
-              <p className="displayProfileLine">{taskProvider.country}</p>
+              <p className="displayProfileLine">{provider.title}</p>
+              <p className="displayProfileLine">{provider.address}</p>
+              <p className="displayProfileLine">{provider.city}</p>
+              <p className="displayProfileLine">{provider.state}</p>
+              <p className="displayProfileLine">{provider.country}</p>
             </div>
             <button className="appointmentButton">Book an appointment</button>
           </CardBody>
@@ -68,7 +74,7 @@ const ViewProfileProvider = () => {
       </div>
       
       <div className="displayProfileRating">
-        <h9>Current Rating: {taskProvider.rating}</h9>
+        <h9>Current Rating: {roundHalf(provider.totalRating, provider.ratingPopulation)}</h9>
         <ReactStars {...rating}/>
         <div>
           <Link to="/reviews" >

@@ -136,14 +136,14 @@ const getProviders = asyncHandler(async (req, res) => {
   res.json({ providers, page, pages: Math.ceil(count / pageSize) });
 });
 
-//@desc    Get a provider
-//@route   GET /api/providers/:id
+//@desc    Get a task provider
+//@route   GET /api/taskproviders/:id
 //@access  Public
 const getProviderById = asyncHandler(async (req, res) => {
-  const Provider = await Provider.findById(req.params.id);
+  const provider = await Provider.findById(req.params.id);
   // check if Provider exist
-  if (Provider) {
-    res.json(Provider);
+  if (provider) {
+    res.json(provider);
   } else {
     res.status(404).json({ msg: 'Provider not found' });
     throw new Error('Provider not found');

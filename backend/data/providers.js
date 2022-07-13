@@ -29,7 +29,7 @@ const providers = [
     imageFilename: "file1.jpg",
     individual: "no",
     totalRating: 50, 
-    ratingPopulation: 5,
+    ratingPopulation: 10,
     isAdmin: false,
   },
   {

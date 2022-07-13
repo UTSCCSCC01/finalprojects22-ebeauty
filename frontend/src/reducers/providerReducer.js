@@ -28,14 +28,14 @@ export const providersReducer = (state = { providers: [] }, action) => {
 
 // Request reducer for a signle provider
 export const providerDetailsReducer = (
-  state = { taskProvider: {} },
+  state = { provider: {} },
   action
 ) => {
   switch (action.type) {
     case PROVIDER_DETAILS_REQUEST:
       return { loading: true, ...state };
     case PROVIDER_DETAILS_SUCCESS:
-      return { loading: false, taskProvider: action.payload };
+      return { loading: false, provider: action.payload };
     case PROVIDER_DETAILS_FAILURE:
       return { loading: false, error: action.payload };
     default:

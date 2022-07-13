@@ -33,6 +33,7 @@ export const listProviders =
 export const listProviderDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: PROVIDER_DETAILS_REQUEST });
+    console.log(`/api/providers/${id}`)
     const { data } = await axios.get(`/api/providers/${id}`);
     dispatch({ type: PROVIDER_DETAILS_SUCCESS, payload: data });
   } catch (error) {
