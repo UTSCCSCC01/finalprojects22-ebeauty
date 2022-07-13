@@ -137,7 +137,7 @@ const getProviders = asyncHandler(async (req, res) => {
 });
 
 //@desc    Get a task provider
-//@route   GET /api/taskproviders/:id
+//@route   GET /api/providers/:id
 //@access  Public
 const getProviderById = asyncHandler(async (req, res) => {
   const provider = await Provider.findById(req.params.id);
