@@ -16,7 +16,6 @@ import ProfileProvider from "./pages/ProfileProvider";
 import ViewProfileProvider from "./pages/ViewProfileProvider";
 import AddressPage from "./pages/AddressPage";
 import Review from "./pages/ReviewPage";
-// import CheckoutMain from "./pages/CheckoutMain";
 //react-notifications-component
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
