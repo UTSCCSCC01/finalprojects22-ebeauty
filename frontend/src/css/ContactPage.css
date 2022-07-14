@@ -1,0 +1,24 @@
+input, select, textarea{
+    color: black
+}
+
+textarea {
+    width: 600px;
+    height: 150px;
+    resize: vertical;
+}
+
+.d-flex {
+    padding-left: 30px;
+}
+
+.mb-5 {
+    height: auto;
+    background-color: #e27b7b;
+    padding: 20px;
+    padding-bottom: 50px;
+}
+
+h2 {
+    text-decoration: underline;
+  }
