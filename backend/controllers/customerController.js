@@ -136,9 +136,7 @@ const getDefaultAddress = async (req, res) => {
         console.log(err.message);
       }
       else{
-        console.log(decodedToken);
         let customer = await Customer.findById(decodedToken.id);
-        console.log(customer.defaultAddress);
         res.json({
           address: customer.defaultAddress
         })
@@ -185,18 +183,29 @@ const updateCustomer = async (req, res) => {
 };
 
 // changes the default address of a customer to addr
-const updateDefaultAddress = async (req, res, addr) => {
-  const { id } = req.params.customerId;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No such customer exists" });
+const updateDefaultAddress = async (req, res) => {
+  const token = req.cookies.jwt;
+  if (token){
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+      if (err){
+        console.log(err.message);
+      }
+      else{
+        console.log(decodedToken);
+        let customer = await Customer.findOneAndUpdate({_id: decodedToken.id}, {defaultAddress: req.body.address});
+        console.log(customer.defaultAddress);
+        res.json({
+          address: customer.defaultAddress
+        })
+      }
+    })
   }
-
-  const customer = await Customer.findOneAndUpdate({ _id: id }, {defaultAddress: addr});
-
-  if (!customer) return res.status(400).json({ error: "No such customer exists" });
-
-  res.status(200).json(customer);
+  else{
+    res.status(400);
+    throw new Error(
+      "Have not logged in"
+    );
+  }
 };
 
 export {

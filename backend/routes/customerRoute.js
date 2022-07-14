@@ -24,12 +24,8 @@ router.post("/login-customer", loginCustomer);
 router.get("/", getCustomers);
 
 router.get("/getDefaultAddress", getDefaultAddress);
-// router.get("/getAllAddress", getAllAddress);
 
-// router.patch("/deleteAddress1", deleteAddress1);
-// router.patch("/deleteAddress2", deleteAddress2);
-
-// router.patch("/updateDefaultAddress", updateDefaultAddress);
+router.patch("/updateDefaultAddress", updateDefaultAddress);
 // router.patch("/updateAddress1", updateAddress1);
 // router.patch("/updateAddress2", updateAddress2);
 

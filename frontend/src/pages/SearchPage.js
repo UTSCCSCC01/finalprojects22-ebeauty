@@ -65,7 +65,7 @@ const SearchPage = () => {
       <div className="search-page">
         <SearchBox />
         <div className='address-form'>
-          <h2>Current Location: {addr}</h2>
+          <h2>{addr}</h2>
           <button onClick={redirect_to_addresspage} className="btn">
             Not where you are?
           </button>
