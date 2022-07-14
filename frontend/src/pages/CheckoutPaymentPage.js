@@ -28,7 +28,7 @@ const theme = createTheme({
   },
 });
 
-export default function CheckoutPayment() {
+export default function CheckoutPaymentPage() {
   const [nameOnCard, setNameOnCard] = useState("");
   const [cardNumber, setCardNumber] = useState("");
   const [expiryMonth, setExpiryMonth] = useState("");

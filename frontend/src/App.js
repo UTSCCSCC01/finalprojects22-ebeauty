@@ -16,12 +16,13 @@ import ProfileProvider from "./pages/ProfileProvider";
 import ViewProfileProvider from "./pages/ViewProfileProvider";
 import AddressPage from "./pages/AddressPage";
 import Review from "./pages/ReviewPage";
+import CheckoutAddressPage from "./pages/CheckoutAddressPage";
+import CheckoutPaymentPage from "./pages/CheckoutPaymentPage";
+import CheckoutReviewPage from "./pages/CheckoutReviewPage";
 //react-notifications-component
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
-import CheckoutAddress from "./pages/CheckoutAddress";
-import CheckoutPayment from "./pages/CheckoutPayment";
-import CheckoutReview from "./pages/CheckoutReview";
+
 
 function App() {
   return (
@@ -48,9 +49,9 @@ function App() {
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route path="/taskprovider/:id" element={<ViewProfileProvider />} />
               <Route path="/addresspage" element={<AddressPage />} />
-              <Route path="/checkout-address" element={<CheckoutAddress />} />
-              <Route path="/checkout-payment" element={<CheckoutPayment />} />
-              <Route path="/checkout-review" element={<CheckoutReview />} />
+              <Route path="/checkout-address" element={<CheckoutAddressPage />} />
+              <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
+              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
             </Routes>
             <Footer />
           </div>

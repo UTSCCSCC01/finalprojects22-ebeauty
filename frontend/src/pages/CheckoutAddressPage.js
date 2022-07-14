@@ -80,7 +80,7 @@ const countries = [
   },
 ]
 
-export default function CheckoutAddress() {
+export default function CheckoutAddressPage() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [addressOne, setAddressOne] = useState("");

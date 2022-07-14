@@ -46,7 +46,7 @@ const theme = createTheme({
   },
 });
 
-export default function CheckoutReview() {
+export default function CheckoutReviewPage() {
   const location = useLocation();
   const data = location.state.data;
   const addresses = [
