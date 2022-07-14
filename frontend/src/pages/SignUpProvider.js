@@ -59,7 +59,7 @@ const SignUpProvider = () => {
   }
 
   return (
-    <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
+    <div className="divCenter">
       <Card  className="Card">
           <Form onSubmit={signUpForm.bind(this)} className={"Form"}>
             <h1 className={"header"}>Create Account</h1>

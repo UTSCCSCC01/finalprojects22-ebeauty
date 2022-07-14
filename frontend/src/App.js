@@ -19,6 +19,7 @@ import Review from "./pages/ReviewPage";
 import CheckoutAddressPage from "./pages/CheckoutAddressPage";
 import CheckoutPaymentPage from "./pages/CheckoutPaymentPage";
 import CheckoutReviewPage from "./pages/CheckoutReviewPage";
+import ProviderSchedule from './pages/ProviderSchedule';
 //react-notifications-component
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -55,6 +56,7 @@ function App() {
               <Route path="/checkout-address" element={<CheckoutAddressPage />} />
               <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
               <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+              <Route path="/providerschedule" element={<ProviderSchedule />} />
             </Routes>
             <Footer />
           </div>
