@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 import '../css/SignUp.css'
 
 const SignUp = () => {
@@ -102,6 +103,7 @@ const SignUp = () => {
                           value={password}
                           className={"form_containersignup input"}
                       />
+                      <Link to="/findjob" className='toFindjob'>want to sign up as provider?</Link>
                       <button type="submit" className={"green_btnsignup"} onClick={handleSubmit}>
                           Sign Up
                       </button>

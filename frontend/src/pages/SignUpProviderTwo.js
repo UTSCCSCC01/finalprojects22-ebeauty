@@ -1,4 +1,4 @@
-import { useEffect, useState  }  from "react";
+import { useState  }  from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 // reactstrap components
 import {
@@ -9,8 +9,6 @@ import {
 import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
-import axios from 'axios';
-import alerting from "../components/Alerting";
 
 const SignUpProviderTwo = () => {
   // read passed in data
@@ -40,7 +38,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Hairdress"
                 options={['Hairdress', 'Barber', 'Clean', 'Landscape', 'Massage', 'Makeup', 'Eyebrow Eyelash Tech']}
                 value="Hairdress"
-                onChange={(option) => handleChange(option, "Title")}
+                onChange={(option) => handleChange(option, "title")}
               />
             </div>
             {/*
@@ -53,7 +51,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Yes"
                 options={['Yes', 'No']}
                 value="Yes"
-                onChange={(option) => handleChange(option, "Individual")}
+                onChange={(option) => handleChange(option, "individual")}
               />
             </div>
             <div className="center">

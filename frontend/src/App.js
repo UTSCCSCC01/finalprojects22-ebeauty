@@ -47,7 +47,10 @@ function App() {
               <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
-              <Route path="/taskprovider/:id" element={<ViewProfileProvider />} />
+              <Route
+                path="/provider/:id"
+                element={<ViewProfileProvider />}
+              />
               <Route path="/addresspage" element={<AddressPage />} />
               <Route path="/checkout-address" element={<CheckoutAddressPage />} />
               <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />

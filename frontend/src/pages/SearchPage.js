@@ -4,7 +4,7 @@ import '../css/index.css';
 import '../css/SearchPage.css';
 import React, { useEffect, useState } from 'react';
 import ServiceDropdown from '../components/ServiceDropdown';
-import { listTaskProviders } from '../actions/taskproviderAction';
+import { listProviders } from '../actions/providerAction';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import ProviderCard from '../components/ProviderCard';
@@ -25,13 +25,13 @@ const SearchPage = () => {
   const { pageNumber } = useParams();
   console.log(pageNumber);
   console.log (keyword);
-  // use dispatch to call the listTaskProviders action
+  // use dispatch to call the listProviders action
   const dispatch = useDispatch();
-  const taskProvidersList = useSelector((state) => state.taskProviders);
-  const { loading, error, taskProviders, pages, page } = taskProvidersList;
+  const providersList = useSelector((state) => state.providers);
+  const { loading, error, providers, pages, page } = providersList;
   console.log(pages);
   useEffect(() => {
-    dispatch(listTaskProviders(keyword, pageNumber));
+    dispatch(listProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
   const [location, setLocation] = useState("");
@@ -96,11 +96,11 @@ const SearchPage = () => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div>
-              {taskProviders.map((taskProvider) => {
+              {providers.map((provider) => {
                 return (
                   <ProviderCard
-                    taskProvider={taskProvider}
-                    key={taskProvider._id}
+                    provider={provider}
+                    key={provider._id}
                   />
                 );
               })}
