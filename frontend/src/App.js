@@ -16,6 +16,7 @@ import ProfileProvider from './pages/ProfileProvider';
 import ViewProfileProvider from './pages/ViewProfileProvider';
 import AddressPage from './pages/AddressPage';
 import Review from './pages/ReviewPage';
+import ProviderSchedule from './pages/ProviderSchedule';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
@@ -51,6 +52,7 @@ function App() {
                 element={<ViewProfileProvider />}
               />
               <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/providerschedule" element={<ProviderSchedule />} />
             </Routes>
             <Footer />
           </div>

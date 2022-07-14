@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     const fields = { email, password };    
     if(!checked){
-
+      // customer login
       await fetch("/api/customers/login-customer/", {
         method: "POST",
         body: JSON.stringify(fields),
@@ -29,8 +29,6 @@ const Login = () => {
         },
       }).then((res) => {
         if (!res.ok) {
-          setEmail("");
-          setPassword("");
           alert(`LOGIN FAILED with ${email}`);
         } else {
           setError(null);
@@ -40,7 +38,24 @@ const Login = () => {
         }
       })  
     } else {
-      console.log("provider login here");
+      // provider login
+      await fetch("/api/providers/login", {
+        method: "POST",
+        body: JSON.stringify(fields),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        if(res._id){
+          setEmail("");
+          setPassword("");
+          alert(`LOGIN SUCCESS with ${email}`);
+        } else {
+          alert(res.message)
+        }
+      })
     }
   };
 
