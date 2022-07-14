@@ -9787,13 +9787,6 @@
   dependencies:
     "react" "^15.6.1"
 
-"react-final-form@^6.5.9":
-  "integrity" "sha512-x3XYvozolECp3nIjly+4QqxdjSSWfcnpGEL5K8OBT6xmGrq5kBqbA6+/tOqoom9NwqIPPbxPNsOViFlbKgowbA=="
-  "resolved" "https://registry.npmjs.org/react-final-form/-/react-final-form-6.5.9.tgz"
-  "version" "6.5.9"
-  dependencies:
-    "@babel/runtime" "^7.15.4"
-
 "react-icons@^4.4.0":
   "integrity" "sha512-fSbvHeVYo/B5/L4VhB7sBA1i2tS8MkT0Hb9t2H1AVPkwGfVHLJCqyr2Py9dKMxsyM63Eng1GkdZfbWj+Fmv8Rg=="
   "resolved" "https://registry.npmjs.org/react-icons/-/react-icons-4.4.0.tgz"
