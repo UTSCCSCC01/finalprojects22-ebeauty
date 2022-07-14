@@ -37,11 +37,39 @@ const SearchPage = () => {
   const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [service, setService] = useState("");
+  const [addr,setAddr]=useState("");
+
+  useEffect(() => {
+    async function fetchAddr(){
+      console.log("called")
+      const e = document.querySelector('#email')
+      await fetch("/api/customers/getDefaultAddress/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then(res => {
+        if(!res.ok){
+          setAddr("Please log in to see your address")
+        }
+        return res.json()
+      }).then(data => {
+        setAddr(data.address)
+      })
+    }
+    fetchAddr()
+  })
 
   return (
     <>
       <div className="search-page">
         <SearchBox />
+        <div className='address-form'>
+          <h2>Current Location: {addr}</h2>
+          <button onClick={redirect_to_addresspage} className="btn">
+            Not where you are?
+          </button>
+        </div>
         <div className="filter-div">
           <div className="filter-interior-div">
             <h2>Service Type</h2>
@@ -53,22 +81,6 @@ const SearchPage = () => {
                 }}
                 value={service}
               />
-            </div>
-          </div>
-          <div className="filter-interior-div">
-            <h2>Location</h2>
-            <div className="location-bar">
-              <p 
-                className="location-bar-text"
-                name="location"
-                onChange={(e) => {
-                  setLocation(e.target.value);
-                }}
-                value={location}
-              >Toronto, Ontario</p>
-              <button onClick={redirect_to_addresspage} className="location-text">
-                Location
-              </button>
             </div>
           </div>
           <div className="filter-interior-div">
