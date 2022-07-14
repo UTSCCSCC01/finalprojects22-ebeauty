@@ -7,14 +7,8 @@ import {
   loginCustomer,
 
   //address operations:
-  getAllAddress,
   getDefaultAddress,
-  deleteAddress1,
-  deleteAddress2,
   updateDefaultAddress,
-  updateAddress1,
-  updateAddress2,
-
 } from "../controllers/customerController.js";
 import express from "express";
 import cookieParser from "cookie-parser";

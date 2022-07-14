@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import "../css/index.css";
 
 const Button = () => {
@@ -18,28 +18,9 @@ const Button = () => {
       setTimeout (()=>msg1.className='feedback-message', 1000)
     }
   }
- 
-  const showAddr = async () => {
-    await fetch("/api/customers/getDefaultAddress/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then(res => {
-      // if (!res.ok) {
-      //   alert('pls log in');
-      // }
-      return res.json();
-    }).then(data => {
-      // console.log(data);
-      const e = document.querySelector('#email')
-      e.innerHTML = data.address;
-    })
-  }
+  
   return (
-    <div className='address-form'>
-      <li id = 'email'>123</li>
-      <button onClick={showAddr} className='btn' id='show-btn'>show</button>
+    <div className='address-form' >
       <h1 style={{color:'#333'}}> Add a New Address </h1>
       <div className='form-container'>
         <div className='feedback-message' id='m1'>reserved line</div>

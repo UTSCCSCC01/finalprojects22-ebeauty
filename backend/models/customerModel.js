@@ -28,18 +28,6 @@ const customerSchema = mongoose.Schema(
       require: [true, "please add an address"],
       default: "",
     },
-
-    address1: {
-      type: String,
-      default: "",
-
-    },
-
-    address2: {
-      type: String,
-      default: "",
-
-    },
   },
   {
     timestamps: true,
