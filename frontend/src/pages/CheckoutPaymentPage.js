@@ -153,6 +153,8 @@ export default function CheckoutPaymentPage() {
   const handleNext = (e) => {
     e.preventDefault();
 
+    if (!nameOnCard || !cardNumber || !expiryMonth || !expiryYear || !cvv) return ;
+
     // input validation
     if (/\d/.test(nameOnCard) || isNaN(cardNumber)) return resetInput();
 

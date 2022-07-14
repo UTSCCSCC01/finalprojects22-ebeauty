@@ -94,7 +94,12 @@ export default function CheckoutAddressPage() {
 
   const handleNext = (e) => {
     e.preventDefault();
-    const addressCombined = addressOne;
+
+    if (!firstName || !lastName || !addressOne || !city || !province || !postalCode || !country) {
+      return;
+    }
+
+    let addressCombined = addressOne;
     if (addressTwo !== "") {
       addressCombined = addressCombined + " " + addressTwo;
     }
@@ -103,6 +108,8 @@ export default function CheckoutAddressPage() {
 
     const order = { firstName, lastName, address };
 
+    // use navigate hook to direct users to next page with data stored as state
+    // navigate allows us to send data from one component to another component if they are serializable
     navigate("/checkout-payment", {state: {data: order}});
 
   };

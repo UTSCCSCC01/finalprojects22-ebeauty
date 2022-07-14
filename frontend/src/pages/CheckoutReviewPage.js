@@ -25,15 +25,7 @@ const products = [
   },
 ];
 
-const handleSubmitOrder = () => {
-  // await fetch("/api/orders/", {
-  //   method: "POST",
-  //   body: JSON.stringify(order),
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // }).then((res) => {});
-};
+
 
 const theme = createTheme({
   palette: {
@@ -49,11 +41,25 @@ const theme = createTheme({
 export default function CheckoutReviewPage() {
   const location = useLocation();
   const data = location.state.data;
+
+  const handleSubmitOrder = async () => {
+    console.log("submit button clicked");
+    await fetch("/api/orders/save-order", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {return res.json()});
+  };
+
+
   const addresses = [
     data.address.addressOne,
-    data.address.addressOne,
+    data.address.addressTwo,
     data.address.city,
     data.address.postalCode,
+    data.address.province,
     data.address.country,
   ];
   const payments = [
@@ -130,6 +136,7 @@ export default function CheckoutReviewPage() {
                   variant="contained"
                   sx={{ mt: 3, ml: 1 }}
                   style={{ color: "white" }}
+                  onClick={handleSubmitOrder}
                 >
                   Order
                 </Button>
