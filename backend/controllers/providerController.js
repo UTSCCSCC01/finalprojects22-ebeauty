@@ -116,7 +116,6 @@ const getProviders = asyncHandler(async (req, res) => {
   // Number of Providers that are showing per page
   const pageSize = 5;
   const page = Number(req.query.pageNumber) || 1;
-  console.log(page);
   const keyword = req.query.keyword
     ? {
         // search by name and title only
@@ -149,24 +148,6 @@ const getProviderById = asyncHandler(async (req, res) => {
     throw new Error('Provider not found');
   }
 });
-/*
-// @desc get provider data
-// @route GET /api/providers/me
-// @access Private
-const getProvider = asyncHandler(async (req, res) => {
-  try {
-    res.status(200).json({
-      id: req.provider.id,
-      name: req.provider.name,
-      email: req.provider.email,
-      imageFilename: provider.imageFilename
-    });
-  } catch (error) {
-    res.status(400);
-    throw new Error('get failed, provider not exists (could be deleted but still using the corresponding token)');
-  }
-});
-*/
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
