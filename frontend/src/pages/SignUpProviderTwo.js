@@ -27,10 +27,10 @@ const SignUpProviderTwo = () => {
   }
 
   return (
-    <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
+    <div className="divCenter">
       <Card  className="twoCard">
         <CardBody>
-          <Form onSubmit={signUpForm.bind(this)} className="twoForm" style={{display:'flex',justifyContent: 'center'}}>
+          <Form onSubmit={signUpForm.bind(this)} className="twoForm">
             <h3 >What kind of work are you planning to serve?</h3>
             {/*https://iambumblehead.github.io/react-dropdown-now/?path=/story/docs-introduction--page */}
             <div className="center">
