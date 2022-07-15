@@ -3,7 +3,7 @@ import Customer from "../models/customerModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
-import express from "express";
+
 
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
@@ -71,12 +71,14 @@ const loginCustomer = asyncHandler(async (req, res) => {
   const customer = await Customer.findOne({ email });
 
   if (customer && (await bcrypt.compare(password, customer.password))) {
+    const token = generateToken(customer._id);
+    res.cookie('jwt', token, {httpOnly: true, maxAge: 3*24*60*60*1000})
     res.json({
       _id: customer.id,
       firstName: customer.firstName,
       lastName: customer.lastName,
       email: customer.email,
-      token: generateToken(customer._id),
+      token: token,
     });
   } else {
     res.status(400);
@@ -125,6 +127,31 @@ const getSingleCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
+// get the default address of a customer
+const getDefaultAddress = async (req, res) => {
+  const token = req.cookies.jwt;
+  if (token){
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+      if (err){
+        console.log(err.message);
+      }
+      else{
+        let customer = await Customer.findById(decodedToken.id);
+        res.json({
+          address: customer.defaultAddress
+        })
+      }
+    })
+  }
+  else{
+    res.json({
+      address: "Please log in to see your address"
+    })
+    console.log("Have not logged in")
+  }
+
+};
+
 // delete a customer
 
 const deleteCustomer = async (req, res) => {
@@ -155,6 +182,30 @@ const updateCustomer = async (req, res) => {
   res.status(200).json(customer);
 };
 
+// changes the default address of a customer to addr
+const updateDefaultAddress = async (req, res) => {
+  const token = req.cookies.jwt;
+  if (token){
+    jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, decodedToken) => {
+      if (err){
+        console.log(err.message);
+      }
+      else{
+        console.log(decodedToken);
+        let customer = await Customer.findOneAndUpdate({_id: decodedToken.id}, {defaultAddress: req.body.address});
+        console.log(customer.defaultAddress);
+        res.json({
+          address: customer.defaultAddress,
+          logged_in: true
+        })
+      }
+    })
+  }
+  else{
+    console.log("Have not logged in")
+  }
+};
+
 export {
   registerCustomer,
   loginCustomer,
@@ -162,4 +213,7 @@ export {
   getCustomers,
   deleteCustomer,
   updateCustomer,
+
+  getDefaultAddress,
+  updateDefaultAddress,
 };

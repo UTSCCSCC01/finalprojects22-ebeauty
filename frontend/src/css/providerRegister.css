@@ -63,6 +63,13 @@ SignUpProviderTwo.js
 }
 
 /*SignUpProvider page*/
+.divCenter{
+  display: flex;
+  justify-content: center;
+  padding-top: 10pt;
+  padding-bottom: 30pt;
+}
+
 .Card {
   min-width: 300pt;
   width: 40%;
@@ -81,7 +88,7 @@ SignUpProviderTwo.js
 	color: black;
 }
 
-input {
+.In {
 	outline: none;
 	border: none;
 	width: 100%;
@@ -140,19 +147,22 @@ input::placeholder {
   background-color: #f3dede !important;
 }
 
-/**SignUpProviderTwo page, the Button is right above*/
+/**SignUpProviderTwo page*/
+/*the padding bottom is for image too long, want to cover uploadfile and finish buttons*/
 .twoCard {
   text-align: center;
   background-color: #f0f0f0;
   min-width: 200pt;
+  min-height: 300pt;
   width: 45%;
+  height:auto;
+  padding-bottom: 30pt;
 }
 .twoForm {
   font-size: 18pt;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding-bottom: 20pt;
 }
 .twoForm h3{
   margin-left: 10%;
@@ -166,4 +176,27 @@ input::placeholder {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.removeButton{
+  margin-bottom: 20pt;
+  height:24pt
+}
+
+/* this one is a bit special, I'm style label but not button*/
+.leftButton{
+  left: 10px;
+  position: absolute;
+  margin: 0;
+  padding: 0 5px;
+  height: 24pt;
+  cursor: pointer;
+  font-size: 18pt;
+}
+
+.rightButton{
+  right: 10px;
+  position: absolute;
+  margin: 0;
+  height: 24pt;
 }

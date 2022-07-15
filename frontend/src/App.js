@@ -16,7 +16,11 @@ import ProfileProvider from './pages/ProfileProvider';
 import ViewProfileProvider from './pages/ViewProfileProvider';
 import AddressPage from './pages/AddressPage';
 import Review from './pages/ReviewPage';
-import CheckoutMain from './pages/CheckoutMain';
+import ContactUs from './pages/ContactPage';
+import CheckoutAddressPage from './pages/CheckoutAddressPage';
+import CheckoutPaymentPage from './pages/CheckoutPaymentPage';
+import CheckoutReviewPage from './pages/CheckoutReviewPage';
+import ProviderSchedule from './pages/ProviderSchedule';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
@@ -33,7 +37,6 @@ function App() {
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
               <Route path="/reviews" element={<Review />} />
-              <Route path="/checkout" element={<CheckoutMain />} />
               <Route path="/searchpage" element={<SearchPage />} />
               <Route path="/page/:pageNumber" element={<SearchPage />} />
               <Route path="/searchpage/:keyword" element={<SearchPage />} />
@@ -54,11 +57,19 @@ function App() {
               />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
-              <Route
-                path="/taskprovider/:id"
-                element={<ViewProfileProvider />}
-              />
+              <Route path="/provider/:id" element={<ViewProfileProvider />} />
               <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route
+                path="/checkout-address"
+                element={<CheckoutAddressPage />}
+              />
+              <Route
+                path="/checkout-payment"
+                element={<CheckoutPaymentPage />}
+              />
+              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+              <Route path="/providerschedule" element={<ProviderSchedule />} />
             </Routes>
             <Footer />
           </div>
