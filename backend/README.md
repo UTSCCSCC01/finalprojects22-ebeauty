@@ -162,6 +162,8 @@ tmp
 tmp
 
 ## calendar api
+purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
+
 public GET /api/calendars
 
 get all calendars in DB
@@ -195,8 +197,31 @@ and with raw json body like:
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
 ## file (image) api
+this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
+- POST METHOD
+
+public POST /file/upload
+
+to do post of this inside postman, first have this paste for URL: 
+
+localhost:3001/file/upload
+
+and then select post method, go -> body -> form-data, under key field select file, and upload image inside value field, type "file" under the key field
 
 
+public GET /file/(filename)
+
+if you just did the post above, there's a URL returned with key named "data", just copy yhe url and paste it in browser, you would be able to view that. 
+
+
+example: 
+
+http://localhost:3001/file/1657922009407test1.jpg
+
+
+public DELETE /file/(filename)
+
+It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
 ## order api
 tmp
@@ -228,11 +253,6 @@ server.js
           -> seeder.js -> data -> (files that are having sample data, insert by using seeder.js)
 
           -> authMiddleware.js (authenticate provider)
-          -> errorMiddleware.js (handle error)
+          -> errorMiddleware.js (handle showing error)
           -> upload.js (use for create bucket of gridFS)
-
-
-
-          -> errorMiddleware.js to handle showing error
-
 </pre>
