@@ -10,8 +10,10 @@ import Message from '../components/Message';
 import ProviderCard from '../components/ProviderCard';
 import SearchBox from '../components/SearchBox';
 import Paginator from '../components/Paginator';
-import {DateTimePickerComponent} from '@syncfusion/ej2-react-calendars';
-import 'react-datepicker/dist/react-datepicker.css'
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider'
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker'
+import { TextField } from '@mui/material'
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
@@ -73,16 +75,17 @@ const SearchPage = () => {
           </div>
           <div className="filter-interior-div">
             <h2>Time and Date</h2>
-            <div className="filter-interior-time-div">
-              <DateTimePickerComponent 
-                placeholder="Choose a date and time"
-                name="date"
-                onChange={(e) => {
-                  setDate(e.target.value);
-                }}
-                value={date}
-              ></DateTimePickerComponent>
-            </div>
+              <div className="filter-interior-time-div">
+                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                  <DatePicker
+                    value={date}
+                    onChange={(newValue) => {
+                      setDate(newValue);
+                    }}
+                    renderInput={(params) => <TextField size="small" {...params} />}
+                  />
+                </LocalizationProvider>
+              </div>
           </div>
         </div>
 

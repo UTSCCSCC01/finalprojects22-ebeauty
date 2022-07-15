@@ -16,6 +16,7 @@ import ProfileProvider from "./pages/ProfileProvider";
 import ViewProfileProvider from "./pages/ViewProfileProvider";
 import AddressPage from "./pages/AddressPage";
 import Review from "./pages/ReviewPage";
+import ContactUs from './pages/ContactPage';
 import CheckoutAddressPage from "./pages/CheckoutAddressPage";
 import CheckoutPaymentPage from "./pages/CheckoutPaymentPage";
 import CheckoutReviewPage from "./pages/CheckoutReviewPage";
@@ -53,6 +54,7 @@ function App() {
                 element={<ViewProfileProvider />}
               />
               <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/contactus" element={<ContactUs />} />
               <Route path="/checkout-address" element={<CheckoutAddressPage />} />
               <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
               <Route path="/checkout-review" element={<CheckoutReviewPage />} />
