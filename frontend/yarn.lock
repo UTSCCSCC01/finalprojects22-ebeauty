@@ -8107,6 +8107,14 @@
   dependencies:
     "prop-types" "^15.6.1"
 
+"react-paypal-button-v2@^2.6.3":
+  "integrity" "sha512-Kt0QxWjZn+RnIbbFPHDfH8iHwMqe/jG5+SkKElEJ0Fg+CM9yeK37y8zQW97l5C9P9D1yPacW5YNAnuxmI9uS9w=="
+  "resolved" "https://registry.npmjs.org/react-paypal-button-v2/-/react-paypal-button-v2-2.6.3.tgz"
+  "version" "2.6.3"
+  dependencies:
+    "prop-types" "^15.7.2"
+    "rimraf" "^3.0.0"
+
 "react-popper@^2.2.4", "react-popper@^2.2.5":
   "integrity" "sha512-e1hj8lL3uM+sgSR4Lxzn5h1GxBlpa4CQz0XLF8kx4MDrDRWY0Ena4c97PUeSX9i5W3UAfDP0z0FXCTQkoXUl3Q=="
   "resolved" "https://registry.npmjs.org/react-popper/-/react-popper-2.3.0.tgz"

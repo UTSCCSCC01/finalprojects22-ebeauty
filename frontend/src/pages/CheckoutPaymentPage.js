@@ -1,7 +1,11 @@
-import React, { useState } from "react";
-import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import TextField from "@mui/material/TextField";
+import React, { useState, useEffect } from 'react';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import Checkbox from '@mui/material/Checkbox';
+import axios from 'axios';
+import { PayPalButton } from 'react-paypal-button-v2';
+import Loader from '../components/Loader';
 import {
   Box,
   Button,
@@ -14,26 +18,27 @@ import {
   StepLabel,
   Stepper,
   ThemeProvider,
-} from "@mui/material";
-import { useLocation, useNavigate } from "react-router-dom";
+} from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const theme = createTheme({
   palette: {
     primary: {
-      main: "#e27b7b",
+      main: '#e27b7b',
     },
     secondary: {
-      main: "#e27b7b",
+      main: '#e27b7b',
     },
   },
 });
 
 export default function CheckoutPaymentPage() {
-  const [nameOnCard, setNameOnCard] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiryMonth, setExpiryMonth] = useState("");
-  const [expiryYear, setExpiryYear] = useState("");
-  const [cvv, setCvv] = useState("");
+  const [nameOnCard, setNameOnCard] = useState('');
+  const [cardNumber, setCardNumber] = useState('');
+  const [expiryMonth, setExpiryMonth] = useState('');
+  const [expiryYear, setExpiryYear] = useState('');
+  const [cvv, setCvv] = useState('');
+  const [sdk, setSdk] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -41,134 +46,161 @@ export default function CheckoutPaymentPage() {
 
   const months = [
     {
-      value: "Jan",
-      label: "01",
+      value: 'Jan',
+      label: '01',
     },
     {
-      value: "Feb",
-      label: "02",
+      value: 'Feb',
+      label: '02',
     },
     {
-      value: "Mar",
-      label: "03",
+      value: 'Mar',
+      label: '03',
     },
     {
-      value: "Apr",
-      label: "04",
+      value: 'Apr',
+      label: '04',
     },
     {
-      value: "May",
-      label: "05",
+      value: 'May',
+      label: '05',
     },
     {
-      value: "Jun",
-      label: "06",
+      value: 'Jun',
+      label: '06',
     },
     {
-      value: "Jul",
-      label: "07",
+      value: 'Jul',
+      label: '07',
     },
     {
-      value: "Aug",
-      label: "08",
+      value: 'Aug',
+      label: '08',
     },
     {
-      value: "Sep",
-      label: "09",
+      value: 'Sep',
+      label: '09',
     },
     {
-      value: "Oct",
-      label: "10",
+      value: 'Oct',
+      label: '10',
     },
     {
-      value: "Nov",
-      label: "11",
+      value: 'Nov',
+      label: '11',
     },
     {
-      value: "Dec",
-      label: "12",
+      value: 'Dec',
+      label: '12',
     },
   ];
 
   const years = [
     {
-      value: "22",
-      label: "22",
+      value: '22',
+      label: '22',
     },
     {
-      value: "23",
-      label: "23",
+      value: '23',
+      label: '23',
     },
     {
-      value: "24",
-      label: "24",
+      value: '24',
+      label: '24',
     },
     {
-      value: "25",
-      label: "25",
+      value: '25',
+      label: '25',
     },
     {
-      value: "26",
-      label: "26",
+      value: '26',
+      label: '26',
     },
     {
-      value: "27",
-      label: "27",
+      value: '27',
+      label: '27',
     },
     {
-      value: "28",
-      label: "28",
+      value: '28',
+      label: '28',
     },
     {
-      value: "29",
-      label: "29",
+      value: '29',
+      label: '29',
     },
     {
-      value: "30",
-      label: "30",
-    }
+      value: '30',
+      label: '30',
+    },
   ];
 
+  // dynamically load the paypal script
+  useEffect(() => {
+    const addPaypalScript = async () => {
+      const { data: clientId } = await axios.get('/api/config/paypal');
+      console.log('clientId 👉️', clientId);
+      const script = document.createElement('script');
+      script.type = 'text/javascript';
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+
+      script.onload = () => {
+        setSdk(true);
+      };
+      document.body.appendChild(script);
+    };
+    addPaypalScript();
+  }, []);
+
+  const handlePaymentSuccess = (paymentResult) => {
+    // should go to the next page after payment
+    console.log('paymentResult 👉️', paymentResult);
+    navigate('/checkout-review', { state: { data: data } });
+  };
+
   const resetInput = () => {
-    setNameOnCard("");
-    setCardNumber("");
-    setCvv("");
-    setExpiryMonth("");
-    setExpiryYear("");
+    setNameOnCard('');
+    setCardNumber('');
+    setCvv('');
+    setExpiryMonth('');
+    setExpiryYear('');
   };
 
   function handleChange(e) {
     const onlyNums = e.target.value.replace(/[^0-9]/g, '');
     if (onlyNums.length < 16) {
-        this.setState({ value: onlyNums });
+      this.setState({ value: onlyNums });
     } else if (onlyNums.length === 16) {
-        const number = onlyNums.replace(
-            /(\d{4})(\d{4})(\d{4})(\d{4})/,
-            '$1 $2 $3 $4'
-        );
-        this.setState({ value: number });
+      const number = onlyNums.replace(
+        /(\d{4})(\d{4})(\d{4})(\d{4})/,
+        '$1 $2 $3 $4'
+      );
+      this.setState({ value: number });
     }
-}
+  }
 
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!nameOnCard || !cardNumber || !expiryMonth || !expiryYear || !cvv) return ;
+    if (!nameOnCard || !cardNumber || !expiryMonth || !expiryYear || !cvv)
+      return;
 
     // input validation
     if (/\d/.test(nameOnCard) || isNaN(cardNumber)) return resetInput();
 
-    const payment = {nameOnCard, cardNumber, expiryMonth, expiryYear, cvv}
+    const payment = { nameOnCard, cardNumber, expiryMonth, expiryYear, cvv };
 
     data.payment = payment;
 
-    navigate("/checkout-review", {state: {data: data}});
+    navigate('/checkout-review', { state: { data: data } });
   };
 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="md" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Paper
+          variant="outlined"
+          sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <React.Fragment>
             <Stepper activeStep={1} sx={{ pt: 3, pb: 5 }}>
               <Step>
@@ -221,8 +253,7 @@ export default function CheckoutPaymentPage() {
                   autoComplete="cc-exp-month"
                   variant="standard"
                   onChange={(e) => setExpiryMonth(e.target.value)}
-                  value={expiryMonth}
-                >
+                  value={expiryMonth}>
                   {months.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -240,8 +271,7 @@ export default function CheckoutPaymentPage() {
                   autoComplete="cc-exp-year"
                   variant="standard"
                   onChange={(e) => setExpiryYear(e.target.value)}
-                  value={expiryYear}
-                >
+                  value={expiryYear}>
                   {years.map((option) => (
                     <MenuItem key={option.value} value={option.value}>
                       {option.label}
@@ -271,17 +301,24 @@ export default function CheckoutPaymentPage() {
               </Grid> */}
             </Grid>
             <React.Fragment>
-              <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                 <Button
                   className="checkout"
                   variant="contained"
                   sx={{ mt: 3, ml: 1 }}
-                  style={{ color: "white" }}
-                  onClick={handleNext}
-                >
+                  style={{ color: 'white' }}
+                  onClick={handleNext}>
                   Next
                 </Button>
               </Box>
+              {/* PayPal button */}
+              {!sdk ? (
+                <Loader />
+              ) : (
+                <PayPalButton amount="999" onSuccess={handlePaymentSuccess}>
+                  {' '}
+                </PayPalButton>
+              )}
             </React.Fragment>
           </React.Fragment>
         </Paper>
