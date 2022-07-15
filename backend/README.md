@@ -46,7 +46,7 @@ Use seeder to import and destroy data to the database
     - node seeder -i // importData
     - node seeder -d // destroyData  
 
-
+<!---
 ## test apis
 
 an easy way to test the api is just to go to url:
@@ -55,12 +55,13 @@ i.e. localhost:3001/api/posts/
 a better way to do it is using postman, select get method, go to url: localhost:3001/api/posts/. or select post method, go to url: localhost:3001/api/providers
 
 but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
+-->
 
 ## Write your api description here
 
 ### /api/providers
 
-purpose: you can get all providers or get a specific provider by id
+-> purpose: you can get all providers or get a specific provider by id
 
 public GET /api/providers
 
@@ -76,12 +77,21 @@ localhost:3001/api/providers
 
 and with raw json body like:
 {
-"name": "1",
-"email": "2",
-"password": "3"
+    name: '1',
+    title: 'Nail Technician',
+    address: '2',
+    city: '3',
+    state: '4',
+    country: '5',
+    email: '6@gmail.com',
+    phone: "7",
+    password: "8",
+    imageFilename: "9.jpg",
+    individual: "no",
+    totalRating: 50, 
+    ratingPopulation: 10,
+    isAdmin: false,
 }
-
-(this one already exists so if you input same email it gives error)
 
 ### /api/providers/login
 purpose: sign in provider's account and gain a new token
@@ -92,9 +102,8 @@ localhost:3001/api/providers/login
 
 and with raw json body like:
 {
-"name": "1",
-"email": "2",
-"password": "3"
+    email: '6@gmail.com',
+    password: "8"
 }
 
 
@@ -145,6 +154,21 @@ the setup steps are same as delete post, it's just you have to provide the new d
 {
 "postText": "some content here"
 }
+
+## review api
+tmp
+
+## customer api
+tmp
+
+## calendar api
+tmp
+
+## file (image) api
+tmp
+
+## order api
+tmp
 
 
 ### allen's note: 
