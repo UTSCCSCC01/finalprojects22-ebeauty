@@ -162,10 +162,41 @@ tmp
 tmp
 
 ## calendar api
-tmp
+public GET /api/calendars
+
+get all calendars in DB
+
+public GET /api/calendars/calendar
+
+get all calendars of one provider
+
+public GET /api/calendars/timeslot
+
+get the detail of a timeslot
+
+- POST METHOD
+
+public POST /api/calendars
+
+the way we do calendar is we store the used time slot of provider
+open postman, select POST method, paste url below to postman's url:
+
+localhost:3001/api/calendars
+
+and with raw json body like:
+{
+    "providerId": "62c4somestuffc3", 
+    "startTime": "12:00" ,
+    "endTime": "14:00",
+    "title": "some reservation title", 
+    "rest": false
+}
+
+Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
 ## file (image) api
-tmp
+
+
 
 ## order api
 tmp

@@ -17,7 +17,7 @@ router.get("/", getCalenders);
 router.get("/calendar/", getCalendarById);
 
 // get the detail of one timeslot
-router.delete("/timeslot/", getTimeslot);
+router.get("/timeslot/", getTimeslot);
 
 
 export default router;
