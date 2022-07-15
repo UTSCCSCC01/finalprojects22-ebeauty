@@ -38,11 +38,11 @@ const SearchPage = () => {
 
   const [date, setDate] = useState("");
   const [service, setService] = useState("");
-  const [addr,setAddr]=useState("Please log in to see your address");
+  const [addr,setAddr] = useState("");
 
+  
   useEffect(() => {
     async function fetchAddr(){
-      const e = document.querySelector('#email')
       await fetch("/api/customers/getDefaultAddress/", {
         method: "GET",
         headers: {
@@ -55,7 +55,7 @@ const SearchPage = () => {
       })
     }
     fetchAddr()
-  })
+  }, [addr])
 
   return (
     <>

@@ -144,6 +144,9 @@ const getDefaultAddress = async (req, res) => {
     })
   }
   else{
+    res.json({
+      address: "Please log in to see your address"
+    })
     console.log("Have not logged in")
   }
 
