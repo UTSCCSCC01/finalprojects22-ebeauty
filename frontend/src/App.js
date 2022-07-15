@@ -16,15 +16,20 @@ import ProfileProvider from './pages/ProfileProvider';
 import ViewProfileProvider from './pages/ViewProfileProvider';
 import AddressPage from './pages/AddressPage';
 import Review from './pages/ReviewPage';
+import ContactUs from './pages/ContactPage';
+import CheckoutAddressPage from './pages/CheckoutAddressPage';
+import CheckoutPaymentPage from './pages/CheckoutPaymentPage';
+import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderSchedule from './pages/ProviderSchedule';
+import ReservationCustomer from './pages/ReservationCustomer';
 //react-notifications-component
-import { ReactNotifications } from 'react-notifications-component'
-import 'react-notifications-component/dist/theme.css'
+import { ReactNotifications } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
 
 function App() {
   return (
     <Router>
-      <div className="App" >
+      <div className="App">
         <ReactNotifications />
         <ScrollToTop>
           <div className="content">
@@ -43,15 +48,32 @@ function App() {
               <Route path="/findjob" element={<FindJob />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
-              <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
-              <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
+              <Route
+                path="/signupprovidertwo"
+                element={<SignUpProviderTwo />}
+              />
+              <Route
+                path="/signupproviderthree"
+                element={<SignUpProviderThree />}
+              />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
               <Route
-                path="/provider/:id"
-                element={<ViewProfileProvider />}
+                path="/reservationCustomer"
+                element={<ReservationCustomer />}
               />
+              <Route path="/provider/:id" element={<ViewProfileProvider />} />
               <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route
+                path="/checkout-address"
+                element={<CheckoutAddressPage />}
+              />
+              <Route
+                path="/checkout-payment"
+                element={<CheckoutPaymentPage />}
+              />
+              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
               <Route path="/providerschedule" element={<ProviderSchedule />} />
             </Routes>
             <Footer />
