@@ -25,7 +25,6 @@ const orderSchema = mongoose.Schema(
       city: {
         type: String,
         require: [true, "please add a email"],
-        unique: true,
       },
 
       province: {
@@ -48,12 +47,12 @@ const orderSchema = mongoose.Schema(
       nameOnCard: {
         type: String,
         require: [true, "please add a email"],
-        unique: true,
       },
 
       cardNumber: {
         type: String,
         require: [true, "please add a password"],
+        unique: true,
       },
 
       expiryMonth: {
