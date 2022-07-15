@@ -1,21 +1,23 @@
 import React, { useEffect } from 'react';
 import { Card, CardBody } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import { Grid } from '@mui/material';
 const ReservationCustomer = () => {   
     
   const isCompleted = false;
     return (
       <div
-        className="profile"
-        style={{
-          display: 'flex',
-          justifyContent: 'left',
-          width: '100%',
-          paddingTop: '10pt',
-          paddingBottom: '30pt',
-        }}>
+      style={{
+        display: 'flex',
+        justifyContent: 'left',
+        width: '100%',
+        paddingTop: '10pt',
+        paddingBottom: '30pt',
+      }}>
         <br></br>
-        <div>
+        <div
+        >
+          
           <Card className="reservationCardView">
             <CardBody>
               <div>
@@ -41,13 +43,18 @@ const ReservationCustomer = () => {
                 <p className="displayProfileLine">Completion Date</p>
                 <p className="displayProfileLine">Completion Time</p>
               </div>
-              <button className="appointmentButton">Cancel this apoointment</button>
-              <button className="appointmentButton">Reschedule this appointment</button>
-              <button className="appointmentButton">Rate the Service Provided</button>
             </CardBody>
           </Card>
+        
         </div>
-              
+        <br></br>
+        <div className="displayReservationButton">
+          <Card className="reservationButtonCard">
+          <button className="reservationButton">Cancel this apoointment</button>
+          <button className="reservationButton">Reschedule this appointment</button>
+          <button className="reservationButton">Rate the Service Provided</button>
+          </Card>
+        </div>      
         
         
       </div>
