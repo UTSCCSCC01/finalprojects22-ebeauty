@@ -19,8 +19,8 @@ const createTimeslot = asyncHandler(async (req, res) => {
     throw new Error('please have all fields filled');
   }
 
-  const calendarExist = await Calendar.findOne({ email });
-  if (calendarExist) {
+  const timeslot = await Calendar.findOne({providerId: req.body.providerId, startTime: req.body.startTime, endTime: req.body.endTime});
+  if (timeslot) {
     res.status(400).json({ msg: 'this time slot already exists' });
     throw new Error('this time slot already exists');
   }

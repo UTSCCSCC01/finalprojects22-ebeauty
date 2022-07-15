@@ -10,6 +10,7 @@ import providers from "./routes/providerRoute.js";
 import reviewRoutes from "./routes/reviewRoute.js";
 import customers from "./routes/customerRoute.js";
 import imageRoute from "./routes/imageRoute.js";
+import calendars from "./routes/calendarRoute.js";
 
 import cors from 'cors';
 import path from "path";
@@ -43,6 +44,7 @@ app.use('/api/posts', posts);
 app.use('/api/providers', providers);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/customers', customers);
+app.use('/api/calendars', calendars);
 app.use("/file", imageRoute);
 
 // handle the error here, make sure it is the last one!!!
