@@ -1,12 +1,17 @@
 /*
-this css file is responsible for pages: FindJob.js, SignUpProvider.js, and SignUpProviderTwo.js
-*/
-/*find job page*/
+this css file is responsible for pages: 
 
+FindJob.js
+SignUpProvider.js
+SignUpProviderTwo.js
+
+*/
+/*FindJob page*/
 .findjob {
   height: 80vh;
   width: 100%;
 }
+
 .findjob .findjobleft {
   font-size: 23pt;
   width: 30%;
@@ -35,15 +40,12 @@ this css file is responsible for pages: FindJob.js, SignUpProvider.js, and SignU
   background-color: #ca1c1c !important;
 }
 
-/*dropdown menu*/
-.rdn {
-  width: 80%;
-}
 /*images*/
 .images {
   height: auto;
   width: 100%;
 }
+
 /*Animation in findjob page*/
 .amination {
   position: absolute;
@@ -60,62 +62,108 @@ this css file is responsible for pages: FindJob.js, SignUpProvider.js, and SignU
   margin-top: 87px;
 }
 
-/*sign in sign up*/
+/*SignUpProvider page*/
 .Card {
-  text-align: center;
-  background-color: #f0f0f0;
-  height: 100%;
-  min-width: 200pt;
-  width: 45%;
+  min-width: 300pt;
+  width: 40%;
 }
 
 .Form {
-  font-size: 18pt;
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
   width: 100%;
-  height: 100%;
-  justify-content: center;
-  padding-bottom: 20pt;
 }
-.Form .Button {
+
+.header {
+	font-size: 40px;
+	margin-top: 0;
+	color: black;
+}
+
+input {
+	outline: none;
+	border: none;
+	width: 100%;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #edf5f3;
+  margin: 10px 0 0 0;
+	font-size: 18px;
+}
+
+input::placeholder {
+	color: grey;
+}
+
+/*half input field splitting*/
+.half-input{
+	width: calc(50% - 5px);
+}
+.leftside{
+  margin-right: 10px;
+}
+
+/*input password field, and control of eye icon*/
+.input-pass-container{
+  width: 100%;
+  height: 52px;
+	background-color: #edf5f3;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+.password{
+  width: calc(100% - 24pt);
+  margin: 0 ;
+}
+.toggleEye{  
+  padding: 10px 0 10px 0 ;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.Button {
   font-size: 18pt;
-  color: #c02121;
+  color: #e27b7b;
   background-color: white;
   border: none;
   border-radius: 6px;
   width: auto;
-  margin-top: 30pt;
-  height: 40pt;
+  margin-top: 10pt;
+  height: 30pt;
   box-shadow: 0 0 3px black;
+  cursor: pointer;
 }
 
-.Form .Button:hover {
+.Button:hover {
   color: #c02121;
   background-color: #f3dede !important;
 }
-.Form a {
-  margin-top: 20pt;
-  font-size: 16pt;
+
+/**SignUpProviderTwo page, the Button is right above*/
+.twoCard {
+  text-align: center;
+  background-color: #f0f0f0;
+  min-width: 200pt;
+  width: 45%;
+}
+.twoForm {
+  font-size: 18pt;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 20pt;
+}
+.twoForm h3{
+  margin-left: 10%;
+  margin-right: 10%;
+}
+/*dropdown menu*/
+.rdn {
+  width: 80%;
 }
 .center {
   width: 100%;
   display: flex;
   justify-content: center;
-}
-.sign {
-  border: none;
-  background-color: #e27b7b;
-  margin: 3pt;
-  width: 40%;
-  color: white;
-  border-radius: 3pt;
-  font-size: 20pt;
-  height: 26pt;
-}
-.sign::placeholder {
-  color: rgba(255, 255, 255, 0.6);
-}
-.line {
-  width: calc(80% + 9pt);
 }
