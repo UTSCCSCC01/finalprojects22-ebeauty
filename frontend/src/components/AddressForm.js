@@ -5,23 +5,6 @@ import { useState } from 'react';
 const Button = () => {
 
   const [address, setAddress] = useState("")
-
-  // const onClick = () => {
-  //   console.log('address entered')
-  //   const addr = document.querySelector('#address')
-  //   const msg1 = document.querySelector('#m1')
-  //   console.log(addr.value)
-  //   if (addr.value !== ''){
-  //     msg1.innerHTML = 'address added successfully!'
-  //     msg1.className='success-message'
-  //     setTimeout (()=>msg1.className='feedback-message', 1000)
-  //   }
-  //   else{
-  //     msg1.innerHTML ='Please enter field'
-  //     msg1.className='error-message'
-  //     setTimeout (()=>msg1.className='feedback-message', 1000)
-  //   }
-  // }
   
   const onClick = async (e) => {
     e.preventDefault()
@@ -39,7 +22,7 @@ const Button = () => {
           "Content-Type": "application/json",
         },
       }).then((res) => {
-        if (!res.ok) {
+        if (!res) {
           setAddress("")
           msg1.innerHTML ='Please log in'
           msg1.className='error-message'

@@ -34,14 +34,12 @@ const SearchPage = () => {
     dispatch(listProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
 
-  const [location, setLocation] = useState("");
   const [date, setDate] = useState("");
   const [service, setService] = useState("");
-  const [addr,setAddr]=useState("");
+  const [addr,setAddr]=useState("Please log in to see your address");
 
   useEffect(() => {
     async function fetchAddr(){
-      console.log("called")
       const e = document.querySelector('#email')
       await fetch("/api/customers/getDefaultAddress/", {
         method: "GET",
@@ -49,9 +47,6 @@ const SearchPage = () => {
           "Content-Type": "application/json",
         },
       }).then(res => {
-        if(!res.ok){
-          setAddr("Please log in to see your address")
-        }
         return res.json()
       }).then(data => {
         setAddr(data.address)

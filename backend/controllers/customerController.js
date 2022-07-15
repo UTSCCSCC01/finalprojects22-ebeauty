@@ -144,10 +144,7 @@ const getDefaultAddress = async (req, res) => {
     })
   }
   else{
-    res.status(400);
-    throw new Error(
-      "Have not logged in"
-    );
+    console.log("Have not logged in")
   }
 
 };
@@ -195,16 +192,14 @@ const updateDefaultAddress = async (req, res) => {
         let customer = await Customer.findOneAndUpdate({_id: decodedToken.id}, {defaultAddress: req.body.address});
         console.log(customer.defaultAddress);
         res.json({
-          address: customer.defaultAddress
+          address: customer.defaultAddress,
+          logged_in: true
         })
       }
     })
   }
   else{
-    res.status(400);
-    throw new Error(
-      "Have not logged in"
-    );
+    console.log("Have not logged in")
   }
 };
 
