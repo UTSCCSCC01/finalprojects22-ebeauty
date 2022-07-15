@@ -32,5 +32,5 @@ const calendarSchema = mongoose.Schema({
   timestamps: true,
 });
 
-const Calendar = mongoose.model("Service", calendarSchema);
+const Calendar = mongoose.model("Calendar", calendarSchema);
 export default Calendar;

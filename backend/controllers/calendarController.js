@@ -2,6 +2,8 @@ import asyncHandler from "express-async-handler";
 import express from "express";
 import Calendar from "../models/calendarModel.js";
 
+
+// bug: should check start and end time overlap, also have add a day/weekday field in schema
 // @desc post new calendar
 // @route POST /api/calendars
 // @access Public
@@ -56,7 +58,8 @@ const getCalenders = asyncHandler(async (req, res) => {
 //@route   GET /api/calenders/calendar/:id
 //@access  Public
 const getCalendarById = asyncHandler(async (req, res) => {
-  const calendar = await Calendar.findById(req.body.providerId);
+  const calendar = await Calendar.find({providerId: req.body.providerId});
+  console.log(calendar)
   // check if calendar exist
   if (calendar) {
     res.json(calendar);
@@ -69,8 +72,9 @@ const getCalendarById = asyncHandler(async (req, res) => {
 //@desc    Get detail of a time slot of calender with provider id
 //@route   GET /api/calenders/slot
 //@access  Public
+// (have not test and go into detail of this yet)
 const getTimeslot = asyncHandler(async (req, res) => {
-  const timeslot = await Calendar.findOne({providerId: req.body.providerId, startTime: req.body.startTime, endTime: req.body.endTime});
+  const timeslot = await Calendar.findById(req.body.Id);
   // check if calendar exist
   if (timeslot) {
     res.json(timeslot);
