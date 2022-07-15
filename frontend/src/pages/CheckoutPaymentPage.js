@@ -3,9 +3,6 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import Checkbox from '@mui/material/Checkbox';
-import axios from 'axios';
-import { PayPalButton } from 'react-paypal-button-v2';
-import Loader from '../components/Loader';
 import {
   Box,
   Button,
@@ -38,7 +35,6 @@ export default function CheckoutPaymentPage() {
   const [expiryMonth, setExpiryMonth] = useState('');
   const [expiryYear, setExpiryYear] = useState('');
   const [cvv, setCvv] = useState('');
-  const [sdk, setSdk] = useState('');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -134,30 +130,6 @@ export default function CheckoutPaymentPage() {
     },
   ];
 
-  // dynamically load the paypal script
-  useEffect(() => {
-    const addPaypalScript = async () => {
-      const { data: clientId } = await axios.get('/api/config/paypal');
-      console.log('clientId 👉️', clientId);
-      const script = document.createElement('script');
-      script.type = 'text/javascript';
-      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
-      script.async = true;
-
-      script.onload = () => {
-        setSdk(true);
-      };
-      document.body.appendChild(script);
-    };
-    addPaypalScript();
-  }, []);
-
-  const handlePaymentSuccess = (paymentResult) => {
-    // should go to the next page after payment
-    console.log('paymentResult 👉️', paymentResult);
-    navigate('/checkout-review', { state: { data: data } });
-  };
-
   const resetInput = () => {
     setNameOnCard('');
     setCardNumber('');
@@ -177,6 +149,10 @@ export default function CheckoutPaymentPage() {
       );
       this.setState({ value: number });
     }
+  }
+
+  const handleProceedPaypal = () => {
+    navigate('/checkout-paypal', {state: {data: data}});
   }
 
   const handleNext = (e) => {
@@ -307,18 +283,18 @@ export default function CheckoutPaymentPage() {
                   variant="contained"
                   sx={{ mt: 3, ml: 1 }}
                   style={{ color: 'white' }}
+                  onClick={handleProceedPaypal}>
+                  Proceed with Paypal
+                </Button>
+                <Button
+                  className="checkout"
+                  variant="contained"
+                  sx={{ mt: 3, ml: 1 }}
+                  style={{ color: 'white' }}
                   onClick={handleNext}>
                   Next
                 </Button>
               </Box>
-              {/* PayPal button */}
-              {!sdk ? (
-                <Loader />
-              ) : (
-                <PayPalButton amount="999" onSuccess={handlePaymentSuccess}>
-                  {' '}
-                </PayPalButton>
-              )}
             </React.Fragment>
           </React.Fragment>
         </Paper>

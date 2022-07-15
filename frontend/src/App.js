@@ -25,6 +25,7 @@ import ReservationCustomer from './pages/ReservationCustomer';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
                 element={<CheckoutPaymentPage />}
               />
               <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+              <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
               <Route path="/providerschedule" element={<ProviderSchedule />} />
             </Routes>
             <Footer />
