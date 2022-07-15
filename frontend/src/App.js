@@ -21,6 +21,7 @@ import CheckoutAddressPage from "./pages/CheckoutAddressPage";
 import CheckoutPaymentPage from "./pages/CheckoutPaymentPage";
 import CheckoutReviewPage from "./pages/CheckoutReviewPage";
 import ProviderSchedule from './pages/ProviderSchedule';
+import ReservationCustomer from './pages/ReservationCustomer';
 //react-notifications-component
 import { ReactNotifications } from "react-notifications-component";
 import "react-notifications-component/dist/theme.css";
@@ -49,6 +50,7 @@ function App() {
               <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
               <Route path="/login" element={<Login />} />
               <Route path="/profileprovider" element={<ProfileProvider />} />
+              <Route path="/reservationCustomer" element={<ReservationCustomer />} />
               <Route
                 path="/provider/:id"
                 element={<ViewProfileProvider />}

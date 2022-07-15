@@ -328,6 +328,18 @@ a {
   box-shadow: 0 0 3px black;
 }
 
+/* CSS for reservation page */
+.reservationCardView {
+  text-align: center;
+  background-color: #f0f0f0;
+  height: 100%;
+  min-width: 100pt;
+  width: 90%;
+  border-style: groove;
+  border-color: #e27b7b;
+  border: 1px solid red;
+}
+
 /* CSS for address page */
 .address-form {
   text-align: center;
