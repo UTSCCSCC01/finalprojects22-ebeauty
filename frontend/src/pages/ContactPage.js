@@ -15,7 +15,7 @@ export default function ContactUs() {
         </Row>
         <Row className="sec_sp">
           <div className="mb-5">
-            <h2 className="color_sec py-4">Get In Touch With Us</h2>
+            <h2 className="color_sec">Get In Touch With Us</h2>
             <strong>Email: eBeautyeBeauty@gmail.com </strong>{" "}
             <br />
             <br />
@@ -39,7 +39,7 @@ export default function ContactUs() {
                 </Col>
                 <Col lg="6" className="form-group">
                   <input
-                    className="form-control rounded-0"
+                    className="form-control"
                     id="email"
                     name="email"
                     placeholder="Email"
@@ -49,7 +49,7 @@ export default function ContactUs() {
                 </Col>
               </Row>
               <textarea
-                className="form-control rounded-0"
+                className="form-control-textarea"
                 id="message"
                 name="message"
                 placeholder="Message"
@@ -59,7 +59,7 @@ export default function ContactUs() {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button class="btn btn-primary btn-lg" type="submit"> 
+                  <button class="btn-primary" type="submit"> 
                   Send
                   </button>
                 </Col>

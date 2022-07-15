@@ -2,7 +2,7 @@ input, select, textarea{
     color: black
 }
 
-textarea {
+.form-control-textarea {
     width: 600px;
     height: 150px;
     resize: vertical;
@@ -24,11 +24,11 @@ textarea {
     padding-bottom: 50px;
 }
 
-h2 {
+.color_sec {
     text-decoration: underline;
 }
 
-input {
+.form-control {
     outline: none;
     border: none;
     width: 300px;
@@ -39,6 +39,16 @@ input {
     font-size: 14px;
 }
 
-textarea::placeholder {
+.form-control-textarea::placeholder {
     color: grey;
+}
+
+.btn-primary {
+    border: none;
+    background-color:#e27b7b;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    font-size: 14px;
+    width: 150px;
 }
