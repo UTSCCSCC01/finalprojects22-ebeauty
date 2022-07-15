@@ -19,7 +19,7 @@ github link: https://github.com/devconcept/multer-gridfs-storage/issues/490
 ### .env file
 in order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
 
-mongo uri is used to connect to database, and jwt key is used to salted hash the password.
+mongo uri is used to connect to database, and jwt key is used to salted hash the password. the client id is used for Paypal payment
 
 ### about database: 
 
@@ -97,19 +97,6 @@ and with raw json body like:
 "password": "3"
 }
 
-### /api/providers/me
-purpose: get the logged in provider's account details
-
-go to Authentication in postman, select Bearer Token, and paste that token inside. 
-
-open postman, select GET method, paste url below to postman's url:
-
-localhost:3001/api/providers/me
-
-
-Currently, we'll need token in order to retrieve the current logged in provider's info. 
-The token is provided  by either create method or you can use the login function mentioned above to get a new one. (if token has not expired, all old and new tokens should work. Right now token is set to be 30 days expiration)
-
 
 ### /api/posts
 purpose: post and get posts maded from providers
@@ -172,15 +159,24 @@ We're connecting to DB in mongodb cloud storage called Atlas, if anyone want to 
 <pre>
 NOTE: currently we go 
 
-server.js -> goalRoute.js -> goalController.js -> goalModel.js to send, get messages from database
-
-          -> authMiddleware.js
-
-          -> providerRoute.js -> providerController.js -> providerModel.js to create, login, get provider from database
-
-          -> authMiddleware.js
-
+server.js 
           -> db.js to connect to mongodb
+
+          -> calendarRoute.js -> calendarController.js -> calendarModel.js
+          -> customerRoute.js -> customerController.js -> customerModel.js
+          -> imageRoute.js
+          -> orderRoute.js -> orderController.js -> orderModel.js
+          -> postRoute.js -> postController.js -> postModel.js
+          -> providerRoute.js -> providerController.js -> providerModel.js
+          -> reviewRoute.js -> reviewController.js -> reviewModel.js
+
+          -> seeder.js -> data -> (files that are having sample data, insert by using seeder.js)
+
+          -> authMiddleware.js (authenticate provider)
+          -> errorMiddleware.js (handle error)
+          -> upload.js (use for create bucket of gridFS)
+
+
 
           -> errorMiddleware.js to handle showing error
 

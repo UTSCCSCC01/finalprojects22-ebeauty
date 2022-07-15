@@ -10,7 +10,7 @@ If building the project, please make sure to install [Node and npm](https://node
 
 #### To initialize the project: 
 
-Run `npm install` in directories consisting front and back-end files (Note that this need to be done once and only once)
+Run `npm install --legacy-peer-deps` in directories consisting front and back-end files (Note that this need to be done once and only once)
 
 #### To run the project: 
 
