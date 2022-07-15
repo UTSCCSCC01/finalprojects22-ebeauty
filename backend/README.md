@@ -93,7 +93,9 @@ and with raw json body like:
     isAdmin: false,
 }
 
-### /api/providers/login
+### providers api
+POST METHOD /api/providers/login
+
 purpose: sign in provider's account and gain a new token
 
 open postman, select POST method, paste url below to postman's url:
@@ -107,7 +109,8 @@ and with raw json body like:
 }
 
 
-### /api/posts
+- POST & GET METHODS /api/posts
+
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
@@ -164,15 +167,15 @@ tmp
 ## calendar api
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
 
-public GET /api/calendars
+- public GET /api/calendars
 
 get all calendars in DB
 
-public GET /api/calendars/calendar
+- public GET /api/calendars/calendar
 
 get all calendars of one provider
 
-public GET /api/calendars/timeslot
+- public GET /api/calendars/timeslot
 
 get the detail of a timeslot
 
@@ -208,6 +211,7 @@ localhost:3001/file/upload
 
 and then select post method, go -> body -> form-data, under key field select file, and upload image inside value field, type "file" under the key field
 
+- GET METHOD
 
 public GET /file/(filename)
 
@@ -218,6 +222,8 @@ example:
 
 http://localhost:3001/file/1657922009407test1.jpg
 
+
+- DELETE METHOD
 
 public DELETE /file/(filename)
 
