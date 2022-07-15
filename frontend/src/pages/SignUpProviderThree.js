@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import alerting from "../components/Alerting";
 import FormData from 'form-data'
-import axios from 'axios';
 import { useNavigate, useLocation } from "react-router-dom";
+import { Card } from "reactstrap";
 
 
 /**
@@ -13,7 +13,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 
 const SignUpProviderThree = () => {
   const navigate = useNavigate();
-  // data from pages before.
+  // retrieve data from pages before.
   const location = useLocation();
   const [data, setData] = useState(location.state);
 
@@ -24,17 +24,18 @@ const SignUpProviderThree = () => {
     image.append('file', selectedImage);
   }, [selectedImage]);
 
-  // loading the usestate of selectedImage (it won't work is we don't use this, if we directly do signUp inside submit, the field would be blank "")
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  // sending the usestate of selectedImage (it won't work if we don't use this, if we directly do signUp inside submit or another .then(), the imageFilename would not be updated)
+  const [finishSend, setFinishSend] = useState(false);
   useEffect(() => {
-    if (!loading) {
+    if (finishSend) {
       signUp();
     }
-  }, [loading]);
+  }, [finishSend]);
 
   const handleChange = (input, fieldName) => {
     setData({...data, [fieldName]: input});
-    setLoading(false);
+    setFinishSend(true);
   };
 
 
@@ -54,6 +55,7 @@ const SignUpProviderThree = () => {
       navigate("/");
     })
     .catch(err => {
+      setLoading(false);
       if(err.response.data.message)
         alerting(err.response.data.message, "danger");
       else
@@ -67,6 +69,8 @@ const SignUpProviderThree = () => {
     if(!data || !selectedImage){
       alerting("there's field you didn't input!", "danger")
     } else {
+      setLoading(true);
+      alerting("creating your account...", "info")
       await fetch("/file/upload/", {
         method: "POST",
         body: image,
@@ -77,6 +81,7 @@ const SignUpProviderThree = () => {
         handleChange(response.image_id, "imageFilename");
       })
       .catch(err => {
+        setLoading(false);
         if(err.response)
           alerting(err.response.data.message, "danger");
         else
@@ -87,28 +92,43 @@ const SignUpProviderThree = () => {
 
   
   return (
-    <div>
-      <h1>Upload your profile image!</h1>
-      {selectedImage && (
-        <div>
-        <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
-        <br />
-        <button onClick={()=>setSelectedImage(null)}>Remove</button>
-        </div>
-      )}
-      <br />
-     
-      <br /> 
-      <input
-        type="file"
-        name="myImage"
-        style={{color:"transparent"}}
-        onChange={(event) => {
-          console.log(event.target.files[0]);
-          setSelectedImage(event.target.files[0]);
-        }}
-      />
-      <button onClick={(e) => submit(e)}>finish</button>
+    <div className="divCenter">
+      <Card className="twoCard">
+        {loading ? (
+            <div>loading...</div>
+          ):(
+          <>
+            <h1>Upload your profile image!</h1>
+            {selectedImage && (
+              <>
+                <img alt="not fount" width={"250px"} src={URL.createObjectURL(selectedImage)} />
+                <br />
+                <button className="Button removeButton" onClick={()=>setSelectedImage(null)}>Remove</button>
+              </>
+            )}
+
+            <div style={{position:"relative"}}>
+              <label htmlFor="formId" className={"Button leftButton"}>
+                <input
+                  type="file"
+                  id="formId"
+                  name="myImage"
+                  hidden
+                  style={{color:"transparent"}}
+                  onChange={(event) => {
+                    console.log(event.target.files[0]);
+                    setSelectedImage(event.target.files[0]);
+                  }}
+                />
+                upload file
+              </label>
+              <button className={"Button rightButton"} onClick={(e) => submit(e)}>finish</button>
+            </div>
+          </>
+        )}
+
+
+      </Card>
     </div>
   );
 };

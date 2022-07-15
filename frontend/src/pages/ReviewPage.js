@@ -13,7 +13,7 @@ const Review = () => {
     const customerId = "customer1"
     const providerId = "provider1"
     const review = { customerId, providerId, reviewContent, rating };
-
+    
     await fetch("/api/reviews/", {
       method: "POST",
       body: JSON.stringify(review),
@@ -54,7 +54,7 @@ const Review = () => {
         <form className="add-review" onSubmit={handleSubmit}>
           <textarea
             id="review-contents"
-            placeholder="Hello?"
+            placeholder="Please leave your thoughts here..."
             onChange={(e) => {
               setReviewContent(e.target.value);
             }}

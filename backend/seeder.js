@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import colors from "colors";
-import taskProviders from "./data/taskProviders.js";
+import providers from "./data/providers.js";
 import service from "./data/service.js";
-import TaskProvider from "./models/taskproviderModel.js";
+import Provider from "./models/providerModel.js";
 import Service from "./models/serviceModel.js";
 import connectDB from "./config/db.js";
 
@@ -16,10 +16,10 @@ connectDB();
 const importData = async () => {
   try {
     // clear all data first
-    await TaskProvider.deleteMany();
+    await Provider.deleteMany();
     await Service.deleteMany();
     // insert data
-    const createdProvider = await TaskProvider.insertMany(taskProviders);
+    const createdProvider = await Provider.insertMany(providers);
     const adminProvider = createdProvider[0]._id;
     const sampleService = service.map((service) => {
       return { ...service, provider: adminProvider };
@@ -37,7 +37,7 @@ const importData = async () => {
 const destroyData = async () => {
   try {
     // clear all data
-    await TaskProvider.deleteMany();
+    await Provider.deleteMany();
     await Service.deleteMany();
 
     console.log("Data successfully destroyed!".green.inverse);
