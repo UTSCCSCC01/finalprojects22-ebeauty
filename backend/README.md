@@ -1,13 +1,14 @@
-run project (run both backend and frontend concurrently), use : npm run dev
+# eBeauty Backend Documentation
 
-run server, use : npm run server, under backend folder.
+To run project by starting both frontend and backend concurrently, use: `npm run dev`.
 
-run client, use : npm start, under frontend folder.
+To run server, use : `npm run server`, under backend folder.
 
+To run client, use : `npm start`, under frontend folder.
 
-note: you have to do npm install --legacy-peer-deps if haven't do so. and have your .env file created under backend folder. 
+Note: you have to do `npm install --legacy-peer-deps` if it's first time running the project. Also, have your `.env` file created under backend folder. 
 
-why --legacy-peer-deps? there's issue between dependencies of:
+why `--legacy-peer-deps`? there's issue between dependencies of:
     "multer": "^1.4.5-lts.1",
 
     "multer-gridfs-storage": "^5.0.2",
@@ -16,21 +17,22 @@ there's a issue page and PR to solve it, but currently issue is there:
 
 github link: https://github.com/devconcept/multer-gridfs-storage/issues/490
 
-### .env file
-in order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
+## .env file
 
-mongo uri is used to connect to database, and jwt key is used to salted hash the password.
+In order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
 
-### about database: 
+`MONGO_URI` is used to connect to database, and `JWT_SECRET_KEY` is used to salted hash the password.
 
-if you want to see data in mongodb, I'm using MongoCompass that's downloaded to desktop, use this url to paste into it once downloaded and opened:
+## MongoDB Database
+
+If you want to see data in mongodb, we are using MongoCompass that can be downloaded to desktop. Use this url to paste into it once downloaded and opened:
 (whole correct url is inside resources channel inside discord, replace it with that)
-mongodb+srv://(username):(password)@amor.f6fwapf.mongodb.net/Amor
+`mongodb+srv://(username):(password)@amor.f6fwapf.mongodb.net/Amor`
 
-use Amor as our only database
+Amor is the default database we are going to use for this project.
 
+## Seeder
 
-### seeder
 Use seeder to import and destroy data to the database
 
 - Create the yourdata.js file under data folder in the backend
@@ -47,16 +49,13 @@ Use seeder to import and destroy data to the database
     - node seeder -d // destroyData  
 
 
-## test apis
+## Testing Backend API Endpoints
 
-an easy way to test the api is just to go to url:
-i.e. localhost:5000/api/posts/
+An easy way to test the api is just to go to url: i.e. `localhost:5000/api/posts/`
 
-a better way to do it is using postman, select get method, go to url: localhost:5000/api/posts/. or select post method, go to url: localhost:5000/api/providers
+However, there is a better way to do it using postman. Select GET method, and go to url: `localhost:5000/api/posts/`. or select POST method, and go to url: `localhost:5000/api/providers`
 
-but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
-
-## Write your api description here
+Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
 
 ### Customers API Endpoints (/api/customers)
 
@@ -120,6 +119,7 @@ public GET /api/taskproviders/:id
 add more extensions to the api if you want to add more functionality
 
 ### /api/providers
+
 purpose: create/signup provider's account
 
 open postman, select POST method, paste url below to postman's url:
@@ -136,6 +136,7 @@ and with raw json body like:
 (this one already exists so if you input same email it gives error)
 
 ### /api/providers/login
+
 purpose: sign in provider's account and gain a new token
 
 open postman, select POST method, paste url below to postman's url:
