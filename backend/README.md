@@ -58,6 +58,57 @@ but test results depends on the .env file, make sure your env file contains the 
 
 ## Write your api description here
 
+### Customers API Endpoints (/api/customers)
+
+All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
+
+#### GET /api/customers
+
+We can retrieve all customers registered in this app.
+
+#### GET /api/customers/getDefaultAddress
+
+We can retrieve the default address of the customer currently logged in.
+
+#### POST /api/customers/register-customer
+
+We can let new customers register into the app with the input data provided by them. 
+
+In postman, send the request to `http://localhost:3001/api/customers/register-customer` with the request body of:
+
+```
+{
+    firstName: "James",
+    lastName: "Jo",
+    email: "james@gmail.com",
+    password: "123"
+}
+```
+
+#### POST /api/customers/login-customer
+
+We can let existing customers log into the app checking the credentials from DB.
+
+In postman, send the request to `http://localhost:3001/api/customers/login-customer' with the request body of:
+```
+{
+    email: "james@gmail.com",
+    password: "123"
+}
+```
+
+#### PATCH /api/customers/:customerId
+
+We can change the data of existing users using customerId.
+
+#### PATCH /api/customers/updateDefaultAddress
+
+We can update the default address of the logged in user.
+
+#### DELETE /api/customers/:customerId
+
+We can delete the data of a customer using customerId.
+
 ### /api/taskproviders
 
 you can get all task providers or get a specific task provider by id
@@ -160,6 +211,70 @@ the setup steps are same as delete post, it's just you have to provide the new d
 "postText": "some content here"
 }
 
+### Reviews API Endpoints (/api/reviews)
+
+#### GET /api/reviews
+
+We can retrieve all exisinting reviews stored in the app.
+
+#### GET /api/reviews/:reviewId
+
+We can get a specific review searched by reviewId parameter.
+
+#### POST /api/reviews
+
+We can save a newly created review into the DB.
+
+In postman, send the request to `http://localhost:3001/api/reviews/` with the request body of:
+
+```
+{
+    customerId: _customerId,
+    providerId: _providerId,
+    content: "This is test review",
+    rating: 5
+}
+```  
+
+#### PATCH /api/reviews/:reviewId
+
+We can update the data of review searched by reviewId parameter.
+
+#### DELETE /api/reviews/:reviewId
+
+We can delete a specific review searched by reviewId parameter.
+
+### Order API Endpoints (/api/orders)
+
+Order API endpoints manage all API endpoints related to customer orders or appointments booked on the website.
+
+#### POST /api/orders
+
+So far, we only manage to save order data from Checkout pages where customers provide their address and credit card information.
+
+In postman, send the request to `http://localhost:3001/api/orders` with the request body of:
+
+```
+{
+    firstName: "Tim",
+    lastName: "Cook",
+    address: {
+        addressOne: "123 Flower Road",
+        addressTwo: "Unit 101",
+        city: "Toronto",
+        province: "ON",
+        postalCode: "M1TA8K",
+        country: "Canada"
+    },
+    payment: {
+        nameOnCard: "Tim Cook",
+        cardNum: "1239203938310192",
+        expiryMonth: "09",
+        expiryYear: "24",
+        cvv: "393"
+   }
+}
+```        
 
 ### allen's note: 
 I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one), and it's straight working on backend, works pretty well so i'm following it.
