@@ -1,13 +1,14 @@
-run project (run both backend and frontend concurrently), use : npm run dev
+# eBeauty Backend Documentation
 
-run server, use : npm run server, under backend folder.
+To run project by starting both frontend and backend concurrently, use: `npm run dev`.
 
-run client, use : npm start, under frontend folder.
+To run server, use : `npm run server`, under backend folder.
 
+To run client, use : `npm start`, under frontend folder.
 
-note: you have to do npm install --legacy-peer-deps if haven't do so. and have your .env file created under backend folder. 
+Note: you have to do `npm install --legacy-peer-deps` if it's first time running the project. Also, have your `.env` file created under backend folder. 
 
-why --legacy-peer-deps? there's issue between dependencies of:
+why `--legacy-peer-deps`? there's issue between dependencies of:
     "multer": "^1.4.5-lts.1",
 
     "multer-gridfs-storage": "^5.0.2",
@@ -16,21 +17,22 @@ there's a issue page and PR to solve it, but currently issue is there:
 
 github link: https://github.com/devconcept/multer-gridfs-storage/issues/490
 
-### .env file
-in order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
+## .env file
 
-mongo uri is used to connect to database, and jwt key is used to salted hash the password. the client id is used for Paypal payment
+In order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
 
-### about database: 
+`MONGO_URI` is used to connect to database, and `JWT_SECRET_KEY` is used to salted hash the password. The client id is used for Paypal payment.
 
-if you want to see data in mongodb, I'm using MongoCompass that's downloaded to desktop, use this url to paste into it once downloaded and opened:
+## MongoDB Database
+
+If you want to see data in mongodb, we are using MongoCompass that can be downloaded to desktop. Use this url to paste into it once downloaded and opened:
 (whole correct url is inside resources channel inside discord, replace it with that)
-mongodb+srv://(username):(password)@amor.f6fwapf.mongodb.net/Amor
+`mongodb+srv://(username):(password)@amor.f6fwapf.mongodb.net/Amor`
 
-use Amor as our only database
+Amor is the default database we are going to use for this project.
 
+## Seeder
 
-### seeder
 Use seeder to import and destroy data to the database
 
 - Create the yourdata.js file under data folder in the backend
@@ -47,29 +49,70 @@ Use seeder to import and destroy data to the database
     - node seeder -d // destroyData  
 
 <!---
-## test apis
+## Testing Backend API Endpoints
 
-an easy way to test the api is just to go to url:
-i.e. localhost:3001/api/posts/
+An easy way to test the api is just to go to url: i.e. `localhost:5000/api/posts/`
 
-a better way to do it is using postman, select get method, go to url: localhost:3001/api/posts/. or select post method, go to url: localhost:3001/api/providers
+However, there is a better way to do it using postman. Select GET method, and go to url: `localhost:5000/api/posts/`. or select POST method, and go to url: `localhost:5000/api/providers`
 
-but test results depends on the .env file, make sure your env file contains the correct database url, and the correct token.
+Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
 -->
 
-## Write your api description here
+## Customers API Endpoints (/api/customers)
 
-### /api/providers
+All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
 
--> purpose: you can get all providers or get a specific provider by id
+### GET /api/customers
 
-public GET /api/providers
+We can retrieve all customers registered in this app.
 
-public GET /api/providers/:id
+### GET /api/customers/getDefaultAddress
 
-public POST /api/providers
+We can retrieve the default address of the customer currently logged in.
 
--> purpose: create/signup provider's account
+### POST /api/customers/register-customer
+
+We can let new customers register into the app with the input data provided by them. 
+
+In postman, send the request to `http://localhost:3001/api/customers/register-customer` with the request body of:
+
+```
+{
+    firstName: "James",
+    lastName: "Jo",
+    email: "james@gmail.com",
+    password: "123"
+}
+```
+
+### POST /api/customers/login-customer
+
+We can let existing customers log into the app checking the credentials from DB.
+
+In postman, send the request to `http://localhost:3001/api/customers/login-customer' with the request body of:
+```
+{
+    email: "james@gmail.com",
+    password: "123"
+}
+```
+
+### PATCH /api/customers/:customerId
+
+We can change the data of existing users using customerId.
+
+### PATCH /api/customers/updateDefaultAddress
+
+We can update the default address of the logged in user.
+
+### DELETE /api/customers/:customerId
+
+We can delete the data of a customer using customerId.
+
+## Providers API Endpoints (/api/providers)
+### POST METHOD /api/providers
+
+purpose: create/signup provider's account
 
 open postman, select POST method, paste url below to postman's url:
 
@@ -93,8 +136,7 @@ and with raw json body like:
     isAdmin: false,
 }
 
-### providers api
-POST METHOD /api/providers/login
+### POST METHOD /api/providers/login
 
 purpose: sign in provider's account and gain a new token
 
@@ -108,18 +150,20 @@ and with raw json body like:
     password: "8"
 }
 
+### GET METHOD /api/providers
+get all providers in database
 
-- POST & GET METHODS /api/posts
+### GET METHOD /api/providers/:id
+get a provider detail info by providing id in url parameter
 
+## Post API Endpoints (/api/posts)
+
+### POST & GET METHODS /api/posts
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
 
 localhost:3001/api/posts
-
-- GETTING POSTS: 
-
-for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all existed posts inside database. 
 
 - POSTING POST: 
 
@@ -135,7 +179,11 @@ go to Authentication in postman, select Bearer Token, and paste that token insid
 
 and click send, if postman respond with post details then it works.
 
-## /api/posts/(post id)
+- GETTING POSTS: 
+
+for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all existed posts inside database. 
+
+### UPDATE AND DELETE /api/posts/(post id)
 
 open postman, paste url below to postman's url:
 
@@ -158,30 +206,88 @@ the setup steps are same as delete post, it's just you have to provide the new d
 "postText": "some content here"
 }
 
-## review api
-tmp
+## Reviews API Endpoints (/api/reviews)
 
-## customer api
-tmp
+### GET /api/reviews
 
-## calendar api
+We can retrieve all exisinting reviews stored in the app.
+
+### GET /api/reviews/:reviewId
+
+We can get a specific review searched by reviewId parameter.
+
+### POST /api/reviews
+
+We can save a newly created review into the DB.
+
+In postman, send the request to `http://localhost:3001/api/reviews/` with the request body of:
+
+```
+{
+    customerId: _customerId,
+    providerId: _providerId,
+    content: "This is test review",
+    rating: 5
+}
+```  
+
+### PATCH /api/reviews/:reviewId
+
+We can update the data of review searched by reviewId parameter.
+
+### DELETE /api/reviews/:reviewId
+
+We can delete a specific review searched by reviewId parameter.
+
+## Order API Endpoints (/api/orders)
+
+Order API endpoints manage all API endpoints related to customer orders or appointments booked on the website.
+
+### POST /api/orders
+
+So far, we only manage to save order data from Checkout pages where customers provide their address and credit card information.
+
+In postman, send the request to `http://localhost:3001/api/orders` with the request body of:
+
+```
+{
+    firstName: "Tim",
+    lastName: "Cook",
+    address: {
+        addressOne: "123 Flower Road",
+        addressTwo: "Unit 101",
+        city: "Toronto",
+        province: "ON",
+        postalCode: "M1TA8K",
+        country: "Canada"
+    },
+    payment: {
+        nameOnCard: "Tim Cook",
+        cardNum: "1239203938310192",
+        expiryMonth: "09",
+        expiryYear: "24",
+        cvv: "393"
+   }
+}
+```        
+
+## calendar API Endpoints (/api/calendars)
+
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
 
-- public GET /api/calendars
+### GET /api/calendars
 
 get all calendars in DB
 
-- public GET /api/calendars/calendar
+### GET /api/calendars/calendar
 
 get all calendars of one provider
 
-- public GET /api/calendars/timeslot
+### GET /api/calendars/timeslot
 
 get the detail of a timeslot
 
-- POST METHOD
-
-public POST /api/calendars
+### POST /api/calendars
 
 the way we do calendar is we store the used time slot of provider
 open postman, select POST method, paste url below to postman's url:
@@ -199,11 +305,12 @@ and with raw json body like:
 
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
-## file (image) api
+## file (image) API Endpoints (/file)
+
 this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
 - POST METHOD
 
-public POST /file/upload
+### POST /file/upload
 
 to do post of this inside postman, first have this paste for URL: 
 
@@ -211,9 +318,7 @@ localhost:3001/file/upload
 
 and then select post method, go -> body -> form-data, under key field select file, and upload image inside value field, type "file" under the key field
 
-- GET METHOD
-
-public GET /file/(filename)
+### GET /file/(filename)
 
 if you just did the post above, there's a URL returned with key named "data", just copy yhe url and paste it in browser, you would be able to view that. 
 
@@ -223,15 +328,9 @@ example:
 http://localhost:3001/file/1657922009407test1.jpg
 
 
-- DELETE METHOD
-
-public DELETE /file/(filename)
+### DELETE /file/(filename)
 
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
-
-## order api
-tmp
-
 
 ### allen's note: 
 while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
