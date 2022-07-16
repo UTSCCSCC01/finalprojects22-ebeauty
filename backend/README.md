@@ -48,7 +48,7 @@ Use seeder to import and destroy data to the database
     - node seeder -i // importData
     - node seeder -d // destroyData  
 
-
+<!---
 ## Testing Backend API Endpoints
 
 An easy way to test the api is just to go to url: i.e. `localhost:5000/api/posts/`
@@ -56,6 +56,7 @@ An easy way to test the api is just to go to url: i.e. `localhost:5000/api/posts
 However, there is a better way to do it using postman. Select GET method, and go to url: `localhost:5000/api/posts/`. or select POST method, and go to url: `localhost:5000/api/providers`
 
 Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
+-->
 
 ## Customers API Endpoints (/api/customers)
 
@@ -108,17 +109,8 @@ We can update the default address of the logged in user.
 
 We can delete the data of a customer using customerId.
 
-## /api/taskproviders
-
--> purpose: you can get all providers or get a specific provider by id
-
-public GET /api/providers
-
-public GET /api/providers/:id
-
-public POST /api/providers
-
-## /api/providers
+## Providers API Endpoints (/api/providers)
+### POST METHOD /api/providers
 
 purpose: create/signup provider's account
 
@@ -144,10 +136,7 @@ and with raw json body like:
     isAdmin: false,
 }
 
-### providers api
-POST METHOD /api/providers/login
-
-### /api/providers/login
+### POST METHOD /api/providers/login
 
 purpose: sign in provider's account and gain a new token
 
@@ -161,20 +150,20 @@ and with raw json body like:
     password: "8"
 }
 
+### GET METHOD /api/providers
+get all providers in database
 
-- POST & GET METHODS /api/posts
+### GET METHOD /api/providers/:id
+get a provider detail info by providing id in url parameter
 
+## Post API Endpoints (/api/posts)
 
-## /api/posts
+### POST & GET METHODS /api/posts
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
 
 localhost:3001/api/posts
-
-- GETTING POSTS: 
-
-for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all existed posts inside database. 
 
 - POSTING POST: 
 
@@ -190,7 +179,11 @@ go to Authentication in postman, select Bearer Token, and paste that token insid
 
 and click send, if postman respond with post details then it works.
 
-### /api/posts/(post id)
+- GETTING POSTS: 
+
+for getting posts, need nothing for json body, and no need for token, just select GET method and click send, should return all existed posts inside database. 
+
+### UPDATE AND DELETE /api/posts/(post id)
 
 open postman, paste url below to postman's url:
 
@@ -278,24 +271,23 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 }
 ```        
 
-## calendar api
+## calendar API Endpoints (/api/calendars)
+
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
 
-- public GET /api/calendars
+### GET /api/calendars
 
 get all calendars in DB
 
-- public GET /api/calendars/calendar
+### GET /api/calendars/calendar
 
 get all calendars of one provider
 
-- public GET /api/calendars/timeslot
+### GET /api/calendars/timeslot
 
 get the detail of a timeslot
 
-- POST METHOD
-
-public POST /api/calendars
+### POST /api/calendars
 
 the way we do calendar is we store the used time slot of provider
 open postman, select POST method, paste url below to postman's url:
@@ -313,11 +305,12 @@ and with raw json body like:
 
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
-## file (image) api
+## file (image) API Endpoints (/file)
+
 this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
 - POST METHOD
 
-public POST /file/upload
+### POST /file/upload
 
 to do post of this inside postman, first have this paste for URL: 
 
@@ -325,9 +318,7 @@ localhost:3001/file/upload
 
 and then select post method, go -> body -> form-data, under key field select file, and upload image inside value field, type "file" under the key field
 
-- GET METHOD
-
-public GET /file/(filename)
+### GET /file/(filename)
 
 if you just did the post above, there's a URL returned with key named "data", just copy yhe url and paste it in browser, you would be able to view that. 
 
@@ -337,9 +328,7 @@ example:
 http://localhost:3001/file/1657922009407test1.jpg
 
 
-- DELETE METHOD
-
-public DELETE /file/(filename)
+### DELETE /file/(filename)
 
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
