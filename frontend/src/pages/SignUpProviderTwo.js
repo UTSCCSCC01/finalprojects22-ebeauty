@@ -1,4 +1,4 @@
-import { useEffect, useState  }  from "react";
+import { useState  }  from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 // reactstrap components
 import {
@@ -9,8 +9,6 @@ import {
 import { Dropdown } from 'react-dropdown-now';
 import 'react-dropdown-now/style.css';
 import '../css/providerRegister.css'
-import axios from 'axios';
-import alerting from "../helper/Alerting";
 
 const SignUpProviderTwo = () => {
   // read passed in data
@@ -29,10 +27,10 @@ const SignUpProviderTwo = () => {
   }
 
   return (
-    <div style={{display:'flex',justifyContent: 'center', paddingTop:'10pt', paddingBottom:'30pt'}}>
+    <div className="divCenter">
       <Card  className="twoCard">
         <CardBody>
-          <Form onSubmit={signUpForm.bind(this)} className="twoForm" style={{display:'flex',justifyContent: 'center'}}>
+          <Form onSubmit={signUpForm.bind(this)} className="twoForm">
             <h3 >What kind of work are you planning to serve?</h3>
             {/*https://iambumblehead.github.io/react-dropdown-now/?path=/story/docs-introduction--page */}
             <div className="center">
@@ -40,7 +38,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Hairdress"
                 options={['Hairdress', 'Barber', 'Clean', 'Landscape', 'Massage', 'Makeup', 'Eyebrow Eyelash Tech']}
                 value="Hairdress"
-                onChange={(option) => handleChange(option, "Title")}
+                onChange={(option) => handleChange(option, "title")}
               />
             </div>
             {/*
@@ -53,7 +51,7 @@ const SignUpProviderTwo = () => {
                 placeholder="Yes"
                 options={['Yes', 'No']}
                 value="Yes"
-                onChange={(option) => handleChange(option, "Individual")}
+                onChange={(option) => handleChange(option, "individual")}
               />
             </div>
             <div className="center">

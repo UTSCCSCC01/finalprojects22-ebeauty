@@ -21,7 +21,7 @@ github link: https://github.com/devconcept/multer-gridfs-storage/issues/490
 
 In order to store sensitive informations, we've decided to not upload this file to github, you have to create one file named ".env" under backend folder, and paste the content inside discord resources channel to it. 
 
-`MONGO_URI` is used to connect to database, and `JWT_SECRET_KEY` is used to salted hash the password.
+`MONGO_URI` is used to connect to database, and `JWT_SECRET_KEY` is used to salted hash the password. The client id is used for Paypal payment.
 
 ## MongoDB Database
 
@@ -110,13 +110,13 @@ We can delete the data of a customer using customerId.
 
 ## /api/taskproviders
 
-you can get all task providers or get a specific task provider by id
+-> purpose: you can get all providers or get a specific provider by id
 
-public GET /api/taskproviders
+public GET /api/providers
 
-public GET /api/taskproviders/:id
+public GET /api/providers/:id
 
-add more extensions to the api if you want to add more functionality
+public POST /api/providers
 
 ## /api/providers
 
@@ -124,16 +124,28 @@ purpose: create/signup provider's account
 
 open postman, select POST method, paste url below to postman's url:
 
-localhost:5000/api/providers 
+localhost:3001/api/providers 
 
 and with raw json body like:
 {
-"name": "1",
-"email": "2",
-"password": "3"
+    name: '1',
+    title: 'Nail Technician',
+    address: '2',
+    city: '3',
+    state: '4',
+    country: '5',
+    email: '6@gmail.com',
+    phone: "7",
+    password: "8",
+    imageFilename: "9.jpg",
+    individual: "no",
+    totalRating: 50, 
+    ratingPopulation: 10,
+    isAdmin: false,
 }
 
-(this one already exists so if you input same email it gives error)
+### providers api
+POST METHOD /api/providers/login
 
 ### /api/providers/login
 
@@ -141,27 +153,16 @@ purpose: sign in provider's account and gain a new token
 
 open postman, select POST method, paste url below to postman's url:
 
-localhost:5000/api/providers/login
+localhost:3001/api/providers/login
 
 and with raw json body like:
 {
-"name": "1",
-"email": "2",
-"password": "3"
+    email: '6@gmail.com',
+    password: "8"
 }
 
-### /api/providers/me
-purpose: get the logged in provider's account details
 
-go to Authentication in postman, select Bearer Token, and paste that token inside. 
-
-open postman, select GET method, paste url below to postman's url:
-
-localhost:5000/api/providers/me
-
-
-Currently, we'll need token in order to retrieve the current logged in provider's info. 
-The token is provided  by either create method or you can use the login function mentioned above to get a new one. (if token has not expired, all old and new tokens should work. Right now token is set to be 30 days expiration)
+- POST & GET METHODS /api/posts
 
 
 ## /api/posts
@@ -169,7 +170,7 @@ purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
 
-localhost:5000/api/posts
+localhost:3001/api/posts
 
 - GETTING POSTS: 
 
@@ -193,7 +194,7 @@ and click send, if postman respond with post details then it works.
 
 open postman, paste url below to postman's url:
 
-localhost:5000/api/posts/(post id)
+localhost:3001/api/posts/(post id)
 
 - DELETE POST
 select delete method, 
@@ -204,7 +205,7 @@ paste the post's id to the url (id can be gained by GET method mentioned above, 
 click send, if postman respond with just a line of id:(post id), then it works. 
 
 - UPDATE POST
-localhost:5000/api/posts/(post id)
+localhost:3001/api/posts/(post id)
 
 the setup steps are same as delete post, it's just you have to provide the new data you want to update for post inside raw json body: 
 
@@ -277,9 +278,76 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 }
 ```        
 
-## allen's note: 
-I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one), and it's straight working on backend, works pretty well so i'm following it.
+## calendar api
+purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
+
+- public GET /api/calendars
+
+get all calendars in DB
+
+- public GET /api/calendars/calendar
+
+get all calendars of one provider
+
+- public GET /api/calendars/timeslot
+
+get the detail of a timeslot
+
+- POST METHOD
+
+public POST /api/calendars
+
+the way we do calendar is we store the used time slot of provider
+open postman, select POST method, paste url below to postman's url:
+
+localhost:3001/api/calendars
+
+and with raw json body like:
+{
+    "providerId": "62c4somestuffc3", 
+    "startTime": "12:00" ,
+    "endTime": "14:00",
+    "title": "some reservation title", 
+    "rest": false
+}
+
+Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
+
+## file (image) api
+this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
+- POST METHOD
+
+public POST /file/upload
+
+to do post of this inside postman, first have this paste for URL: 
+
+localhost:3001/file/upload
+
+and then select post method, go -> body -> form-data, under key field select file, and upload image inside value field, type "file" under the key field
+
+- GET METHOD
+
+public GET /file/(filename)
+
+if you just did the post above, there's a URL returned with key named "data", just copy yhe url and paste it in browser, you would be able to view that. 
+
+
+example: 
+
+http://localhost:3001/file/1657922009407test1.jpg
+
+
+- DELETE METHOD
+
+public DELETE /file/(filename)
+
+It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
+
+### allen's note: 
+while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
+
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
+
 
 First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00)
 
@@ -289,16 +357,20 @@ We're connecting to DB in mongodb cloud storage called Atlas, if anyone want to 
 <pre>
 NOTE: currently we go 
 
-server.js -> goalRoute.js -> goalController.js -> goalModel.js to send, get messages from database
-
-          -> authMiddleware.js
-
-          -> providerRoute.js -> providerController.js -> providerModel.js to create, login, get provider from database
-
-          -> authMiddleware.js
-
+server.js 
           -> db.js to connect to mongodb
 
-          -> errorMiddleware.js to handle showing error
+          -> calendarRoute.js -> calendarController.js -> calendarModel.js
+          -> customerRoute.js -> customerController.js -> customerModel.js
+          -> imageRoute.js
+          -> orderRoute.js -> orderController.js -> orderModel.js
+          -> postRoute.js -> postController.js -> postModel.js
+          -> providerRoute.js -> providerController.js -> providerModel.js
+          -> reviewRoute.js -> reviewController.js -> reviewModel.js
 
+          -> seeder.js -> data -> (files that are having sample data, insert by using seeder.js)
+
+          -> authMiddleware.js (authenticate provider)
+          -> errorMiddleware.js (handle showing error)
+          -> upload.js (use for create bucket of gridFS)
 </pre>

@@ -96,6 +96,14 @@
 	cursor: pointer;
 }
 
+.toFindjob{
+	text-decoration: underline;
+	opacity: 0.5;
+}
+.toFindjob:hover{
+	color: blue;
+}
+
 .green_btnsignup {
 	background-color: #e27b7b;
 	color: white;

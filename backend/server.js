@@ -7,10 +7,11 @@ import connectDB from './config/db.js';
 // import apis here
 import posts from "./routes/postRoute.js";
 import providers from "./routes/providerRoute.js";
-import taskproviderRoute from "./routes/taskproviderRoute.js";
 import reviewRoutes from "./routes/reviewRoute.js";
 import customers from "./routes/customerRoute.js";
 import imageRoute from "./routes/imageRoute.js";
+import calendars from "./routes/calendarRoute.js";
+import orderRoute from "./routes/orderRoute.js";
 
 import cors from 'cors';
 import path from "path";
@@ -20,7 +21,7 @@ import { fileURLToPath } from "url";
 dotenv.config();
 
 // set up PORT
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 
 // connect the database here
 connectDB();
@@ -44,8 +45,14 @@ app.use('/api/posts', posts);
 app.use('/api/providers', providers);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/customers', customers);
-app.use('/api/taskproviders', taskproviderRoute);
+app.use('/api/calendars', calendars);
 app.use("/file", imageRoute);
+app.use("/api/orders", orderRoute);
+
+// get client id of PayPal
+app.get('/api/config/paypal', (req, res) => {
+  res.send(process.env.PAYPAL_CLIENT_ID);
+});
 
 // handle the error here, make sure it is the last one!!!
 app.use(notFoundHandler);
