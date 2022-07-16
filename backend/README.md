@@ -57,19 +57,19 @@ However, there is a better way to do it using postman. Select GET method, and go
 
 Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
 
-### Customers API Endpoints (/api/customers)
+## Customers API Endpoints (/api/customers)
 
 All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
 
-#### GET /api/customers
+### GET /api/customers
 
 We can retrieve all customers registered in this app.
 
-#### GET /api/customers/getDefaultAddress
+### GET /api/customers/getDefaultAddress
 
 We can retrieve the default address of the customer currently logged in.
 
-#### POST /api/customers/register-customer
+### POST /api/customers/register-customer
 
 We can let new customers register into the app with the input data provided by them. 
 
@@ -84,7 +84,7 @@ In postman, send the request to `http://localhost:3001/api/customers/register-cu
 }
 ```
 
-#### POST /api/customers/login-customer
+### POST /api/customers/login-customer
 
 We can let existing customers log into the app checking the credentials from DB.
 
@@ -96,19 +96,19 @@ In postman, send the request to `http://localhost:3001/api/customers/login-custo
 }
 ```
 
-#### PATCH /api/customers/:customerId
+### PATCH /api/customers/:customerId
 
 We can change the data of existing users using customerId.
 
-#### PATCH /api/customers/updateDefaultAddress
+### PATCH /api/customers/updateDefaultAddress
 
 We can update the default address of the logged in user.
 
-#### DELETE /api/customers/:customerId
+### DELETE /api/customers/:customerId
 
 We can delete the data of a customer using customerId.
 
-### /api/taskproviders
+## /api/taskproviders
 
 you can get all task providers or get a specific task provider by id
 
@@ -118,7 +118,7 @@ public GET /api/taskproviders/:id
 
 add more extensions to the api if you want to add more functionality
 
-### /api/providers
+## /api/providers
 
 purpose: create/signup provider's account
 
@@ -164,7 +164,7 @@ Currently, we'll need token in order to retrieve the current logged in provider'
 The token is provided  by either create method or you can use the login function mentioned above to get a new one. (if token has not expired, all old and new tokens should work. Right now token is set to be 30 days expiration)
 
 
-### /api/posts
+## /api/posts
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
@@ -189,7 +189,7 @@ go to Authentication in postman, select Bearer Token, and paste that token insid
 
 and click send, if postman respond with post details then it works.
 
-## /api/posts/(post id)
+### /api/posts/(post id)
 
 open postman, paste url below to postman's url:
 
@@ -212,17 +212,17 @@ the setup steps are same as delete post, it's just you have to provide the new d
 "postText": "some content here"
 }
 
-### Reviews API Endpoints (/api/reviews)
+## Reviews API Endpoints (/api/reviews)
 
-#### GET /api/reviews
+### GET /api/reviews
 
 We can retrieve all exisinting reviews stored in the app.
 
-#### GET /api/reviews/:reviewId
+### GET /api/reviews/:reviewId
 
 We can get a specific review searched by reviewId parameter.
 
-#### POST /api/reviews
+### POST /api/reviews
 
 We can save a newly created review into the DB.
 
@@ -237,19 +237,19 @@ In postman, send the request to `http://localhost:3001/api/reviews/` with the re
 }
 ```  
 
-#### PATCH /api/reviews/:reviewId
+### PATCH /api/reviews/:reviewId
 
 We can update the data of review searched by reviewId parameter.
 
-#### DELETE /api/reviews/:reviewId
+### DELETE /api/reviews/:reviewId
 
 We can delete a specific review searched by reviewId parameter.
 
-### Order API Endpoints (/api/orders)
+## Order API Endpoints (/api/orders)
 
 Order API endpoints manage all API endpoints related to customer orders or appointments booked on the website.
 
-#### POST /api/orders
+### POST /api/orders
 
 So far, we only manage to save order data from Checkout pages where customers provide their address and credit card information.
 
@@ -277,7 +277,7 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 }
 ```        
 
-### allen's note: 
+## allen's note: 
 I'm using a new tutorial in youtube that it actually teaches me how to connect to MongoDDB Atlas(online one), and it's straight working on backend, works pretty well so i'm following it.
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
 
