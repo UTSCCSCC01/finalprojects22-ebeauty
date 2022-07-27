@@ -28,10 +28,16 @@ const createTimeslot = asyncHandler(async (req, res) => {
     throw new Error('please have all fields filled');
   }
 
-  const timeslot = await Calendar.findOne({providerId: providerId, startTime: startTime, endTime: endTime});
+  let timeslot = await Calendar.findOne({providerId: providerId, startTime: startTime, endTime: endTime});
   if (timeslot) {
     res.status(400).json({ msg: 'this time slot already exists' });
-    throw new Error('this time slot already exists');
+    return;
+  }
+
+  timeslot = await Calendar.find({providerId: providerId, startTime: {$lte: endTime}, endTime: {$gte: startTime}});
+  if (JSON.stringify(timeslot) !== "[]") {
+    res.status(400).json({ msg: 'this schedule is overlapping with other timeslot!' });
+    return;
   }
 
   const calendar = await Calendar.create({
