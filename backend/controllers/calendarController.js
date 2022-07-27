@@ -14,6 +14,13 @@ const createTimeslot = asyncHandler(async (req, res) => {
   let startTime = req.body.startTime;
   let endTime = req.body.endTime;
   let rest = req.body.rest;
+  try{
+    startTime = new Date(startTime);
+    endTime = new Date(endTime);  
+  } catch (err){
+    res.status(400).json({ msg: 'your date value is not valid!'});
+    throw new Error('your date value is not valid!');
+  }
 
   // only goes in if statement when any contain null
   if (!(providerId && startTime && endTime)) {
@@ -21,7 +28,7 @@ const createTimeslot = asyncHandler(async (req, res) => {
     throw new Error('please have all fields filled');
   }
 
-  const timeslot = await Calendar.findOne({providerId: req.body.providerId, startTime: req.body.startTime, endTime: req.body.endTime});
+  const timeslot = await Calendar.findOne({providerId: providerId, startTime: startTime, endTime: endTime});
   if (timeslot) {
     res.status(400).json({ msg: 'this time slot already exists' });
     throw new Error('this time slot already exists');
