@@ -16,11 +16,11 @@ const calendarSchema = mongoose.Schema({
     default: ''
   },
   startTime: {
-    type: String,
+    type: Date,
     required: [true, "please add start time."],
   },
   endTime: {
-    type: String,
+    type: Date,
     required: [true, "please add end time."],
   },
   // rest true meaning provider want to have rest time in his working hours
