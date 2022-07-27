@@ -295,12 +295,12 @@ open postman, select POST method, paste url below to postman's url:
 localhost:3001/api/calendars
 
 and with raw json body like:
-{
-    "providerId": "62c4somestuffc3", 
-    "startTime": "12:00" ,
-    "endTime": "14:00",
+{ 
+    "providerId": "62c4a04b62f327868e4055c3", 
+    "startTime": "2021-01-15T06:31:00" , 
+    "endTime": "2021-11-15T06:31:00", 
     "title": "some reservation title", 
-    "rest": false
+    "rest": false 
 }
 
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
