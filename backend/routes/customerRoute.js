@@ -5,6 +5,7 @@ import {
   updateCustomer,
   registerCustomer,
   loginCustomer,
+  logoutCustomer,
 
   //address operations:
   getDefaultAddress,
@@ -18,9 +19,9 @@ router.use(cookieParser());
 
 router.post("/register-customer", registerCustomer);
 router.post("/login-customer", loginCustomer);
-// router.get('/me', protect, getProvider);
+router.get("/logout-customer", logoutCustomer);
 
-// get all reviews
+// get all customers
 router.get("/", getCustomers);
 
 router.get("/getDefaultAddress", getDefaultAddress);

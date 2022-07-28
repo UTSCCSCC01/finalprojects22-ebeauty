@@ -1,7 +1,8 @@
 import { Store } from 'react-notifications-component';
 
 // https://teodosii.github.io/react-notifications-component/ 
-export default function Alerting(msg, typ){
+// default typ is info, would change if pass in other values
+export default function Alerting(msg, typ = 'info'){
   Store.addNotification({
     title: msg,
     message: "",
