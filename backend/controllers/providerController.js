@@ -139,7 +139,7 @@ const getProviders = asyncHandler(async (req, res) => {
 //@route   GET /api/providers/:id
 //@access  Public
 const getProviderById = asyncHandler(async (req, res) => {
-  const provider = await Provider.findById(req.params.id);
+  const provider = await Provider.findById(req.params.id).select('-password');
   // check if Provider exist
   if (provider) {
     res.json(provider);
