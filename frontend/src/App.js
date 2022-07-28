@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar';
+import ProviderNavbar from './components/ProviderNavbar';
 import Footer from './components/Footer';
 import Home from './pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -22,25 +23,34 @@ import CheckoutPaymentPage from './pages/CheckoutPaymentPage';
 import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderSchedule from './pages/ProviderSchedule';
 import ReservationCustomer from './pages/ReservationCustomer';
+import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 
 import OnlyProviderView from './pages/OnlyProviderView';
+
+// auth of login
 import RequireAuth from './Authentication/RequireAuth';
+import useAuth from './Authentication/useAuth';
 
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
-import { AuthProvider } from './Authentication/AuthProvider';
 
 function App() {
+  const { auth } = useAuth();
   return (
     <Router>
       <div className="App">
         <ReactNotifications />
         <ScrollToTop>
           <div className="content">
-            <AuthProvider>
-              <Navbar />
+              {Object.keys(auth).length === 0 ? (
+                  <Navbar />
+                ):(
+                  auth?.role[0] == 1?
+                    <ProviderNavbar/>
+                  :
+                    <div>user here</div>
+              )}
 
               <Routes>
                 <Route path="*" element={<NotFound />} />
@@ -91,7 +101,6 @@ function App() {
                 </Route>
 
               </Routes>
-            </AuthProvider>
             <Footer />
           </div>
         </ScrollToTop>
