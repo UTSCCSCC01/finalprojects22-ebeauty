@@ -69,10 +69,9 @@ const Login = () => {
         if(res._id){
           const _id = res._id;
           const name = res.name;
-          const password = res.password; 
           const role = [1]; 
           const token = res.token;
-          setAuth({ _id, name, password, role, token });
+          setAuth({ _id, name, role, token });
           navigate(from, { replace: true });
           setEmail("");
           setPassword("");
