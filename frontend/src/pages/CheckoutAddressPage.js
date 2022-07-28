@@ -16,69 +16,10 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import CheckoutPayment from "./CheckoutPaymentPage.js";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { provinces } from "../constants/provinces.js";
+import { countries } from "../constants/countries.js";
 
-const provinces = [
-  {
-    value: "Newfoundland and Labrador",
-    label: "NL"
-  },
-  {
-    value: "Prince Edward Island",
-    label: "PE"
-  },
-  {
-    value: "Nova Scotia",
-    label: "NS"
-  },
-  {
-    value: "New Brunswick",
-    label: "NB"
-  },
-  {
-    value: "Quebec",
-    label: "QC"
-  },
-  {
-    value: "Ontario",
-    label: "ON"
-  },
-  {
-    value: "Manitoba",
-    label: "MB"
-  },
-  {
-    value: "Saskatchewan",
-    label: "SK"
-  },
-  {
-    value: "Alberta",
-    label: "AB"
-  },
-  {
-    value: "British Columbia",
-    label: "BC"
-  },
-  {
-    value: "Yukon",
-    label: "YT"
-  },
-  {
-    value: "Northwest Territories",
-    label: "NT"
-  },
-  {
-    value: "Nunavut",
-    label: "NU"
-  },
-]
-
-const countries = [
-  {
-    value: "Canada",
-    label: "Canada"
-  },
-]
 
 export default function CheckoutAddressPage() {
   const [firstName, setFirstName] = useState("");
@@ -91,6 +32,14 @@ export default function CheckoutAddressPage() {
   const [country, setCountry] = useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  console.log(location.state.desc);
+  console.log(location.state.name);
+
+  const orderName = location.state.name;
+  const orderDesc = location.state.desc;
+  const orderPrice = location.state.price;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -106,7 +55,7 @@ export default function CheckoutAddressPage() {
 
     const address = {addressOne, addressTwo, addressCombined, city, province, postalCode, country};
 
-    const order = { firstName, lastName, address };
+    const order = { firstName, lastName, address, orderName, orderDesc, orderPrice };
 
     // use navigate hook to direct users to next page with data stored as state
     // navigate allows us to send data from one component to another component if they are serializable

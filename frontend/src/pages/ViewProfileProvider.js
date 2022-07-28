@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { Card, CardBody } from 'reactstrap';
 import { listProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
@@ -13,16 +13,23 @@ function roundHalf(num1, num2) {
 }
 
 
+
+
 const ViewProfileProvider = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const providerDetails = useSelector((state) => state.providerDetails);
   const { provider, loading, error } = providerDetails;
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(listProviderDetails(id));
   }, [dispatch, id]);
 
+  const onClickBookAppointment = () => {
+    navigate("/service-list");
+    
+  }
   // const provider = {};
   const rating = {
     size: 30,
@@ -68,7 +75,7 @@ const ViewProfileProvider = () => {
               <p className="displayProfileLine">{provider.state}</p>
               <p className="displayProfileLine">{provider.country}</p>
             </div>
-            <button className="appointmentButton">Book an appointment</button>
+            <button className="appointmentButton" onClick={onClickBookAppointment}>Book an appointment</button>
           </CardBody>
         </Card>
       </div>
