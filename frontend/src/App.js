@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar';
 import ProviderNavbar from './components/ProviderNavbar';
+import CustomerNavbar from './components/CustomerNavbar';
 import Footer from './components/Footer';
 import Home from './pages/HomePage';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
@@ -49,7 +50,7 @@ function App() {
                   auth?.role[0] == 1?
                     <ProviderNavbar/>
                   :
-                    <div>user here</div>
+                    <CustomerNavbar/>
               )}
 
               <Routes>

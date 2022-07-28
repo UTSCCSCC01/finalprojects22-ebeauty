@@ -22,7 +22,7 @@ const ProviderNavbar = () => {
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <button onClick={logout} className={'toprightbotton'}>
-          sign out
+          provider sign out
         </button>
       </div>
     </nav>
