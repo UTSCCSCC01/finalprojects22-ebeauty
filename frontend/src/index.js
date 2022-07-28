@@ -5,10 +5,13 @@ import store from './store';
 import './css/index.css';
 import './css/components.css';
 import App from './App';
+import { AuthProvider } from './Authentication/AuthProvider';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <App />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </Provider>
 );
