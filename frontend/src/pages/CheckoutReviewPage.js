@@ -4,7 +4,17 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import Grid from "@mui/material/Grid";
-import { Box, Button, Container, createTheme, Paper, Step, StepLabel, Stepper, ThemeProvider } from "@mui/material";
+import {
+  Box,
+  Button,
+  Container,
+  createTheme,
+  Paper,
+  Step,
+  StepLabel,
+  Stepper,
+  ThemeProvider,
+} from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
 
 const products = [
@@ -25,8 +35,6 @@ const products = [
   },
 ];
 
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -41,7 +49,7 @@ const theme = createTheme({
 export default function CheckoutReviewPage() {
   const location = useLocation();
   const data = location.state.data;
-
+  console.log(data);
   const handleSubmitOrder = async () => {
     console.log("submit button clicked");
     await fetch("/api/orders/save-order", {
@@ -50,9 +58,10 @@ export default function CheckoutReviewPage() {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => {return res.json()});
+    }).then((res) => {
+      return res.json();
+    });
   };
-
 
   const addresses = [
     data.address.addressOne,
@@ -87,17 +96,21 @@ export default function CheckoutReviewPage() {
               Order summary
             </Typography>
             <List disablePadding>
-              {products.map((product) => (
+              {/* {products.map((product) => (
                 <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
                   <ListItemText primary={product.name} secondary={product.desc} />
                   <Typography variant="body2">{product.price}</Typography>
                 </ListItem>
-              ))}
+              ))} */}
+              <ListItem key={data.orderName} sx={{ py: 1, px: 0 }}>
+                <ListItemText primary={data.orderName} secondary={data.orderDesc} />
+                <Typography variant="body2">{data.orderPrice}</Typography>
+              </ListItem>
 
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  $86.97
+                  {data.orderPrice}
                 </Typography>
               </ListItem>
             </List>
