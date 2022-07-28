@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import "../css/Login.css";
+import useAuth from '../Authentication/useAuth';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Login = () => {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
+
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   // const [data, setData] = useState({
   //   email: "",
@@ -15,6 +23,9 @@ const Login = () => {
   // const handleChange = ({ currentTarget: input }) => {
   //   setData({ ...data, [input.name]: input.value });
   // };
+  function handleClick() {
+    navigate('/onlyproviderview');
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,10 +38,17 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-      }).then((res) => {
-        if (!res.ok) {
+      })
+      .then(res => res.json())
+      .then((res) => {
+        if (res._id == null) {
           alert(`LOGIN FAILED with ${email}`);
         } else {
+          const _id = res._id;
+          const name = res.firstName + res.lastName;
+          const role = [2]; 
+          const token = res.token;
+          setAuth({ _id, name, role, token });
           setError(null);
           setEmail("");
           setPassword("");
@@ -49,6 +67,13 @@ const Login = () => {
       .then(res => res.json())
       .then((res) => {
         if(res._id){
+          const _id = res._id;
+          const name = res.name;
+          const password = res.password; 
+          const role = [1]; 
+          const token = res.token;
+          setAuth({ _id, name, password, role, token });
+          navigate(from, { replace: true });
           setEmail("");
           setPassword("");
           alert(`LOGIN SUCCESS with ${email}`);
@@ -65,6 +90,7 @@ const Login = () => {
         <div className="left">
           <form className="form_container" id="login-form">
             <h1 className="form_container h1">Login to Your Account</h1>
+            {/* <h1 onClick={handleClick} style={{cursor:"pointer"}}>111</h1> */}
             <label className="checkbox_label">
               <input 
                 type="checkbox"
