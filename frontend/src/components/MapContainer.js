@@ -45,6 +45,7 @@ function Map(){
         try{
           const results = await getGeocode({ address: addr });
           const { lat, lng } = await getLatLng(results[0]);
+          setAddr("");
           setLat(lat);
           setLng(lng);
         } catch(e) {
