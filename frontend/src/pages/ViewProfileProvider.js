@@ -5,6 +5,7 @@ import { Card, CardBody } from 'reactstrap';
 import { listProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
+import ProviderSchedule from './ProviderSchedule';
 
 function roundHalf(num1, num2) {
   if(num2===0)
@@ -35,13 +36,13 @@ const ViewProfileProvider = () => {
       className="profile"
       style={{
         display: 'flex',
-        justifyContent: 'left',
+        justifyContent: 'center',
         width: '100%',
         paddingTop: '10pt',
         paddingBottom: '30pt',
       }}>
       <br></br>
-      <div>
+      <div style={{width:"50%"}}>
         <Card className="profileCardView">
           <CardBody>
             <div>
@@ -82,10 +83,10 @@ const ViewProfileProvider = () => {
           </Link>
         </div>
       
-        <img src={require('../images/makeup.jpg')} className="profileUploadedImg" />
+        {/* <img src={require('../images/makeup.jpg')} className="profileUploadedImg" /> */}
+        <ProviderSchedule providerId={provider._id} className="profileCalendar"/>
       </div>
 
-      
       
       
     </div>

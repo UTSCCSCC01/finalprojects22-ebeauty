@@ -4,6 +4,7 @@ import FormData from 'form-data'
 import { useNavigate, useLocation } from "react-router-dom";
 import { Card } from "reactstrap";
 
+import Loader from "../components/Loader";
 
 /**
  * bug: the react-alerting stuff does not show all error
@@ -41,7 +42,7 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const signUp = async () => {
-    console.log("frontned",data)
+    // console.log("frontned",data)
     await fetch('/api/providers',{
       method: "POST",
       body: JSON.stringify(data),
@@ -95,7 +96,7 @@ const SignUpProviderThree = () => {
     <div className="divCenter">
       <Card className="twoCard">
         {loading ? (
-            <div>loading...</div>
+            <Loader/>
           ):(
           <>
             <h1>Upload your profile image!</h1>
@@ -116,7 +117,7 @@ const SignUpProviderThree = () => {
                   hidden
                   style={{color:"transparent"}}
                   onChange={(event) => {
-                    console.log(event.target.files[0]);
+                    // console.log(event.target.files[0]);
                     setSelectedImage(event.target.files[0]);
                   }}
                 />

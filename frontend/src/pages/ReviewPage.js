@@ -45,7 +45,6 @@ const Review = () => {
             name="simple-controlled"
             value={rating}
             onChange={(e, rating) => {
-              console.log(rating);
               setRating(rating);
             }}
             size="large"
