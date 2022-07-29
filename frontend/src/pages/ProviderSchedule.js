@@ -11,8 +11,8 @@ import interactionPlugin from '@fullcalendar/interaction'
 // https://stackoverflow.com/questions/43863997/loading-events-to-fullcalendar
 // https://fullcalendar.io/docs/events-json-feed
 const ProviderSchedule = ({ providerId }) => {
-  console.log(providerId);
   if (isNaN(providerId)){
+    //hardcoded providerId for now, is used when directly view the page for development purpose.
     providerId = "62cfba412377caca02c6d2ec";
   }
   const inputEl = useRef(null);
@@ -61,7 +61,6 @@ const ProviderSchedule = ({ providerId }) => {
       })
     }
     // store in db
-    //hardcoded providerId for now
     let event = {
       providerId: providerId, title: title, startTime: e.startStr,
       endTime: e.endStr, rest: rest
