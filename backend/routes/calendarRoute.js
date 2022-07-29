@@ -4,7 +4,8 @@ import {
   getCalendarById, 
   getTimeslot,
   deleteTimeslot,
-  getTimeslotId
+  getTimeslotId,
+  updateTimeWithCustomerId
 } from "../controllers/calendarController.js";
 import express from "express";
 
@@ -26,5 +27,7 @@ router.delete("/timeslot/", deleteTimeslot);
 
 // gets timeslot from time and provider id
 router.get("/timeslot/:id/:start/:end", getTimeslotId);
+
+router.patch("/timeslot/:id", updateTimeWithCustomerId);
 
 export default router;

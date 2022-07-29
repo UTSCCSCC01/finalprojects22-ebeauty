@@ -101,7 +101,6 @@ const getTimeslot = asyncHandler(async (req, res) => {
 //@access  Public
 
 const deleteTimeslot = asyncHandler(async (req,res) => {
-  console.log(req.body._id);
   const timeslot = await Calendar.findByIdAndDelete(req.body._id)
   if (timeslot) {
     res.status(200).json({timeslot})
@@ -129,7 +128,23 @@ const getTimeslotId = asyncHandler(async (req, res) => {
 });
 
 
+//@desc    updates timeslot with new customerid
+//@route   PATCH /api/calendars/timeslot/:id
+//@access  Public
+
+const updateTimeWithCustomerId = asyncHandler(async (req, res) => {
+  console.log(req.params.id, req.body.customerId);
+  const timeslot = await Calendar.findByIdAndUpdate(req.params.id, {customerId: req.body.customerId})
+  if (timeslot) {
+    res.status(200).json({timeslot})
+  } else {
+    res.status(404).json({ msg: 'timeslot not found' });
+    throw new Error('timeslot not found');
+  }
+});
 
 
 
-export { createTimeslot, getCalenders, getCalendarById, getTimeslot, deleteTimeslot, getTimeslotId };
+
+export { createTimeslot, getCalenders, getCalendarById, getTimeslot, deleteTimeslot, getTimeslotId,
+  updateTimeWithCustomerId };

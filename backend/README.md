@@ -275,6 +275,8 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
 
+
+
 ### GET /api/calendars
 
 get all calendars in DB
@@ -286,6 +288,18 @@ get all calendars of one provider
 ### GET /api/calendars/timeslot
 
 get the detail of a timeslot
+
+## GET /api/calendars/timeslot/:id/:start/:end
+
+gets the timeslot id using the id of the task provider and start/end time of the timeslot
+
+### PATCH /api/calendars/timeslot/:id
+
+updates the timeslot with a new customer id
+
+### DELETE /api/calendars/timeslot
+
+deletes the timeslot with given timeslot id
 
 ### POST /api/calendars
 

@@ -50,7 +50,6 @@ const ProviderSchedule = ({ providerId }) => {
     let calendarApi = e.view.calendar
     calendarApi.unselect() // clear date selection
     if (title) {
-        let rest = window.confirm("Do you plan to include rest during this booking?")
       calendarApi.addEvent({
         title,
         start: e.startStr,
@@ -58,12 +57,11 @@ const ProviderSchedule = ({ providerId }) => {
         allDay: e.allDay,
         color: '#ff6b6b',
         editable: false,            //set to false (difficult to handle dragging)
-        rest: rest
       })
         // store in db
         let event = {
             providerId: providerId, title: title, startTime: e.startStr,
-            endTime: e.endStr, rest: rest
+            endTime: e.endStr
         }
 
         await fetch("/api/calendars", {
@@ -86,7 +84,6 @@ const ProviderSchedule = ({ providerId }) => {
   const handleEventDelete = async(e) => {
     if (window.confirm("Do you want to delete this booking?")) {
       //get event ObjectId (mongoDB id)
-        const providerId = "62cfba412377caca02c6d2ec";
         const start = e.event.startStr;
         const end = e.event.endStr;
         await fetch(`/api/calendars/timeslot/${providerId}/${start}/${end}`, {
