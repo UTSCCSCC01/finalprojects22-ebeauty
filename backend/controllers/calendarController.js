@@ -71,11 +71,10 @@ const getCalenders = asyncHandler(async (req, res) => {
 //@route   GET /api/calenders/calendar/:id
 //@access  Public
 const getCalendarById = asyncHandler(async (req, res) => {
-  const calendar = await Calendar.find({providerId: req.body.providerId});
-  console.log(calendar)
+  const calendar = await Calendar.find({providerId: req.params.id});
   // check if calendar exist
   if (calendar) {
-    res.json(calendar);
+    res.status(200).json(calendar);
   } else {
     res.status(404).json({ msg: 'Calendar not found' });
     throw new Error('Calendar not found');

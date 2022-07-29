@@ -14,7 +14,7 @@ router.post("/", createTimeslot);
 router.get("/", getCalenders);
 
 // get one provider's calendar
-router.get("/calendar/", getCalendarById);
+router.get("/calendar/:id", getCalendarById);
 
 // get the detail of one timeslot
 router.get("/timeslot/", getTimeslot);
