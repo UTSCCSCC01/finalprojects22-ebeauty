@@ -22,7 +22,7 @@ import ContactUs from './pages/ContactPage';
 import CheckoutAddressPage from './pages/CheckoutAddressPage';
 import CheckoutPaymentPage from './pages/CheckoutPaymentPage';
 import CheckoutReviewPage from './pages/CheckoutReviewPage';
-import ProviderSchedule from './pages/ProviderSchedule';
+import ProviderScheduleing from './pages/ProviderScheduling';
 import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 
@@ -94,7 +94,7 @@ function App() {
                 />
                 <Route path="/checkout-review" element={<CheckoutReviewPage />} />
                 <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
-                <Route path="/providerschedule" element={<ProviderSchedule />} />
+                <Route path="/providerschedule" element={<ProviderScheduleing />} />
 
                 {/* testing auth here */}
                 <Route element={<RequireAuth allowedRoles={[1]}/>}>
