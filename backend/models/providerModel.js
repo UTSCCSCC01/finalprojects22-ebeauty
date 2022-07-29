@@ -13,6 +13,10 @@ const providerSchema = mongoose.Schema({
     type: String,
     require: [true, 'please add an address']
   },
+  range: {
+    type: String,
+    require: [true, 'please add a range']
+  },
   city: {
     type: String,
     require: [true, 'please add a city']

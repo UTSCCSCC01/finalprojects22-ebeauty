@@ -11,6 +11,7 @@ const registerProvider = asyncHandler(async (req, res) => {
   let name = req.body.name;
   let title = req.body.title;
   let address = req.body.address;
+  let range = req.body.range;
   let city = req.body.city;
   let state = req.body.state;
   let country = req.body.country;
@@ -24,7 +25,7 @@ const registerProvider = asyncHandler(async (req, res) => {
   let isAdmin = req.body.isAdmin;
 
   // only goes in if statement when any contain null
-  if (!(name && title && address && city && state && country && email && phone && password && imageFilename && individual) || totalRating==null || ratingPopulation==null || isAdmin==null) {
+  if (!(name && title && address && range && city && state && country && email && phone && password && imageFilename && individual) || totalRating==null || ratingPopulation==null || isAdmin==null) {
     res.status(400);
     throw new Error('please have all fields filled');
   } else if ((totalRating^ratingPopulation)!=0 || isAdmin==true){
@@ -41,8 +42,9 @@ const registerProvider = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const saltedhash = await bcrypt.hash(password, salt);
 
+  console.log(range);
   const provider = await Provider.create({
-    name, title, address, city, state, country, email, phone, individual, imageFilename, totalRating, ratingPopulation, isAdmin, password: saltedhash
+    name, title, address, range, city, state, country, email, phone, individual, imageFilename, totalRating, ratingPopulation, isAdmin, password: saltedhash
   });
 
   if (provider) {
@@ -51,6 +53,7 @@ const registerProvider = asyncHandler(async (req, res) => {
       name: provider.name,
       title: provider.title,
       address: provider.address,
+      range: provider.range,
       city: provider.city,
       state: provider.state,
       country: provider.country,

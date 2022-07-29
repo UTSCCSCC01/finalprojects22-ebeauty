@@ -41,6 +41,15 @@ const SignUpProviderTwo = () => {
                 onChange={(option) => handleChange(option, "title")}
               />
             </div>
+            <h3 >What range would you like for your service?</h3>
+            <div className="center">
+              <Dropdown
+                placeholder="10 KM"
+                options={['10 KM', '20 KM', '30 KM']}
+                value="10 KM"
+                onChange={(option) => handleChange(option, "range")}
+              />
+            </div>
             {/*
               onSelect={(value) => console.log('selected!', value)} // always fires once a selection happens even if there is no change
               onClose={(closedBySelection) => console.log('closedBySelection?:', closedBySelection)}
