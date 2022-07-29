@@ -54,7 +54,7 @@ function Map(){
     }
     
     fetchAddr();
-  }, [lat])
+  }, [addr])
   
 
   const center = {lat: lat, lng: lng};
