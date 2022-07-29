@@ -56,7 +56,7 @@ const registerCustomer = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc login/authenticate customer
+// @desc login or authenticate customer
 // @route POST /api/customers/login
 // @access Public
 const loginCustomer = asyncHandler(async (req, res) => {
@@ -85,6 +85,27 @@ const loginCustomer = asyncHandler(async (req, res) => {
     throw new Error("login failed, invalid email or password");
   }
 });
+
+// @desc logout customer
+// @route POST /api/customers/logout
+// @access Public
+const logoutCustomer = asyncHandler(async (req, res) => {
+  try{
+    // Set token to none and expire after 1 seconds
+    res.cookie('jwt', 'none', {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    });
+
+    res.status(200)
+      .json({ msg: 'User logged out successfully' });
+  } catch (err){
+    
+    res.status(500);
+    throw new Error("logout failed, some problem occurs");
+  }
+});
+
 
 // @desc get customer data
 // @route GET /api/customers/me
@@ -209,6 +230,7 @@ const updateDefaultAddress = async (req, res) => {
 export {
   registerCustomer,
   loginCustomer,
+  logoutCustomer,
   getCustomer,
   getCustomers,
   deleteCustomer,
