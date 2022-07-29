@@ -56,7 +56,7 @@ const registerProvider = asyncHandler(async (req, res) => {
       country: provider.country,
       email: provider.email,
       phone: provider.phone,
-      password: provider.password,
+      // password: provider.password,
       imageFilename: provider.imageFilename,
       individual: provider.individual,
       totalRating: provider.totalRating,
@@ -94,7 +94,7 @@ const loginProvider = asyncHandler(async (req, res) => {
       state: provider.state,
       country: provider.country,
       email: provider.email,
-      password: provider.password,
+      // password: provider.password,
       imageFilename: provider.imageFilename,
       totalRating: provider.totalRating,
       ratingPopulation: provider.ratingPopulation,
@@ -139,7 +139,7 @@ const getProviders = asyncHandler(async (req, res) => {
 //@route   GET /api/providers/:id
 //@access  Public
 const getProviderById = asyncHandler(async (req, res) => {
-  const provider = await Provider.findById(req.params.id);
+  const provider = await Provider.findById(req.params.id).select('-password');
   // check if Provider exist
   if (provider) {
     res.json(provider);

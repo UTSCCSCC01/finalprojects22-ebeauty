@@ -27,6 +27,7 @@
   color: white;
   background-color: #e27b7b;
   border-radius: 8px;
+  border: none;
 }
 .navbar .links .toprightbotton:hover {
   color: white;
