@@ -11,12 +11,15 @@ import interactionPlugin from '@fullcalendar/interaction'
 // https://stackoverflow.com/questions/43863997/loading-events-to-fullcalendar
 // https://fullcalendar.io/docs/events-json-feed
 const ProviderSchedule = ({ providerId }) => {
-  console.log(providerId)
+  console.log(providerId);
+  if (isNaN(providerId)){
+    providerId = "62cfba412377caca02c6d2ec";
+  }
   const inputEl = useRef(null);
 
   useEffect(() => {
     async function fetchCalendar() {
-      await fetch("/api/calendars/calendar/" + "62cfba412377caca02c6d2ec", {
+      await fetch("/api/calendars/calendar/" + providerId, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -60,7 +63,7 @@ const ProviderSchedule = ({ providerId }) => {
     // store in db
     //hardcoded providerId for now
     let event = {
-      providerId: "62cfba412377caca02c6d2ec", title: title, startTime: e.startStr,
+      providerId: providerId, title: title, startTime: e.startStr,
       endTime: e.endStr, rest: rest
     }
 
