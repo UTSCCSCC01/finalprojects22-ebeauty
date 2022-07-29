@@ -545,6 +545,23 @@ const providers = [
     ratingPopulation: 50,
     isAdmin: false,
   },
+  {
+    name: 'test server',
+    title: 'Hairdress',
+    address: '1265 Military Trail',
+    range: '20 KM',
+    city: 'Toronto',
+    state: 'ON',
+    country: 'Canada',
+    email: '1234@gmail.com',
+    phone: "123123123",
+    password: bcrypt.hashSync('1234', 10),
+    imageFilename: "1659070911099Screen Shot 2022-07-28 at 11.35.37 PM.png",
+    individual: "yes",
+    totalRating: 0, 
+    ratingPopulation: 0,
+    isAdmin: false,
+  },
 ];
 
 export default providers;
