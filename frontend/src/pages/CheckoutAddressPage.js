@@ -34,12 +34,12 @@ export default function CheckoutAddressPage() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location.state.desc);
-  console.log(location.state.name);
+  
 
-  const orderName = location.state.name;
-  const orderDesc = location.state.desc;
-  const orderPrice = location.state.price;
+  const orderName = location.state.service.name;
+  const orderDesc = location.state.service.desc;
+  const orderPrice = location.state.service.price;
+  const orderDateTime = location.state.dateTime;
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -54,8 +54,9 @@ export default function CheckoutAddressPage() {
     }
 
     const address = {addressOne, addressTwo, addressCombined, city, province, postalCode, country};
+    const service = {orderName, orderDesc, orderPrice};
 
-    const order = { firstName, lastName, address, orderName, orderDesc, orderPrice };
+    const order = { firstName, lastName, address, service, orderDateTime };
 
     // use navigate hook to direct users to next page with data stored as state
     // navigate allows us to send data from one component to another component if they are serializable

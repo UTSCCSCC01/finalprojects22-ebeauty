@@ -103,14 +103,14 @@ export default function CheckoutReviewPage() {
                 </ListItem>
               ))} */}
               <ListItem key={data.orderName} sx={{ py: 1, px: 0 }}>
-                <ListItemText primary={data.orderName} secondary={data.orderDesc} />
-                <Typography variant="body2">{data.orderPrice}</Typography>
+                <ListItemText primary={data.service.orderName} secondary={data.service.orderDesc} />
+                <Typography variant="body2">{data.service.orderPrice}</Typography>
               </ListItem>
 
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  {data.orderPrice}
+                  {data.service.orderPrice}
                 </Typography>
               </ListItem>
             </List>
