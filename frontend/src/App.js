@@ -25,6 +25,7 @@ import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderSchedule from './pages/ProviderSchedule';
 import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 
 import OnlyProviderView from './pages/OnlyProviderView';
 
@@ -100,7 +101,7 @@ function App() {
                 <Route element={<RequireAuth allowedRoles={[1]}/>}>
                   <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 </Route>
-
+                <Route path="/orderhistory" element={<OrderHistoryPage />} />
               </Routes>
             <Footer />
           </div>
