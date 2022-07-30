@@ -39,7 +39,7 @@ export default function CheckoutAddressPage() {
   const orderName = location.state.service.name;
   const orderDesc = location.state.service.desc;
   const orderPrice = location.state.service.price;
-  const orderDateTime = location.state.dateTime;
+  const orderDateTime = location.state.appointmentTime;
 
   const handleNext = (e) => {
     e.preventDefault();

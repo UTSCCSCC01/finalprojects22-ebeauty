@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import FormControl from "@mui/material/FormControl";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -23,17 +23,40 @@ import CustomerCalendar from "./CustomerCalendar";
 
 const services = [
   {
-    name: "Amorr Salon",
-    price: 18.99,
+    name: "Men's Hair Cut",
+    price: 19.99,
   },
   {
-    name: "Fresh Massage",
-    price: 21.99,
+    name: "Women's Hair Cut",
+    price: 29.99,
   },
   {
-    name: "Lily Makeup Shop",
-    price: 45.99,
+    name: "Women's Perm",
+    price: 79.99,
   },
+  {
+    name: "Basic Makeup",
+    price: 15.99,
+  },
+  {
+    name: "Facial Massage",
+    price: 39.99,
+  },
+];
+
+// Mock Date and Time Data
+const availableDateTime = [
+  {
+    startTime: "8:00AM",
+    endTime: "11:00AM",
+    date: "July 25, 2022"
+  },
+  {
+    startTime: "5:30AM",
+    endTime: "7:30AM",
+    date: "July 26, 2022"
+  }
+
 ];
 
 const theme = createTheme({
@@ -48,13 +71,56 @@ const theme = createTheme({
 });
 
 const ServiceMenuPage = () => {
+  const mockProviderId = "62cfba412377caca02c6d2ec";
   const navigate = useNavigate();
   const location = useLocation();
   const providerName = location.state.name;
   const providerId = location.state._id;
+  const [selectedService, setSelectedService] = useState({});
+  const [selectedTime, setSelectedTime] = useState({});
+  const [dateTime, setDateTime] = useState(new Date());
+  const [calendarData, setCalendarData] = useState(null);
+
+  // const availableDateTime = [];
+
+  useEffect(() => {
+    async function fetchAvailableSpots() {
+      await fetch("/api/calendars/calendar/" + mockProviderId, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log("first fetch ");
+          // console.log(res);
+          setCalendarData(res);
+          console.log("calendarData: ", calendarData);
+        });
+    }
+    fetchAvailableSpots();
+    // if (calendarData) {
+    //   for (var i = 0; i < calendarData.length; i++) {
+    //     // retrieve startTime and endTime for available slots
+    //     if (calendarData[i].customerId != undefined) {
+    //       let startTime = calendarData[i].startTime;
+    //       let endTime = calendarData[i].endTime;
+    //       const startTimeObj = new Date(startTime);
+    //       const endTimeObj = new Date(endTime);
+    //       console.log(startTimeObj.getDate(), endTimeObj);
+    //       availableDateTime.push({ startTime: startTimeObj, endTime: endTimeObj });
+    //       console.log(availableDateTime);
+    //       console.log(availableDateTime[0].startTime.getHours());
+    //     }
+    //   }
+    // }
+  }, []);
 
   const onClickButton = () => {
-    navigate("/checkout-address", { state: { service: selectedService, dateTime: dateTime } });
+    navigate("/checkout-address", {
+      state: { service: selectedService, appointmentTime: selectedTime },
+    });
   };
 
   const onClickCheckbox = (e) => {
@@ -84,14 +150,15 @@ const ServiceMenuPage = () => {
 
         service.desc = `Scheduled at ${hour}:${minutes} on ${months[month + 1]} ${date}, ${year}`;
 
-        setSelectedService({ name: service.name, price: service.price, desc: service.desc });
+        setSelectedService({ name: service.name, price: service.price });
       }
     });
   };
 
-  const [selectedService, setSelectedService] = useState({});
-  const [dateTime, setDateTime] = useState(new Date());
-  //
+  const onClickDateCheckbox = (e) => {
+    setSelectedTime({ time: e.target.value });
+  };
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -127,18 +194,22 @@ const ServiceMenuPage = () => {
 
               <Grid item>
                 <Typography variant="h6" gutterBottom align="center">
-                  Select Date and Time
+                  Available Date and Time
                 </Typography>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                  <DateTimePicker
-                    renderInput={(props) => <TextField {...props} />}
-                    label="Appointment Date and Time"
-                    value={dateTime}
-                    onChange={(newValue) => {
-                      setDateTime(newValue);
-                    }}
-                  />
-                </LocalizationProvider>
+                <FormControl component="fieldset">
+                  <RadioGroup>
+                    {availableDateTime.map((date) => (
+                      <FormControlLabel
+                        className="formControlLabelStyle"
+                        value={`Schedueld on ${date.startTime} - ${date.endTime} on ${date.date}`}
+                        control={<Radio onClick={onClickDateCheckbox} />}
+                        label={`${date.startTime} - ${date.endTime} on ${date.date}`}
+                        // label={`${date.startTime.getHours()}:${date.startTime.getMinutes()} - ${date.endTime.getHours()}:${date.endTime.getMinutes()} on ${date.startTime.getMonth()} ${date.startTime.getDate()}, ${date.startTime.getFullYear()}`}
+                        labelPlacement="start"
+                      />
+                    ))}
+                  </RadioGroup>
+                </FormControl>
               </Grid>
             </Grid>
             <CustomerCalendar providerId={providerId} className="customerCalendar" />

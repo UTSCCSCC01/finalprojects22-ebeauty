@@ -61,6 +61,8 @@ export default function CheckoutReviewPage() {
     }).then((res) => {
       return res.json();
     });
+
+    alert("Order Saved!");
   };
 
   const addresses = [
@@ -103,7 +105,7 @@ export default function CheckoutReviewPage() {
                 </ListItem>
               ))} */}
               <ListItem key={data.orderName} sx={{ py: 1, px: 0 }}>
-                <ListItemText primary={data.service.orderName} secondary={data.service.orderDesc} />
+                <ListItemText primary={data.service.orderName} secondary={data.orderDateTime.time} />
                 <Typography variant="body2">{data.service.orderPrice}</Typography>
               </ListItem>
 
