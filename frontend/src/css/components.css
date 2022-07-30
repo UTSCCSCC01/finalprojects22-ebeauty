@@ -8,7 +8,7 @@
   text-decoration: auto;
 }
 a {
-  color: black;
+  color: #333;
 }
 /* home search bar */
 
@@ -239,6 +239,18 @@ a {
   border-style: groove;
   border-color: #e27b7b;
   border: 1px solid red;
+  justify-content: center;
+  align-items: center;
+}
+.provider-stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .profileBasicInfo {
   border: none;
