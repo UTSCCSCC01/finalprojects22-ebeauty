@@ -108,18 +108,15 @@ const logoutCustomer = asyncHandler(async (req, res) => {
 
 
 // @desc get customer data
-// @route GET /api/customers/me
+// @route GET /api/customers/:customerId
 // @access Private
 
 // example of protect route, prob should be public
 const getCustomer = asyncHandler(async (req, res) => {
   try {
-    res.status(200).json({
-      id: req.customer.id,
-      firstName: req.customer.firstName,
-      lastName: req.customer.lastName,
-      email: req.customer.email,
-    });
+    const customer = await Customer.findById(req.params.customerId).select('-password');
+
+    res.status(200).json(customer);
   } catch (error) {
     res.status(400);
     throw new Error(

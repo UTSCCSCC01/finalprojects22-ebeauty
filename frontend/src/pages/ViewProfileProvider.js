@@ -5,7 +5,7 @@ import { Card, CardBody } from 'reactstrap';
 import { listProviderDetails } from '../actions/providerAction';
 import ReactStars from 'react-stars'
 import { Link } from 'react-router-dom';
-import CustomerCalendar from './CustomerCalendar';
+import CustomerCalendar from '../components/CustomerCalendar';
 
 function roundHalf(num1, num2) {
   if(num2===0)

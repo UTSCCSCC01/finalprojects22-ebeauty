@@ -94,10 +94,10 @@ function App() {
                 />
                 <Route path="/checkout-review" element={<CheckoutReviewPage />} />
                 <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
-                <Route path="/providerschedule" element={<ProviderScheduleing />} />
 
                 {/* testing auth here */}
                 <Route element={<RequireAuth allowedRoles={[1]}/>}>
+                  <Route path="/providerschedule" element={<ProviderScheduleing />} />
                   <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 </Route>
 
