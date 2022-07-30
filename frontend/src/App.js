@@ -25,6 +25,7 @@ import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderScheduleing from './pages/ProviderScheduling';
 import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
 
 import OnlyProviderView from './pages/OnlyProviderView';
 
@@ -102,7 +103,7 @@ function App() {
                   <Route path="/providerschedule" element={<ProviderScheduleing />} />
                   <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 </Route>
-
+                <Route path="/orderhistory" element={<OrderHistoryPage />} />
               </Routes>
             <Footer />
           </div>
