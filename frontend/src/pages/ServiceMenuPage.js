@@ -13,13 +13,13 @@ import {
 } from "@mui/material";
 import React from "react";
 import FormControl from "@mui/material/FormControl";
-import "../css/ServiceMenuPage.css";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
+import CustomerCalendar from "./CustomerCalendar";
 
 const services = [
   {
@@ -50,7 +50,8 @@ const theme = createTheme({
 const ServiceMenuPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const providerName = location.state;
+  const providerName = location.state.name;
+  const providerId = location.state._id;
 
   const onClickButton = () => {
     navigate("/checkout-address", { state: { service: selectedService, dateTime: dateTime } });
@@ -140,6 +141,7 @@ const ServiceMenuPage = () => {
                 </LocalizationProvider>
               </Grid>
             </Grid>
+            <CustomerCalendar providerId={providerId} className="customerCalendar" />
             <React.Fragment>
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 <Button

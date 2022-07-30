@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Container } from "reactstrap";
 import { listProviderDetails } from "../actions/providerAction";
 import ReactStars from "react-stars";
-import CustomerCalendar from './CustomerCalendar';
+import CustomerCalendar from "./CustomerCalendar";
+import SampleGallery from "../components/SampleGallery";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 
 function roundHalf(num1, num2) {
   if (num2 === 0) return 0;
@@ -23,7 +25,10 @@ const ViewProfileProvider = () => {
   }, [dispatch, id]);
 
   const onClickBookAppointment = () => {
-    navigate("/service-list", { state: provider.name });
+    navigate("/service-list", { state: { name: provider.name, id: provider._id } });
+  };
+  const onClickWriteReview = () => {
+    navigate("/reviews", { state: { name: provider.name } });
   };
   // const provider = {};
   const rating = {
@@ -43,51 +48,62 @@ const ViewProfileProvider = () => {
         paddingBottom: "30pt",
       }}
     >
-      <br></br>
-      <div style={{width:"50%"}}>
-        <Card className="profileCardView">
-          <CardBody>
-            <div>
-              <h1>{provider.name}</h1>
-              <p>
-                <img src={require("../images/barber.jpg")} className="profileImage" />
-              </p>
+      <Box marginLeft={5} marginRight={5} width={1000}>
+        <Paper>
+          <div>
+            <Typography variant="h3" align="center">
+              {provider.name}
+            </Typography>
 
-              <p className="displayProfileLine">{provider.name}</p>
-              <div>
-                {/* should pass service info base on _id in db  */}
-                <p className="displayProfileLine">{provider.name}</p>
-                <p className="displayProfileLine">Service provided two</p>
-              </div>
-              <br></br>
-              <p className="displayProfileLine">{provider.title}</p>
-              <p className="displayProfileLine">{provider.address}</p>
-              <p className="displayProfileLine">{provider.city}</p>
-              <p className="displayProfileLine">{provider.state}</p>
-              <p className="displayProfileLine">{provider.country}</p>
+            <div className="profile-image">
+              <img src={require("../images/barber.jpg")} className="profileImage" />
             </div>
-            <button className="appointmentButton" style={"cursor: pointer"} onClick={onClickBookAppointment}>
-              Book an appointment
-            </button>
-          </CardBody>
-        </Card>
-      </div>
 
-      <div className="displayProfileRating">
-        <h9>Current Rating: {roundHalf(provider.totalRating, provider.ratingPopulation)}</h9>
-        <ReactStars {...rating} />
-        <div>
-          <Link to="/reviews">
-            <button className="profileButton">Write a Review</button>
-          </Link>
-        </div>
-      
-        {/* <img src={require('../images/makeup.jpg')} className="profileUploadedImg" /> */}
-        <CustomerCalendar providerId={provider._id} className="customerCalendar"/>
-      </div>
+            <div className="provider-stars">
+              Current Rating: {roundHalf(provider.totalRating, provider.ratingPopulation)}
+            </div>
 
-      
-      
+            <div className="provider-stars">
+              <ReactStars alignItems={"center"} {...rating} />
+            </div>
+            <p className="displayProfileLine">{provider.name}</p>
+            <div>
+              {/* should pass service info base on _id in db  */}
+              <p className="displayProfileLine">{provider.name}</p>
+              <p className="displayProfileLine">Service provided two</p>
+            </div>
+            <br></br>
+            <p className="displayProfileLine">{provider.title}</p>
+            <p className="displayProfileLine">{provider.address}</p>
+            <p className="displayProfileLine">{provider.city}</p>
+            <p className="displayProfileLine">{provider.state}</p>
+            <p className="displayProfileLine">{provider.country}</p>
+          </div>
+        </Paper>
+      </Box>
+      <Container>
+        <SampleGallery />
+        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+          <Button
+            className="checkout"
+            variant="contained"
+            sx={{ mt: 3, ml: 1 }}
+            style={{ color: "white", backgroundColor: "#e27b7b" }}
+            onClick={onClickBookAppointment}
+          >
+            Book an appointment
+          </Button>
+          <Button
+            className="checkout"
+            variant="contained"
+            sx={{ mt: 3, ml: 1 }}
+            style={{ color: "white", backgroundColor: "#e27b7b" }}
+            onClick={onClickWriteReview}
+          >
+            Write a Review
+          </Button>
+        </Box>
+      </Container>
     </div>
   );
 };
