@@ -1,0 +1,57 @@
+.provider-scheduling{
+    display: flex;
+    flex-direction: row;
+}
+
+.provider-scheduling-left{
+    width: 50%;
+}
+
+.provider-scheduling-right{
+    display: flex;
+    flex-direction: column;
+    margin: 40pt 0 0 40pt;
+}
+
+.In{
+	outline: none;
+	border: none;
+	width: 100%;
+	padding: 15px;
+	border-radius: 10px;
+	background-color: #edf5f3;
+    margin: 10px 0 0 0;
+	font-size: 18px;
+}
+
+.no-margin{
+    margin: 3px 0 0 0;
+}
+
+.fixed-width{
+    width:90%;
+    min-width: 350pt;
+}
+
+.center{
+    justify-content: center;
+}
+
+.all-width{
+    width:100%;
+}
+
+.scheduleCard {
+    text-align: center;
+    background-color: #f0f0f0;
+    min-width: 200pt;
+    min-height: 300pt;
+    height:auto;
+    padding-bottom: 30pt;
+}
+
+
+.to-left {
+    text-align: left;
+    margin-left: 20pt;
+}

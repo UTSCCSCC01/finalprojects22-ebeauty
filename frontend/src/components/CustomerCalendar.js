@@ -1,8 +1,7 @@
 import FullCalendar from '@fullcalendar/react'
-import React, { useState, useEffect, useRef } from 'react'
-import RequireAuth from '../Authentication/RequireAuth';
+import React, { useEffect, useRef } from 'react'
 import useAuth from '../Authentication/useAuth';
-import '../css/ProviderSchedule.css'
+import '../css/Calendar.css'
 
 //plugins
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -12,14 +11,13 @@ import interactionPlugin from '@fullcalendar/interaction'
 // suggestion:
 // https://stackoverflow.com/questions/43863997/loading-events-to-fullcalendar
 // https://fullcalendar.io/docs/events-json-feed
+
+
+// calendar of provider for customer to view
 const CustomerCalendar = ({ providerId }) => {
-  if (isNaN(providerId)) {
-    //hardcoded providerId for now, is used when directly view the page for development purpose.
-    providerId = "62cfba412377caca02c6d2ec";
-  }
   const { auth } = useAuth();
-  let customerId = auth._id;
-  console.log(customerId)
+  let customerId = auth?._id;
+  console.log(providerId)
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -33,8 +31,9 @@ const CustomerCalendar = ({ providerId }) => {
         .then(res => res.json())
         .then(res => {
           for (var i = 0; i < res.length; i++) {
+            console.log(res[i].customerId != undefined);
             // only add events that no customer reserved
-            if ((res[i].customerId) != undefined) {
+            if (res[i].customerId == undefined) {
               let title = res[i].title;
               let startTime = res[i].startTime;
               let endTime = res[i].endTime;
@@ -59,20 +58,18 @@ const CustomerCalendar = ({ providerId }) => {
       const start = e.event.startStr;
       const end = e.event.endStr;
       // get eventId from DB
-      await fetch(`/api/calendars/timeslot/${providerId}/${start}/${end}`, {
+      await fetch(`/api/calendars/timeslot/${providerId}/${start}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
         },
-      }).then(async (res) => {
-        if (!res.ok) {
-          alert(`Server Error`);
-        } else {
-          const eventId = JSON.parse(await res.text())
+      })
+      .then(res => res.json())
+      .then(async (res) => {
+        if (res._id) {
+          const eventId = res._id
           const customerJson = { "customerId": customerId }
-          console.log(customerJson);
-          console.log(eventId._id);
-          await fetch(`/api/calendars/timeslot/${eventId._id}`, {
+          await fetch(`/api/calendars/timeslot/${eventId}`, {
             method: "PATCH",
             body: JSON.stringify(customerJson),
             headers: {
@@ -86,6 +83,8 @@ const CustomerCalendar = ({ providerId }) => {
               e.event.remove();
             }
           })
+        } else {
+          alert(`Server Error`);
         }
       })
     }
