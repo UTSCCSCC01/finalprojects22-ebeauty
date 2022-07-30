@@ -9,6 +9,31 @@ export default function ContactUs() {
   const [email, setEmail] = useState("");
   const [issue, setIssue] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newissue = { name, email, issue };
+
+    await fetch("/api/issues/post-issue/", {
+      method: "POST",
+      body: JSON.stringify(newissue),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      if(!res.ok){
+        setName("");
+        setEmail("");
+        setIssue("");
+        alert(`NEW ISSUE FAILED TO SUBMIT`);
+      } else {
+        setName("");
+        setEmail("");
+        setIssue("");
+        alert(`ISSUE SUBMITTED`);
+      }
+    })
+  }
+
   return (
       <Container>
         <Row className="mb-5 mt-3">
@@ -38,7 +63,11 @@ export default function ContactUs() {
                     name="name"
                     placeholder="Name" 
                     type="text"
-                    required 
+                    required
+                    onChange={(e) => {
+                      setName(e.target.value);
+                    }}
+                    value={name}
                   />
                 </Col>
                 <Col lg="6" className="form-group">
@@ -49,6 +78,10 @@ export default function ContactUs() {
                     placeholder="Email"
                     type="email" 
                     required
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                    }}
+                    value={email}
                   />
                 </Col>
               </Row>
@@ -59,11 +92,15 @@ export default function ContactUs() {
                 placeholder="Message"
                 rows="5" 
                 required
+                onChange={(e) => {
+                  setIssue(e.target.value);
+                }}
+                value={issue}
               ></textarea>
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button class="btn-primary" type="submit"> 
+                  <button class="btn-primary" type="submit" onClick={handleSubmit}> 
                   Send
                   </button>
                 </Col>
