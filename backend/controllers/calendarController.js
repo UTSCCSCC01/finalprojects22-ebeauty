@@ -112,12 +112,12 @@ const deleteTimeslot = asyncHandler(async (req,res) => {
 });
 
 //@desc    gets a timeslot ID using the start and end time of an event and the providersId
-//@route   GET /api/calendars/timeslot/:id/:start/:end
+//@route   GET /api/calendars/timeslot/:id/:start
 //@access  Public
 
 const getTimeslotId = asyncHandler(async (req, res) => {
   const timeslot = await Calendar.findOne({providerId: req.params.id,
-    startTime: req.params.start, endTime: req.params.end}, {_id:1});
+    startTime: req.params.start});
   // check if calendar exist
   if (timeslot) {
     res.json(timeslot);
