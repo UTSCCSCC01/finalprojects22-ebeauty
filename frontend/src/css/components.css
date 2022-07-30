@@ -342,7 +342,6 @@ a {
   margin-right: 20px;
 }
 .reservationButton {
-  
   color: white;
   background-color: #e27b7b;
   border-radius: 8px;
@@ -448,4 +447,21 @@ a {
   min-width: auto;
   /* text-align: center; */
   margin-left: 10%;
+}
+
+.dataDashboard {
+  font-size: 14pt;
+  color: white;
+  background-color: #e27b7b;
+  border: none;
+  border-radius: 3px;
+  width: auto;
+  height: 40pt;
+  box-shadow: 0 0 3px black;
+  margin-left: auto;
+  cursor: pointer;
+}
+.dataDashboard:hover {
+  color: white;
+  background-color: #c02121 !important;
 }
