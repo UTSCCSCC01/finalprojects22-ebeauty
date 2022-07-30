@@ -75,7 +75,7 @@ const ServiceMenuPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const providerName = location.state.name;
-  const providerId = location.state._id;
+  const providerId = location.state.id;
   const [selectedService, setSelectedService] = useState({});
   const [selectedTime, setSelectedTime] = useState({});
   const [dateTime, setDateTime] = useState(new Date());
