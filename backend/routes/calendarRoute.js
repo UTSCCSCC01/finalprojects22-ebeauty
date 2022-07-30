@@ -26,7 +26,7 @@ router.get("/timeslot/", getTimeslot);
 router.delete("/timeslot/", deleteTimeslot);
 
 // gets timeslot from time and provider id
-router.get("/timeslot/:id/:start/:end", getTimeslotId);
+router.get("/timeslot/:id/:start", getTimeslotId);
 
 router.patch("/timeslot/:id", updateTimeWithCustomerId);
 

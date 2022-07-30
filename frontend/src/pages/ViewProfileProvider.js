@@ -4,9 +4,9 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Card, CardBody, Container } from "reactstrap";
 import { listProviderDetails } from "../actions/providerAction";
 import ReactStars from "react-stars";
-import CustomerCalendar from "./CustomerCalendar";
 import SampleGallery from "../components/SampleGallery";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import CustomerCalendar from "../components/CustomerCalendar";
 
 function roundHalf(num1, num2) {
   if (num2 === 0) return 0;
