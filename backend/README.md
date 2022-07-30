@@ -59,13 +59,13 @@ Since test results depend on the .env file, make sure your env file contains the
 -->
 
 # APIS
-[Customer](#customers-api-endpoints-apicustomers)
-[Provider](#providers-api-endpoints-apiproviders)
-[Post](#post-api-endpoints-apiposts)
-[Reviews](#reviews-api-endpoints-apireviews)
-[Order](#order-api-endpoints-apiorders)
-[Calendar](#calendar-api-endpoints-apicalendars)
-[Image](#file-image-api-endpoints-file)
++ [Customer](#customers-api-endpoints-apicustomers)
++ [Provider](#providers-api-endpoints-apiproviders)
++ [Post](#post-api-endpoints-apiposts)
++ [Reviews](#reviews-api-endpoints-apireviews)
++ [Order](#order-api-endpoints-apiorders)
++ [Calendar](#calendar-api-endpoints-apicalendars)
++ [Image](#file-image-api-endpoints-file)
 
 
 ## Customers API Endpoints (/api/customers)
