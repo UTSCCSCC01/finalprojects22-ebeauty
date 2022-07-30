@@ -28,28 +28,29 @@ const CustomerCalendar = ({ providerId }) => {
           "Content-Type": "application/json",
         },
       })
-        .then((res) => res.json())
-        .then((res) => {
-          for (var i = 0; i < res.length; i++) {
-            console.log(res[i].customerId != undefined);
-            // only add events that no customer reserved
-            if (res[i].customerId == undefined) {
-              let title = res[i].title;
-              let startTime = res[i].startTime;
-              let endTime = res[i].endTime;
-              let calendarApi = inputEl.current.getApi();
-              calendarApi.addEvent({
-                title: title,
-                start: startTime,
-                end: endTime,
-                color: "#ff6b6b",
-              });
-            }
+      .then(res => res.json())
+      .then(res => {
+        for (var i = 0; i < res.length; i++) {
+          console.log(res[i].customerId != undefined);
+          // only add events that no customer reserved
+          if (res[i].customerId == undefined) {
+            let title = res[i].title;
+            let startTime = res[i].startTime;
+            let endTime = res[i].endTime;
+            let calendarApi = inputEl.current.getApi();
+            calendarApi.addEvent({
+              title: title,
+              start: startTime,
+              end: endTime,
+              color: '#ff6b6b'
+            });
           }
-        });
+        }
+      })
     }
-    fetchCalendar();
-  }, []);
+    fetchCalendar()
+  }, [providerId])
+
 
   const handleBook = async (e) => {
     if (window.confirm("Do you want to reserve this booking?")) {
