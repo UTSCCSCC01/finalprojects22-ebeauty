@@ -58,6 +58,16 @@ However, there is a better way to do it using postman. Select GET method, and go
 Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
 -->
 
+# APIS
+[Customer](#customers-api-endpoints-apicustomers)
+[Provider](#providers-api-endpoints-apiproviders)
+[Post](#post-api-endpoints-apiposts)
+[Reviews](#reviews-api-endpoints-apireviews)
+[Order](#order-api-endpoints-apiorders)
+[Calendar](#calendar-api-endpoints-apicalendars)
+[Image](#file-image-api-endpoints-file)
+
+
 ## Customers API Endpoints (/api/customers)
 
 All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
@@ -271,7 +281,7 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 }
 ```        
 
-## calendar API Endpoints (/api/calendars)
+## Calendar API Endpoints (/api/calendars)
 
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
 
