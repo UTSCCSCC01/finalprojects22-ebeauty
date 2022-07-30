@@ -1,9 +1,13 @@
 import React from "react"; 
+import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import '../css/ContactPage.css'
 
 export default function ContactUs() {
   
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [issue, setIssue] = useState("");
 
   return (
       <Container>
