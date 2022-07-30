@@ -2,9 +2,6 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Col, Card, CardBody } from 'reactstrap';
 
-import { PowerBIEmbed } from 'powerbi-client-react';
-import { models } from 'powerbi-client';
-
 const ProfileProvider = () => {
   const [Name, setName] = useState('');
   const [ServiceOne, setServiceOne] = useState('');
