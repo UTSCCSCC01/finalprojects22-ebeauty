@@ -1,12 +1,12 @@
-import FullCalendar from '@fullcalendar/react'
-import React, { useState, useEffect, useRef } from 'react'
-import RequireAuth from '../Authentication/RequireAuth';
-import useAuth from '../Authentication/useAuth';
-import '../css/ProviderSchedule.css'
+import FullCalendar from "@fullcalendar/react";
+import React, { useState, useEffect, useRef } from "react";
+import RequireAuth from "../Authentication/RequireAuth";
+import useAuth from "../Authentication/useAuth";
+import "../css/ProviderSchedule.css";
 
 //plugins
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 // TODO: not it fetches all the events in db, it should not work that way.
 // suggestion:
@@ -19,7 +19,7 @@ const CustomerCalendar = ({ providerId }) => {
   }
   const { auth } = useAuth();
   let customerId = auth._id;
-  console.log(customerId)
+  console.log(customerId);
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -30,11 +30,11 @@ const CustomerCalendar = ({ providerId }) => {
           "Content-Type": "application/json",
         },
       })
-        .then(res => res.json())
-        .then(res => {
+        .then((res) => res.json())
+        .then((res) => {
           for (var i = 0; i < res.length; i++) {
-            // only add events that no customer reserved
-            if ((res[i].customerId) != undefined) {
+            // only add events that no customer reserved            
+            if (res[i].customerId != undefined) {
               let title = res[i].title;
               let startTime = res[i].startTime;
               let endTime = res[i].endTime;
@@ -43,15 +43,14 @@ const CustomerCalendar = ({ providerId }) => {
                 title: title,
                 start: startTime,
                 end: endTime,
-                color: '#ff6b6b'
+                color: "#ff6b6b",
               });
             }
           }
-        })
+        });
     }
-    fetchCalendar()
-  }, [])
-
+    fetchCalendar();
+  }, []);
 
   const handleBook = async (e) => {
     if (window.confirm("Do you want to reserve this booking?")) {
@@ -68,8 +67,8 @@ const CustomerCalendar = ({ providerId }) => {
         if (!res.ok) {
           alert(`Server Error`);
         } else {
-          const eventId = JSON.parse(await res.text())
-          const customerJson = { "customerId": customerId }
+          const eventId = JSON.parse(await res.text());
+          const customerJson = { customerId: customerId };
           console.log(customerJson);
           console.log(eventId._id);
           await fetch(`/api/calendars/timeslot/${eventId._id}`, {
@@ -82,14 +81,14 @@ const CustomerCalendar = ({ providerId }) => {
             if (!res.ok) {
               alert(`Server Error`);
             } else {
-              alert('Successfully reserved appointment');
+              alert("Successfully reserved appointment");
               e.event.remove();
             }
-          })
+          });
         }
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={"customerCalendar"}>
@@ -102,19 +101,14 @@ const CustomerCalendar = ({ providerId }) => {
         eventClick={handleBook}
         selectable={false}
         eventTimeFormat={{
-          hour: 'numeric',
-          minute: '2-digit',
-          meridiem: true
+          hour: "numeric",
+          minute: "2-digit",
+          meridiem: true,
         }}
         eventOverlap={false}
       />
     </div>
-
-  )
-
-
-
+  );
 };
-
 
 export default CustomerCalendar;
