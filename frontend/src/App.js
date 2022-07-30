@@ -36,6 +36,7 @@ import useAuth from './Authentication/useAuth';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
+import ServiceMenuPage from './pages/ServiceMenuPage';
 
 function App() {
   const { auth } = useAuth();
@@ -95,6 +96,7 @@ function App() {
                 />
                 <Route path="/checkout-review" element={<CheckoutReviewPage />} />
                 <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
+                <Route path="/service-list" element={<ServiceMenuPage />} />
 
                 {/* testing auth here */}
                 <Route element={<RequireAuth allowedRoles={[1]}/>}>

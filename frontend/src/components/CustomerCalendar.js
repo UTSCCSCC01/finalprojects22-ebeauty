@@ -4,8 +4,8 @@ import useAuth from '../Authentication/useAuth';
 import '../css/Calendar.css'
 
 //plugins
-import timeGridPlugin from '@fullcalendar/timegrid'
-import interactionPlugin from '@fullcalendar/interaction'
+import timeGridPlugin from "@fullcalendar/timegrid";
+import interactionPlugin from "@fullcalendar/interaction";
 
 // TODO: not it fetches all the events in db, it should not work that way.
 // suggestion:
@@ -79,16 +79,16 @@ const CustomerCalendar = ({ providerId }) => {
             if (!res.ok) {
               alert(`Server Error`);
             } else {
-              alert('Successfully reserved appointment');
+              alert("Successfully reserved appointment");
               e.event.remove();
             }
           })
         } else {
           alert(`Server Error`);
         }
-      })
+      });
     }
-  }
+  };
 
   return (
     <div className={"customerCalendar"}>
@@ -101,19 +101,14 @@ const CustomerCalendar = ({ providerId }) => {
         eventClick={handleBook}
         selectable={false}
         eventTimeFormat={{
-          hour: 'numeric',
-          minute: '2-digit',
-          meridiem: true
+          hour: "numeric",
+          minute: "2-digit",
+          meridiem: true,
         }}
         eventOverlap={false}
       />
     </div>
-
-  )
-
-
-
+  );
 };
-
 
 export default CustomerCalendar;

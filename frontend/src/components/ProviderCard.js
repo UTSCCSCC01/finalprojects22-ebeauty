@@ -23,7 +23,8 @@ const ProviderCard = ({ provider }) => {
         to={`/provider/${provider._id}`}>
         <div className="search-result">
           <img
-            src={require('../images/barber.jpg')}
+            src="https://source.unsplash.com/et_78QkMMQs/600x300"
+            // src={require('../images/barber.jpg')}
             alt="barber"
             className="image-barber"
           />
