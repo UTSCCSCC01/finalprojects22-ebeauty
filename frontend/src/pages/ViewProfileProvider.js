@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { Card, CardBody } from "reactstrap";
 import { listProviderDetails } from "../actions/providerAction";
 import ReactStars from "react-stars";
-import { Link } from "react-router-dom";
+import CustomerCalendar from './CustomerCalendar';
 
 function roundHalf(num1, num2) {
   if (num2 === 0) return 0;
@@ -44,7 +44,7 @@ const ViewProfileProvider = () => {
       }}
     >
       <br></br>
-      <div>
+      <div style={{width:"50%"}}>
         <Card className="profileCardView">
           <CardBody>
             <div>
@@ -81,9 +81,13 @@ const ViewProfileProvider = () => {
             <button className="profileButton">Write a Review</button>
           </Link>
         </div>
-
-        <img src={require("../images/makeup.jpg")} className="profileUploadedImg" />
+      
+        {/* <img src={require('../images/makeup.jpg')} className="profileUploadedImg" /> */}
+        <CustomerCalendar providerId={provider._id} className="customerCalendar"/>
       </div>
+
+      
+      
     </div>
   );
 };
