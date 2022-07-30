@@ -35,7 +35,6 @@ import useAuth from './Authentication/useAuth';
 //react-notifications-component
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
-import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 import ServiceMenuPage from './pages/ServiceMenuPage';
 
 function App() {
