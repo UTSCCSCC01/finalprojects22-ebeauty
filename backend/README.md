@@ -289,9 +289,9 @@ get all calendars of one provider
 
 get the detail of a timeslot
 
-## GET /api/calendars/timeslot/:id/:start/:end
+### GET /api/calendars/timeslot/:id/:start
 
-gets the timeslot id using the id of the task provider and start/end time of the timeslot
+gets the timeslot id using the id of the task provider and start time of the timeslot
 
 ### PATCH /api/calendars/timeslot/:id
 
@@ -370,6 +370,7 @@ server.js
           -> postRoute.js -> postController.js -> postModel.js
           -> providerRoute.js -> providerController.js -> providerModel.js
           -> reviewRoute.js -> reviewController.js -> reviewModel.js
+          -> issueRoute.js -> issueController.js -> issueModel.js
 
           -> seeder.js -> data -> (files that are having sample data, insert by using seeder.js)
 
