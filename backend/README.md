@@ -59,6 +59,9 @@ Since test results depend on the .env file, make sure your env file contains the
 -->
 
 # APIS
+
+All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM(/api/customers/END_POINTS)`(our backend port num is 3001)
+
 + [Customer](#customers-api-endpoints-apicustomers)
 + [Provider](#providers-api-endpoints-apiproviders)
 + [Post](#post-api-endpoints-apiposts)
@@ -70,8 +73,6 @@ Since test results depend on the .env file, make sure your env file contains the
 
 
 ## Customers API Endpoints (/api/customers)
-
-All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
 
 ### GET /api/customers
 
