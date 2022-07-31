@@ -121,7 +121,7 @@ We can update the default address of the logged in user.
 We can delete the data of a customer using customerId.
 
 ## Providers API Endpoints (/api/providers)
-### POST METHOD /api/providers
+### POST /api/providers
 
 purpose: create/signup provider's account
 
@@ -147,7 +147,7 @@ and with raw json body like:
     isAdmin: false,
 }
 
-### POST METHOD /api/providers/login
+### POST /api/providers/login
 
 purpose: sign in provider's account and gain a new token
 
@@ -161,15 +161,15 @@ and with raw json body like:
     password: "8"
 }
 
-### GET METHOD /api/providers
+### GET /api/providers
 get all providers in database
 
-### GET METHOD /api/providers/:id
+### GET /api/providers/:id
 get a provider detail info by providing id in url parameter
 
 ## Post API Endpoints (/api/posts)
 
-### POST & GET METHODS /api/posts
+### POST & GET /api/posts
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
@@ -330,7 +330,7 @@ and with raw json body like:
 
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
-## file (image) API Endpoints (/file)
+## Image API Endpoints (/file)
 
 this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
 - POST METHOD
@@ -358,7 +358,7 @@ http://localhost:3001/file/1657922009407test1.jpg
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
 ## Issue API Endpoints (/api/issues)
-### POST METHOD /api/issues
+### POST /api/issues
 tmp
 
 
