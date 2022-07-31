@@ -356,6 +356,11 @@ http://localhost:3001/file/1657922009407test1.jpg
 
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
+## Issue API Endpoints (/api/issues)
+### POST METHOD /api/issues
+tmp
+
+
 ### allen's note: 
 while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
 
