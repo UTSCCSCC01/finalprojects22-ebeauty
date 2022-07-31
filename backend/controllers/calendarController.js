@@ -14,6 +14,13 @@ const createTimeslot = asyncHandler(async (req, res) => {
   let startTime = req.body.startTime;
   let endTime = req.body.endTime;
   let rest = req.body.rest;
+  try{
+    startTime = new Date(startTime);
+    endTime = new Date(endTime);  
+  } catch (err){
+    res.status(400).json({ msg: 'your date value is not valid!'});
+    throw new Error('your date value is not valid!');
+  }
 
   // only goes in if statement when any contain null
   if (!(providerId && startTime && endTime)) {
@@ -21,10 +28,16 @@ const createTimeslot = asyncHandler(async (req, res) => {
     throw new Error('please have all fields filled');
   }
 
-  const timeslot = await Calendar.findOne({providerId: req.body.providerId, startTime: req.body.startTime, endTime: req.body.endTime});
+  let timeslot = await Calendar.findOne({providerId: providerId, startTime: startTime, endTime: endTime});
   if (timeslot) {
     res.status(400).json({ msg: 'this time slot already exists' });
-    throw new Error('this time slot already exists');
+    return;
+  }
+
+  timeslot = await Calendar.find({providerId: providerId, startTime: {$lte: endTime}, endTime: {$gte: startTime}});
+  if (JSON.stringify(timeslot) !== "[]") {
+    res.status(400).json({ msg: 'this schedule is overlapping with other timeslot!' });
+    return;
   }
 
   const calendar = await Calendar.create({
@@ -58,11 +71,10 @@ const getCalenders = asyncHandler(async (req, res) => {
 //@route   GET /api/calenders/calendar/:id
 //@access  Public
 const getCalendarById = asyncHandler(async (req, res) => {
-  const calendar = await Calendar.find({providerId: req.body.providerId});
-  console.log(calendar)
+  const calendar = await Calendar.find({providerId: req.params.id});
   // check if calendar exist
   if (calendar) {
-    res.json(calendar);
+    res.status(200).json(calendar);
   } else {
     res.status(404).json({ msg: 'Calendar not found' });
     throw new Error('Calendar not found');
@@ -70,7 +82,7 @@ const getCalendarById = asyncHandler(async (req, res) => {
 });
 
 //@desc    Get detail of a time slot of calender with provider id
-//@route   GET /api/calenders/slot
+//@route   GET /api/calendars/timeslot
 //@access  Public
 // (have not test and go into detail of this yet)
 const getTimeslot = asyncHandler(async (req, res) => {
@@ -84,6 +96,55 @@ const getTimeslot = asyncHandler(async (req, res) => {
   }
 });
 
+//@desc    deletes the timeslot in a calendar when given the Id of the
+//@route   DELETE /api/calendars/timeslot
+//@access  Public
+
+const deleteTimeslot = asyncHandler(async (req,res) => {
+  const timeslot = await Calendar.findByIdAndDelete(req.body._id)
+  if (timeslot) {
+    res.status(200).json({timeslot})
+  } else {
+    res.status(404).json({ msg: 'timeslot not found' });
+    throw new Error('timeslot not found');
+  }
+
+});
+
+//@desc    gets a timeslot ID using the start and end time of an event and the providersId
+//@route   GET /api/calendars/timeslot/:id/:start
+//@access  Public
+
+const getTimeslotId = asyncHandler(async (req, res) => {
+  const timeslot = await Calendar.findOne({providerId: req.params.id,
+    startTime: req.params.start});
+  // check if calendar exist
+  if (timeslot) {
+    res.json(timeslot);
+  } else {
+    res.status(404).json({ msg: 'timeslot not found' });
+    throw new Error('timeslot not found');
+  }
+});
 
 
-export { createTimeslot, getCalenders, getCalendarById, getTimeslot };
+//@desc    updates timeslot with new customerid
+//@route   PATCH /api/calendars/timeslot/:id
+//@access  Public
+
+const updateTimeWithCustomerId = asyncHandler(async (req, res) => {
+  console.log(req.params.id, req.body.customerId);
+  const timeslot = await Calendar.findByIdAndUpdate(req.params.id, {customerId: req.body.customerId})
+  if (timeslot) {
+    res.status(200).json({timeslot})
+  } else {
+    res.status(404).json({ msg: 'timeslot not found' });
+    throw new Error('timeslot not found');
+  }
+});
+
+
+
+
+export { createTimeslot, getCalenders, getCalendarById, getTimeslot, deleteTimeslot, getTimeslotId,
+  updateTimeWithCustomerId };

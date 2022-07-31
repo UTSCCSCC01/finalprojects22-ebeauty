@@ -58,9 +58,21 @@ However, there is a better way to do it using postman. Select GET method, and go
 Since test results depend on the .env file, make sure your env file contains the correct database url, and the correct token.
 -->
 
-## Customers API Endpoints (/api/customers)
+# APIS
 
-All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM/api/customers/END_POINTS`
+All the endpoints can be tested using Postman in the form such that `http://localhost:PORT_NUM(/api/customers/END_POINTS)`(our backend port num is 3001)
+
++ [Customer](#customers-api-endpoints-apicustomers)
++ [Provider](#providers-api-endpoints-apiproviders)
++ [Post](#post-api-endpoints-apiposts)
++ [Reviews](#reviews-api-endpoints-apireviews)
++ [Order](#order-api-endpoints-apiorders)
++ [Calendar](#calendar-api-endpoints-apicalendars)
++ [Image](#file-image-api-endpoints-file)
++ [Issues](#issue-api-endpoints-apiissues)
+
+
+## Customers API Endpoints (/api/customers)
 
 ### GET /api/customers
 
@@ -110,7 +122,7 @@ We can update the default address of the logged in user.
 We can delete the data of a customer using customerId.
 
 ## Providers API Endpoints (/api/providers)
-### POST METHOD /api/providers
+### POST /api/providers
 
 purpose: create/signup provider's account
 
@@ -136,7 +148,7 @@ and with raw json body like:
     isAdmin: false,
 }
 
-### POST METHOD /api/providers/login
+### POST /api/providers/login
 
 purpose: sign in provider's account and gain a new token
 
@@ -150,15 +162,15 @@ and with raw json body like:
     password: "8"
 }
 
-### GET METHOD /api/providers
+### GET /api/providers
 get all providers in database
 
-### GET METHOD /api/providers/:id
+### GET /api/providers/:id
 get a provider detail info by providing id in url parameter
 
 ## Post API Endpoints (/api/posts)
 
-### POST & GET METHODS /api/posts
+### POST & GET /api/posts
 purpose: post and get posts maded from providers
 
 open postman, paste url below to postman's url:
@@ -271,9 +283,11 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
 }
 ```        
 
-## calendar API Endpoints (/api/calendars)
+## Calendar API Endpoints (/api/calendars)
 
 purpose: setup the calendar of provider that both provider and customer can view and do modification on it. 
+
+
 
 ### GET /api/calendars
 
@@ -287,6 +301,18 @@ get all calendars of one provider
 
 get the detail of a timeslot
 
+### GET /api/calendars/timeslot/:id/:start
+
+gets the timeslot id using the id of the task provider and start time of the timeslot
+
+### PATCH /api/calendars/timeslot/:id
+
+updates the timeslot with a new customer id
+
+### DELETE /api/calendars/timeslot
+
+deletes the timeslot with given timeslot id
+
 ### POST /api/calendars
 
 the way we do calendar is we store the used time slot of provider
@@ -295,17 +321,17 @@ open postman, select POST method, paste url below to postman's url:
 localhost:3001/api/calendars
 
 and with raw json body like:
-{
-    "providerId": "62c4somestuffc3", 
-    "startTime": "12:00" ,
-    "endTime": "14:00",
+{ 
+    "providerId": "62c4a04b62f327868e4055c3", 
+    "startTime": "2021-01-15T06:31:00" , 
+    "endTime": "2021-11-15T06:31:00", 
     "title": "some reservation title", 
-    "rest": false
+    "rest": false 
 }
 
 Note: there are three feild that are not necessary to input, customerId, title, and rest, and both providerId and customerId are mongoose.Schema.Types.ObjectId
 
-## file (image) API Endpoints (/file)
+## Image API Endpoints (/file)
 
 this api is used for uploading images to mongodb using GRIDFS, thus we don't really have a schema of it in backend
 - POST METHOD
@@ -332,15 +358,36 @@ http://localhost:3001/file/1657922009407test1.jpg
 
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
+## Issue API Endpoints (/api/issues)
+### POST /api/issues/post-issue
+
+to do post of this inside postman, first have this paste for URL:
+
+localhost:3001/api/issues/post-issue
+
+and with raw json body like:
+{ 
+    "name": "test", 
+    "email": "test@gmail.com" , 
+    "issue": "this is a sample issue"
+}
+
+
 ### allen's note: 
-while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
++ while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
 
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
 
 
-First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00)
+(First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00))
 
-We're connecting to DB in mongodb cloud storage called Atlas, if anyone want to change it to something else, feel free. 
+
++ For the context that related to user logged in and class gather user's info, I use this tutorial as a lesson to learn how to accomplish that: 
+
+link: https://www.youtube.com/watch?v=oUZjO00NkhY&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=4&ab_channel=DaveGray
+
+
++ For database, we're connecting to DB in mongodb cloud storage called Atlas, if anyone want to change it to something else, feel free. 
 
 ## not a official github but current structure:
 <pre>
@@ -356,6 +403,7 @@ server.js
           -> postRoute.js -> postController.js -> postModel.js
           -> providerRoute.js -> providerController.js -> providerModel.js
           -> reviewRoute.js -> reviewController.js -> reviewModel.js
+          -> issueRoute.js -> issueController.js -> issueModel.js
 
           -> seeder.js -> data -> (files that are having sample data, insert by using seeder.js)
 

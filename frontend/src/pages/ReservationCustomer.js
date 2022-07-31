@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, CardBody } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 const ReservationCustomer = () => {   
     
-  const isCompleted = false;
+  const { isCompleted }  = useParams();
   function rateReservationButton () {
     return (<Link to="/reviews" >
               <button className="reservationButton">Rate the Service Provided</button>

@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../css/Review.css";
-import { Rating } from '@mui/material';
+import { Rating, Typography } from '@mui/material';
+import { useLocation } from "react-router-dom";
 
 const Review = () => {
   const [error, setError] = useState(null);
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [reviewContent, setReviewContent] = useState("");
+  const location = useLocation();
+  const providerName = location.state.name;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,13 +42,14 @@ const Review = () => {
   return (
     <>
       <div className="review-container">
-        <h1 className="title">How do you like the service today?</h1>
+        <Typography variant="h3">How do you like {providerName}?</Typography>
+        
+        
         <div className="star-rating">
           <Rating
             name="simple-controlled"
             value={rating}
             onChange={(e, rating) => {
-              console.log(rating);
               setRating(rating);
             }}
             size="large"
@@ -62,7 +66,6 @@ const Review = () => {
           />          
         </form>
         <div className="review-buttons">
-          <button className="review-button" id="skip-review">Skip </button>
           <button className="review-button" id="submit-review" onClick={handleSubmit}>Submit Review </button>
         </div>
       </div>

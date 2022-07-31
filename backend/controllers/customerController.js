@@ -56,7 +56,7 @@ const registerCustomer = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc login/authenticate customer
+// @desc login or authenticate customer
 // @route POST /api/customers/login
 // @access Public
 const loginCustomer = asyncHandler(async (req, res) => {
@@ -86,19 +86,37 @@ const loginCustomer = asyncHandler(async (req, res) => {
   }
 });
 
+// @desc logout customer
+// @route POST /api/customers/logout
+// @access Public
+const logoutCustomer = asyncHandler(async (req, res) => {
+  try{
+    // Set token to none and expire after 1 seconds
+    res.cookie('jwt', 'none', {
+      expires: new Date(Date.now()),
+      httpOnly: true,
+    });
+
+    res.status(200)
+      .json({ msg: 'User logged out successfully' });
+  } catch (err){
+    
+    res.status(500);
+    throw new Error("logout failed, some problem occurs");
+  }
+});
+
+
 // @desc get customer data
-// @route GET /api/customers/me
+// @route GET /api/customers/:customerId
 // @access Private
 
 // example of protect route, prob should be public
 const getCustomer = asyncHandler(async (req, res) => {
   try {
-    res.status(200).json({
-      id: req.customer.id,
-      firstName: req.customer.firstName,
-      lastName: req.customer.lastName,
-      email: req.customer.email,
-    });
+    const customer = await Customer.findById(req.params.customerId).select('-password');
+
+    res.status(200).json(customer);
   } catch (error) {
     res.status(400);
     throw new Error(
@@ -209,6 +227,7 @@ const updateDefaultAddress = async (req, res) => {
 export {
   registerCustomer,
   loginCustomer,
+  logoutCustomer,
   getCustomer,
   getCustomers,
   deleteCustomer,
