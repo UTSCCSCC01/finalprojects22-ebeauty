@@ -66,6 +66,7 @@ Since test results depend on the .env file, make sure your env file contains the
 + [Order](#order-api-endpoints-apiorders)
 + [Calendar](#calendar-api-endpoints-apicalendars)
 + [Image](#file-image-api-endpoints-file)
++ [Issues](#issue-api-endpoints-apiissues)
 
 
 ## Customers API Endpoints (/api/customers)
