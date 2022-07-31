@@ -359,8 +359,18 @@ http://localhost:3001/file/1657922009407test1.jpg
 It would be combination of two methods above, you select delete method in postman, then send the url with the example a few lines above. 
 
 ## Issue API Endpoints (/api/issues)
-### POST /api/issues
-tmp
+### POST /api/issues/post-issue
+
+to do post of this inside postman, first have this paste for URL:
+
+localhost:3001/api/issues/post-issue
+
+and with raw json body like:
+{ 
+    "name": "test", 
+    "email": "test@gmail.com" , 
+    "issue": "this is a sample issue"
+}
 
 
 ### allen's note: 
