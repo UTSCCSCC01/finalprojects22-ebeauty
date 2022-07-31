@@ -363,14 +363,20 @@ tmp
 
 
 ### allen's note: 
-while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
++ while building this app up, I'm using a new tutorial in youtube that teaches me how to connect to MongoDDB Atlas. so if you have difficulty to understand the structure, you may look at the video to have a clearer idea. 
 
 link: https://www.youtube.com/watch?v=-0exw-9YJBo&list=PLillGF-RfqbbQeVSccR9PGKHzPJSWqcsm&index=1&ab_channel=TraversyMedia
 
 
-First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00)
+(First 2 videos are pure backend, last 2 are frontend + deploy + some code connect backend to frontend(4th 45:00))
 
-We're connecting to DB in mongodb cloud storage called Atlas, if anyone want to change it to something else, feel free. 
+
++ For the context that related to user logged in and class gather user's info, I use this tutorial as a lesson to learn how to accomplish that: 
+
+link: https://www.youtube.com/watch?v=oUZjO00NkhY&list=PL0Zuz27SZ-6PRCpm9clX0WiBEMB70FWwd&index=4&ab_channel=DaveGray
+
+
++ For database, we're connecting to DB in mongodb cloud storage called Atlas, if anyone want to change it to something else, feel free. 
 
 ## not a official github but current structure:
 <pre>
