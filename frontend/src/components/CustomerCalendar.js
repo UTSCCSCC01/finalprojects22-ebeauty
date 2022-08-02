@@ -2,6 +2,7 @@ import FullCalendar from '@fullcalendar/react'
 import React, { useEffect, useRef } from 'react'
 import useAuth from '../Authentication/useAuth';
 import '../css/Calendar.css'
+import alerting from "../components/Alerting";
 
 //plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -14,7 +15,7 @@ import interactionPlugin from "@fullcalendar/interaction";
 
 
 // calendar of provider for customer to view
-const CustomerCalendar = ({ providerId }) => {
+const CustomerCalendar = ({ providerId, setScheduleData }) => {
   const { auth } = useAuth();
   let customerId = auth?._id;
   console.log(providerId)
@@ -65,7 +66,9 @@ const CustomerCalendar = ({ providerId }) => {
         },
       })
       .then(res => res.json())
-      .then(async (res) => {
+      .then((res) => {
+        setScheduleData({"customerId":customerId, "eventId":res._id});
+        /*
         if (res._id) {
           const eventId = res._id
           const customerJson = { "customerId": customerId }
@@ -85,7 +88,13 @@ const CustomerCalendar = ({ providerId }) => {
           })
         } else {
           alert(`Server Error`);
-        }
+        }*/
+      })
+      .catch(err => {
+        if(err.response.data.message)
+          alerting(err.response.data.message, "danger");
+        else
+          alerting(err.message, "danger");
       });
     }
   };

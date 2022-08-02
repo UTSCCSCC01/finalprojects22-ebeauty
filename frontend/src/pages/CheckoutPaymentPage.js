@@ -20,6 +20,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { months } from "../constants/creditCardmonths";
 import { years } from "../constants/creditCardYears";
+import alerting from "../components/Alerting";
 
 const theme = createTheme({
   palette: {
@@ -70,10 +71,17 @@ export default function CheckoutPaymentPage() {
   const handleNext = (e) => {
     e.preventDefault();
 
-    if (!nameOnCard || !cardNumber || !expiryMonth || !expiryYear || !cvv) return;
+    if (!nameOnCard || !cardNumber || !expiryMonth || !expiryYear || !cvv) {
+      alerting("there's empty field!");
+      return;
+    }
 
     // input validation
-    if (/\d/.test(nameOnCard) || isNaN(cardNumber)) return resetInput();
+    if (/\d/.test(nameOnCard) || isNaN(cardNumber)) {
+      console.log(/\d/.test(nameOnCard) , isNaN(cardNumber))
+      alerting("your name has number or card number has not number value!")
+      return resetInput();
+    }
 
     const payment = { nameOnCard, cardNumber, expiryMonth, expiryYear, cvv };
 
