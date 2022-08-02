@@ -77,8 +77,7 @@ export default function CheckoutPaymentPage() {
     }
 
     // input validation
-    if (/\d/.test(nameOnCard) || isNaN(cardNumber)) {
-      console.log(/\d/.test(nameOnCard) , isNaN(cardNumber))
+    if (/\d/.test(nameOnCard) || isNaN(cardNumber) || isNaN(cvv)) {
       alerting("your name has number or card number has not number value!")
       return resetInput();
     }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -16,6 +16,8 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { Link, useLocation } from "react-router-dom";
+import alerting from "../components/Alerting";
+import moment from 'moment';
 
 const products = [
   {
@@ -50,7 +52,67 @@ export default function CheckoutReviewPage() {
   const location = useLocation();
   const data = location.state.data;
   console.log(data);
+  const [startText, setStartText] = useState("");
+  const [endText, setEndText] = useState("");
+
+  // this one is only used to display, checking has customer is on click order
+  useEffect(() => {
+    async function fetchCalendar() {
+      let providerId = data.providerId; 
+      let start = data?.reservedDetail?.start;
+      await fetch(`/api/calendars/timeslot/${providerId}/${start}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        if(res?.customerId){
+          alerting("the timeslot you selected is already reserved from others.");
+        }
+        let time = new Date(res.startTime);
+        setStartText(time.getHours() + ":" + time.getMinutes() + " on " + moment(time).format('MMMM') + " " + time.getDate() + ", " + time.getFullYear())
+        time = new Date(res.endTime);
+        setEndText(time.getHours() + ":" + time.getMinutes() + " on " + moment(time).format('MMMM') + " " + time.getDate() + ", " + time.getFullYear())
+        console.log(startText, endText);
+        /*
+        setScheduleData({"customerId":customerId, "eventId":res._id});
+        
+        if (res._id) {
+          const eventId = res._id
+          const customerJson = { "customerId": customerId }
+          await fetch(`/api/calendars/timeslot/${eventId}`, {
+            method: "PATCH",
+            body: JSON.stringify(customerJson),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).then((res) => {
+            if (!res.ok) {
+              alert(`Server Error`);
+            } else {
+              alert("Successfully reserved appointment");
+              e.event.remove();
+            }
+          })
+        } else {
+          alert(`Server Error`);
+        }*/
+      })
+      .catch(err => {
+        if(err?.response?.data?.message)
+          alerting(err.response.data.message, "danger");
+        else
+          alerting(err.message, "danger");
+      });
+    }
+    fetchCalendar()
+  }, [])
+
+
   const handleSubmitOrder = async () => {
+    /*
     console.log("submit button clicked");
     await fetch("/api/orders/save-order", {
       method: "POST",
@@ -60,7 +122,7 @@ export default function CheckoutReviewPage() {
       },
     }).then((res) => {
       return res.json();
-    });
+    });*/
 
     alert("Order Saved!");
   };

@@ -65,7 +65,7 @@ const ServiceMenuPage = () => {
 
   const onClickButton = () => {
     navigate("/checkout-address", {
-      state: { service: selectedService, appointmentTime: scheduleData },
+      state: { service: selectedService, appointmentTime: scheduleData, providerId: providerId },
     });
   };
 

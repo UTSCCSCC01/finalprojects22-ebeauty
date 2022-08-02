@@ -2,7 +2,6 @@ import FullCalendar from '@fullcalendar/react'
 import React, { useEffect, useRef } from 'react'
 import useAuth from '../Authentication/useAuth';
 import '../css/Calendar.css'
-import alerting from "../components/Alerting";
 
 //plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -55,6 +54,8 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
 
   const handleBook = async (e) => {
     if (window.confirm("Do you want to reserve this booking?")) {
+      setScheduleData({"customerId":customerId, "start":e.event.startStr});
+      /*
       //get event ObjectId (mongoDB id)
       const start = e.event.startStr;
       const end = e.event.endStr;
@@ -67,8 +68,7 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
       })
       .then(res => res.json())
       .then((res) => {
-        setScheduleData({"customerId":customerId, "eventId":res._id});
-        /*
+        
         if (res._id) {
           const eventId = res._id
           const customerJson = { "customerId": customerId }
@@ -88,14 +88,14 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
           })
         } else {
           alert(`Server Error`);
-        }*/
+        }
       })
       .catch(err => {
         if(err.response.data.message)
           alerting(err.response.data.message, "danger");
         else
           alerting(err.message, "danger");
-      });
+      });*/
     }
   };
 
