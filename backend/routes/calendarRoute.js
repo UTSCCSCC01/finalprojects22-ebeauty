@@ -20,7 +20,7 @@ router.get("/", getCalenders);
 router.get("/calendar/:id", getCalendarById);
 
 // get the detail of one timeslot
-router.get("/timeslot/", getTimeslot);
+router.get("/timeslot/:id", getTimeslot);
 
 // deletes a timeslot
 router.delete("/timeslot/", deleteTimeslot);

@@ -57,24 +57,23 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
   };
 
   return (
-    <div className={"customerCalendar"}>
-      <FullCalendar
-        ref={inputEl}
-        aspectRatio={2}
-        plugins={[timeGridPlugin, interactionPlugin]}
-        allDaySlot={false}
-        initialView="timeGridWeek"
-        eventClick={handleBook}
-        selectable={false}
-        timeZone={false}
-        eventTimeFormat={{
-          hour: "numeric",
-          minute: "2-digit",
-          meridiem: true,
-        }}
-        eventOverlap={false}
-      />
-    </div>
+    <FullCalendar
+      ref={inputEl}
+      aspectRatio={2}
+      plugins={[timeGridPlugin, interactionPlugin]}
+      allDaySlot={false}
+      initialView="timeGridWeek"
+      eventClick={handleBook}
+      selectable={false}
+      contentHeight='auto'
+      timeZone={false}
+      eventTimeFormat={{
+        hour: "numeric",
+        minute: "2-digit",
+        meridiem: true,
+      }}
+      eventOverlap={false}
+    />
   );
 };
 

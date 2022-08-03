@@ -30,9 +30,9 @@ const ProviderScheduling = () => {
   const [hour, setHour] = useState("");
   const [duration, setDuration] = useState("1 Hr");
   async function postTimeslot() {
-    let detail = moment(date).format('DD-MMM-YYYY') + " " + moment(hour).format('HH:mm');
-    var start = moment(detail).toDate();
-    var end = moment(detail).add(parseInt(duration.charAt(0)), 'hours').toDate();
+    let detail = moment.utc(date).format('DD-MMM-YYYY') + " " + moment(hour).format('HH:mm');
+    var start = moment.utc(detail).toDate();
+    var end = moment.utc(detail).add(parseInt(duration.charAt(0)), 'hours').toDate();
 
     // store in db
     let event = {

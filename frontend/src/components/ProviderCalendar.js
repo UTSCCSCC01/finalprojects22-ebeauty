@@ -63,7 +63,7 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
       })
       // store in db
       let event = {
-        providerId: providerId, title: title, startTime: moment(e.startStr).toDate().toISOString(),
+        providerId: providerId, title: title, startTime: moment.utc(e.startStr).toDate().toISOString(),
         endTime: e.endStr
       }
       console.log(providerId + event.startTime);
@@ -86,7 +86,7 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
 
   // if no toISOString, it would not match the data retrieve from mongodb, which cause search event by id failed.
   function click(e) {
-    setClickStartTime(moment(e.event.startStr).toDate().toISOString());
+    setClickStartTime(moment.utc(e.event.startStr).toDate().toISOString());
   }
   return (
     <div className={"providerSchedule"}>
