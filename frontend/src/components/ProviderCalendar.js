@@ -99,6 +99,7 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
         eventClick={click}
         selectable={true}
         contentHeight="auto"
+        timeZone={false}
         select={handleDateSelect}
         eventTimeFormat={{
           hour: 'numeric',

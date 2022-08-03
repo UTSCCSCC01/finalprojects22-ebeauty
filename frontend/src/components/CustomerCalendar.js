@@ -17,7 +17,6 @@ import interactionPlugin from "@fullcalendar/interaction";
 const CustomerCalendar = ({ providerId, setScheduleData }) => {
   const { auth } = useAuth();
   let customerId = auth?._id;
-  console.log(providerId)
   const inputEl = useRef(null);
 
   useEffect(() => {
@@ -31,7 +30,6 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
       .then(res => res.json())
       .then(res => {
         for (var i = 0; i < res.length; i++) {
-          console.log(res[i].customerId != undefined);
           // only add events that no customer reserved
           if (res[i].customerId == undefined) {
             let title = res[i].title;
@@ -55,47 +53,6 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
   const handleBook = async (e) => {
     if (window.confirm("Do you want to reserve this booking?")) {
       setScheduleData({"customerId":customerId, "start":e.event.startStr});
-      /*
-      //get event ObjectId (mongoDB id)
-      const start = e.event.startStr;
-      const end = e.event.endStr;
-      // get eventId from DB
-      await fetch(`/api/calendars/timeslot/${providerId}/${start}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then(res => res.json())
-      .then((res) => {
-        
-        if (res._id) {
-          const eventId = res._id
-          const customerJson = { "customerId": customerId }
-          await fetch(`/api/calendars/timeslot/${eventId}`, {
-            method: "PATCH",
-            body: JSON.stringify(customerJson),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }).then((res) => {
-            if (!res.ok) {
-              alert(`Server Error`);
-            } else {
-              alert("Successfully reserved appointment");
-              e.event.remove();
-            }
-          })
-        } else {
-          alert(`Server Error`);
-        }
-      })
-      .catch(err => {
-        if(err.response.data.message)
-          alerting(err.response.data.message, "danger");
-        else
-          alerting(err.message, "danger");
-      });*/
     }
   };
 
@@ -109,6 +66,7 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
         initialView="timeGridWeek"
         eventClick={handleBook}
         selectable={false}
+        timeZone={false}
         eventTimeFormat={{
           hour: "numeric",
           minute: "2-digit",

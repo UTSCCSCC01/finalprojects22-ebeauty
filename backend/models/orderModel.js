@@ -69,6 +69,11 @@ const orderSchema = mongoose.Schema(
         require: [true, "please add a password"],
       },
     },
+    calendar_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "Calendar",
+    },
   },
   {
     timestamps: true,

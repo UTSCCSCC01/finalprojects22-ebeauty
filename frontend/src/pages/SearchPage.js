@@ -89,7 +89,7 @@ const SearchPage = () => {
                     onChange={(newValue) => {
                       setDate(newValue);
                     }}
-                    renderInput={(params) => <TextField size="small" {...params} />}
+                    renderInput={(params) => <TextField size="small" {...params} fullWidth/>}
                   />
                 </LocalizationProvider>
               </div>
