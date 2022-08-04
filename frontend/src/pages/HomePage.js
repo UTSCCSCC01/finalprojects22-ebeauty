@@ -1,10 +1,65 @@
-import React, { useState } from 'react';
-import '../css/Home.css';
-import Pricing from "../components/Pricing";
-import { Box, Container, Typography } from '@mui/material';
+import React, { useState } from "react";
+import "../css/Home.css";
+import { Box, Container, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardHeader from "@mui/material/CardHeader";
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import GlobalStyles from "@mui/material/GlobalStyles";
 
-const Home = () => {
-  const [homeSearchInput, setHomeSearchInput] = useState('');
+ const Home = () => {
+  const [homeSearchInput, setHomeSearchInput] = useState("");
+  const tiers = [
+    {
+      title: "Free",
+      price: "0",
+      description: [
+        "10 Private Messages",
+        "1 GB of Storage",
+        "Help Center Access",
+        "24/7 Email Support",
+      ],
+      buttonText: "Sign up for free",
+      buttonVariant: "contained",
+    },
+    {
+      title: "Standard",
+      price: "15",
+      description: [
+        "Unlimited Private Messages",
+        "10 GB of Storage",
+        "Priority Help Center Access",
+        "Priority Email Support",
+      ],
+      buttonText: "Get started",
+      buttonVariant: "contained",
+    },
+    {
+      title: "Corporate",
+      price: "30",
+      description: [
+        "50 Experts Included",
+        "100 GB of Storage",
+        "Custom Ad Posting",
+        "5 Free Service Delivery",
+      ],
+      buttonText: "Contact us",
+      buttonVariant: "contained",
+    },
+  ];
+
+  const onButtonClick = async (e) => {
+    const currVal = e.currentTarget.value;
+    if (currVal === "Sign up for free" || currVal === "Get started") {
+      window.location.href = "/signup";
+    } else {
+      window.location.href = "/contactus";
+    }
+  };
+
   const updateInput = (e) => {
     setHomeSearchInput(e.target.value);
   };
@@ -14,19 +69,10 @@ const Home = () => {
     if (homeSearchInput.trim()) {
       window.location.href = `/searchpage/${homeSearchInput}`;
     } else {
-      window.location.href = '/searchpage';
+      window.location.href = "/searchpage";
     }
   }
-
-  function goToSignUp(e) {
-    e.preventDefault();
-    window.location.href = '/signup';
-  }
-
-  function goToFindJob(e) {
-    e.preventDefault();
-    window.location.href = '/findjob';
-  }
+  
   return (
     <>
       {/* HomePage Search Container */}
@@ -35,9 +81,7 @@ const Home = () => {
           <h1 className="search-header">
             <span>Find Your Beauty Today</span>
           </h1>
-          <p className="search-body">
-            Find Beauty Professionals with the help of Amorr
-          </p>
+          <p className="search-body">Find Beauty Professionals with the help of Amorr</p>
           <form className="search-form" onSubmit={findBeauty}>
             <div className="sb-container-input">
               <input
@@ -47,10 +91,7 @@ const Home = () => {
                 placeholder="I am looking for..."
                 onChange={updateInput}
               />
-              <button
-                type="button"
-                className="btn sb-button"
-                onClick={findBeauty}>
+              <button type="button" className="btn sb-button" onClick={findBeauty}>
                 Search
               </button>
             </div>
@@ -58,18 +99,12 @@ const Home = () => {
         </div>
       </div>
 
-      <Container disableGutters margin  maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+      <Container disableGutters margin maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
         <Box mb={0} pb={0}>
-          <Typography
-            component="h1"
-            variant="h3"
-            align="center"
-            color="#e27b7b"
-            gutterBottom
-          >
+          <Typography component="h1" variant="h3" align="center" color="#333" gutterBottom>
             Are you a customer?
           </Typography>
-          <Typography variant="h6" align="center" color="#e27b7b" component="p">
+          <Typography variant="h6" align="center" color="#333" component="p">
             Choose one of the services below to find your beauty back today!
           </Typography>
         </Box>
@@ -79,11 +114,7 @@ const Home = () => {
       <div className="row">
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require('../images/haircut.jpg')}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/haircut.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Hair Designer</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -93,11 +124,7 @@ const Home = () => {
 
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require('../images/nail-polish.jpg')}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/nail-polish.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Nail Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -106,11 +133,7 @@ const Home = () => {
         </div>
         <div className="column">
           <div className="image">
-            <img
-              className="image__img"
-              src={require('../images/makeup.jpg')}
-              alt="Bricks"
-            />
+            <img className="image__img" src={require("../images/makeup.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Makeup Artist</div>
               {/* <div className="image__description">Enjoy New Style!</div> */}
@@ -119,47 +142,90 @@ const Home = () => {
         </div>
       </div>
 
-      <Pricing />
-      {/* <div>
-        <div className="container-wide">
-          <h1>Ready to get started?</h1>
-          <div className="ready-to-start-container">
-            <div className="left-ready-to-start-container-border">
-              <div className="left-container">
-                <img
-                  className="customer-picture"
-                  src={require('../images/amorr-customer.png')}></img>
-                <p>Like our service? Sign up now to explore more!</p>
-                <button className="btn-secondary" onClick={goToSignUp}>
-                  Become a customer
-                </button>
-              </div>
-            </div>
-            <div className="right-ready-to-start-container">
-              <img
-                className="provider-picture"
-                src={require('../images/service-provider.png')}></img>
-              <p>
-                Like our platform? Sign up now and deliver your beauty expertise!
-              </p>
-              <button className="btn-secondary" onClick={goToFindJob}>
-                Become a Service Provider
-              </button>
-            </div>
-          </div>
-        </div>
-      </div> */}
+      <React.Fragment>
+        <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }} />
+        <CssBaseline />
+        {/* Hero unit */}
+        <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+          <Typography component="h1" variant="h3" align="center" color="#333" gutterBottom>
+            Are you a beauty expert?
+          </Typography>
+          <Typography variant="h5" align="center" color="#333" component="p">
+            Join Amorr today to expand your business!
+          </Typography>
+        </Container>
+        {/* End hero unit */}
 
-      {/* <div>
-        <div className="sb-examples">
-          <p className="title" id="sb-examples-title">
-            Get beauty today
-          </p>
-          <button className="btn-secondary">Hair Designer</button>
-          <button className="btn-secondary">Makeup Artist</button>
-          <button className="btn-secondary">Nail Artist</button>
-        </div>
-      </div> */}
+        <Container maxWidth="md" component="main">
+          <Box mb={10}>
+            <Grid container spacing={5} alignItems="flex-end">
+              {tiers.map((tier) => (
+                // Enterprise card is full width at sm breakpoint
+                <Grid
+                  item
+                  key={tier.title}
+                  xs={12}
+                  sm={tier.title === "Enterprise" ? 12 : 6}
+                  md={4}
+                >
+                  <Card>
+                    <CardHeader
+                      title={tier.title}
+                      subheader={tier.subheader}
+                      titleTypographyProps={{ align: "center", color: "white" }}
+                      sx={{
+                        backgroundColor: "#e27b7b",
+                      }}
+                    />
+                    <CardContent>
+                      <Box
+                        sx={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "baseline",
+                          mb: 2,
+                        }}
+                      >
+                        <Typography component="h2" variant="h3" color="text.primary">
+                          ${tier.price}
+                        </Typography>
+                        <Typography variant="h6" color="text.secondary">
+                          /mo
+                        </Typography>
+                      </Box>
+                      <ul>
+                        {tier.description.map((line) => (
+                          <Typography component="li" variant="subtitle1" align="center" key={line}>
+                            {line}
+                          </Typography>
+                        ))}
+                      </ul>
+                    </CardContent>
+                    <CardActions>
+                      <Button
+                        fullWidth
+                        variant={tier.buttonVariant}
+                        value={tier.buttonText}
+                        sx={{
+                          backgroundColor: "#e27b7b",
+                          color: "white",
+                          ":hover": {
+                            bgcolor: "rgb(218, 82, 105)",
+                            color: "white",
+                          },
+                        }}
+                        onClick={onButtonClick}
+                      >
+                        {tier.buttonText}
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </Container>
+      </React.Fragment>
     </>
   );
 };
