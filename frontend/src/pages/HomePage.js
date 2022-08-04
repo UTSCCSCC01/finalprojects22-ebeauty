@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import '../css/Home.css';
+import Pricing from "../components/Pricing";
+import { Box, Container, Typography } from '@mui/material';
 
 const Home = () => {
   const [homeSearchInput, setHomeSearchInput] = useState('');
   const updateInput = (e) => {
     setHomeSearchInput(e.target.value);
-    // console.log(homeSearchInput);
   };
 
   function findBeauty(e) {
@@ -29,13 +29,14 @@ const Home = () => {
   }
   return (
     <>
+      {/* HomePage Search Container */}
       <div className="homepage-search">
         <div className="home-sb-container">
           <h1 className="search-header">
             <span>Find Your Beauty Today</span>
           </h1>
           <p className="search-body">
-            Find Beauty Professionals with the help of Amor
+            Find Beauty Professionals with the help of Amorr
           </p>
           <form className="search-form" onSubmit={findBeauty}>
             <div className="sb-container-input">
@@ -57,6 +58,24 @@ const Home = () => {
         </div>
       </div>
 
+      <Container disableGutters margin  maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+        <Box mb={0} pb={0}>
+          <Typography
+            component="h1"
+            variant="h3"
+            align="center"
+            color="#e27b7b"
+            gutterBottom
+          >
+            Are you a customer?
+          </Typography>
+          <Typography variant="h6" align="center" color="#e27b7b" component="p">
+            Choose one of the services below to find your beauty back today!
+          </Typography>
+        </Box>
+      </Container>
+
+      {/* Image Animations */}
       <div className="row">
         <div className="column">
           <div className="image">
@@ -100,9 +119,8 @@ const Home = () => {
         </div>
       </div>
 
-      {/* <div>Featured Beauty Professionals</div> */}
-
-      <div>
+      <Pricing />
+      {/* <div>
         <div className="container-wide">
           <h1>Ready to get started?</h1>
           <div className="ready-to-start-container">
@@ -130,9 +148,9 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <div>
+      {/* <div>
         <div className="sb-examples">
           <p className="title" id="sb-examples-title">
             Get beauty today
@@ -141,7 +159,7 @@ const Home = () => {
           <button className="btn-secondary">Makeup Artist</button>
           <button className="btn-secondary">Nail Artist</button>
         </div>
-      </div>
+      </div> */}
     </>
   );
 };

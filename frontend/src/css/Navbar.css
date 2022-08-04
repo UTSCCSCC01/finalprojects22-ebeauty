@@ -1,4 +1,3 @@
-/* navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -14,10 +13,9 @@
 }
 .navbar h1 {
   font-size: 30pt;
-  color: #ca1c1c;
+  color: #e27b7b;;
   cursor: pointer;
   font-size: 50px;
-  /* color: rgb(165, 0, 0); */
 }
 .navbar .links {
   margin-left: auto;

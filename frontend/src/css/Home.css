@@ -3,16 +3,17 @@
 }
 
 .home-sb-container {
-  background-color: pink;
+  background-color: rgb(255, 228, 232);
   border-radius: 10px;
   padding: 50px 0;
   width: 100%;
-  /* background-image: url("media/sb-flowers.jpg"); */
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .home-sb-container p {
   font-size: 30px;
-  color: rgb(165, 0, 0);
+  color: #e27b7b;
   text-align: center;
 }
 
@@ -24,10 +25,10 @@
 .sb-button {
   position: relative;
   z-index: 100;
-  background-color: rgb(165, 0, 0);
+  background-color: #e27b7b;
   color: white;
   border-radius: 8px;
-  border: 1px solid rgb(165, 0, 0);
+  border: 1px solid #e27b7b;
   padding: 0.5em 1.38em 0.5em;
   font-weight: 600;
   margin-left: 30px;
@@ -50,14 +51,14 @@
 }
 .btn-secondary {
   border-radius: 10px;
-  border: 3px solid rgb(165, 0, 0);
+  border: 3px solid #e27b7b;
   padding: 10px;
   cursor: pointer;
   background-color: white;
 }
 
 .sb-input {
-  border: 2px solid rgb(165, 0, 0);
+  border: 2px solid #e27b7b;
   border-radius: 10px;
   padding: 20px;
   width: 50%;
@@ -68,8 +69,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 30px 0;
-  /* padding: 20px 0; */
+  background-color: pink;
 }
 
 .column {
@@ -84,7 +84,6 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   position: relative;
   width: 400px;
   width: 100%;
-  /* padding: 80px; */
 }
 
 .image__img {
@@ -109,16 +108,7 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
   opacity: 0;
   transition: opacity 0.25s;
   cursor: pointer;
-  /* border-radius: 10px; */
 }
-
-/* .image__overlay--blur {
-  backdrop-filter: blur(5px);
-}
-
-.image__overlay--primary {
-  background: #009578;
-} */
 
 .image__overlay > * {
   transform: translateY(20px);
@@ -179,6 +169,6 @@ https://www.youtube.com/watch?v=exb2ab72Xhs */
 
 .search-header {
   font-size: 40px;
-  color: rgb(165, 0, 0);
+  color: #e87070;
   text-align: center;
 }
