@@ -133,7 +133,6 @@ export default function CheckoutReviewPage() {
           .then(res => res.json())
           .then((res)=>{
             if(res?._id){
-              console.log(res)
               alerting("Order Saved!");
               navigate('/orderhistory');
             }

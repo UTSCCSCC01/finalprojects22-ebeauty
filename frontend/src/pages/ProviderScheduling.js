@@ -125,7 +125,6 @@ const ProviderScheduling = () => {
       })
       .then(res => res.json())
       .then((res) => {
-        console.log(res)
         setTime(moment.utc(res?.startTime).format('HH:mm') + " to " + moment.utc(res?.endTime).format('HH:mm on MMMM DD, YYYY'));
         setTitle(res.title);
         if(res.customerId != undefined){
