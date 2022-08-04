@@ -95,6 +95,7 @@ const ProviderScheduling = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [title, setTitle] = useState("");
+  const [time, setTime] = useState("");
   async function getCustomer(customerId) {
     await fetch(`/api/customers/${customerId}`, {
       method: "GET",
@@ -125,6 +126,7 @@ const ProviderScheduling = () => {
       .then(res => res.json())
       .then((res) => {
         console.log(res)
+        setTime(moment.utc(res?.startTime).format('HH:mm') + " to " + moment.utc(res?.endTime).format('HH:mm on MMMM DD, YYYY'));
         setTitle(res.title);
         if(res.customerId != undefined){
           getCustomer(res.customerId);
@@ -135,6 +137,7 @@ const ProviderScheduling = () => {
         }
       })
     }
+    // prevent throw error when just entered to the page
     if(clickStartTime != "")
       handleGetInfo();
   }, [clickStartTime])
@@ -193,14 +196,16 @@ const ProviderScheduling = () => {
               {firstName ? (
                 <>
                   <h1>Reservation Info:</h1>
-                  <h2>{"title: " + title}</h2>
-                  <h2>{"customer: " + firstName + " " + lastName}</h2>
-                  <h2>{"email: " + email}</h2>
+                  <h2>{title}</h2>
+                  <h2>{"Customer: " + firstName + " " + lastName}</h2>
+                  <h2>{"Email: " + email}</h2>
+                  <h2>{time}</h2>
                 </>
               ) : (
                 <>
                   <h1>Reservation Info:</h1>
                   <h2>{title}</h2>
+                  <h2>{time}</h2>
                   <h5>no one reserved yet.</h5>
                 </>
               )}
