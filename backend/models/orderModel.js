@@ -74,6 +74,10 @@ const orderSchema = mongoose.Schema(
       ref: "Calendar",
       unique: true,
     },
+    completed: {
+      type: Boolean, 
+      default: false
+    }
   },
   {
     timestamps: true,

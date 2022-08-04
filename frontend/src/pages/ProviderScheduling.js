@@ -15,6 +15,7 @@ import useAuth from '../Authentication/useAuth';
 import moment from 'moment';
 import '../css/ProviderScheduling.css';
 import '../css/providerRegister.css'
+import alerting from "../components/Alerting";
 
 // TODO have bug of drag create schedule and delete would not refresh the calendar of removing
 const ProviderScheduling = () => {
@@ -48,10 +49,10 @@ const ProviderScheduling = () => {
       },
     }).then((res) => {
       if (!res.ok) {
-        alert(`Server Error`);
+        alerting(`Server Error`);
       } else {
         setAddedEvent(start);
-        alert('Successfully scheduled available times');
+        alerting('Successfully scheduled available times');
       }
     })
   }
@@ -75,16 +76,16 @@ const ProviderScheduling = () => {
           },
         }).then((res) => {
           if (!res.ok) {
-            alert(`Server Error`);
+            alerting(`Server Error`);
           } else {
-            alert('Successfully deleted timeslot');
+            alerting('Successfully deleted timeslot');
             let calendarApi = ref.current.getApi();
             calendarApi.getEventById(providerId + clickStartTime).remove();
             setClickStartTime("");
           }
         })
       } else {
-        alert(`Server Error`);
+        alerting(`Server Error`);
       }
     })
   }
@@ -93,6 +94,7 @@ const ProviderScheduling = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [title, setTitle] = useState("");
   async function getCustomer(customerId) {
     await fetch(`/api/customers/${customerId}`, {
       method: "GET",
@@ -122,8 +124,15 @@ const ProviderScheduling = () => {
       })
       .then(res => res.json())
       .then((res) => {
-        if(res.customerId != undefined)
+        console.log(res)
+        setTitle(res.title);
+        if(res.customerId != undefined){
           getCustomer(res.customerId);
+        } else {
+          setFirstName(res.firstName)
+          setLastName(res.lastName)
+          setEmail(res.email)
+        }
       })
     }
     if(clickStartTime != "")
@@ -184,11 +193,16 @@ const ProviderScheduling = () => {
               {firstName ? (
                 <>
                   <h1>Reservation Info:</h1>
+                  <h2>{"title: " + title}</h2>
                   <h2>{"customer: " + firstName + " " + lastName}</h2>
                   <h2>{"email: " + email}</h2>
                 </>
               ) : (
-                <h1>available</h1>
+                <>
+                  <h1>Reservation Info:</h1>
+                  <h2>{title}</h2>
+                  <h5>no one reserved yet.</h5>
+                </>
               )}
               <button className='Button' onClick={deleteTimeslot}>cancel this one?</button>
             </div>

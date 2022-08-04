@@ -2,6 +2,7 @@ import FullCalendar from '@fullcalendar/react'
 import React, { useEffect, forwardRef } from 'react'
 import '../css/Calendar.css'
 import moment from 'moment';
+import alerting from "../components/Alerting";
 
 //plugins
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -28,18 +29,32 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
         .then(res => res.json())
         .then(res => {
           for (var i = 0; i < res.length; i++) {
+            console.log(res[i])
             let title = res[i].title;
             let startTime = res[i].startTime;
             let endTime = res[i].endTime;
             let calendarApi = ref.current.getApi();
             if (calendarApi.getEventById(providerId + startTime) == null) {
-              calendarApi.addEvent({
-                id: providerId + startTime,
-                title: title,
-                start: startTime,
-                end: endTime,
-                color: '#ff6b6b'
-              });
+              if(res[i]?.customerId != null){
+                // notify provider that is reserved. 
+                console.log("here")
+                calendarApi.addEvent({
+                  id: providerId + startTime,
+                  title: "reserved!\n" + title,
+                  start: startTime,
+                  end: endTime,
+                  color: '#ff6b6b'
+                });  
+              } else {
+                // add event normally
+                calendarApi.addEvent({
+                  id: providerId + startTime,
+                  title: title,
+                  start: startTime,
+                  end: endTime,
+                  color: '#ff6b6b'
+                });  
+              }
             }
           }
         })
@@ -47,6 +62,7 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
     fetchCalendar()
   }, [addedEvent])
 
+  // drag add event
   const handleDateSelect = async (e) => {
     let title = prompt('Please enter a title for your booking: ')
 
@@ -78,11 +94,11 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
         },
       }).then((res) => {
         if (!res.ok) {
-          alert(`Server Error`);
+          alerting(`Server Error`);
         } else {
           setClickStartTime(moment.utc(e.startStr).toDate().toISOString());
           setAddedEvent(start);
-          alert('Successfully scheduled available times');
+          alerting('Successfully scheduled available times');
         }
       })
     }
