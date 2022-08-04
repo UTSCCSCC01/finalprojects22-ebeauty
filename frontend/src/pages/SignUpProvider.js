@@ -23,6 +23,7 @@ const SignUpProvider = () => {
   const [data, setData] = useState({
     name: "",
     title:"Hairdress", 
+    range: "10 KM",
     address: "",
     city: "",
     state: "",

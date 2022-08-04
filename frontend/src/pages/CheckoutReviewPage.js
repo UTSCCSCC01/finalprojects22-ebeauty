@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import Typography from "@mui/material/Typography";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -15,7 +15,10 @@ import {
   Stepper,
   ThemeProvider,
 } from "@mui/material";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import alerting from "../components/Alerting";
+import moment from 'moment';
+import useAuth from '../Authentication/useAuth';
 
 const products = [
   {
@@ -49,20 +52,100 @@ const theme = createTheme({
 export default function CheckoutReviewPage() {
   const location = useLocation();
   const data = location.state.data;
-  console.log(data);
+  const [startText, setStartText] = useState("");
+  const [endText, setEndText] = useState("");
+  const { auth } = useAuth();
+  let navigate = useNavigate();
+
+  // this one is only used to display, checking has customer is on click order
+  useEffect(() => {
+    async function fetchCalendar() {
+      let providerId = data.providerId; 
+      let start = data?.reservedDetail?.start;
+      await fetch(`/api/calendars/timeslot/${providerId}/${start}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then(res => res.json())
+      .then((res) => {
+        if(res?.customerId && res?.customerId != auth._id){
+          alerting("the timeslot you selected is already reserved from others.");
+        }
+        let time = new Date(res.startTime).toUTCString();
+        
+        setStartText(moment.utc(time).format('HH:mm on MMM DD, YYYY'))
+        time = new Date(res.endTime).toUTCString();
+        setEndText(moment.utc(time).format('HH:mm on MMM DD, YYYY'))
+      })
+      .catch(err => {
+        if(err?.response?.data?.message)
+          alerting(err.response.data.message, "danger");
+        else
+          alerting(err.message, "danger");
+      });
+    }
+    fetchCalendar()
+  }, [])
+
+
   const handleSubmitOrder = async () => {
-    console.log("submit button clicked");
-    await fetch("/api/orders/save-order", {
-      method: "POST",
-      body: JSON.stringify(data),
+    let providerId = data.providerId; 
+    let start = data?.reservedDetail?.start;
+    await fetch(`/api/calendars/timeslot/${providerId}/${start}`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      return res.json();
-    });
+    })
+    .then(res => res.json())
+    .then(async (res) => {
 
-    alert("Order Saved!");
+      let customerId = auth._id;
+      if(res?.customerId && res?.customerId != auth._id){
+        alerting("the timeslot you selected is already reserved from others.");
+        return;
+      } else if (customerId == null){
+        alerting("did you not logged in?", "danger");
+      } else {
+        const eventId = res._id
+        const customerJson = { "customerId": customerId }
+        await fetch(`/api/calendars/timeslot/${eventId}`, {
+          method: "PATCH",
+          body: JSON.stringify(customerJson),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then(res => res.json())
+        .then(async(res) => {
+          // prepare to post order here. 
+          // alerting("Successfully reserved appointment");
+          data.calendar_id = res.timeslot._id;
+          await fetch("/api/orders/save-order", {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+          .then(res => res.json())
+          .then((res)=>{
+            if(res?._id){
+              alerting("Order Saved!");
+              navigate('/orderhistory');
+            }
+          })
+        })
+      }
+    })
+    .catch(err => {
+      if(err?.response?.data?.message)
+        alerting(err.response.data.message, "danger");
+      else
+        alerting(err.message, "danger");
+    });
   };
 
   const addresses = [
@@ -105,7 +188,7 @@ export default function CheckoutReviewPage() {
                 </ListItem>
               ))} */}
               <ListItem key={data.orderName} sx={{ py: 1, px: 0 }}>
-                <ListItemText primary={data.service.orderName} secondary={data.orderDateTime.time} />
+                <ListItemText primary={data.service.orderName} secondary={`scheduled from ${startText} to ${endText}`} />
                 <Typography variant="body2">{data.service.orderPrice}</Typography>
               </ListItem>
 

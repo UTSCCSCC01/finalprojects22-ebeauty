@@ -82,11 +82,11 @@ const getCalendarById = asyncHandler(async (req, res) => {
 });
 
 //@desc    Get detail of a time slot of calender with provider id
-//@route   GET /api/calendars/timeslot
+//@route   GET /api/calendars/timeslot/:id
 //@access  Public
 // (have not test and go into detail of this yet)
 const getTimeslot = asyncHandler(async (req, res) => {
-  const timeslot = await Calendar.findById(req.body.Id);
+  const timeslot = await Calendar.findById(req.params.id);
   // check if calendar exist
   if (timeslot) {
     res.json(timeslot);

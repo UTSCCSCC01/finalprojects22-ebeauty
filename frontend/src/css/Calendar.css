@@ -9,7 +9,9 @@
 .fc .fc-toolbar-title {
     color: #e27b7b;
 }
-
+.fc-event{
+    cursor: pointer;
+}
 
 .providerSchedule {
     display: block;
