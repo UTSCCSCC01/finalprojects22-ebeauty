@@ -36,8 +36,8 @@ const CustomerNavbar = () => {
       <div className="links">
         <Link to="/searchpage">Search</Link>
         <Link to="/orderhistory">Order History</Link>
-        <button onClick={logout} className={'toprightbotton'}>
-          customer sign out
+        <button onClick={logout} className={'btn-toprightbutton'}>
+          Sign Out
         </button>
       </div>
     </nav>

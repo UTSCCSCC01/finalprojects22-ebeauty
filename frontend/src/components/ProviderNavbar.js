@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 import AuthContext from "../Authentication/AuthProvider";
+import alerting from "../components/Alerting";
 import '../css/index.css';
 import '../css/Navbar.css';
 
@@ -14,6 +15,7 @@ const ProviderNavbar = () => {
   }
 
   const logout = async () => {
+    alerting("logged out successfully");
     setAuth({});
   }
 
@@ -22,8 +24,8 @@ const ProviderNavbar = () => {
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <Link to="/providerschedule">Schedules</Link>
-        <button onClick={logout} className={'toprightbotton'}>
-          provider sign out
+        <button onClick={logout} className={'btn-toprightbutton'}>
+          Sign Out
         </button>
       </div>
     </nav>

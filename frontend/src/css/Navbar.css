@@ -42,3 +42,17 @@
 .navbar a:hover {
   color: #e27b7b;
 }
+
+.btn-toprightbutton{
+  color: white;
+  background-color: #e27b7b;
+  border-radius: 8px;
+  border: none;
+  font-size: 16pt;
+  padding-top: 5pt;
+  padding-bottom: 5pt;
+}
+.btn-toprightbutton:hover{
+  color: white;
+  background-color: #ca1c1c !important;
+}
