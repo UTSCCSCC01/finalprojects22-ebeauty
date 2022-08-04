@@ -13,7 +13,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 // https://fullcalendar.io/docs/events-json-feed
 
 // calendar for provider to view
-const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime }, ref) => {
+const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime, setAddedEvent }, ref) => {
 
   // one thing is update event when provider adding it, 
   // so I encode event id to be providerid + starttime then check if it's inside
@@ -52,21 +52,23 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
 
     let calendarApi = e.view.calendar
     calendarApi.unselect() // clear date selection
+    
+    var start = moment.utc(e.startStr).toDate();
+    var end = moment.utc(e.endStr).toDate();
     if (title) {
       calendarApi.addEvent({
         title,
-        start: e.startStr,
-        end: e.endStr,
+        start: providerId + start,
+        end: end,
         allDay: e.allDay,
         color: '#ff6b6b',
         editable: false,            //set to false (difficult to handle dragging)
       })
       // store in db
       let event = {
-        providerId: providerId, title: title, startTime: moment.utc(e.startStr).toDate().toISOString(),
-        endTime: e.endStr
+        providerId: providerId, title: title, startTime: start,
+        endTime: end
       }
-      console.log(providerId + event.startTime);
 
       await fetch("/api/calendars", {
         method: "POST",
@@ -78,6 +80,8 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
         if (!res.ok) {
           alert(`Server Error`);
         } else {
+          setClickStartTime(moment.utc(e.startStr).toDate().toISOString());
+          setAddedEvent(start);
           alert('Successfully scheduled available times');
         }
       })

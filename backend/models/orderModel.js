@@ -52,7 +52,6 @@ const orderSchema = mongoose.Schema(
       cardNumber: {
         type: String,
         require: [true, "please add a password"],
-        unique: true,
       },
 
       expiryMonth: {
@@ -73,6 +72,7 @@ const orderSchema = mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       require: true,
       ref: "Calendar",
+      unique: true,
     },
   },
   {

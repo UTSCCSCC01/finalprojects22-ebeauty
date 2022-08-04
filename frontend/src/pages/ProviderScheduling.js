@@ -64,30 +64,29 @@ const ProviderScheduling = () => {
         "Content-Type": "application/json",
       },
     })
-      .then(res => res.json())
-      .then(async (res) => {
-        if (res._id) {
-          await fetch("/api/calendars/timeslot", {
-            method: "DELETE",
-            body: JSON.stringify(res),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }).then((res) => {
-            if (!res.ok) {
-              alert(`Server Error`);
-            } else {
-              alert('Successfully deleted timeslot');
-              let calendarApi = ref.current.getApi();
-              console.log(providerId + clickStartTime)
-              calendarApi.getEventById(providerId + clickStartTime).remove();
-              setClickStartTime("");
-            }
-          })
-        } else {
-          alert(`Server Error`);
-        }
-      })
+    .then(res => res.json())
+    .then(async (res) => {
+      if (res._id) {
+        await fetch("/api/calendars/timeslot", {
+          method: "DELETE",
+          body: JSON.stringify(res),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }).then((res) => {
+          if (!res.ok) {
+            alert(`Server Error`);
+          } else {
+            alert('Successfully deleted timeslot');
+            let calendarApi = ref.current.getApi();
+            calendarApi.getEventById(providerId + clickStartTime).remove();
+            setClickStartTime("");
+          }
+        })
+      } else {
+        alert(`Server Error`);
+      }
+    })
   }
 
   // helper of useeffect below
@@ -101,12 +100,15 @@ const ProviderScheduling = () => {
         "Content-Type": "application/json",
       },
     })
-      .then(res => res.json())
-      .then((res) => {
-        setFirstName(res.firstName)
-        setLastName(res.lastName)
-        setEmail(res.email)
-      })
+    .then(res => res.json())
+    .then((res) => {
+      setFirstName(res.firstName)
+      setLastName(res.lastName)
+      setEmail(res.email)
+    })
+    .catch(err=>{
+      
+    })
   }
 
   // usage: show customer info
@@ -120,10 +122,12 @@ const ProviderScheduling = () => {
       })
       .then(res => res.json())
       .then((res) => {
-        getCustomer(res.customerId);
+        if(res.customerId != undefined)
+          getCustomer(res.customerId);
       })
     }
-    handleGetInfo();
+    if(clickStartTime != "")
+      handleGetInfo();
   }, [clickStartTime])
 
   return (
@@ -131,7 +135,7 @@ const ProviderScheduling = () => {
       <div className='provider-scheduling-left'>
         {/* providerid for calendar to know who, addedEvent to refresh event when adding
             and refer to get api of event and delete when decided to do so. */}
-        <ProviderCalendar providerId={providerId} addedEvent={addedEvent} ref={ref} setClickStartTime={setClickStartTime} />
+        <ProviderCalendar providerId={providerId} addedEvent={addedEvent} ref={ref} setClickStartTime={setClickStartTime} setAddedEvent={setAddedEvent} />
       </div>
       <div className='provider-scheduling-right'>
         <Card className={'scheduleCard all-width'}>

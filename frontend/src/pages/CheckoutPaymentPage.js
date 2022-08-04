@@ -203,7 +203,7 @@ export default function CheckoutPaymentPage() {
                   style={{ color: "white" }}
                   onClick={handleProceedPaypal}
                 >
-                  Proceed with Paypal
+                  Or Proceed with Paypal
                 </Button>
                 <Button
                   className="checkout"
