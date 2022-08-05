@@ -63,7 +63,7 @@ const SignUpProvider = () => {
     <div className="divCenter">
       <Card  className="Card">
           <Form onSubmit={signUpForm.bind(this)} className={"Form"}>
-            <h1 className={"header"}>Create Account</h1>
+            <h1 className={"header"}>Create Account for Service Provider</h1>
             <input 
               className="In"
               type="text" 
