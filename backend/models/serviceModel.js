@@ -6,16 +6,9 @@ const serviceSchema = mongoose.Schema({
     required: true,
     ref: "Provider",
   },
-  category: {
-    type: String,
-    require: true,
-    enum: ["Admin", "Barbering", "Eyelash Tech", "Nail Tech", "Hairdressing",
-      "House Cleaning", "Landscaping", "Makeup", "Massage", "Other"]
-  },
   name: {
     type: String,
     require: true,
-    unique: false,
   },
   description: {
     type: String,
@@ -33,5 +26,6 @@ const serviceSchema = mongoose.Schema({
   timestamps: true,
 });
 
+serviceSchema.index({ provider: 1, name: 1 }, { unique: true });
 const Service = mongoose.model("Service", serviceSchema);
 export default Service;
