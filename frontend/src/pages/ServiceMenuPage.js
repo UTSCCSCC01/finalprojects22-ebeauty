@@ -106,7 +106,7 @@ const ServiceMenuPage = () => {
     <>
       <ThemeProvider theme={theme}>
         <Container md={6}>
-          <Typography variant="h2">{providerName}</Typography>
+          <Typography variant="h4">Available Date and Schedule for {providerName}</Typography>
           <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
             <Grid
               container
