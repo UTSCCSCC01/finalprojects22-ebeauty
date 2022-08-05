@@ -16,12 +16,12 @@ const Footer = () => {
             <div className="footer-content-column">
               <span className="footer-content-title">Discover</span>
               <div className="footer-links">
-                <Link to="/findjob">Become a Service Provider</Link>
+                <Link to="/signupproviderone">Become a Service Provider</Link>
                 
                 <br />
                 <Link to="/searchpage">All Services</Link>
                 <br />
-                <Link to="/contactus">Help (contact us!)</Link>
+                <Link to="/contactus">Contact Us (Help Center)</Link>
               </div>
             </div>
             <div className="footer-content-column">

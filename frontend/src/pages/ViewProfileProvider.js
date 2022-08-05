@@ -82,26 +82,28 @@ const ViewProfileProvider = () => {
         </Paper>
       </Box>
       <Container>
-        <SampleGallery />
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button
-            className="checkout"
-            variant="contained"
-            sx={{ mt: 3, ml: 1 }}
-            style={{ color: "white", backgroundColor: "#e27b7b" }}
-            onClick={onClickBookAppointment}
-          >
-            Book an appointment
-          </Button>
-          <Button
-            className="checkout"
-            variant="contained"
-            sx={{ mt: 3, ml: 1 }}
-            style={{ color: "white", backgroundColor: "#e27b7b" }}
-            onClick={onClickWriteReview}
-          >
-            Write a Review
-          </Button>
+        <Box sx={{marginRight: "50px"}}>
+          <SampleGallery />
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button
+              className="checkout"
+              variant="contained"
+              sx={{ mt: 3, ml: 1 }}
+              style={{ color: "white", backgroundColor: "#e27b7b" }}
+              onClick={onClickBookAppointment}
+            >
+              Book an appointment
+            </Button>
+            <Button
+              className="checkout"
+              variant="contained"
+              sx={{ mt: 3, ml: 1 }}
+              style={{ color: "white", backgroundColor: "#e27b7b" }}
+              onClick={onClickWriteReview}
+            >
+              Write a Review
+            </Button>
+          </Box>
         </Box>
       </Container>
     </div>

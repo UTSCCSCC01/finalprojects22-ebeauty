@@ -54,7 +54,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
   const onButtonClick = async (e) => {
     const currVal = e.currentTarget.value;
     if (currVal === "Sign up for free" || currVal === "Get started") {
-      window.location.href = "/signup";
+      window.location.href = "/signupproviderone";
     } else {
       window.location.href = "/contactus";
     }

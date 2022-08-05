@@ -126,7 +126,7 @@ const Login = () => {
         </div>
         <div className="right">
           <h1>New Here?</h1>
-          <a href="/signup">
+          <a href="/signup-guide">
             <button type="button" className="white_btn">
               Sign Up
             </button>
