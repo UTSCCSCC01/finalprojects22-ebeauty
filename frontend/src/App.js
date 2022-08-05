@@ -37,6 +37,7 @@ import useAuth from './Authentication/useAuth';
 import { ReactNotifications } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import ServiceMenuPage from './pages/ServiceMenuPage';
+import SignUpGuidePage from './pages/SignUpGuidePage';
 
 function App() {
   const { auth } = useAuth();
@@ -104,6 +105,7 @@ function App() {
                   <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 </Route>
                 <Route path="/orderhistory" element={<OrderHistoryPage />} />
+                <Route path="/signup-guide" element={<SignUpGuidePage />} />
               </Routes>
             <Footer />
           </div>
