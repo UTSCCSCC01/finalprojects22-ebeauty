@@ -81,7 +81,7 @@ const ServiceDropdown = ({ onChange }) => {
     if (similarityArray[0].similarity > 0.22) {
       selectedIndex = similarityArray[0].index;
     }
-    console.log(selectedIndex);
+    // console.log(selectedIndex);
   }
   return (
     <div className="dropdown-container">
