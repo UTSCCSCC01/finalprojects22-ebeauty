@@ -20,7 +20,7 @@ export default function SignUpGuidePage() {
       </Typography>
       <Container>
         <Grid container>
-          <Grid item xs={6} textAlign="center">
+          <Grid item xs={6} textAlign="center" sx={{paddingLeft: "160px"}}>
             <Typography variant="h5">Are you a customer?</Typography>
             <Button
               variant="contained"
@@ -39,7 +39,7 @@ export default function SignUpGuidePage() {
               Sign Up Here
             </Button>
           </Grid>
-          <Grid item xs={6} textAlign="center">
+          <Grid item xs={6} textAlign="center" sx={{paddingRight: "160px"}}>
             <Typography variant="h5">Are you a beauty expert?</Typography>
             <Button
               variant="contained"
