@@ -93,7 +93,7 @@ const SearchPage = () => {
                     setDate(newValue);
                   }}
                   renderInput={(params) => (
-                    <TextField size="small" {...params} />
+                    <TextField size="small" {...params} fullWidth />
                   )}
                 />
               </LocalizationProvider>

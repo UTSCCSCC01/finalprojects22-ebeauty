@@ -19,11 +19,9 @@ const Footer = () => {
                 <Link to="/findjob">Become a Service Provider</Link>
                 
                 <br />
-                <a>Service By City</a>
+                <Link to="/searchpage">All Services</Link>
                 <br />
-                <a>All Services</a>
-                <br />
-                <a>Help</a>
+                <Link to="/contactus">Help (contact us!)</Link>
               </div>
             </div>
             <div className="footer-content-column">

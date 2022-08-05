@@ -19,6 +19,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import Loader from "../components/Loader";
+import moment from 'moment';
 
 const products = [
   {
@@ -53,6 +54,7 @@ export default function CheckoutPaypalPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state.data;
+  const [services, setServices] = useState({});
 
   const [sdk, setSdk] = useState('');
 
@@ -94,6 +96,8 @@ export default function CheckoutPaypalPage() {
       document.body.appendChild(script);
     };
     addPaypalScript();
+
+    setServices({name:data?.service?.orderName, desc:moment.utc(data?.reservedDetail?.start).format('HH:mm on MMM DD, YYYY'), price:data?.service?.orderPrice});
   }, []);
 
   const handlePaymentSuccess = (paymentResult) => {
@@ -121,17 +125,20 @@ export default function CheckoutPaypalPage() {
               Order summary
             </Typography>
             <List disablePadding>
-              {products.map((product) => (
+              {/* {products.map((product) => (
                 <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
                   <ListItemText primary={product.name} secondary={product.desc} />
                   <Typography variant="body2">{product.price}</Typography>
                 </ListItem>
-              ))}
-
+              ))} */}
+              <ListItem key={services.name} sx={{ py: 1, px: 0 }}>
+                <ListItemText primary={services.name} secondary={"scheduled on "+services.desc} />
+                <Typography variant="body2">{services.price}</Typography>
+              </ListItem>
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  $86.97
+                  {services.price}
                 </Typography>
               </ListItem>
             </List>

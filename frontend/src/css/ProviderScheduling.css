@@ -13,17 +13,6 @@
     margin: 40pt 0 0 40pt;
 }
 
-.In{
-	outline: none;
-	border: none;
-	width: 100%;
-	padding: 15px;
-	border-radius: 10px;
-	background-color: #edf5f3;
-    margin: 10px 0 0 0;
-	font-size: 18px;
-}
-
 .no-margin{
     margin: 3px 0 0 0;
 }
@@ -37,9 +26,6 @@
     justify-content: center;
 }
 
-.all-width{
-    width:100%;
-}
 
 .scheduleCard {
     text-align: center;
