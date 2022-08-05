@@ -14,13 +14,14 @@ const Navbar = () => {
     <nav className="navbar">
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
-        <Link to="/searchpage">Search</Link>
-        <Link to="/findjob">Find a Job</Link>
+        <Link to="/searchpage">Find Experts</Link>
+        {/* <Link to="/findjob">Find a Job</Link> */}
         <Link to="/contactus">Contact Us</Link>
         <Link to="/login">Log In</Link>
-        <Link to="/signup" className={'toprightbotton'}>  
+        <Link to="/signup-guide" className={'toprightbotton'}>  
           Sign Up
         </Link>
+        {/* <Link to="/signup-guide">Sign Up</Link> */}
       </div>
     </nav>
   );
