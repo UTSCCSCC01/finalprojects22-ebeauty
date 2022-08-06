@@ -68,9 +68,14 @@ const SearchPage = () => {
         <SearchBox providers={providers} service={service} key={service._id} />
         <div className="address-form">
           <h2>{addr}</h2>
-          <button onClick={redirect_to_addresspage} className="btn">
-            Not where you are?
-          </button>
+          {addr == "" ?
+            <button onClick={redirect_to_addresspage} className="btn">
+              please click here to fill address
+            </button> :
+            <button onClick={redirect_to_addresspage} className="btn">
+              Not where you are?
+            </button>}
+
         </div>
         <div className="filter-div">
           <div className="filter-interior-div">
@@ -88,7 +93,7 @@ const SearchPage = () => {
             <div className="filter-interior-time-div">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateTimePicker
-                  views={['day','hours']}
+                  views={['day', 'hours']}
                   value={date}
                   onChange={(newValue) => {
                     setDate(newValue);
