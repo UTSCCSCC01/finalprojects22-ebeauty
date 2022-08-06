@@ -2,6 +2,7 @@ import FullCalendar from '@fullcalendar/react'
 import React, { useEffect, useRef } from 'react'
 import useAuth from '../Authentication/useAuth';
 import '../css/Calendar.css'
+import moment from 'moment';
 
 //plugins
 import timeGridPlugin from "@fullcalendar/timegrid";
@@ -31,7 +32,7 @@ const CustomerCalendar = ({ providerId, setScheduleData }) => {
       .then(res => {
         for (var i = 0; i < res.length; i++) {
           // only add events that no customer reserved
-          if (res[i].customerId == undefined) {
+          if (res[i].customerId == undefined && new Date(moment.utc(new Date()).format("DD MMMM YYYY")) <= new Date(moment.utc(res[i].startTime).format("DD MMMM YYYY"))) {
             let title = res[i].title;
             let startTime = res[i].startTime;
             let endTime = res[i].endTime;

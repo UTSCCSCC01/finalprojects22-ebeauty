@@ -191,11 +191,10 @@ export default function CheckoutReviewPage() {
                 <ListItemText primary={data.service.orderName} secondary={`scheduled from ${startText} to ${endText}`} />
                 <Typography variant="body2">{data.service.orderPrice}</Typography>
               </ListItem>
-
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  {data.service.orderPrice}
+                  {data.service.orderPrice} $(CAD)
                 </Typography>
               </ListItem>
             </List>

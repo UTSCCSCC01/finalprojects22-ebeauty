@@ -99,7 +99,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
         </div>
       </div>
 
-      <Container disableGutters margin maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
+      <Container disableGutters maxWidth="sm" component="main" sx={{ pt: 8, pb: 6 }}>
         <Box mb={0} pb={0}>
           <Typography component="h1" variant="h3" align="center" color="#333" gutterBottom>
             Are you a customer?

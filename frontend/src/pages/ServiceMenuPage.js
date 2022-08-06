@@ -11,9 +11,8 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useState, useEffect, useRef } from 'react'
 import FormControl from "@mui/material/FormControl";
-import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -21,28 +20,28 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import CustomerCalendar from "../components/CustomerCalendar";
 
-const services = [
-  {
-    name: "Men's Hair Cut",
-    price: 19.99,
-  },
-  {
-    name: "Women's Hair Cut",
-    price: 29.99,
-  },
-  {
-    name: "Women's Perm",
-    price: 79.99,
-  },
-  {
-    name: "Basic Makeup",
-    price: 15.99,
-  },
-  {
-    name: "Facial Massage",
-    price: 39.99,
-  },
-];
+// const services = [
+//   {
+//     name: "Men's Hair Cut",
+//     price: 19.99,
+//   },
+//   {
+//     name: "Women's Hair Cut",
+//     price: 29.99,
+//   },
+//   {
+//     name: "Women's Perm",
+//     price: 79.99,
+//   },
+//   {
+//     name: "Basic Makeup",
+//     price: 15.99,
+//   },
+//   {
+//     name: "Facial Massage",
+//     price: 39.99,
+//   },
+// ];
 
 const theme = createTheme({
   palette: {
@@ -60,6 +59,7 @@ const ServiceMenuPage = () => {
   const location = useLocation();
   const providerName = location.state.name;
   const providerId = location.state.id;
+  const [services, setServices] = useState([]);
   const [selectedService, setSelectedService] = useState(null);
   const [scheduleData, setScheduleData] = useState(null);
 
@@ -102,6 +102,25 @@ const ServiceMenuPage = () => {
     });
   };
 
+
+  useEffect(() => {
+    async function fetchService() {
+      await fetch('/api/services/' + providerId, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          setServices(data);
+        });
+    }
+    fetchService();
+  }, []);
+
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -122,21 +141,27 @@ const ServiceMenuPage = () => {
                 </Typography>
                 <FormControl component="fieldset">
                   <RadioGroup>
-                    {services.map((service) => (
-                      <FormControlLabel
-                        className="formControlLabelStyle"
-                        value={service.name}
-                        control={<Radio onClick={onClickCheckbox} />}
-                        label={`${service.name} - $${service.price}`}
-                        labelPlacement="start"
-                      />
-                    ))}
+                    {services.length == 0 ?
+                      <h4>This service provider has not added any service yet, come back another day?</h4>
+                      :
+                      <>
+                        {services.map((service) => (
+                          <FormControlLabel
+                            className="formControlLabelStyle"
+                            value={service.name}
+                            control={<Radio onClick={onClickCheckbox} />}
+                            label={`${service.name} - $${service.price}`}
+                            labelPlacement="start"
+                          />
+                        ))}
+                      </>
+                    }
                   </RadioGroup>
                 </FormControl>
               </Grid>
             </Grid>
             <CustomerCalendar providerId={providerId} setScheduleData={setScheduleData} className="customerCalendar" />
-            {scheduleData && selectedService?(
+            {scheduleData && selectedService ? (
               <React.Fragment>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <Button
@@ -150,7 +175,7 @@ const ServiceMenuPage = () => {
                   </Button>
                 </Box>
               </React.Fragment>
-            ):(
+            ) : (
 
               <React.Fragment>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

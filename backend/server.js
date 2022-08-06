@@ -13,6 +13,7 @@ import imageRoute from "./routes/imageRoute.js";
 import calendars from "./routes/calendarRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import issueRoute from "./routes/issueRoute.js";
+import serviceRoute from "./routes/serviceRoute.js";
 
 import cors from 'cors';
 import path from "path";
@@ -50,6 +51,7 @@ app.use('/api/calendars', calendars);
 app.use("/file", imageRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/issues", issueRoute);
+app.use("/api/services", serviceRoute);
 
 // get client id of PayPal
 app.get('/api/config/paypal', (req, res) => {
