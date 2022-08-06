@@ -138,7 +138,7 @@ export default function CheckoutPaypalPage() {
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  {services.price}
+                  {services.price} $(CAD)
                 </Typography>
               </ListItem>
             </List>

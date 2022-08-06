@@ -26,6 +26,7 @@ import ProviderScheduleing from './pages/ProviderScheduling';
 import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 import OrderHistoryPage from './pages/OrderHistoryPage';
+import ProviderService from './pages/ProviderService';
 
 import OnlyProviderView from './pages/OnlyProviderView';
 
@@ -97,13 +98,14 @@ function App() {
                 <Route path="/checkout-review" element={<CheckoutReviewPage />} />
                 <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
                 <Route path="/service-list" element={<ServiceMenuPage />} />
+                <Route path="/orderhistory" element={<OrderHistoryPage />} />
 
                 {/* testing auth here */}
                 <Route element={<RequireAuth allowedRoles={[1]}/>}>
                   <Route path="/providerschedule" element={<ProviderScheduleing />} />
                   <Route path="/onlyproviderview" element={<OnlyProviderView />} />
+                  <Route path="/providerservice" element={<ProviderService />} />
                 </Route>
-                <Route path="/orderhistory" element={<OrderHistoryPage />} />
               </Routes>
             <Footer />
           </div>
