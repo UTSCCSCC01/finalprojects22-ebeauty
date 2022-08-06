@@ -12,7 +12,7 @@ import SearchBox from '../components/SearchBox';
 import Paginator from '../components/Paginator';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { TextField } from '@mui/material';
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
@@ -87,7 +87,8 @@ const SearchPage = () => {
             <h2>Time and Date</h2>
             <div className="filter-interior-time-div">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DatePicker
+                <DateTimePicker
+                  views={['day','hours']}
                   value={date}
                   onChange={(newValue) => {
                     setDate(newValue);
