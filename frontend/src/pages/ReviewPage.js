@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/Review.css";
-import { Rating, Typography } from '@mui/material';
+import { Rating, Typography } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
 const Review = () => {
@@ -10,13 +10,13 @@ const Review = () => {
   const [reviewContent, setReviewContent] = useState("");
   const location = useLocation();
   const providerName = location.state.name;
+  const providerId = location.state.providerId;
+  const customerId = location.state.customerId;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const customerId = "customer1"
-    const providerId = "provider1"
     const review = { customerId, providerId, reviewContent, rating };
-    
+
     await fetch("/api/reviews/", {
       method: "POST",
       body: JSON.stringify(review),
@@ -34,7 +34,21 @@ const Review = () => {
         setRating(null);
         setHover(null);
         setReviewContent("");
+      }
+    });
+
+    await fetch(`/api/providers/${providerId}`, {
+      method: "PATCH",
+      body: JSON.stringify(review),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => {
+      console.log(res);
+      if (res.ok) {
         alert(`THATNKS FOR THE REVIEW!`);
+      } else {
+        alert("ERROR FOR UPDATING RATING COUNTS");
       }
     });
   };
@@ -43,8 +57,7 @@ const Review = () => {
     <>
       <div className="review-container">
         <Typography variant="h3">How do you like {providerName}?</Typography>
-        
-        
+
         <div className="star-rating">
           <Rating
             name="simple-controlled"
@@ -63,10 +76,12 @@ const Review = () => {
               setReviewContent(e.target.value);
             }}
             value={reviewContent}
-          />          
+          />
         </form>
         <div className="review-buttons">
-          <button className="review-button" id="submit-review" onClick={handleSubmit}>Submit Review </button>
+          <button className="review-button" id="submit-review" onClick={handleSubmit}>
+            Submit Review{" "}
+          </button>
         </div>
       </div>
     </>

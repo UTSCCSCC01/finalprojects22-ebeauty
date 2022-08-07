@@ -53,6 +53,7 @@ const Login = () => {
           setEmail("");
           setPassword("");
           alert(`LOGIN SUCCESS with ${email}`);
+          navigate("/");
         }
       })  
     } else {
