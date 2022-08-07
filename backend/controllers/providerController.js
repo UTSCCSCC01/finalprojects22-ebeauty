@@ -2,7 +2,6 @@ import Provider from "../models/providerModel.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
-import express from "express";
 
 // @desc register new provider
 // @route POST /api/providers
@@ -25,18 +24,36 @@ const registerProvider = asyncHandler(async (req, res) => {
   let isAdmin = req.body.isAdmin;
 
   // only goes in if statement when any contain null
-  if (!(name && title && address && range && city && state && country && email && phone && password && imageFilename && individual) || totalRating==null || ratingPopulation==null || isAdmin==null) {
+  if (
+    !(
+      name &&
+      title &&
+      address &&
+      range &&
+      city &&
+      state &&
+      country &&
+      email &&
+      phone &&
+      password &&
+      imageFilename &&
+      individual
+    ) ||
+    totalRating == null ||
+    ratingPopulation == null ||
+    isAdmin == null
+  ) {
     res.status(400);
-    throw new Error('please have all fields filled');
-  } else if ((totalRating^ratingPopulation)!=0 || isAdmin==true){
+    throw new Error("please have all fields filled");
+  } else if ((totalRating ^ ratingPopulation) != 0 || isAdmin == true) {
     res.status(400);
-    throw new Error('you are not allowed to create admin or provider with initial rating!');
+    throw new Error("you are not allowed to create admin or provider with initial rating!");
   }
 
   const providerExist = await Provider.findOne({ email });
   if (providerExist) {
     res.status(400);
-    throw new Error('provider already exists');
+    throw new Error("provider already exists");
   }
 
   const salt = await bcrypt.genSalt(10);
@@ -44,7 +61,21 @@ const registerProvider = asyncHandler(async (req, res) => {
 
   console.log(range);
   const provider = await Provider.create({
-    name, title, address, range, city, state, country, email, phone, individual, imageFilename, totalRating, ratingPopulation, isAdmin, password: saltedhash
+    name,
+    title,
+    address,
+    range,
+    city,
+    state,
+    country,
+    email,
+    phone,
+    individual,
+    imageFilename,
+    totalRating,
+    ratingPopulation,
+    isAdmin,
+    password: saltedhash,
   });
 
   if (provider) {
@@ -65,11 +96,11 @@ const registerProvider = asyncHandler(async (req, res) => {
       totalRating: provider.totalRating,
       ratingPopulation: provider.ratingPopulation,
       isAdmin: provider.isAdmin,
-      token: generateToken(provider._id)
+      token: generateToken(provider._id),
     });
   } else {
     res.status(400);
-    throw new Error('problem with creating provider (invalid provider data)');
+    throw new Error("problem with creating provider (invalid provider data)");
   }
 });
 
@@ -82,12 +113,12 @@ const loginProvider = asyncHandler(async (req, res) => {
 
   if (!email || !password) {
     res.status(400);
-    throw new Error('please have all fields filled: email, and password');
+    throw new Error("please have all fields filled: email, and password");
   }
 
   const provider = await Provider.findOne({ email });
 
-  if (provider && await (bcrypt.compare(password, provider.password))) {
+  if (provider && (await bcrypt.compare(password, provider.password))) {
     res.json({
       _id: provider.id,
       name: provider.name,
@@ -102,15 +133,13 @@ const loginProvider = asyncHandler(async (req, res) => {
       totalRating: provider.totalRating,
       ratingPopulation: provider.ratingPopulation,
       isAdmin: provider.isAdmin,
-      token: generateToken(provider._id)
+      token: generateToken(provider._id),
     });
   } else {
     res.status(400);
-    throw new Error('login failed, invalid email or password');
+    throw new Error("login failed, invalid email or password");
   }
 });
-
-
 
 //@desc    Get all providers
 //@route   GET /api/providers?keyword=${keyword}
@@ -124,8 +153,8 @@ const getProviders = asyncHandler(async (req, res) => {
         // search by name and title only
         // could remove name if product owner says so
         $or: [
-          { name: { $regex: req.query.keyword, $options: 'i' } },
-          { title: { $regex: req.query.keyword, $options: 'i' } },
+          { name: { $regex: req.query.keyword, $options: "i" } },
+          { title: { $regex: req.query.keyword, $options: "i" } },
         ],
       }
     : {};
@@ -142,18 +171,30 @@ const getProviders = asyncHandler(async (req, res) => {
 //@route   GET /api/providers/:id
 //@access  Public
 const getProviderById = asyncHandler(async (req, res) => {
-  const provider = await Provider.findById(req.params.id).select('-password');
+  const provider = await Provider.findById(req.params.id).select("-password");
   // check if Provider exist
   if (provider) {
     res.json(provider);
   } else {
-    res.status(404).json({ msg: 'Provider not found' });
-    throw new Error('Provider not found');
+    res.status(404).json({ msg: "Provider not found" });
+    throw new Error("Provider not found");
   }
 });
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: '1d' });
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, { expiresIn: "1d" });
 };
 
-export { registerProvider, loginProvider, getProviders, getProviderById };
+const updateReviewCounts = asyncHandler(async (req, res) => {
+  const provider = await Provider.updateOne(
+    { _id: req.params.id },
+    { $inc: { totalRating: req.body.rating, ratingPopulation: 1 } }
+  );
+  if (provider) {
+    res.status(200).json(provider);
+  } else {
+    res.status(404).json({ msg: "Provider not found" });
+  }
+});
+
+export { registerProvider, loginProvider, getProviders, getProviderById, updateReviewCounts };
