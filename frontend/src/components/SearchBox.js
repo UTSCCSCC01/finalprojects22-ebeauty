@@ -82,12 +82,12 @@ const SearchBox = ({ service }) => {
         flag = true;
         similar = similarityServiceArray[0].service.label;
       }
-      console.log(similarityServiceArray);
+      // console.log(similarityServiceArray);
     }
 
     if (searchKeyword.trim()) {
       if (flag === true) {
-        // window.location.href = `/searchpage/${similar}`;
+        window.location.href = `/searchpage/${similar}`;
       } else {
         window.location.href = `/searchpage/${searchKeyword}`;
       }

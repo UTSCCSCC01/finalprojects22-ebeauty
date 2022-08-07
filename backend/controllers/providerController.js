@@ -168,7 +168,7 @@ const getProviders = asyncHandler(async (req, res) => {
     .limit(pageSize)
     .skip((page - 1) * pageSize);
   const allProviders = await Provider.find({ ...keyword });
-  res.json({
+  res.status(200).json({
     allProviders,
     providers,
     page,
@@ -183,7 +183,7 @@ const getProviderById = asyncHandler(async (req, res) => {
   const provider = await Provider.findById(req.params.id).select('-password');
   // check if Provider exist
   if (provider) {
-    res.json(provider);
+    res.status(200).json(provider);
   } else {
     res.status(404).json({ msg: 'Provider not found' });
     throw new Error('Provider not found');

@@ -14,6 +14,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { TextField } from '@mui/material';
+import moment from 'moment';
 
 // create a new component called search page, which will hold the search bar and the results, and then export it, so that it can be used in the main page
 const SearchPage = () => {
@@ -31,7 +32,27 @@ const SearchPage = () => {
   // use dispatch to call the listProviders action
   const dispatch = useDispatch();
   const providersList = useSelector((state) => state.providers);
-  const { loading, error, providers, pages, page } = providersList;
+  const { loading, error, allProviders, providers, pages, page } =
+    providersList;
+  // get calenders from the backend
+  async function getCalenders() {
+    await fetch('/api/calendars', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        setStartDate(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
   useEffect(() => {
     dispatch(listProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
@@ -54,6 +75,7 @@ const SearchPage = () => {
         });
     }
     fetchAddr();
+    getCalenders();
   }, [addr]);
 
   const handleServiceChange = (service) => {
@@ -61,6 +83,21 @@ const SearchPage = () => {
     window.location.href = `/searchpage/${service}`;
   };
 
+  const [startDate, setStartDate] = useState([]);
+  let dateFlag = false;
+  const handleDateChange = (date) => {
+    setDate(date);
+    const dateMatch = startDate.filter((item) => {
+      return (
+        moment(item.startTime).utc(0).format('YYYY-MM-DD HH:mm') ===
+        moment(date).format('YYYY-MM-DD HH:mm')
+      );
+    });
+    if (dateMatch.length > 0) {
+      dateFlag = true;
+    }
+    // console.log(dateMatch);
+  };
   return (
     <>
       <div className="search-page">
@@ -87,11 +124,9 @@ const SearchPage = () => {
             <div className="filter-interior-time-div">
               <LocalizationProvider dateAdapter={AdapterDateFns}>
                 <DateTimePicker
-                  views={['day','hours']}
+                  views={['day', 'hours']}
                   value={date}
-                  onChange={(newValue) => {
-                    setDate(newValue);
-                  }}
+                  onChange={handleDateChange}
                   renderInput={(params) => (
                     <TextField size="small" {...params} fullWidth />
                   )}
@@ -111,13 +146,38 @@ const SearchPage = () => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div>
-              {providers
-                .sort((a, b) => a.range - b.range)
-                .map((provider) => {
-                  return (
+              {(() => {
+                if (date !== '') {
+                  const match = startDate.filter((item) => {
+                    return (
+                      moment(item.startTime)
+                        .utc(0)
+                        .format('YYYY-MM-DD HH:mm') ===
+                      moment(date).format('YYYY-MM-DD HH:mm')
+                    );
+                  });
+                  if (match.length > 0) {
+                    const matchedProviders = allProviders.filter((provider) =>
+                      match.find((item) => item.providerId === provider._id)
+                    );
+                    console.log(matchedProviders);
+                    return matchedProviders.map((p) => {
+                      console.log(p);
+                      return <ProviderCard provider={p} key={p._id} />;
+                    });
+                  }
+                  return providers
+                    .sort((a, b) => a.range - b.range)
+                    .map((provider) => (
+                      <ProviderCard provider={provider} key={provider._id} />
+                    ));
+                }
+                return providers
+                  .sort((a, b) => a.range - b.range)
+                  .map((provider) => (
                     <ProviderCard provider={provider} key={provider._id} />
-                  );
-                })}
+                  ));
+              })()}
             </div>
           )}
         </div>

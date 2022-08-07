@@ -79,7 +79,7 @@ const ServiceDropdown = ({ onChange }) => {
       .sort((a, b) => {
         return b.similarity - a.similarity;
       });
-    console.log(similarityArray);
+    // console.log(similarityArray);
     selectedIndex = similarityArray[0].index;
   }
   return (
