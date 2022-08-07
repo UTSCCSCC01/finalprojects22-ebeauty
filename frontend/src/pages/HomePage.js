@@ -54,7 +54,7 @@ import GlobalStyles from "@mui/material/GlobalStyles";
   const onButtonClick = async (e) => {
     const currVal = e.currentTarget.value;
     if (currVal === "Sign up for free" || currVal === "Get started") {
-      window.location.href = "/signup";
+      window.location.href = "/findjob";
     } else {
       window.location.href = "/contactus";
     }
@@ -71,6 +71,21 @@ import GlobalStyles from "@mui/material/GlobalStyles";
     } else {
       window.location.href = "/searchpage";
     }
+  }
+
+  const onImageClickHairdressing = async (e) => {
+    console.log("onImageClick");
+    window.location.href = "/searchpage/Hairdressing";
+  }
+
+  const onImageClickMakeup = async (e) => {
+    console.log("onImageClick");
+    window.location.href = "/searchpage/Makeup";
+  }
+
+  const onImageClickNailTechnician = async (e) => {
+    console.log("onImageClick");
+    window.location.href = "/searchpage/Nail%20Tech";
   }
   
   return (
@@ -113,30 +128,27 @@ import GlobalStyles from "@mui/material/GlobalStyles";
       {/* Image Animations */}
       <div className="row">
         <div className="column">
-          <div className="image">
+          <div className="image" onClick={onImageClickHairdressing}>
             <img className="image__img" src={require("../images/haircut.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Hair Designer</div>
-              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
         </div>
 
         <div className="column">
-          <div className="image">
+          <div className="image" onClick={onImageClickNailTechnician}>
             <img className="image__img" src={require("../images/nail-polish.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Nail Artist</div>
-              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
         </div>
         <div className="column">
-          <div className="image">
+          <div className="image" onClick={onImageClickMakeup}>
             <img className="image__img" src={require("../images/makeup.jpg")} alt="Bricks" />
             <div className="image__overlay image__overlay--primary">
               <div className="image__title">Makeup Artist</div>
-              {/* <div className="image__description">Enjoy New Style!</div> */}
             </div>
           </div>
         </div>
