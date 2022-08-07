@@ -97,7 +97,7 @@ const ServiceMenuPage = () => {
 
         service.desc = `Scheduled at ${hour}:${minutes} on ${months[month + 1]} ${date}, ${year}`;
 
-        setSelectedService({ name: service.name, price: service.price });
+        setSelectedService({ name: service.name, price: service.price, serviceId:service._id });
       }
     });
   };
@@ -105,7 +105,7 @@ const ServiceMenuPage = () => {
 
   useEffect(() => {
     async function fetchService() {
-      await fetch('/api/services/' + providerId, {
+      await fetch('/api/services/provider/' + providerId, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -115,6 +115,7 @@ const ServiceMenuPage = () => {
           return res.json();
         })
         .then((data) => {
+          console.log(data)
           setServices(data);
         });
     }

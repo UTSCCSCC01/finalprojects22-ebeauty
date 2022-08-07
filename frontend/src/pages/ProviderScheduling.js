@@ -180,7 +180,7 @@ const ProviderScheduling = () => {
             </LocalizationProvider>
             <div className={'provider-scheduling center'}>
 
-              <h2 className='no-margin'> For : </h2>
+              <h2 className='no-margin'>For: </h2>
               <Dropdown
                 className='no-margin'
                 placeholder="1 Hr"

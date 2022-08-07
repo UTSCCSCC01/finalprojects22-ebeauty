@@ -39,6 +39,7 @@ export default function CheckoutAddressPage() {
   const orderName = location.state.service.name;
   const orderDesc = location.state.service.desc;
   const orderPrice = location.state.service.price;
+  const serviceId = location.state.service.serviceId;
   const reservedDetail = location.state.appointmentTime;
   const providerId = location.state.providerId;
 
@@ -55,7 +56,7 @@ export default function CheckoutAddressPage() {
     }
 
     const address = {addressOne, addressTwo, addressCombined, city, province, postalCode, country};
-    const service = {orderName, orderDesc, orderPrice};
+    const service = {orderName, orderDesc, orderPrice, serviceId};
 
     const order = { firstName, lastName, address, service, reservedDetail, providerId };
 

@@ -25,7 +25,8 @@ import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderScheduleing from './pages/ProviderScheduling';
 import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
-import OrderHistoryPage from './pages/OrderHistoryPage';
+import CustomerOrderHistoryPage from './pages/CustomerOrderHistoryPage';
+import ProviderOrderHistoryPage from './pages/ProviderOrderHistoryPage';
 import ProviderService from './pages/ProviderService';
 
 import OnlyProviderView from './pages/OnlyProviderView';
@@ -47,66 +48,67 @@ function App() {
         <ReactNotifications />
         <ScrollToTop>
           <div className="content">
-              {Object.keys(auth).length === 0 ? (
-                  <Navbar />
-                ):(
-                  auth?.role[0] == 1?
-                    <ProviderNavbar/>
-                  :
-                    <CustomerNavbar/>
-              )}
+            {Object.keys(auth).length === 0 ? (
+              <Navbar />
+            ) : (
+              auth?.role[0] == 1 ?
+                <ProviderNavbar />
+                :
+                <CustomerNavbar />
+            )}
 
-              <Routes>
-                <Route path="*" element={<NotFound />} />
-                <Route exact path="/" element={<Home />} />
-                <Route path="/reviews" element={<Review />} />
-                <Route path="/searchpage" element={<SearchPage />} />
-                <Route path="/page/:pageNumber" element={<SearchPage />} />
-                <Route path="/searchpage/:keyword" element={<SearchPage />} />
-                <Route
-                  path="/searchpage/:keyword/page/:pageNumber"
-                  element={<SearchPage />}
-                />
-                <Route path="/findjob" element={<FindJob />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/signupproviderone" element={<SignUpProvider />} />
-                <Route
-                  path="/signupprovidertwo"
-                  element={<SignUpProviderTwo />}
-                />
-                <Route
-                  path="/signupproviderthree"
-                  element={<SignUpProviderThree />}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/profileprovider" element={<ProfileProvider />} />
-                <Route
-                  path="/reservationCustomer"
-                  element={<ReservationCustomer />}
-                />
-                <Route path="/provider/:id" element={<ViewProfileProvider />} />
-                <Route path="/addresspage" element={<AddressPage />} />
-                <Route path="/contactus" element={<ContactUs />} />
-                <Route
-                  path="/checkout-address"
-                  element={<CheckoutAddressPage />}
-                />
-                <Route
-                  path="/checkout-payment"
-                  element={<CheckoutPaymentPage />}
-                />
-                <Route path="/checkout-review" element={<CheckoutReviewPage />} />
-                <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
-                <Route path="/service-list" element={<ServiceMenuPage />} />
-                <Route path="/orderhistory" element={<OrderHistoryPage />} />
+            <Routes>
+              <Route path="*" element={<NotFound />} />
+              <Route exact path="/" element={<Home />} />
+              <Route path="/reviews" element={<Review />} />
+              <Route path="/searchpage" element={<SearchPage />} />
+              <Route path="/page/:pageNumber" element={<SearchPage />} />
+              <Route path="/searchpage/:keyword" element={<SearchPage />} />
+              <Route
+                path="/searchpage/:keyword/page/:pageNumber"
+                element={<SearchPage />}
+              />
+              <Route path="/findjob" element={<FindJob />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/signupproviderone" element={<SignUpProvider />} />
+              <Route
+                path="/signupprovidertwo"
+                element={<SignUpProviderTwo />}
+              />
+              <Route
+                path="/signupproviderthree"
+                element={<SignUpProviderThree />}
+              />
+              <Route path="/login" element={<Login />} />
+              <Route path="/profileprovider" element={<ProfileProvider />} />
+              <Route
+                path="/reservationCustomer"
+                element={<ReservationCustomer />}
+              />
+              <Route path="/provider/:id" element={<ViewProfileProvider />} />
+              <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/contactus" element={<ContactUs />} />
+              <Route
+                path="/checkout-address"
+                element={<CheckoutAddressPage />}
+              />
+              <Route
+                path="/checkout-payment"
+                element={<CheckoutPaymentPage />}
+              />
+              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+              <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
+              <Route path="/service-list" element={<ServiceMenuPage />} />
+              <Route path="/customerorderhistory" element={<CustomerOrderHistoryPage />} />
 
-                {/* testing auth here */}
-                <Route element={<RequireAuth allowedRoles={[1]}/>}>
-                  <Route path="/providerschedule" element={<ProviderScheduleing />} />
-                  <Route path="/onlyproviderview" element={<OnlyProviderView />} />
-                  <Route path="/providerservice" element={<ProviderService />} />
-                </Route>
-              </Routes>
+              {/* testing auth here */}
+              <Route element={<RequireAuth allowedRoles={[1]} />}>
+                <Route path="/providerorderhistory" element={<ProviderOrderHistoryPage />} />
+                <Route path="/providerschedule" element={<ProviderScheduleing />} />
+                <Route path="/onlyproviderview" element={<OnlyProviderView />} />
+                <Route path="/providerservice" element={<ProviderService />} />
+              </Route>
+            </Routes>
             <Footer />
           </div>
         </ScrollToTop>

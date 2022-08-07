@@ -1,7 +1,8 @@
 import {
   addService, 
-  getAllServices, 
-  getServicesById, 
+  getAllServices,
+  getServicesByProviderId, 
+  getServiceById, 
   deleteServiceById
 } from "../controllers/serviceController.js";
 import express from "express";
@@ -12,7 +13,9 @@ const router = express.Router();
 router.get("/", getAllServices);
 
 // get single service
-router.get("/:id", getServicesById);
+router.get("/provider/:id", getServicesByProviderId);
+
+router.get("/:id", getServiceById);
 
 router.post("/", addService);
 

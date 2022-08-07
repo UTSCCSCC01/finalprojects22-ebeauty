@@ -65,10 +65,24 @@ const getAllServices = asyncHandler(async (req, res) => {
 
 
 //@desc    Get all services from one provider
+//@route   GET /api/services/provider/:id
+//@access  Public
+const getServicesByProviderId = asyncHandler(async (req, res) => {
+  const service = await Service.find({ provider: req.params.id });
+  // check if Provider exist
+  if (service) {
+    res.json(service);
+  } else {
+    res.status(404).json({ message: 'Service not found' });
+    throw new Error('Service not found');
+  }
+});
+
+//@desc    Get all services from one provider
 //@route   GET /api/services/:id
 //@access  Public
-const getServicesById = asyncHandler(async (req, res) => {
-  const service = await Service.find({ provider: req.params.id });
+const getServiceById = asyncHandler(async (req, res) => {
+  const service = await Service.findById(req.params.id);
   // check if Provider exist
   if (service) {
     res.json(service);
@@ -90,4 +104,4 @@ const deleteServiceById = asyncHandler(async (req, res) => {
   res.status(200).json({ message: 'Service successfully deleted.' });
 });
 
-export { addService, getAllServices, getServicesById, deleteServiceById };
+export { addService, getAllServices, getServicesByProviderId, getServiceById, deleteServiceById };
