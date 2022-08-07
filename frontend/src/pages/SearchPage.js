@@ -165,9 +165,7 @@ const SearchPage = () => {
                     const matchedProviders = allProviders.filter((provider) =>
                       match.find((item) => item.providerId === provider._id)
                     );
-                    console.log(matchedProviders);
                     return matchedProviders.map((p) => {
-                      console.log(p);
                       return <ProviderCard provider={p} key={p._id} />;
                     });
                   }

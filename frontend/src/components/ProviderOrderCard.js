@@ -24,7 +24,6 @@ const ProviderOrderCard = ({ order, completed, setCompletedClicked }) => {
     })
       .then(res => res.json())
       .then((res) => {
-        console.log(res)
         setFirstName(res.firstName)
         setLastName(res.lastName)
         setAddr(res?.defaultAddress)

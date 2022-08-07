@@ -28,8 +28,6 @@ const CustomerOrderHistoryPage = () => {
           }, { completed: [], notCompleted: [] });
           setCompletedOrders(result?.completed);
           setNotCompletedOrders(result?.notCompleted);
-          console.log(result)
-
         })
     }
     handleGetInfo();

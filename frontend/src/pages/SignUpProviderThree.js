@@ -42,7 +42,6 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const signUp = async () => {
-    // console.log("frontned",data)
     await fetch('/api/providers',{
       method: "POST",
       body: JSON.stringify(data),

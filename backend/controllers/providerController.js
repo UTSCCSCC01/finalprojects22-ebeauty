@@ -59,7 +59,6 @@ const registerProvider = asyncHandler(async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const saltedhash = await bcrypt.hash(password, salt);
 
-  console.log(range);
   const provider = await Provider.create({
     name,
     title,

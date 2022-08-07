@@ -12,8 +12,6 @@ const addService = asyncHandler(async (req, res) => {
   let price = req.body.price;
   let duration = req.body.duration;
 
-  console.log(duration)
-
   // validate provider id
   if (!mongoose.Types.ObjectId.isValid(provider)) {
     return res.status(404).json({ message: "your provider id is invalid" });

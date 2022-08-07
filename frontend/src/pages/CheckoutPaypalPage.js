@@ -59,7 +59,6 @@ export default function CheckoutPaypalPage() {
   const [sdk, setSdk] = useState('');
 
   const handleSubmitOrder = async () => {
-    console.log("submit button clicked");
     await fetch("/api/orders/save-order", {
       method: "POST",
       body: JSON.stringify(data),
@@ -84,7 +83,7 @@ export default function CheckoutPaypalPage() {
   useEffect(() => {
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
-      console.log("clientId 👉️", clientId);
+      // console.log("clientId 👉️", clientId);
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
@@ -102,7 +101,7 @@ export default function CheckoutPaypalPage() {
 
   const handlePaymentSuccess = (paymentResult) => {
     // should go to the next page after payment
-    console.log("paymentResult 👉️", paymentResult);
+    // console.log("paymentResult 👉️", paymentResult);
     navigate("/checkout-review", { state: { data: data } });
   };
   return (

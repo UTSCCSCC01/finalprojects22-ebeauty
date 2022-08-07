@@ -114,7 +114,6 @@ const ServiceMenuPage = () => {
           return res.json();
         })
         .then((data) => {
-          console.log(data)
           setServices(data);
         });
     }
