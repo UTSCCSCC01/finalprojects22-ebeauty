@@ -11,6 +11,8 @@ const Review = () => {
   const providerName = location.state.name;
   const providerId = location.state.providerId;
   const customerId = location.state.customerId;
+  // marked as rated for incoming order with id
+  const orderId = location.state.orderId;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,15 +42,32 @@ const Review = () => {
         "Content-Type": "application/json",
       },
     })
-    .then(res => res.json())
-    .then((res) => {
-      if(res.acknowledged){
-        alert(`THATNKS FOR THE REVIEW!`);
-        navigate("/customerorderhistory");
-      } else {
-        alert("ERROR FOR UPDATING RATING COUNTS");
-      }
-    });
+      .then(res => res.json())
+      .then(async (res) => {
+        if (res.acknowledged) {
+          await fetch(`/api/orders/rated/${orderId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then(res => res.json())
+            .then((res) => {
+              if (res?._id){
+                alert(`THATNKS FOR THE REVIEW!`);
+                navigate("/customerorderhistory");
+              } else {
+                alert("ERROR FOR UPDATING RATED ON ORDER");
+              }
+            });
+        } else {
+          alert("ERROR FOR UPDATING RATING COUNTS");
+        }
+      });
+
+
+
+
   };
 
   return (
