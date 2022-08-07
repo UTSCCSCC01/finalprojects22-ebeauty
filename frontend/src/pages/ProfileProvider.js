@@ -1,21 +1,42 @@
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { Col, Card, CardBody } from 'reactstrap';
+import { useNavigate } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Col, Card, CardBody } from "reactstrap";
+import AuthContext from "../Authentication/AuthProvider";
+import useAuth from "../Authentication/useAuth";
+import { Box, Button, Container, Typography } from "@mui/material";
 
 const ProfileProvider = () => {
-  const [Name, setName] = useState('');
-  const [ServiceOne, setServiceOne] = useState('');
-  const [ServiceTwo, setServiceTwo] = useState('');
-  const [Title, setTitle] = useState('');
-  const [PhoneNumber, setPhoneNumber] = useState('');
-  const [Adress, setAdress] = useState('');
-  const [City, setCity] = useState('');
-  const [Province, setProvince] = useState('');
-  const [Country, setCountry] = useState('');
-  const [PostalCode, setPostalCode] = useState('');
-  const [CurrentPassword, setCurrentPassword] = useState('');
-  const [Email, setEmail] = useState('');
-  const [NewPassword, setNewPassword] = useState('');
+  const { auth } = useAuth();
+
+  const [Name, setName] = useState("");
+  const [ServiceOne, setServiceOne] = useState("");
+  const [ServiceTwo, setServiceTwo] = useState("");
+  const [Title, setTitle] = useState("");
+  const [PhoneNumber, setPhoneNumber] = useState("");
+  const [Adress, setAdress] = useState("");
+  const [City, setCity] = useState("");
+  const [Province, setProvince] = useState("");
+  const [Country, setCountry] = useState("");
+  const [PostalCode, setPostalCode] = useState("");
+  const [CurrentPassword, setCurrentPassword] = useState("");
+  const [Email, setEmail] = useState("");
+  const [NewPassword, setNewPassword] = useState("");
+
+
+  // return (
+  //   <Container>
+      
+  //     <Typography variant="h1">{auth.name}'s Profile</Typography>
+  //     <Box display="flex" justifyContent="center" alignItems="center">
+  //       <img src={require("../images/barber.jpg")} className="profileImage" />
+  //       <Button>Change Profile Picture</Button>
+  //     </Box>
+  //     <Typography variant="h3">Change Email</Typography>
+  //     <Typography variant="h3">Change Password</Typography>
+  //     <Typography variant="h3">Update Account Info</Typography>
+  //     <Typography variant="h3">Upload Sample Images</Typography>
+  //   </Container>
+  // );
 
   return (
     <div className="profileRow">
@@ -23,21 +44,19 @@ const ProfileProvider = () => {
         <div
           className="profile"
           style={{
-            display: 'flex',
-            justifyContent: 'left',
-            paddingTop: '10pt',
-            paddingBottom: '30pt',
-          }}>
+            display: "flex",
+            justifyContent: "left",
+            paddingTop: "10pt",
+            paddingBottom: "30pt",
+          }}
+        >
           <br></br>
           <Col className="d-flex">
             <Card className="profileCard">
               <CardBody>
                 <h1>My Profile</h1>
                 <p>
-                  <img
-                    src={require('../images/barber.jpg')}
-                    className="profileImage"
-                  />
+                  <img src={require("../images/barber.jpg")} className="profileImage" />
                   <button>Change Profile Picture</button>
                 </p>
 
@@ -104,9 +123,7 @@ const ProfileProvider = () => {
                 />
 
                 <div>
-                  <button className="profileSaveButton">
-                    Save Edit on profile
-                  </button>
+                  <button className="profileSaveButton">Save Edit on profile</button>
                   <button className="profileCancelButton">Cancel</button>
                 </div>
 
@@ -140,15 +157,10 @@ const ProfileProvider = () => {
                 </div>
                 <br></br>
                 <p>
-                  <button className="profileButton">
-                    Upload more photos for display
-                  </button>
+                  <button className="profileButton">Upload more photos for display</button>
                 </p>
                 <div className="profileImgColumn">
-                  <img
-                    src={require('../images/makeup.jpg')}
-                    className="profileImgDisplay"
-                  />
+                  <img src={require("../images/makeup.jpg")} className="profileImgDisplay" />
                   <button>delete image</button>
                 </div>
               </CardBody>

@@ -11,7 +11,7 @@ import {
   ThemeProvider,
   Typography,
 } from "@mui/material";
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef } from "react";
 import FormControl from "@mui/material/FormControl";
 import { useLocation, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
@@ -102,13 +102,12 @@ const ServiceMenuPage = () => {
     });
   };
 
-
   useEffect(() => {
     async function fetchService() {
       await fetch('/api/services/provider/' + providerId, {
         method: 'GET',
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
       })
         .then((res) => {
@@ -142,9 +141,11 @@ const ServiceMenuPage = () => {
                 </Typography>
                 <FormControl component="fieldset">
                   <RadioGroup>
-                    {services.length == 0 ?
-                      <h4>This service provider has not added any service yet, come back another day?</h4>
-                      :
+                    {services.length == 0 ? (
+                      <h4>
+                        This service provider has not added any service yet, come back another day?
+                      </h4>
+                    ) : (
                       <>
                         {services.map((service) => (
                           <FormControlLabel
@@ -156,12 +157,16 @@ const ServiceMenuPage = () => {
                           />
                         ))}
                       </>
-                    }
+                    )}
                   </RadioGroup>
                 </FormControl>
               </Grid>
             </Grid>
-            <CustomerCalendar providerId={providerId} setScheduleData={setScheduleData} className="customerCalendar" />
+            <CustomerCalendar
+              providerId={providerId}
+              setScheduleData={setScheduleData}
+              className="customerCalendar"
+            />
             {scheduleData && selectedService ? (
               <React.Fragment>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -177,7 +182,6 @@ const ServiceMenuPage = () => {
                 </Box>
               </React.Fragment>
             ) : (
-
               <React.Fragment>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                   <Button
@@ -201,10 +205,6 @@ const ServiceMenuPage = () => {
 };
 
 export default ServiceMenuPage;
-
-
-
-
 
 ///////////////////////////////////////////////////////////////////////////////////
 /*

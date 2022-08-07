@@ -27,10 +27,7 @@ const ViewProfileProvider = () => {
   const onClickBookAppointment = () => {
     navigate("/service-list", { state: { name: provider.name, id: provider._id } });
   };
-  const onClickWriteReview = () => {
-    navigate("/reviews", { state: { name: provider.name } });
-  };
-  // const provider = {};
+
   const rating = {
     size: 30,
     value: roundHalf(provider.totalRating, provider.ratingPopulation),
@@ -92,15 +89,6 @@ const ViewProfileProvider = () => {
             onClick={onClickBookAppointment}
           >
             Book an appointment
-          </Button>
-          <Button
-            className="checkout"
-            variant="contained"
-            sx={{ mt: 3, ml: 1 }}
-            style={{ color: "white", backgroundColor: "#e27b7b" }}
-            onClick={onClickWriteReview}
-          >
-            Write a Review
           </Button>
         </Box>
       </Container>

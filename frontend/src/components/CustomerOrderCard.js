@@ -1,11 +1,12 @@
 import { Card, CardBody } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import React, { useState, useEffect, useRef } from 'react'
 import moment from 'moment';
 import alerting from "./Alerting";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 
 
 const CustomerOrderCard = ({ order, completed }) => {
+  const navigate = useNavigate();
   let calendar_id = order?.calendar_id;
   let service_id = order?.service_id;
   let order_id = order?._id;
@@ -68,7 +69,11 @@ const CustomerOrderCard = ({ order, completed }) => {
   }, [])
 
 
-
+  const onClickWriteReview = () => {
+    navigate("/reviews", {
+      state: { name: name, providerId: order?.provider_id, customerId: order?.customer_id, orderId: order?._id },
+    });
+  };
 
   return (
     <div id="order-history-card">
@@ -86,8 +91,8 @@ const CustomerOrderCard = ({ order, completed }) => {
           <p>service: {serviceName}, price: {servicePrice}$(CAD)</p>
         </div>
         {rated ? (<></>) : (
-          <button id="view-reservation" style={{ border: "none", cursor: "pointer" }}>
-            Rate the Provider
+          <button id="view-reservation" onClick={onClickWriteReview} style={{ border: "none", cursor: "pointer" }}>
+            Write a Review
           </button>
         )}
       </div>

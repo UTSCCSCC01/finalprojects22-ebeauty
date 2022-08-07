@@ -35,7 +35,7 @@ const ProviderCard = ({ provider }) => {
             <p>{provider.title}</p>
             <div className="rate">
               <ReactStars {...rating}/>
-              <h6 className="outof">{ratingPopulation} rates</h6>
+              <h6 className="outof">{ratingPopulation} reviews</h6>
             </div>
           </div>
           <div id="view-profile" to={`/provider/${provider._id}`}>
