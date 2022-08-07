@@ -1,0 +1,25 @@
+{
+  "name": "finalprojects22-ebeauty",
+  "version": "1.0.0",
+  "description": "The beauty service industry is already huge at the moment. However, there are still people looking for the service but cannot receive them simply because they do not have the time or ability to get access to beauty services. The intension of this project is to deliver beauty services to these people and provide convenience to the clients who are currently receiving beauty services by going to the provider.",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node backend/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UTSCCSCC01/finalprojects22-ebeauty.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UTSCCSCC01/finalprojects22-ebeauty/issues"
+  },
+  "homepage": "https://github.com/UTSCCSCC01/finalprojects22-ebeauty#readme"
+}
