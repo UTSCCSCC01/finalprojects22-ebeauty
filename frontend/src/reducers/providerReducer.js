@@ -16,6 +16,7 @@ export const providersReducer = (state = { providers: [] }, action) => {
       return {
         loading: false,
         providers: action.payload.providers,
+        allProviders: action.payload.allProviders,
         pages: action.payload.pages,
         page: action.payload.page,
       };
@@ -27,10 +28,7 @@ export const providersReducer = (state = { providers: [] }, action) => {
 };
 
 // Request reducer for a signle provider
-export const providerDetailsReducer = (
-  state = { provider: {} },
-  action
-) => {
+export const providerDetailsReducer = (state = { provider: {} }, action) => {
   switch (action.type) {
     case PROVIDER_DETAILS_REQUEST:
       return { loading: true, ...state };
