@@ -69,8 +69,8 @@ const ProviderService = () => {
   }
 
 
-  const handleDelete = async (id) => {
-    await fetch("/api/services/" + id, {
+  const handleDelete = async (providerId) => {
+    await fetch("/api/services/" + providerId, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const ProviderService = () => {
   useEffect(() => {
     handleChange(providerId, "provider");
     async function fetchService() {
-      await fetch('/api/services/' + providerId, {
+      await fetch('/api/services/provider/' + providerId, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

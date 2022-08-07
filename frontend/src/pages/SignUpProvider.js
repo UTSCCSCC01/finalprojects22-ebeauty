@@ -47,7 +47,6 @@ const SignUpProvider = () => {
   // trigger when clicked sign up button
   function signUpForm(e){
     e.preventDefault();
-    console.log(data);
     if(data.password !== data.confirmPassword){
       alerting("passwords are not matching!", "danger");
     } else{

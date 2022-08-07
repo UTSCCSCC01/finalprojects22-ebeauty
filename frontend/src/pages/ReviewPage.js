@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import "../css/Review.css";
 import { Rating, Typography } from "@mui/material";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import alerting from "../components/Alerting";
 
 const Review = () => {
-  const [error, setError] = useState(null);
+  const navigate = useNavigate();
   const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
   const [reviewContent, setReviewContent] = useState("");
   const location = useLocation();
   const providerName = location.state.name;
   const providerId = location.state.providerId;
   const customerId = location.state.customerId;
+  // marked as rated for incoming order with id
+  const orderId = location.state.orderId;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,13 +28,10 @@ const Review = () => {
     }).then((res) => {
       if (!res.ok) {
         setRating(null);
-        setHover(null);
         setReviewContent("");
-        alert(`ERROR: PLEASE TRY LATER`);
+        alerting(`ERROR: PLEASE TRY LATER`, "danger");
       } else {
-        setError(null);
         setRating(null);
-        setHover(null);
         setReviewContent("");
       }
     });
@@ -43,14 +42,29 @@ const Review = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      console.log(res);
-      if (res.ok) {
-        alert(`THATNKS FOR THE REVIEW!`);
-      } else {
-        alert("ERROR FOR UPDATING RATING COUNTS");
-      }
-    });
+    })
+      .then(res => res.json())
+      .then(async (res) => {
+        if (res.acknowledged) {
+          await fetch(`/api/orders/rated/${orderId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then(res => res.json())
+            .then((res) => {
+              if (res?._id){
+                alerting(`THANKS FOR THE REVIEW!`);
+                navigate("/customerorderhistory");
+              } else {
+                alerting("ERROR FOR UPDATING RATED ON ORDER", "danger");
+              }
+            });
+        } else {
+          alerting("ERROR FOR UPDATING RATING COUNTS", "danger");
+        }
+      });
   };
 
   return (

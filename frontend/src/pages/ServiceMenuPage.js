@@ -97,15 +97,15 @@ const ServiceMenuPage = () => {
 
         service.desc = `Scheduled at ${hour}:${minutes} on ${months[month + 1]} ${date}, ${year}`;
 
-        setSelectedService({ name: service.name, price: service.price });
+        setSelectedService({ name: service.name, price: service.price, serviceId:service._id });
       }
     });
   };
 
   useEffect(() => {
     async function fetchService() {
-      await fetch("/api/services/" + providerId, {
-        method: "GET",
+      await fetch('/api/services/provider/' + providerId, {
+        method: 'GET',
         headers: {
           "Content-Type": "application/json",
         },
@@ -161,11 +161,6 @@ const ServiceMenuPage = () => {
                 </FormControl>
               </Grid>
             </Grid>
-            <CustomerCalendar
-              providerId={providerId}
-              setScheduleData={setScheduleData}
-              className="customerCalendar"
-            />
             {scheduleData && selectedService ? (
               <React.Fragment>
                 <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
@@ -191,11 +186,17 @@ const ServiceMenuPage = () => {
                     onClick={onClickButton}
                     disabled
                   >
-                    Disabled, enable when selected a time and service
+                    Checkout Disabled, enable when selected a time and service
                   </Button>
                 </Box>
               </React.Fragment>
             )}
+            <br/>
+            <CustomerCalendar
+              providerId={providerId}
+              setScheduleData={setScheduleData}
+              className="customerCalendar"
+            />
           </Paper>
         </Container>
       </ThemeProvider>

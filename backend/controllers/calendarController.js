@@ -133,7 +133,6 @@ const getTimeslotId = asyncHandler(async (req, res) => {
 //@access  Public
 
 const updateTimeWithCustomerId = asyncHandler(async (req, res) => {
-  console.log(req.params.id, req.body.customerId);
   const timeslot = await Calendar.findByIdAndUpdate(req.params.id, {customerId: req.body.customerId})
   if (timeslot) {
     res.status(200).json({timeslot})

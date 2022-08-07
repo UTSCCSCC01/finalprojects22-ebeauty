@@ -23,10 +23,11 @@ const ProviderNavbar = () => {
     <nav className="navbar">
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
+        <Link to="/providerorderhistory">Order History</Link>
         <Link to="/providerservice">Your Services</Link>
         <Link to="/providerschedule">Schedules</Link>
         <Link to="/profileprovider" style={{marginRight:"10pt"}}>My Profile</Link>
-        <button onClick={logout} className={'btn-toprightbutton'}>
+        <button onClick={logout} className={'btn-toprightbutton'} style={{cursor:"pointer"}}>
           Sign Out
         </button>
       </div>

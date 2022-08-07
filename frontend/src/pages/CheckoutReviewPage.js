@@ -51,10 +51,11 @@ const theme = createTheme({
 
 export default function CheckoutReviewPage() {
   const location = useLocation();
-  const data = location.state.data;
+  let data = location.state.data;
   const [startText, setStartText] = useState("");
   const [endText, setEndText] = useState("");
   const { auth } = useAuth();
+  data.customerId = auth?._id;
   let navigate = useNavigate();
 
   // this one is only used to display, checking has customer is on click order
@@ -123,6 +124,7 @@ export default function CheckoutReviewPage() {
           // prepare to post order here. 
           // alerting("Successfully reserved appointment");
           data.calendar_id = res.timeslot._id;
+          data.service_id = data.service.serviceId;
           await fetch("/api/orders/save-order", {
             method: "POST",
             body: JSON.stringify(data),
@@ -134,7 +136,7 @@ export default function CheckoutReviewPage() {
           .then((res)=>{
             if(res?._id){
               alerting("Order Saved!");
-              navigate('/orderhistory');
+              navigate('/customerorderhistory');
             }
           })
         })

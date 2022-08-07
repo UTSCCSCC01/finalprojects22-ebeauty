@@ -31,30 +31,36 @@ const ProviderScheduling = () => {
   const [hour, setHour] = useState("");
   const [duration, setDuration] = useState("1 Hr");
   async function postTimeslot() {
-    let detail = moment.utc(date).format('DD-MMM-YYYY') + " " + moment(hour).format('HH:mm');
-    var start = moment.utc(detail).toDate();
-    var end = moment.utc(detail).add(parseInt(duration.charAt(0)), 'hours').toDate();
-
-    // store in db
-    let event = {
-      providerId: providerId, title: "Available", startTime: start,
-      endTime: end
+    if (date == "" || hour == "") {
+      alerting("please select both date and time(hour)", "danger");
     }
+    else {
+      let detail = moment.utc(date).format('DD-MMM-YYYY') + " " + moment(hour).format('HH:mm');
+      var start = moment.utc(detail).toDate();
+      var end = moment.utc(detail).add(parseInt(duration.charAt(0)), 'hours').toDate();
 
-    await fetch("/api/calendars", {
-      method: "POST",
-      body: JSON.stringify(event),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => {
-      if (!res.ok) {
-        alerting(`Server Error`);
-      } else {
-        setAddedEvent(start);
-        alerting('Successfully scheduled available times');
+      // store in db
+      let event = {
+        providerId: providerId, title: "Available", startTime: start,
+        endTime: end
       }
-    })
+
+      await fetch("/api/calendars", {
+        method: "POST",
+        body: JSON.stringify(event),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }).then((res) => {
+        if (!res.ok) {
+          alerting(`Server Error`);
+        } else {
+          setAddedEvent(start);
+          alerting('Successfully scheduled available times');
+        }
+      })
+
+    }
   }
 
 
@@ -65,29 +71,29 @@ const ProviderScheduling = () => {
         "Content-Type": "application/json",
       },
     })
-    .then(res => res.json())
-    .then(async (res) => {
-      if (res._id) {
-        await fetch("/api/calendars/timeslot", {
-          method: "DELETE",
-          body: JSON.stringify(res),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }).then((res) => {
-          if (!res.ok) {
-            alerting(`Server Error`);
-          } else {
-            alerting('Successfully deleted timeslot');
-            let calendarApi = ref.current.getApi();
-            calendarApi.getEventById(providerId + clickStartTime).remove();
-            setClickStartTime("");
-          }
-        })
-      } else {
-        alerting(`Server Error`);
-      }
-    })
+      .then(res => res.json())
+      .then(async (res) => {
+        if (res._id) {
+          await fetch("/api/calendars/timeslot", {
+            method: "DELETE",
+            body: JSON.stringify(res),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }).then((res) => {
+            if (!res.ok) {
+              alerting(`Server Error`);
+            } else {
+              alerting('Successfully deleted timeslot');
+              let calendarApi = ref.current.getApi();
+              calendarApi.getEventById(providerId + clickStartTime).remove();
+              setClickStartTime("");
+            }
+          })
+        } else {
+          alerting(`Server Error`);
+        }
+      })
   }
 
   // helper of useeffect below retireve customer info
@@ -104,19 +110,19 @@ const ProviderScheduling = () => {
         "Content-Type": "application/json",
       },
     })
-    .then(res => res.json())
-    .then((res) => {
-      setFirstName(res.firstName)
-      setLastName(res.lastName)
-      setEmail(res.email)
-      setAddress("Address: " + res?.defaultAddress)
-      if(res?.defaultAddress == ""){
-        setAddress("Hasn't set the address... Email contact?")
-      }
-    })
-    .catch(err=>{
-      
-    })
+      .then(res => res.json())
+      .then((res) => {
+        setFirstName(res.firstName)
+        setLastName(res.lastName)
+        setEmail(res.email)
+        setAddress("Address: " + res?.defaultAddress)
+        if (res?.defaultAddress == "") {
+          setAddress("Hasn't set the address... Email contact?")
+        }
+      })
+      .catch(err => {
+
+      })
   }
 
   // usage: show customer info
@@ -128,22 +134,22 @@ const ProviderScheduling = () => {
           "Content-Type": "application/json",
         },
       })
-      .then(res => res.json())
-      .then((res) => {
-        setTime(moment.utc(res?.startTime).format('HH:mm') + " to " + moment.utc(res?.endTime).format('HH:mm on MMMM DD, YYYY'));
-        setTitle(res.title);
-        if(res.customerId != undefined){
-          getCustomer(res.customerId);
-        } else {
-          setFirstName("")
-          setLastName("")
-          setEmail("")
-          setAddress("")
-        }
-      })
+        .then(res => res.json())
+        .then((res) => {
+          setTime(moment.utc(res?.startTime).format('HH:mm') + " to " + moment.utc(res?.endTime).format('HH:mm on MMMM DD, YYYY'));
+          setTitle(res.title);
+          if (res.customerId != undefined) {
+            getCustomer(res.customerId);
+          } else {
+            setFirstName("")
+            setLastName("")
+            setEmail("")
+            setAddress("")
+          }
+        })
     }
     // prevent throw error when just entered to the page
-    if(clickStartTime != "")
+    if (clickStartTime != "")
       handleGetInfo();
   }, [clickStartTime])
 
@@ -180,11 +186,11 @@ const ProviderScheduling = () => {
             </LocalizationProvider>
             <div className={'provider-scheduling center'}>
 
-              <h2 className='no-margin'> For : </h2>
+              <h2 className='no-margin'>For: </h2>
               <Dropdown
                 className='no-margin'
                 placeholder="1 Hr"
-                options={["1 Hr", "2 Hrs", "3 Hrs", "4 Hrs", "5 Hrs", "6 Hrs", "7 Hrs", "8 Hrs", "9 Hrs", "10 Hrs", "11 Hrs", "12 Hrs"]}
+                options={["1 Hr", "2 Hrs", "3 Hrs", "4 Hrs", "5 Hrs", "6 Hrs"]}
                 value={duration}
                 onChange={(option) => setDuration(option.value)}
               />
