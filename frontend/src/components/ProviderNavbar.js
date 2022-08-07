@@ -24,7 +24,8 @@ const ProviderNavbar = () => {
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <Link to="/providerservice">Your Services</Link>
-        <Link to="/providerschedule" style={{marginRight:"10pt"}}>Schedules</Link>
+        <Link to="/providerschedule">Schedules</Link>
+        <Link to="/profileprovider" style={{marginRight:"10pt"}}>My Profile</Link>
         <button onClick={logout} className={'btn-toprightbutton'}>
           Sign Out
         </button>
