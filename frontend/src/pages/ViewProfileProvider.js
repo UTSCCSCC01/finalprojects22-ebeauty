@@ -7,6 +7,7 @@ import ReactStars from "react-stars";
 import SampleGallery from "../components/SampleGallery";
 import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import CustomerCalendar from "../components/CustomerCalendar";
+import useAuth from "../Authentication/useAuth";
 
 function roundHalf(num1, num2) {
   if (num2 === 0) return 0;
@@ -19,6 +20,7 @@ const ViewProfileProvider = () => {
   const providerDetails = useSelector((state) => state.providerDetails);
   const { provider, loading, error } = providerDetails;
   const navigate = useNavigate();
+  const { auth } = useAuth();
 
   useEffect(() => {
     dispatch(listProviderDetails(id));
@@ -28,9 +30,14 @@ const ViewProfileProvider = () => {
     navigate("/service-list", { state: { name: provider.name, id: provider._id } });
   };
   const onClickWriteReview = () => {
-    navigate("/reviews", { state: { name: provider.name } });
+    if (Object.keys(auth).length === 0) {
+      alert("Please login first");
+    } else {
+      navigate("/reviews", {
+        state: { name: provider.name, providerId: provider._id, customerId: auth._id },
+      });
+    }
   };
-  // const provider = {};
   const rating = {
     size: 30,
     value: roundHalf(provider.totalRating, provider.ratingPopulation),
