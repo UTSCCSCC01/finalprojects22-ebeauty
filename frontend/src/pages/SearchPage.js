@@ -32,7 +32,6 @@ const SearchPage = () => {
   const dispatch = useDispatch();
   const providersList = useSelector((state) => state.providers);
   const { loading, error, providers, pages, page } = providersList;
-  // console.log(pages);
   useEffect(() => {
     dispatch(listProviders(keyword, pageNumber));
   }, [dispatch, keyword, pageNumber]);
@@ -65,7 +64,7 @@ const SearchPage = () => {
   return (
     <>
       <div className="search-page">
-        <SearchBox providers={providers} service={service} key={service._id} />
+        <SearchBox service={service} key={service._id} />
         <div className="address-form">
           <h2>{addr}</h2>
           <button onClick={redirect_to_addresspage} className="btn">
@@ -111,9 +110,13 @@ const SearchPage = () => {
             <Message variant="danger">{error}</Message>
           ) : (
             <div>
-              {providers.map((provider) => {
-                return <ProviderCard provider={provider} key={provider._id} />;
-              })}
+              {providers
+                .sort((a, b) => a.range - b.range)
+                .map((provider) => {
+                  return (
+                    <ProviderCard provider={provider} key={provider._id} />
+                  );
+                })}
             </div>
           )}
         </div>

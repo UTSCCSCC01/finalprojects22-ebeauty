@@ -1,8 +1,8 @@
-import Provider from "../models/providerModel.js";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcryptjs";
-import asyncHandler from "express-async-handler";
-import express from "express";
+import Provider from '../models/providerModel.js';
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcryptjs';
+import asyncHandler from 'express-async-handler';
+import express from 'express';
 
 // @desc register new provider
 // @route POST /api/providers
@@ -25,12 +25,32 @@ const registerProvider = asyncHandler(async (req, res) => {
   let isAdmin = req.body.isAdmin;
 
   // only goes in if statement when any contain null
-  if (!(name && title && address && range && city && state && country && email && phone && password && imageFilename && individual) || totalRating==null || ratingPopulation==null || isAdmin==null) {
+  if (
+    !(
+      name &&
+      title &&
+      address &&
+      range &&
+      city &&
+      state &&
+      country &&
+      email &&
+      phone &&
+      password &&
+      imageFilename &&
+      individual
+    ) ||
+    totalRating == null ||
+    ratingPopulation == null ||
+    isAdmin == null
+  ) {
     res.status(400);
     throw new Error('please have all fields filled');
-  } else if ((totalRating^ratingPopulation)!=0 || isAdmin==true){
+  } else if ((totalRating ^ ratingPopulation) != 0 || isAdmin == true) {
     res.status(400);
-    throw new Error('you are not allowed to create admin or provider with initial rating!');
+    throw new Error(
+      'you are not allowed to create admin or provider with initial rating!'
+    );
   }
 
   const providerExist = await Provider.findOne({ email });
@@ -44,7 +64,21 @@ const registerProvider = asyncHandler(async (req, res) => {
 
   console.log(range);
   const provider = await Provider.create({
-    name, title, address, range, city, state, country, email, phone, individual, imageFilename, totalRating, ratingPopulation, isAdmin, password: saltedhash
+    name,
+    title,
+    address,
+    range,
+    city,
+    state,
+    country,
+    email,
+    phone,
+    individual,
+    imageFilename,
+    totalRating,
+    ratingPopulation,
+    isAdmin,
+    password: saltedhash,
   });
 
   if (provider) {
@@ -65,7 +99,7 @@ const registerProvider = asyncHandler(async (req, res) => {
       totalRating: provider.totalRating,
       ratingPopulation: provider.ratingPopulation,
       isAdmin: provider.isAdmin,
-      token: generateToken(provider._id)
+      token: generateToken(provider._id),
     });
   } else {
     res.status(400);
@@ -87,7 +121,7 @@ const loginProvider = asyncHandler(async (req, res) => {
 
   const provider = await Provider.findOne({ email });
 
-  if (provider && await (bcrypt.compare(password, provider.password))) {
+  if (provider && (await bcrypt.compare(password, provider.password))) {
     res.json({
       _id: provider.id,
       name: provider.name,
@@ -102,15 +136,13 @@ const loginProvider = asyncHandler(async (req, res) => {
       totalRating: provider.totalRating,
       ratingPopulation: provider.ratingPopulation,
       isAdmin: provider.isAdmin,
-      token: generateToken(provider._id)
+      token: generateToken(provider._id),
     });
   } else {
     res.status(400);
     throw new Error('login failed, invalid email or password');
   }
 });
-
-
 
 //@desc    Get all providers
 //@route   GET /api/providers?keyword=${keyword}
@@ -135,7 +167,13 @@ const getProviders = asyncHandler(async (req, res) => {
   const providers = await Provider.find({ ...keyword })
     .limit(pageSize)
     .skip((page - 1) * pageSize);
-  res.json({ providers, page, pages: Math.ceil(count / pageSize) });
+  const allProviders = await Provider.find({ ...keyword });
+  res.json({
+    allProviders,
+    providers,
+    page,
+    pages: Math.ceil(count / pageSize),
+  });
 });
 
 //@desc    Get a task provider
