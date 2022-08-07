@@ -60,7 +60,6 @@ function App() {
             <Routes>
               <Route path="*" element={<NotFound />} />
               <Route exact path="/" element={<Home />} />
-              <Route path="/reviews" element={<Review />} />
               <Route path="/searchpage" element={<SearchPage />} />
               <Route path="/page/:pageNumber" element={<SearchPage />} />
               <Route path="/searchpage/:keyword" element={<SearchPage />} />
@@ -69,45 +68,38 @@ function App() {
                 element={<SearchPage />}
               />
               <Route path="/findjob" element={<FindJob />} />
-              <Route path="/signup" element={<Signup />} />
               <Route path="/signupproviderone" element={<SignUpProvider />} />
-              <Route
-                path="/signupprovidertwo"
-                element={<SignUpProviderTwo />}
-              />
-              <Route
-                path="/signupproviderthree"
-                element={<SignUpProviderThree />}
-              />
+              <Route path="/signupprovidertwo" element={<SignUpProviderTwo />} />
+              <Route path="/signupproviderthree" element={<SignUpProviderThree />} />
+              <Route path="/signup" element={<Signup />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/profileprovider" element={<ProfileProvider />} />
-              <Route
-                path="/reservationCustomer"
-                element={<ReservationCustomer />}
-              />
-              <Route path="/provider/:id" element={<ViewProfileProvider />} />
-              <Route path="/addresspage" element={<AddressPage />} />
               <Route path="/contactus" element={<ContactUs />} />
-              <Route
-                path="/checkout-address"
-                element={<CheckoutAddressPage />}
-              />
-              <Route
-                path="/checkout-payment"
-                element={<CheckoutPaymentPage />}
-              />
-              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
-              <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
-              <Route path="/service-list" element={<ServiceMenuPage />} />
-              <Route path="/customerorderhistory" element={<CustomerOrderHistoryPage />} />
+              <Route path="/addresspage" element={<AddressPage />} />
+              <Route path="/provider/:id" element={<ViewProfileProvider />} />
+              
+              {/* reservationCustomer is page for customer to see order details */}
+              {/* <Route path="/reservationCustomer" element={<ReservationCustomer />} /> */}
 
-              {/* testing auth here */}
+              {/* only accessible for customer */}
+              <Route element={<RequireAuth allowedRoles={[2]} />}>
+                <Route path="/service-list" element={<ServiceMenuPage />} />
+                <Route path="/checkout-address" element={<CheckoutAddressPage />} />
+                <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
+                <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
+                <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+                <Route path="/customerorderhistory" element={<CustomerOrderHistoryPage />} />
+                <Route path="/reviews" element={<Review />} />
+              </Route>
+
+              {/* only accessible for provider */}
               <Route element={<RequireAuth allowedRoles={[1]} />}>
+                <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 <Route path="/providerorderhistory" element={<ProviderOrderHistoryPage />} />
                 <Route path="/providerschedule" element={<ProviderScheduleing />} />
-                <Route path="/onlyproviderview" element={<OnlyProviderView />} />
                 <Route path="/providerservice" element={<ProviderService />} />
+                <Route path="/profileprovider" element={<ProfileProvider />} />
               </Route>
+
             </Routes>
             <Footer />
           </div>
