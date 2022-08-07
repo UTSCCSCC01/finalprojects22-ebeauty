@@ -20,23 +20,23 @@ import alerting from "../components/Alerting";
 import moment from 'moment';
 import useAuth from '../Authentication/useAuth';
 
-const products = [
-  {
-    name: "Amorr Salon",
-    desc: "Man's Haircut booked on July 23, 2022",
-    price: "$18.99",
-  },
-  {
-    name: "Fresh Massage",
-    desc: "Woman's Manicure booked on July 25, 2022",
-    price: "$21.99",
-  },
-  {
-    name: "Lily Makeup Shop",
-    desc: "Womans Makeup booked on August 5, 2022",
-    price: "$45.99",
-  },
-];
+// const products = [
+//   {
+//     name: "Amorr Salon",
+//     desc: "Man's Haircut booked on July 23, 2022",
+//     price: "$18.99",
+//   },
+//   {
+//     name: "Fresh Massage",
+//     desc: "Woman's Manicure booked on July 25, 2022",
+//     price: "$21.99",
+//   },
+//   {
+//     name: "Lily Makeup Shop",
+//     desc: "Womans Makeup booked on August 5, 2022",
+//     price: "$45.99",
+//   },
+// ];
 
 const theme = createTheme({
   palette: {

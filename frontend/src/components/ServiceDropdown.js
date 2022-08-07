@@ -66,11 +66,12 @@ const ServiceDropdown = ({ onChange }) => {
   // find index of selected service
   // a similarity array between the selected service and all services
   let selectedIndex = -1;
-  //   console.log(keyword);
+  // console.log(keyword);
   if (keyword) {
     const similarityArray = services
       .map((service) => {
         return {
+          service: service,
           index: services.indexOf(service),
           similarity: similarity(service.value, keyword),
         };
@@ -78,10 +79,8 @@ const ServiceDropdown = ({ onChange }) => {
       .sort((a, b) => {
         return b.similarity - a.similarity;
       });
-    if (similarityArray[0].similarity > 0.22) {
-      selectedIndex = similarityArray[0].index;
-    }
-    // console.log(selectedIndex);
+    // console.log(similarityArray);
+    selectedIndex = similarityArray[0].index;
   }
   return (
     <div className="dropdown-container">
