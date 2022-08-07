@@ -90,10 +90,11 @@ const ProviderScheduling = () => {
     })
   }
 
-  // helper of useeffect below
+  // helper of useeffect below retireve customer info
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
   const [title, setTitle] = useState("");
   const [time, setTime] = useState("");
   async function getCustomer(customerId) {
@@ -108,6 +109,10 @@ const ProviderScheduling = () => {
       setFirstName(res.firstName)
       setLastName(res.lastName)
       setEmail(res.email)
+      setAddress("Address: " + res?.defaultAddress)
+      if(res?.defaultAddress == ""){
+        setAddress("Hasn't set the address... Email contact?")
+      }
     })
     .catch(err=>{
       
@@ -130,9 +135,10 @@ const ProviderScheduling = () => {
         if(res.customerId != undefined){
           getCustomer(res.customerId);
         } else {
-          setFirstName(res.firstName)
-          setLastName(res.lastName)
-          setEmail(res.email)
+          setFirstName("")
+          setLastName("")
+          setEmail("")
+          setAddress("")
         }
       })
     }
@@ -198,6 +204,7 @@ const ProviderScheduling = () => {
                   <h2>{title}</h2>
                   <h2>{"Customer: " + firstName + " " + lastName}</h2>
                   <h2>{"Email: " + email}</h2>
+                  <h2>{address}</h2>
                   <h2>{time}</h2>
                 </>
               ) : (

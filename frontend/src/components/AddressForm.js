@@ -47,6 +47,7 @@ const Button = () => {
           className="address-text" 
           id='address'
           type="text"
+          placeholder='Enter Address Here'
           onChange={(e) => {
             setAddress(e.target.value);
           }}
