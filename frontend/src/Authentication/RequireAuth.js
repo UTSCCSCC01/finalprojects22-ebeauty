@@ -5,13 +5,19 @@ import useAuth from "../Authentication/useAuth";
 const RequireAuth = ({ allowedRoles }) => {
     const { auth } = useAuth();
     const location = useLocation();
-    const from = location.state?.from?.pathname || "/";
-    console.log("auth", auth);
+    // const from = location.state?.from?.pathname || "/";
+    // function asking() {
+    //     alert("please login to continue.")
+    // }
 
     return (
         auth?.role?.find(role => allowedRoles?.includes(role))
             ? <Outlet />
-            : (<Navigate to="/login" state={{ from: location }} replace />)
+            :
+            <>
+                {/* {asking()} */}
+                <Navigate to="/login" state={{ from: location }} replace />
+            </>
     );
 }
 

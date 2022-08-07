@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../css/Review.css";
 import { Rating, Typography } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
+import alerting from "../components/Alerting";
 
 const Review = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Review = () => {
       if (!res.ok) {
         setRating(null);
         setReviewContent("");
-        alert(`ERROR: PLEASE TRY LATER`);
+        alerting(`ERROR: PLEASE TRY LATER`, "danger");
       } else {
         setRating(null);
         setReviewContent("");
@@ -54,20 +55,16 @@ const Review = () => {
             .then(res => res.json())
             .then((res) => {
               if (res?._id){
-                alert(`THATNKS FOR THE REVIEW!`);
+                alerting(`THANKS FOR THE REVIEW!`);
                 navigate("/customerorderhistory");
               } else {
-                alert("ERROR FOR UPDATING RATED ON ORDER");
+                alerting("ERROR FOR UPDATING RATED ON ORDER", "danger");
               }
             });
         } else {
-          alert("ERROR FOR UPDATING RATING COUNTS");
+          alerting("ERROR FOR UPDATING RATING COUNTS", "danger");
         }
       });
-
-
-
-
   };
 
   return (

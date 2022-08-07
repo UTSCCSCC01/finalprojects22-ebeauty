@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 import '../css/SignUp.css'
+import alerting from "../components/Alerting";
 
 const SignUp = () => {
   const [error, setError] = useState(null);
@@ -37,14 +38,14 @@ const SignUp = () => {
         setLastName("");
         setEmail("");
         setPassword("");
-        alert(`SIGNUP FAILED.`);
+        alerting(`SIGNUP FAILED.`, "danger");
       } else {
         setError(null);
         setFirstName("");
         setLastName("");
         setEmail("");
         setPassword("");
-        alert(`WELCOME ${firstName} ${lastName} !!! SIGNUP SUCCESS with ${email}`);
+        alerting(`WELCOME ${firstName} ${lastName} !!! SIGNUP SUCCESS with ${email}`);
       }
     })
   }

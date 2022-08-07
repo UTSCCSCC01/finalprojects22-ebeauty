@@ -79,13 +79,14 @@ export default function CheckoutPaymentPage() {
     // input validation
     if (/\d/.test(nameOnCard) || isNaN(cardNumber) || isNaN(cvv)) {
       alerting("your name has number or card number has not number value!")
-      return resetInput();
+      return;
     }
 
     const payment = { nameOnCard, cardNumber, expiryMonth, expiryYear, cvv };
 
     data.payment = payment;
 
+    resetInput();
     navigate("/checkout-review", { state: { data: data } });
   };
 

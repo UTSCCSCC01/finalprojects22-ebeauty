@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "../css/Login.css";
 import useAuth from '../Authentication/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import alerting from "../components/Alerting";
 
 const Login = () => {
   const [error, setError] = useState(null);
@@ -14,18 +15,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-
-  // const [data, setData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-
-  // const handleChange = ({ currentTarget: input }) => {
-  //   setData({ ...data, [input.name]: input.value });
-  // };
-  function handleClick() {
-    navigate('/onlyproviderview');
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -42,7 +31,7 @@ const Login = () => {
       .then(res => res.json())
       .then((res) => {
         if (res._id == null) {
-          alert(`LOGIN FAILED with ${email}`);
+          alerting(`LOGIN FAILED with ${email}`, "danger");
         } else {
           const _id = res._id;
           const name = res.firstName + res.lastName;
@@ -52,8 +41,8 @@ const Login = () => {
           setError(null);
           setEmail("");
           setPassword("");
-          alert(`LOGIN SUCCESS with ${email}`);
-          navigate("/");
+          alerting(`LOGIN SUCCESS with ${email}`);
+          navigate(from, { replace: true });
         }
       })  
     } else {
@@ -76,9 +65,9 @@ const Login = () => {
           navigate(from, { replace: true });
           setEmail("");
           setPassword("");
-          alert(`LOGIN SUCCESS with ${email}`);
+          alerting(`LOGIN SUCCESS with ${email}`);
         } else {
-          alert(res.message)
+          alerting(res.message, "danger")
         }
       })
     }

@@ -27,7 +27,7 @@ const ProviderNavbar = () => {
         <Link to="/providerservice">Your Services</Link>
         <Link to="/providerschedule">Schedules</Link>
         <Link to="/profileprovider" style={{marginRight:"10pt"}}>My Profile</Link>
-        <button onClick={logout} className={'btn-toprightbutton'}>
+        <button onClick={logout} className={'btn-toprightbutton'} style={{cursor:"pointer"}}>
           Sign Out
         </button>
       </div>

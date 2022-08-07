@@ -23,7 +23,7 @@ import CheckoutAddressPage from './pages/CheckoutAddressPage';
 import CheckoutPaymentPage from './pages/CheckoutPaymentPage';
 import CheckoutReviewPage from './pages/CheckoutReviewPage';
 import ProviderScheduleing from './pages/ProviderScheduling';
-import ReservationCustomer from './pages/ReservationCustomer';
+// import ReservationCustomer from './pages/ReservationCustomer';
 import CheckoutPaypalPage from './pages/CheckoutPaypalPage';
 import CustomerOrderHistoryPage from './pages/CustomerOrderHistoryPage';
 import ProviderOrderHistoryPage from './pages/ProviderOrderHistoryPage';
@@ -51,7 +51,7 @@ function App() {
             {Object.keys(auth).length === 0 ? (
               <Navbar />
             ) : (
-              auth?.role[0] == 1 ?
+              auth?.role[0] === 1 ?
                 <ProviderNavbar />
                 :
                 <CustomerNavbar />
@@ -76,20 +76,22 @@ function App() {
               <Route path="/contactus" element={<ContactUs />} />
               <Route path="/addresspage" element={<AddressPage />} />
               <Route path="/provider/:id" element={<ViewProfileProvider />} />
-              
+
               {/* reservationCustomer is page for customer to see order details */}
               {/* <Route path="/reservationCustomer" element={<ReservationCustomer />} /> */}
 
-              {/* only accessible for customer */}
+              <Route path="/service-list" element={<ServiceMenuPage />} />
+              <Route path="/checkout-address" element={<CheckoutAddressPage />} />
+              <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
+              <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
+              <Route path="/checkout-review" element={<CheckoutReviewPage />} />
+              <Route path="/customerorderhistory" element={<CustomerOrderHistoryPage />} />
+              <Route path="/reviews" element={<Review />} />
+
+              {/* only accessible for customer has nothing because we need the location stuff pass in to another page, need time to do that so give up*/}
               <Route element={<RequireAuth allowedRoles={[2]} />}>
-                <Route path="/service-list" element={<ServiceMenuPage />} />
-                <Route path="/checkout-address" element={<CheckoutAddressPage />} />
-                <Route path="/checkout-payment" element={<CheckoutPaymentPage />} />
-                <Route path="/checkout-paypal" element={<CheckoutPaypalPage />} />
-                <Route path="/checkout-review" element={<CheckoutReviewPage />} />
-                <Route path="/customerorderhistory" element={<CustomerOrderHistoryPage />} />
-                <Route path="/reviews" element={<Review />} />
               </Route>
+
 
               {/* only accessible for provider */}
               <Route element={<RequireAuth allowedRoles={[1]} />}>

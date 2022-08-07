@@ -103,7 +103,7 @@ const ProviderOrderCard = ({ order, completed, setCompletedClicked }) => {
                   This customer has not provided the address.
                 </p>
                 :
-                { addr }
+                addr
               }
             </>
           }

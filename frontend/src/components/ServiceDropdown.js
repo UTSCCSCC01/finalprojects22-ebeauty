@@ -87,6 +87,7 @@ const ServiceDropdown = ({ onChange }) => {
       <Select
         className="dropdown"
         defaultValue={services[selectedIndex]}
+        placeholder={<div style={{color:"white"}}>Select a Service</div>}
         options={services}
         noOptionsMessage={() => 'Service Not Found'}
         styles={customStyles}

@@ -35,8 +35,9 @@ const CustomerNavbar = () => {
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <Link to="/searchpage">Search</Link>
-        <Link to="/customerorderhistory">Order History</Link>
-        <button onClick={logout} className={'btn-toprightbutton'}>
+        <Link to="/contactus">Contact Us</Link>
+        <Link to="/customerorderhistory" style={{marginRight:"10pt"}}>Order History</Link>
+        <button onClick={logout} className={'btn-toprightbutton'} style={{cursor:"pointer"}}>
           Sign Out
         </button>
       </div>
