@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.748935d3.css",
+    "main.js": "/static/js/main.f897f064.js",
+    "static/media/barber.jpg": "/static/media/barber.46ea9861b808e8475d51.jpg",
+    "static/media/makeup.jpg": "/static/media/makeup.ba4cf64b44e202b48fe2.jpg",
+    "static/media/nail-polish.jpg": "/static/media/nail-polish.f06b11b696e25e3ca2c0.jpg",
+    "static/media/haircut.jpg": "/static/media/haircut.3ca74b77e0bce2d96f51.jpg",
+    "index.html": "/index.html",
+    "main.748935d3.css.map": "/static/css/main.748935d3.css.map",
+    "main.f897f064.js.map": "/static/js/main.f897f064.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.748935d3.css",
+    "static/js/main.f897f064.js"
+  ]
+}
