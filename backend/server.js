@@ -59,19 +59,19 @@ app.get('/api/config/paypal', (req, res) => {
 });
 
 // handle the error here, make sure it is the last one!!!
-app.use(notFoundHandler);
+// app.use(notFoundHandler);
 app.use(errorHandler);
 
 // take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
 // thus used for deployment in future. if uncomment below, just visit port:500 would show content of port:3000
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-// console.log('directory-name 👉️', __dirname);
+console.log('directory-name 👉️', __dirname);
 if(process.env.NODE_ENV === 'production'){
-  app.use(express.static(path.join(__dirname, '../frontend/build')));
+  app.use(express.static(path.join(__dirname, './build')));
   app.get('*', (req, res) =>
     res.sendFile(
-      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+      path.resolve(__dirname, './', 'build', 'index.html')
     )
   );  
 }
