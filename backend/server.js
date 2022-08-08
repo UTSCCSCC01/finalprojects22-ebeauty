@@ -59,7 +59,7 @@ app.get('/api/config/paypal', (req, res) => {
 });
 
 // handle the error here, make sure it is the last one!!!
-// app.use(notFoundHandler);
+app.use(notFoundHandler);
 app.use(errorHandler);
 
 // take frontend content (static asset) to backend. but if you modified frontend, then it needs to re-run npm run build in frontend folder everytime.
