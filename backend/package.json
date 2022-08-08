@@ -33,7 +33,6 @@
     "use-places-autocomplete": "^4.0.0",
     "multer-gridfs-storage": "^5.0.2",
     "nodemon": "^2.0.18",
-    "path": "^0.12.7",
     "react-stars": "^2.2.5"
   }
 }
