@@ -34,7 +34,7 @@ const ProviderCalendar = forwardRef(({ providerId, addedEvent, setClickStartTime
             let endTime = res[i].endTime;
             let calendarApi = ref.current.getApi();
             // only events not added and from today and after are displayed
-            if (calendarApi.getEventById(providerId + startTime) == null && new Date(moment.utc(new Date()).format("DD MMMM YYYY")) <= new Date(moment.utc(startTime).format("DD MMMM YYYY"))) {
+            if (calendarApi.getEventById(providerId + startTime) == null && new Date(moment(new Date()).format("DD MMMM YYYY")) <= new Date(moment.utc(startTime).format("DD MMMM YYYY"))) {
               if(res[i]?.customerId != null){
                 // notify provider that is reserved. with diff color
                 calendarApi.addEvent({
