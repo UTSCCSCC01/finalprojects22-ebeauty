@@ -268,3 +268,12 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+.rate{
+  display:flex; 
+  flex-direction: row; 
+}
+
+.outof{
+  margin:7pt 0 0 5pt;
+}

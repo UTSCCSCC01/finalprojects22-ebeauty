@@ -15,11 +15,11 @@ const Navbar = () => {
       <h1 onClick={handleClick}>Amorr</h1>
       <div className="links">
         <Link to="/searchpage">Search</Link>
-        <Link to="/findjob">Find a Job</Link>
         <Link to="/contactus">Contact Us</Link>
+        <Link to="/signup">Sign Up</Link>
         <Link to="/login">Log In</Link>
-        <Link to="/signup" className={'toprightbotton'}>  
-          Sign Up
+        <Link to="/findjob" className={'toprightbotton'}>  
+          Become a Provider
         </Link>
       </div>
     </nav>

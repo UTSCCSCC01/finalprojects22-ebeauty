@@ -279,7 +279,8 @@ In postman, send the request to `http://localhost:3001/api/orders` with the requ
         expiryMonth: "09",
         expiryYear: "24",
         cvv: "393"
-   }
+   }, 
+   calendar_id: "62eb74f2ffacdf80996cd2a1"
 }
 ```        
 
@@ -297,9 +298,9 @@ get all calendars in DB
 
 get all calendars of one provider
 
-### GET /api/calendars/timeslot
+### GET /api/calendars/timeslot/:id
 
-get the detail of a timeslot
+get the detail of a timeslot with timeslot's id
 
 ### GET /api/calendars/timeslot/:id/:start
 

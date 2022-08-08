@@ -23,6 +23,7 @@ const SignUpProvider = () => {
   const [data, setData] = useState({
     name: "",
     title:"Hairdress", 
+    range: "10 KM",
     address: "",
     city: "",
     state: "",
@@ -46,7 +47,6 @@ const SignUpProvider = () => {
   // trigger when clicked sign up button
   function signUpForm(e){
     e.preventDefault();
-    console.log(data);
     if(data.password !== data.confirmPassword){
       alerting("passwords are not matching!", "danger");
     } else{

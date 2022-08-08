@@ -42,7 +42,6 @@ const SignUpProviderThree = () => {
 
   // post data to register provider
   const signUp = async () => {
-    // console.log("frontned",data)
     await fetch('/api/providers',{
       method: "POST",
       body: JSON.stringify(data),
@@ -57,8 +56,8 @@ const SignUpProviderThree = () => {
     })
     .catch(err => {
       setLoading(false);
-      if(err.response.data.message)
-        alerting(err.response.data.message, "danger");
+      if(err?.response?.data?.message)
+        alerting(err?.response?.data?.message, "danger");
       else
         alerting(err.message, "danger");
     });
@@ -84,7 +83,7 @@ const SignUpProviderThree = () => {
       .catch(err => {
         setLoading(false);
         if(err.response)
-          alerting(err.response.data.message, "danger");
+          alerting(err?.response?.data?.message, "danger");
         else
           alerting(err.message, "danger");
       });

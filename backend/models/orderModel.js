@@ -52,7 +52,6 @@ const orderSchema = mongoose.Schema(
       cardNumber: {
         type: String,
         require: [true, "please add a password"],
-        unique: true,
       },
 
       expiryMonth: {
@@ -69,6 +68,35 @@ const orderSchema = mongoose.Schema(
         require: [true, "please add a password"],
       },
     },
+    calendar_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "Calendar",
+      unique: true,
+    },
+    service_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "Service",
+    },
+    customer_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "Customer",
+    },
+    provider_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      require: true,
+      ref: "Provider",
+    },
+    completed: {
+      type: Boolean, 
+      default: false
+    },
+    rated: {
+      type: Boolean, 
+      default: false
+    }
   },
   {
     timestamps: true,

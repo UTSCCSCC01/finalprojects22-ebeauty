@@ -18,8 +18,6 @@ const registerCustomer = asyncHandler(async (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
 
-  console.log(firstName, lastName, email, password);
-
   if (!firstName || !lastName || !email || !password) {
     res.status(400);
     throw new Error("please add all fields name, email, and password");
@@ -165,7 +163,6 @@ const getDefaultAddress = async (req, res) => {
     res.json({
       address: "Please log in to see your address"
     })
-    console.log("Have not logged in")
   }
 
 };
@@ -209,9 +206,7 @@ const updateDefaultAddress = async (req, res) => {
         console.log(err.message);
       }
       else{
-        console.log(decodedToken);
         let customer = await Customer.findOneAndUpdate({_id: decodedToken.id}, {defaultAddress: req.body.address});
-        console.log(customer.defaultAddress);
         res.json({
           address: customer.defaultAddress,
           logged_in: true
@@ -220,7 +215,7 @@ const updateDefaultAddress = async (req, res) => {
     })
   }
   else{
-    console.log("Have not logged in")
+    // console.log("Have not logged in")
   }
 };
 

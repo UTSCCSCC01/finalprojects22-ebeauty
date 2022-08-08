@@ -19,24 +19,25 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { PayPalButton } from "react-paypal-button-v2";
 import Loader from "../components/Loader";
+import moment from 'moment';
 
-const products = [
-  {
-    name: "Amorr Salon",
-    desc: "Man's Haircut booked on July 23, 2022",
-    price: "$18.99",
-  },
-  {
-    name: "Fresh Massage",
-    desc: "Woman's Manicure booked on July 25, 2022",
-    price: "$21.99",
-  },
-  {
-    name: "Lily Makeup Shop",
-    desc: "Womans Makeup booked on August 5, 2022",
-    price: "$45.99",
-  },
-];
+// const products = [
+//   {
+//     name: "Amorr Salon",
+//     desc: "Man's Haircut booked on July 23, 2022",
+//     price: "$18.99",
+//   },
+//   {
+//     name: "Fresh Massage",
+//     desc: "Woman's Manicure booked on July 25, 2022",
+//     price: "$21.99",
+//   },
+//   {
+//     name: "Lily Makeup Shop",
+//     desc: "Womans Makeup booked on August 5, 2022",
+//     price: "$45.99",
+//   },
+// ];
 
 const theme = createTheme({
   palette: {
@@ -53,11 +54,11 @@ export default function CheckoutPaypalPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state.data;
+  const [services, setServices] = useState({});
 
   const [sdk, setSdk] = useState('');
 
   const handleSubmitOrder = async () => {
-    console.log("submit button clicked");
     await fetch("/api/orders/save-order", {
       method: "POST",
       body: JSON.stringify(data),
@@ -82,7 +83,7 @@ export default function CheckoutPaypalPage() {
   useEffect(() => {
     const addPaypalScript = async () => {
       const { data: clientId } = await axios.get("/api/config/paypal");
-      console.log("clientId 👉️", clientId);
+      // console.log("clientId 👉️", clientId);
       const script = document.createElement("script");
       script.type = "text/javascript";
       script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
@@ -94,11 +95,13 @@ export default function CheckoutPaypalPage() {
       document.body.appendChild(script);
     };
     addPaypalScript();
+
+    setServices({name:data?.service?.orderName, desc:moment.utc(data?.reservedDetail?.start).format('HH:mm on MMM DD, YYYY'), price:data?.service?.orderPrice});
   }, []);
 
   const handlePaymentSuccess = (paymentResult) => {
     // should go to the next page after payment
-    console.log("paymentResult 👉️", paymentResult);
+    // console.log("paymentResult 👉️", paymentResult);
     navigate("/checkout-review", { state: { data: data } });
   };
   return (
@@ -121,17 +124,20 @@ export default function CheckoutPaypalPage() {
               Order summary
             </Typography>
             <List disablePadding>
-              {products.map((product) => (
+              {/* {products.map((product) => (
                 <ListItem key={product.name} sx={{ py: 1, px: 0 }}>
                   <ListItemText primary={product.name} secondary={product.desc} />
                   <Typography variant="body2">{product.price}</Typography>
                 </ListItem>
-              ))}
-
+              ))} */}
+              <ListItem key={services.name} sx={{ py: 1, px: 0 }}>
+                <ListItemText primary={services.name} secondary={"scheduled on "+services.desc} />
+                <Typography variant="body2">{services.price}</Typography>
+              </ListItem>
               <ListItem sx={{ py: 1, px: 0 }}>
                 <ListItemText primary="Total" />
                 <Typography variant="subtitle1" sx={{ fontWeight: 700 }}>
-                  $86.97
+                  {services.price} $(CAD)
                 </Typography>
               </ListItem>
             </List>

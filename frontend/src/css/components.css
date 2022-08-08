@@ -462,8 +462,8 @@ a {
 }
 
 .order-history-list {
-  max-width: 1000px;
-  width: 1000px;
+  max-width: 900px;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 60px;
 }
@@ -532,6 +532,10 @@ a {
 
 .order-history-elem #view-reservation:hover {
   background-color: #fa81b5;
+}
+
+.no-margin-bottom{
+  margin-bottom:0;
 }
 
 .dataDashboard {

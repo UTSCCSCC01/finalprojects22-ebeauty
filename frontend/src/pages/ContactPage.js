@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import '../css/ContactPage.css'
+import alerting from "../components/Alerting";
 
 export default function ContactUs() {
   
@@ -24,12 +25,12 @@ export default function ContactUs() {
         setName("");
         setEmail("");
         setIssue("");
-        alert(`NEW ISSUE FAILED TO SUBMIT`);
+        alerting(`NEW ISSUE FAILED TO SUBMIT`, "danger");
       } else {
         setName("");
         setEmail("");
         setIssue("");
-        alert(`ISSUE SUBMITTED`);
+        alerting(`ISSUE SUBMITTED`);
       }
     })
   }
@@ -100,7 +101,7 @@ export default function ContactUs() {
               <br />
               <Row>
                 <Col lg="12" className="form-group">
-                  <button class="btn-primary" type="submit" onClick={handleSubmit}> 
+                  <button class="btn-primary" type="submit" onClick={handleSubmit} style={{cursor:"pointer"}}> 
                   Send
                   </button>
                 </Col>
